@@ -149,6 +149,12 @@ namespace AlmacenRepuestosXamarin.Fragments
             progressLayout = view.FindViewById<LinearLayout>(Resource.Id.progressBarDetalle);
             progressLayout.Visibility = ViewStates.Gone;
 
+            if (repuesto.Cantidad != 0)
+            {
+                spinnerDestino.SetSelection((int)repuesto.Destino);
+                spinnerMaquina.SetSelection((int)repuesto.Maquina);
+            }
+
             return view;
         }
 
