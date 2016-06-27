@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="AndroidSwipeLayout" is-shell="true">
+  <name>Android Swipe Layout</name>
+  <publisher>Xamarin Inc</publisher>
+  <publisher-url>http://xamarin.com/</publisher-url>
+  <src-url>https://github.com/daimajia/AndroidSwipeLayout</src-url>
+  <version>1.2.0.0</version>
+  <summary>Android Swipe Layout provides a layout which enables view to be swiped away to reveal other views underneath.</summary>
+  <packages>
+    <package id="Xamarin.Android.Support.v4" version="23.1.1.0" framework="android" />
+    <package id="Xamarin.Android.Support.v7.RecyclerView" version="23.1.1.0" framework="android" />
+  </packages>
+  <samples>
+    <sample id="AndroidSwipeLayoutSample">
+      <name>Android Sample</name>
+      <summary>Android Sample</summary>
+    </sample>
+  </samples>
+</component>

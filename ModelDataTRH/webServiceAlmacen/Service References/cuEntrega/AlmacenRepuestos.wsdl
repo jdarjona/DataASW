@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="RegistrarEntrega">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codEmpleado" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="RegistrarEntrega_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+    </schema>
+  </types>
+  <message name="RegistrarEntrega">
+    <part name="parameters" element="tns:RegistrarEntrega" />
+  </message>
+  <message name="RegistrarEntrega_Result">
+    <part name="parameters" element="tns:RegistrarEntrega_Result" />
+  </message>
+  <portType name="AlmacenRepuestos_Port">
+    <operation name="RegistrarEntrega">
+      <input name="RegistrarEntrega" message="tns:RegistrarEntrega" />
+      <output name="RegistrarEntrega_Result" message="tns:RegistrarEntrega_Result" />
+    </operation>
+  </portType>
+  <binding name="AlmacenRepuestos_Binding" type="tns:AlmacenRepuestos_Port">
+    <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="RegistrarEntrega">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos:RegistrarEntrega" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="RegistrarEntrega">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="RegistrarEntrega_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+  </binding>
+  <service name="AlmacenRepuestos">
+    <port name="AlmacenRepuestos_Port" binding="tns:AlmacenRepuestos_Binding">
+      <address location="http://liege-pc:7047/DynamicsNAV/WS/TRH%20Liege/Codeunit/AlmacenRepuestos" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </port>
+  </service>
+</definitions>

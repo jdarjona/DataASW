@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelDataTRH", "ModelDataTRH\ModelDataTRH.csproj", "{611166DA-D47D-4C02-B63E-8E20E7D5521A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositorySqlTRH", "RepositorySqlTRH\RepositorySqlTRH.csproj", "{DA6B0C9E-9C2D-444C-A88C-61F6E2D109E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryWebServiceTRH", "RepositoryWebServiceTRH\RepositoryWebServiceTRH.csproj", "{F7146DF8-5361-448D-BAB9-74ADA37A3C6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryWebServicesTest.Tests1", "RepositoryWebServicesTest.Tests1\RepositoryWebServicesTest.Tests1.csproj", "{8EDF4429-251A-416D-BB68-93F227191BCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfazNavision", "InterfazNavision\InterfazNavision.csproj", "{83A31B71-C9A2-4252-A8B9-48A4E1DB6DBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlmacenRepuestosXamarin", "AlmacenRepuestosXamarin\AlmacenRepuestosXamarin.csproj", "{8601A199-3212-48D9-8F32-27B4AB37066A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{611166DA-D47D-4C02-B63E-8E20E7D5521A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{611166DA-D47D-4C02-B63E-8E20E7D5521A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{611166DA-D47D-4C02-B63E-8E20E7D5521A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{611166DA-D47D-4C02-B63E-8E20E7D5521A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA6B0C9E-9C2D-444C-A88C-61F6E2D109E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA6B0C9E-9C2D-444C-A88C-61F6E2D109E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA6B0C9E-9C2D-444C-A88C-61F6E2D109E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA6B0C9E-9C2D-444C-A88C-61F6E2D109E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7146DF8-5361-448D-BAB9-74ADA37A3C6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7146DF8-5361-448D-BAB9-74ADA37A3C6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7146DF8-5361-448D-BAB9-74ADA37A3C6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7146DF8-5361-448D-BAB9-74ADA37A3C6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EDF4429-251A-416D-BB68-93F227191BCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EDF4429-251A-416D-BB68-93F227191BCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EDF4429-251A-416D-BB68-93F227191BCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EDF4429-251A-416D-BB68-93F227191BCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83A31B71-C9A2-4252-A8B9-48A4E1DB6DBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83A31B71-C9A2-4252-A8B9-48A4E1DB6DBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83A31B71-C9A2-4252-A8B9-48A4E1DB6DBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83A31B71-C9A2-4252-A8B9-48A4E1DB6DBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8601A199-3212-48D9-8F32-27B4AB37066A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8601A199-3212-48D9-8F32-27B4AB37066A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8601A199-3212-48D9-8F32-27B4AB37066A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{8601A199-3212-48D9-8F32-27B4AB37066A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8601A199-3212-48D9-8F32-27B4AB37066A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8601A199-3212-48D9-8F32-27B4AB37066A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

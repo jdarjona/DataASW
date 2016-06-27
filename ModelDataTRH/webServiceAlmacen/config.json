@@ -1,0 +1,29 @@
+﻿[
+  {
+    "id": "LIEJA",
+    "activo": "TRUE",
+    "empresa": "TRH Liege",
+    "dominio": "TRH.LIEJA",
+    "url": "192.168.1.2:7047",
+    "ipDominio": "192.168.1.8",
+    "codMallaEstandar": "330-01",
+    "codMallaEspecial": "330-02",
+    "codMallaSegunda": "330-03",
+    "codMallaCerramiento": "330-04",
+    "codMallaSemiEstandar":  "330-05"
+  },
+  {
+    "id": "Sevilla",
+    "activo": "FALSE",
+    "empresa": "T.R.H.",
+    "dominio": "TRHSEVILLA0",
+    "url": "trh-es.no-ip.org:7047",
+    "ipDominio": "192.168.1.8",
+    "codMallaEstandar": "330-01",
+    "codMallaEspecial": "330-02",
+    "codMallaSegunda": "330-03",
+    "codMallaCerramiento": "330-04",
+    "codMallaSemiEstandar":  "330-05"
+
+  }
+]

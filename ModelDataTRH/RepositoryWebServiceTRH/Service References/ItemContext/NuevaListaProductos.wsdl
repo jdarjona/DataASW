@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:tns="urn:microsoft-dynamics-schemas/page/nuevalistaproductos" targetNamespace="urn:microsoft-dynamics-schemas/page/nuevalistaproductos" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/page/nuevalistaproductos" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:simpleType name="Type">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Inventory" />
+          <xsd:enumeration value="Service" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="Price_Profit_Calculation">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Profit_x003D_Price_Cost" />
+          <xsd:enumeration value="Price_x003D_Cost_x002B_Profit" />
+          <xsd:enumeration value="No_Relationship" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="Costing_Method">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="FIFO" />
+          <xsd:enumeration value="LIFO" />
+          <xsd:enumeration value="Specific" />
+          <xsd:enumeration value="Average" />
+          <xsd:enumeration value="Standard" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="NuevaListaProductos">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Key" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="No" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Description" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Search_Description" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Description_2" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Assembly_BOM" type="xsd:boolean" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Base_Unit_of_Measure" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Price_Unit_Conversion" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Type" type="tns:Type" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Inventory_Posting_Group" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Shelf_No" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Item_Disc_Group" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Commission_Group" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Unit_Price" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Price_Profit_Calculation" type="tns:Price_Profit_Calculation" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Profit_Percent" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Costing_Method" type="tns:Costing_Method" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Unit_Cost" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Standard_Cost" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Last_Direct_Cost" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Indirect_Cost_Percent" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Cost_is_Adjusted" type="xsd:boolean" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Vendor_No" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Vendor_Item_No" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Lead_Time_Calculation" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Reorder_Point" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Maximum_Inventory" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Reorder_Quantity" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Alternative_Item_No" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Unit_List_Price" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Gross_Weight" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Net_Weight" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Units_per_Parcel" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Unit_Volume" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Durability" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Country_Region_Purchased_Code" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Budget_Quantity" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Budgeted_Amount" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Budget_Profit" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Comment" type="xsd:boolean" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Blocked" type="xsd:boolean" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Cost_is_Posted_to_G_L" type="xsd:boolean" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Last_Date_Modified" type="xsd:date" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="NuevaListaProductos_List">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="unbounded" name="NuevaListaProductos" type="tns:NuevaListaProductos" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="NuevaListaProductos_Fields">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="No" />
+          <xsd:enumeration value="Description" />
+          <xsd:enumeration value="Search_Description" />
+          <xsd:enumeration value="Description_2" />
+          <xsd:enumeration value="Assembly_BOM" />
+          <xsd:enumeration value="Base_Unit_of_Measure" />
+          <xsd:enumeration value="Price_Unit_Conversion" />
+          <xsd:enumeration value="Type" />
+          <xsd:enumeration value="Inventory_Posting_Group" />
+          <xsd:enumeration value="Shelf_No" />
+          <xsd:enumeration value="Item_Disc_Group" />
+          <xsd:enumeration value="Commission_Group" />
+          <xsd:enumeration value="Unit_Price" />
+          <xsd:enumeration value="Price_Profit_Calculation" />
+          <xsd:enumeration value="Profit_Percent" />
+          <xsd:enumeration value="Costing_Method" />
+          <xsd:enumeration value="Unit_Cost" />
+          <xsd:enumeration value="Standard_Cost" />
+          <xsd:enumeration value="Last_Direct_Cost" />
+          <xsd:enumeration value="Indirect_Cost_Percent" />
+          <xsd:enumeration value="Cost_is_Adjusted" />
+          <xsd:enumeration value="Vendor_No" />
+          <xsd:enumeration value="Vendor_Item_No" />
+          <xsd:enumeration value="Lead_Time_Calculation" />
+          <xsd:enumeration value="Reorder_Point" />
+          <xsd:enumeration value="Maximum_Inventory" />
+          <xsd:enumeration value="Reorder_Quantity" />
+          <xsd:enumeration value="Alternative_Item_No" />
+          <xsd:enumeration value="Unit_List_Price" />
+          <xsd:enumeration value="Gross_Weight" />
+          <xsd:enumeration value="Net_Weight" />
+          <xsd:enumeration value="Units_per_Parcel" />
+          <xsd:enumeration value="Unit_Volume" />
+          <xsd:enumeration value="Durability" />
+          <xsd:enumeration value="Country_Region_Purchased_Code" />
+          <xsd:enumeration value="Budget_Quantity" />
+          <xsd:enumeration value="Budgeted_Amount" />
+          <xsd:enumeration value="Budget_Profit" />
+          <xsd:enumeration value="Comment" />
+          <xsd:enumeration value="Blocked" />
+          <xsd:enumeration value="Cost_is_Posted_to_G_L" />
+          <xsd:enumeration value="Last_Date_Modified" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="NuevaListaProductos_Filter">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Field" type="tns:NuevaListaProductos_Fields" />
+          <xsd:element minOccurs="1" maxOccurs="1" name="Criteria" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="Read">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="No" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Read_Result">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="NuevaListaProductos" type="tns:NuevaListaProductos" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ReadByRecId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="recId" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ReadByRecId_Result">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="NuevaListaProductos" type="tns:NuevaListaProductos" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ReadMultiple">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="unbounded" name="filter" type="tns:NuevaListaProductos_Filter" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="bookmarkKey" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="setSize" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ReadMultiple_Result">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="ReadMultiple_Result" type="tns:NuevaListaProductos_List" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="IsUpdated">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Key" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="IsUpdated_Result">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="IsUpdated_Result" type="xsd:boolean" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetRecIdFromKey">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Key" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetRecIdFromKey_Result">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="GetRecIdFromKey_Result" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Create">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="NuevaListaProductos" type="tns:NuevaListaProductos" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Create_Result">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="NuevaListaProductos" type="tns:NuevaListaProductos" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CreateMultiple">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="NuevaListaProductos_List" type="tns:NuevaListaProductos_List" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CreateMultiple_Result">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="NuevaListaProductos_List" type="tns:NuevaListaProductos_List" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Update">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="NuevaListaProductos" type="tns:NuevaListaProductos" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Update_Result">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="NuevaListaProductos" type="tns:NuevaListaProductos" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateMultiple">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="NuevaListaProductos_List" type="tns:NuevaListaProductos_List" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateMultiple_Result">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="NuevaListaProductos_List" type="tns:NuevaListaProductos_List" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Delete">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Key" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Delete_Result">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Delete_Result" type="xsd:boolean" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </types>
+  <message name="Read">
+    <part name="parameters" element="tns:Read" />
+  </message>
+  <message name="Read_Result">
+    <part name="parameters" element="tns:Read_Result" />
+  </message>
+  <message name="ReadByRecId">
+    <part name="parameters" element="tns:ReadByRecId" />
+  </message>
+  <message name="ReadByRecId_Result">
+    <part name="parameters" element="tns:ReadByRecId_Result" />
+  </message>
+  <message name="ReadMultiple">
+    <part name="parameters" element="tns:ReadMultiple" />
+  </message>
+  <message name="ReadMultiple_Result">
+    <part name="parameters" element="tns:ReadMultiple_Result" />
+  </message>
+  <message name="IsUpdated">
+    <part name="parameters" element="tns:IsUpdated" />
+  </message>
+  <message name="IsUpdated_Result">
+    <part name="parameters" element="tns:IsUpdated_Result" />
+  </message>
+  <message name="GetRecIdFromKey">
+    <part name="parameters" element="tns:GetRecIdFromKey" />
+  </message>
+  <message name="GetRecIdFromKey_Result">
+    <part name="parameters" element="tns:GetRecIdFromKey_Result" />
+  </message>
+  <message name="Create">
+    <part name="parameters" element="tns:Create" />
+  </message>
+  <message name="Create_Result">
+    <part name="parameters" element="tns:Create_Result" />
+  </message>
+  <message name="CreateMultiple">
+    <part name="parameters" element="tns:CreateMultiple" />
+  </message>
+  <message name="CreateMultiple_Result">
+    <part name="parameters" element="tns:CreateMultiple_Result" />
+  </message>
+  <message name="Update">
+    <part name="parameters" element="tns:Update" />
+  </message>
+  <message name="Update_Result">
+    <part name="parameters" element="tns:Update_Result" />
+  </message>
+  <message name="UpdateMultiple">
+    <part name="parameters" element="tns:UpdateMultiple" />
+  </message>
+  <message name="UpdateMultiple_Result">
+    <part name="parameters" element="tns:UpdateMultiple_Result" />
+  </message>
+  <message name="Delete">
+    <part name="parameters" element="tns:Delete" />
+  </message>
+  <message name="Delete_Result">
+    <part name="parameters" element="tns:Delete_Result" />
+  </message>
+  <portType name="NuevaListaProductos_Port">
+    <operation name="Read">
+      <input name="Read" message="tns:Read" />
+      <output name="Read_Result" message="tns:Read_Result" />
+    </operation>
+    <operation name="ReadByRecId">
+      <input name="ReadByRecId" message="tns:ReadByRecId" />
+      <output name="ReadByRecId_Result" message="tns:ReadByRecId_Result" />
+    </operation>
+    <operation name="ReadMultiple">
+      <input name="ReadMultiple" message="tns:ReadMultiple" />
+      <output name="ReadMultiple_Result" message="tns:ReadMultiple_Result" />
+    </operation>
+    <operation name="IsUpdated">
+      <input name="IsUpdated" message="tns:IsUpdated" />
+      <output name="IsUpdated_Result" message="tns:IsUpdated_Result" />
+    </operation>
+    <operation name="GetRecIdFromKey">
+      <input name="GetRecIdFromKey" message="tns:GetRecIdFromKey" />
+      <output name="GetRecIdFromKey_Result" message="tns:GetRecIdFromKey_Result" />
+    </operation>
+    <operation name="Create">
+      <input name="Create" message="tns:Create" />
+      <output name="Create_Result" message="tns:Create_Result" />
+    </operation>
+    <operation name="CreateMultiple">
+      <input name="CreateMultiple" message="tns:CreateMultiple" />
+      <output name="CreateMultiple_Result" message="tns:CreateMultiple_Result" />
+    </operation>
+    <operation name="Update">
+      <input name="Update" message="tns:Update" />
+      <output name="Update_Result" message="tns:Update_Result" />
+    </operation>
+    <operation name="UpdateMultiple">
+      <input name="UpdateMultiple" message="tns:UpdateMultiple" />
+      <output name="UpdateMultiple_Result" message="tns:UpdateMultiple_Result" />
+    </operation>
+    <operation name="Delete">
+      <input name="Delete" message="tns:Delete" />
+      <output name="Delete_Result" message="tns:Delete_Result" />
+    </operation>
+  </portType>
+  <binding name="NuevaListaProductos_Binding" type="tns:NuevaListaProductos_Port">
+    <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="Read">
+      <operation soapAction="urn:microsoft-dynamics-schemas/page/nuevalistaproductos:Read" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="Read">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="Read_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ReadByRecId">
+      <operation soapAction="urn:microsoft-dynamics-schemas/page/nuevalistaproductos:ReadByRecId" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ReadByRecId">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ReadByRecId_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ReadMultiple">
+      <operation soapAction="urn:microsoft-dynamics-schemas/page/nuevalistaproductos:ReadMultiple" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ReadMultiple">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ReadMultiple_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="IsUpdated">
+      <operation soapAction="urn:microsoft-dynamics-schemas/page/nuevalistaproductos:IsUpdated" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="IsUpdated">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="IsUpdated_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetRecIdFromKey">
+      <operation soapAction="urn:microsoft-dynamics-schemas/page/nuevalistaproductos:GetRecIdFromKey" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetRecIdFromKey">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetRecIdFromKey_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="Create">
+      <operation soapAction="urn:microsoft-dynamics-schemas/page/nuevalistaproductos:Create" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="Create">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="Create_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CreateMultiple">
+      <operation soapAction="urn:microsoft-dynamics-schemas/page/nuevalistaproductos:CreateMultiple" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CreateMultiple">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CreateMultiple_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="Update">
+      <operation soapAction="urn:microsoft-dynamics-schemas/page/nuevalistaproductos:Update" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="Update">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="Update_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="UpdateMultiple">
+      <operation soapAction="urn:microsoft-dynamics-schemas/page/nuevalistaproductos:UpdateMultiple" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="UpdateMultiple">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="UpdateMultiple_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="Delete">
+      <operation soapAction="urn:microsoft-dynamics-schemas/page/nuevalistaproductos:Delete" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="Delete">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="Delete_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+  </binding>
+  <service name="NuevaListaProductos_Service">
+    <port name="NuevaListaProductos_Port" binding="tns:NuevaListaProductos_Binding">
+      <address location="http://192.168.1.2:7047/DynamicsNAV/WS/T.R.H./Page/NuevaListaProductos" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </port>
+  </service>
+</definitions>

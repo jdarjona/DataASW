@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="Hello">Hello World, Click Me!</string>
+  <string name="ApplicationName">Almacen Repuestos</string>
+  <string name="tab1_Name">Empleados</string>
+  <string name="tab2_Name">Repuestos</string>
+  <string name="btoScanear">Scanear</string>
+  <string name="pref_summary_url_local">summary local</string>
+  <string name="pref_title_url_local">Url Local</string>
+  <string name="pref_summary_url_remota">pref_summary_url_remota</string>
+  <string name="pref_title_url_remota">Url remota</string>
+  <string name="ApplicationName">App TRH</string>
+  <string name="drawer_open">Open</string>
+  <string name="drawer_close">Close</string>
+  <string name="menu_refresh">Refresh</string>
+</resources>

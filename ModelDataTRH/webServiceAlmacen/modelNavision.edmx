@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="NavSql.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ASWv2009.dbo.vListadoPedidosMonitorizacion' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="vListadoPedidosMonitorizacion">
+          <Key>
+            <PropertyRef Name="indice" />
+            <PropertyRef Name="Cod_ Agrupacion Pedido" />
+          </Key>
+          <Property Name="indice" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="Cod_ Agrupacion Pedido" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="codigoPedido" Type="nvarchar" MaxLength="41" />
+          <Property Name="Estado" Type="int" Nullable="false" />
+          <Property Name="estadoDescripcion" Type="varchar" MaxLength="18" />
+          <Property Name="No_ Albaran_ Venta" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Id" Type="nvarchar" MaxLength="4000" />
+          <Property Name="Doble Descarga" Type="tinyint" Nullable="false" />
+          <Property Name="FechaSolicitud" Type="datetime" Nullable="false" />
+          <Property Name="HoraSolicitud" Type="time" Precision="7" />
+          <Property Name="FechaMinimaEntrega" Type="datetime" />
+          <Property Name="Fecha Carga Requerida" Type="datetime" />
+          <Property Name="Fecha Minima Entrega Carga 1" Type="datetime" Nullable="false" />
+          <Property Name="Fecha Minima Entrega Carga 2" Type="datetime" />
+          <Property Name="Provincia" Type="nvarchar" MaxLength="63" Nullable="false" />
+          <Property Name="Provincia Carga 1" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Provincia Carga 2" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Localidad" Type="nvarchar" MaxLength="63" Nullable="false" />
+          <Property Name="Localidad Carga 1" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Localidad Carga 2" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Tauliner" Type="tinyint" Nullable="false" />
+          <Property Name="Camion Grua" Type="tinyint" Nullable="false" />
+          <Property Name="pesoKg" Type="decimal" Precision="38" Scale="20" Nullable="false" />
+          <Property Name="precio" Type="decimal" Precision="38" Scale="17" Nullable="false" />
+          <Property Name="Nombre Transportista" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Transportista DNI" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Matricula Camion" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Matricula Remolque" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Codigo Agencia" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Transporte Cerrado" Type="tinyint" Nullable="false" />
+          <Property Name="Enviado Pdf" Type="tinyint" Nullable="false" />
+          <Property Name="Cod_ Pedido Transporte" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nombre Agencia" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Search Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Distancia Fabrica" Type="decimal" Precision="38" Scale="20" />
+          <Property Name="Code" Type="nvarchar" MaxLength="20" />
+          <Property Name="inicialesComercial" Type="nvarchar" MaxLength="63" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="NavSqlStoreContainer">
+          <EntitySet Name="vListadoPedidosMonitorizacion" EntityType="Self.vListadoPedidosMonitorizacion" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vListadoPedidosMonitorizacion].[indice] AS [indice], 
+    [vListadoPedidosMonitorizacion].[Cod_ Agrupacion Pedido] AS [Cod_ Agrupacion Pedido], 
+    [vListadoPedidosMonitorizacion].[codigoPedido] AS [codigoPedido], 
+    [vListadoPedidosMonitorizacion].[Estado] AS [Estado], 
+    [vListadoPedidosMonitorizacion].[estadoDescripcion] AS [estadoDescripcion], 
+    [vListadoPedidosMonitorizacion].[No_ Albaran_ Venta] AS [No_ Albaran_ Venta], 
+    [vListadoPedidosMonitorizacion].[Id] AS [Id], 
+    [vListadoPedidosMonitorizacion].[Doble Descarga] AS [Doble Descarga], 
+    [vListadoPedidosMonitorizacion].[FechaSolicitud] AS [FechaSolicitud], 
+    [vListadoPedidosMonitorizacion].[HoraSolicitud] AS [HoraSolicitud], 
+    [vListadoPedidosMonitorizacion].[FechaMinimaEntrega] AS [FechaMinimaEntrega], 
+    [vListadoPedidosMonitorizacion].[Fecha Carga Requerida] AS [Fecha Carga Requerida], 
+    [vListadoPedidosMonitorizacion].[Fecha Minima Entrega Carga 1] AS [Fecha Minima Entrega Carga 1], 
+    [vListadoPedidosMonitorizacion].[Fecha Minima Entrega Carga 2] AS [Fecha Minima Entrega Carga 2], 
+    [vListadoPedidosMonitorizacion].[Provincia] AS [Provincia], 
+    [vListadoPedidosMonitorizacion].[Provincia Carga 1] AS [Provincia Carga 1], 
+    [vListadoPedidosMonitorizacion].[Provincia Carga 2] AS [Provincia Carga 2], 
+    [vListadoPedidosMonitorizacion].[Localidad] AS [Localidad], 
+    [vListadoPedidosMonitorizacion].[Localidad Carga 1] AS [Localidad Carga 1], 
+    [vListadoPedidosMonitorizacion].[Localidad Carga 2] AS [Localidad Carga 2], 
+    [vListadoPedidosMonitorizacion].[Tauliner] AS [Tauliner], 
+    [vListadoPedidosMonitorizacion].[Camion Grua] AS [Camion Grua], 
+    [vListadoPedidosMonitorizacion].[pesoKg] AS [pesoKg], 
+    [vListadoPedidosMonitorizacion].[precio] AS [precio], 
+    [vListadoPedidosMonitorizacion].[Nombre Transportista] AS [Nombre Transportista], 
+    [vListadoPedidosMonitorizacion].[Transportista DNI] AS [Transportista DNI], 
+    [vListadoPedidosMonitorizacion].[Matricula Camion] AS [Matricula Camion], 
+    [vListadoPedidosMonitorizacion].[Matricula Remolque] AS [Matricula Remolque], 
+    [vListadoPedidosMonitorizacion].[Codigo Agencia] AS [Codigo Agencia], 
+    [vListadoPedidosMonitorizacion].[Transporte Cerrado] AS [Transporte Cerrado], 
+    [vListadoPedidosMonitorizacion].[Enviado Pdf] AS [Enviado Pdf], 
+    [vListadoPedidosMonitorizacion].[Cod_ Pedido Transporte] AS [Cod_ Pedido Transporte], 
+    [vListadoPedidosMonitorizacion].[Nombre Agencia] AS [Nombre Agencia], 
+    [vListadoPedidosMonitorizacion].[Search Name] AS [Search Name], 
+    [vListadoPedidosMonitorizacion].[Distancia Fabrica] AS [Distancia Fabrica], 
+    [vListadoPedidosMonitorizacion].[Code] AS [Code], 
+    [vListadoPedidosMonitorizacion].[inicialesComercial] AS [inicialesComercial]
+    FROM [dbo].[vListadoPedidosMonitorizacion] AS [vListadoPedidosMonitorizacion]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NavSql" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="navision" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="vListadoPedidosMonitorizacion" EntityType="NavSql.vListadoPedidosMonitorizacion" />
+        </EntityContainer>
+        <EntityType Name="vListadoPedidosMonitorizacion">
+          <Key>
+            <PropertyRef Name="indice" />
+            <PropertyRef Name="Cod__Agrupacion_Pedido" />
+          </Key>
+          <Property Name="indice" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Cod__Agrupacion_Pedido" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="codigoPedido" Type="String" MaxLength="41" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="Int32" Nullable="false" />
+          <Property Name="estadoDescripcion" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+          <Property Name="No__Albaran__Venta" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Doble_Descarga" Type="Byte" Nullable="false" />
+          <Property Name="FechaSolicitud" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HoraSolicitud" Type="Time" Precision="7" />
+          <Property Name="FechaMinimaEntrega" Type="DateTime" Precision="3" />
+          <Property Name="Fecha_Carga_Requerida" Type="DateTime" Precision="3" />
+          <Property Name="Fecha_Minima_Entrega_Carga_1" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Fecha_Minima_Entrega_Carga_2" Type="DateTime" Precision="3" />
+          <Property Name="Provincia" Type="String" Nullable="false" MaxLength="63" FixedLength="false" Unicode="true" />
+          <Property Name="Provincia_Carga_1" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Provincia_Carga_2" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Localidad" Type="String" Nullable="false" MaxLength="63" FixedLength="false" Unicode="true" />
+          <Property Name="Localidad_Carga_1" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Localidad_Carga_2" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Tauliner" Type="Byte" Nullable="false" />
+          <Property Name="Camion_Grua" Type="Byte" Nullable="false" />
+          <Property Name="pesoKg" Type="Decimal" Nullable="false" Precision="38" Scale="20" />
+          <Property Name="precio" Type="Decimal" Nullable="false" Precision="38" Scale="17" />
+          <Property Name="Nombre_Transportista" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Transportista_DNI" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Matricula_Camion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Matricula_Remolque" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Codigo_Agencia" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Transporte_Cerrado" Type="Byte" Nullable="false" />
+          <Property Name="Enviado_Pdf" Type="Byte" Nullable="false" />
+          <Property Name="Cod__Pedido_Transporte" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Nombre_Agencia" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Search_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Distancia_Fabrica" Type="Decimal" Precision="38" Scale="20" />
+          <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="inicialesComercial" Type="String" Nullable="false" MaxLength="63" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NavSqlStoreContainer" CdmEntityContainer="navision">
+          <EntitySetMapping Name="vListadoPedidosMonitorizacion">
+            <EntityTypeMapping TypeName="NavSql.vListadoPedidosMonitorizacion">
+              <MappingFragment StoreEntitySet="vListadoPedidosMonitorizacion">
+                <ScalarProperty Name="inicialesComercial" ColumnName="inicialesComercial" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Distancia_Fabrica" ColumnName="Distancia Fabrica" />
+                <ScalarProperty Name="Search_Name" ColumnName="Search Name" />
+                <ScalarProperty Name="Nombre_Agencia" ColumnName="Nombre Agencia" />
+                <ScalarProperty Name="Cod__Pedido_Transporte" ColumnName="Cod_ Pedido Transporte" />
+                <ScalarProperty Name="Enviado_Pdf" ColumnName="Enviado Pdf" />
+                <ScalarProperty Name="Transporte_Cerrado" ColumnName="Transporte Cerrado" />
+                <ScalarProperty Name="Codigo_Agencia" ColumnName="Codigo Agencia" />
+                <ScalarProperty Name="Matricula_Remolque" ColumnName="Matricula Remolque" />
+                <ScalarProperty Name="Matricula_Camion" ColumnName="Matricula Camion" />
+                <ScalarProperty Name="Transportista_DNI" ColumnName="Transportista DNI" />
+                <ScalarProperty Name="Nombre_Transportista" ColumnName="Nombre Transportista" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="pesoKg" ColumnName="pesoKg" />
+                <ScalarProperty Name="Camion_Grua" ColumnName="Camion Grua" />
+                <ScalarProperty Name="Tauliner" ColumnName="Tauliner" />
+                <ScalarProperty Name="Localidad_Carga_2" ColumnName="Localidad Carga 2" />
+                <ScalarProperty Name="Localidad_Carga_1" ColumnName="Localidad Carga 1" />
+                <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+                <ScalarProperty Name="Provincia_Carga_2" ColumnName="Provincia Carga 2" />
+                <ScalarProperty Name="Provincia_Carga_1" ColumnName="Provincia Carga 1" />
+                <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+                <ScalarProperty Name="Fecha_Minima_Entrega_Carga_2" ColumnName="Fecha Minima Entrega Carga 2" />
+                <ScalarProperty Name="Fecha_Minima_Entrega_Carga_1" ColumnName="Fecha Minima Entrega Carga 1" />
+                <ScalarProperty Name="Fecha_Carga_Requerida" ColumnName="Fecha Carga Requerida" />
+                <ScalarProperty Name="FechaMinimaEntrega" ColumnName="FechaMinimaEntrega" />
+                <ScalarProperty Name="HoraSolicitud" ColumnName="HoraSolicitud" />
+                <ScalarProperty Name="FechaSolicitud" ColumnName="FechaSolicitud" />
+                <ScalarProperty Name="Doble_Descarga" ColumnName="Doble Descarga" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="No__Albaran__Venta" ColumnName="No_ Albaran_ Venta" />
+                <ScalarProperty Name="estadoDescripcion" ColumnName="estadoDescripcion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="codigoPedido" ColumnName="codigoPedido" />
+                <ScalarProperty Name="Cod__Agrupacion_Pedido" ColumnName="Cod_ Agrupacion Pedido" />
+                <ScalarProperty Name="indice" ColumnName="indice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

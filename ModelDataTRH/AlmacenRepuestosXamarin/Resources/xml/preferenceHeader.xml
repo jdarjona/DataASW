@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<preference-headers
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <header android:fragment="AlmacenRepuestos.AlmacenRepuestosXamarin.Prefs1Fragment"
+          android:icon="@drawable/wifi_64"
+          android:title="Configuración Local"
+          android:summary="Dentro de la red de TRH" />
+
+  <header android:fragment="AlmacenRepuestos.AlmacenRepuestosXamarin.Prefs1Fragment"
+          android:icon="@drawable/icon_globe_64"
+          android:title="Configuracion Remota"
+          android:summary="Fuera de la red de TRH">
+    <!-- Arbitrary key/value pairs can be included with a header as
+             arguments to its fragment. -->
+    <extra android:name="someKey" android:value="someHeaderValue" />
+  </header>
+
+  <!--<header android:icon="@drawable/ic_tab_white"
+          android:title="Intent"
+          android:summary="Launches an Intent.">
+    <intent android:action="android.intent.action.VIEW"
+            android:data="http://www.android.com" />
+  </header>-->
+
+</preference-headers> 
