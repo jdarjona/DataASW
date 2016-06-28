@@ -19,9 +19,10 @@ using Android.Net.Wifi;
 namespace AlmacenRepuestosXamarin.Activities
 {
     [Activity(Label = "Almacen Repuestos", MainLauncher = true, LaunchMode = LaunchMode.SingleTop, Icon = "@drawable/carretilla", ScreenOrientation = ScreenOrientation.Portrait)]
-   // [Activity(Label = "Almacen Repuestos", MainLauncher = true, Icon = "@drawable/carretilla", Theme = "@style/Theme.AppCompat.Light", ScreenOrientation = ScreenOrientation.Portrait)]
+    // [Activity(Label = "Almacen Repuestos", MainLauncher = true, Icon = "@drawable/carretilla", Theme = "@style/Theme.AppCompat.Light", ScreenOrientation = ScreenOrientation.Portrait)]
     public class HomeView : BaseActivity
     {
+       
 
         private MyActionBarDrawerToggle drawerToggle;
         private string drawerTitle;
@@ -52,7 +53,7 @@ namespace AlmacenRepuestosXamarin.Activities
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-           // SetContentView(Resource.Layout.page_home_view);
+            // SetContentView(Resource.Layout.page_home_view);
             this.title = this.drawerTitle = this.Title;
 
             this.drawerLayout = this.FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
@@ -104,32 +105,16 @@ namespace AlmacenRepuestosXamarin.Activities
             StreamToken<PedidoFireBase> _token = _client.GetStreamToken(@"Pedidos/TRH Liege");
 
 
-            obtenerWifi();
             
+
             //_token
             //   // .Where(q => q.EventType == FirebaseEventType.InsertOrUpdate)
             //    .Subscribe(OnItemMessage);
         }
 
-        private void obtenerWifi()
-        {
-            //OBTENER CONEXION WIFI O LOCAL
-            WifiManager wifiManager = (WifiManager)this.GetSystemService(Service.WifiService);
-            int ip = wifiManager.ConnectionInfo.IpAddress;
-            string SSID = wifiManager.ConnectionInfo.SSID;
-            string conexionWifi = string.Empty;
+        
 
-            if (wifiManager.IsWifiEnabled)
-            {
-                conexionWifi = "Activada";
-            }
-            else
-            {
-                conexionWifi = "Desactivada";
-            }
-            Toast.MakeText(this, "Conexión Wifi: " + conexionWifi + " IP: " + ip + " SSID: " + SSID, ToastLength.Short).Show();
-            //FIN OBTENER WIFI O LACAL
-        }
+        
 
         public override void OnBackPressed()
         {

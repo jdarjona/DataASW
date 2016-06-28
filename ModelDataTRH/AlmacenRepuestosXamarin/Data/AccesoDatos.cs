@@ -20,30 +20,79 @@ using RepositoryWebServiceTRH.EntregaAlmacenEpisContext;
 using ModelDataTRH;
 using RepositoryWebServiceTRH.PedidoVentasContext;
 using Android.Net.Wifi;
+using AlmacenRepuestosXamarin.Activities;
 
 namespace AlmacenRepuestosXamarin.Data
 {
     public  class AccesoDatos
     {
-       private const string webBase = @"http://intranet.trh-be.com/WSTRH/";
+        static int ip = 0;
+        static string SSID = string.Empty;
+        static bool conexionWifi = false;
+        private const string webBase = @"http://intranet.trh-be.com/WSTRH/";
       // private const string webBase = @"http://192.168.1.2/WSTRH/";
         private  HttpClient client = new HttpClient(new NativeMessageHandler());
 
 
         public AccesoDatos()
         {
-             client = new HttpClient(new NativeMessageHandler())
+            datosRedWifi();
+            client = new HttpClient(new NativeMessageHandler())
             {
-                BaseAddress = new Uri(webBase)
-            };
+                // BaseAddress = new Uri(webBase)
+                BaseAddress = new Uri(obtenerDatosConexionEmpresa("Liege"))
+             };
 
 
             client.DefaultRequestHeaders.Accept.Clear();
-
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/pdf"));
 
         }
+
+        public void datosRedWifi()
+        {
+            //OBTENER DATOS WIFI O LOCAL
+            WifiManager wifiManager = (WifiManager)Application.Context.GetSystemService(Service.WifiService);
+            ip = wifiManager.ConnectionInfo.IpAddress;
+            SSID = wifiManager.ConnectionInfo.SSID;
+            conexionWifi = wifiManager.IsWifiEnabled;
+            //  Toast.MakeText(this, "Conexión Wifi: " + conexionWifi + " IP: " + ip + " SSID: " + SSID, ToastLength.Short).Show();
+            //FIN OBTENER WIFI O LACAL
+        }
+
+        public static string obtenerDatosConexionEmpresa(string empresa)
+        {
+            string resultado = "no se puede establecer conexión";
+
+
+            if (empresa.Equals("Liege"))
+            {
+               
+                if (conexionWifi && SSID.Equals("TRH_admin"))
+                {
+                    resultado = @"http://192.168.1.2/WSTRH/";
+                }
+                else {
+                    resultado = @"http://intranet.trh-be.com/WSTRH/";
+                }
+            }
+
+            if (empresa.Equals("Sevilla"))
+            {
+                
+                if (conexionWifi && SSID.Equals("TRH_Admin"))
+                {
+                    resultado = @"http://192.168.1.2/WSTRH/";
+                }
+                else {
+                    resultado = @"http://intranet.trh-es.com/WSTRH/";
+                }
+            }
+
+            return resultado;
+        }
+
 
         public  async Task<List<Empleados>> getEmpleados()
         {
@@ -70,6 +119,8 @@ namespace AlmacenRepuestosXamarin.Data
             
             return null;
         }
+
+        
 
         public async Task<EntregaAlmacen> addRepuesto(string codEmpleado,string codRepuesto) {
 

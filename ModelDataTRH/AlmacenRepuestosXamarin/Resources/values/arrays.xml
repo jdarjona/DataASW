@@ -14,5 +14,17 @@
   <item>beta</item>
   <item>charlie</item>
 </string-array>
+  
+  <string-array name="Empresas">
+    <item>Sevilla</item>
+    <item>Liege</item>
+  </string-array>
 
-  </resources>
+  <string-array name="ListaSSID">
+    <item>TRH_Admin</item>
+    <item>Vodafone4327</item>
+    <item>TRH_admin</item>
+    <item>TRH Liege</item>
+  </string-array>
+
+</resources>
