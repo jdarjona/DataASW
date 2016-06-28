@@ -105,7 +105,7 @@ namespace AlmacenRepuestosXamarin.Activities
             StreamToken<PedidoFireBase> _token = _client.GetStreamToken(@"Pedidos/TRH Liege");
 
 
-            
+            Helpers.Preferencias preferencias = new Preferencias(this);
 
             //_token
             //   // .Where(q => q.EventType == FirebaseEventType.InsertOrUpdate)
