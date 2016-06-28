@@ -39,7 +39,9 @@ namespace AlmacenRepuestosXamarin.Model
 
 
             EntregaAlmacen repuesto=await datos.addRepuesto(codEmpleado, codRepuesto);
-            repuestos.Add(repuesto);
+            if (repuesto!=null) {
+                repuestos.Add(repuesto);
+            }
             return repuesto;
         }
 

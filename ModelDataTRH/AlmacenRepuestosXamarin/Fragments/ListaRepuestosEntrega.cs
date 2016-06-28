@@ -328,49 +328,69 @@ namespace AlmacenRepuestosXamarin.Fragments
             //Start scanning!
             var result = await scanner.Scan();
 
-
+            EntregaAlmacen rep = await ManagerRepuestos.addRepuesto(empleado.No, result.Text);
             //HandleScanResult(result);
 
             string msg = "";
-
-            if (result != null && !string.IsNullOrEmpty(result.Text))
+            if (rep != null)
             {
+                if (result != null && !string.IsNullOrEmpty(result.Text))
+                {
                 msg = "Found Barcode: " + result.Text;
 
-                if (ManagerRepuestos.existeRepuestoEnLista(empleado.No, result.Text))
-                {
-                    msg = "Ya fue escaneado ese producto!!";
+                    if (ManagerRepuestos.existeRepuestoEnLista(empleado.No, result.Text))
+                    {
+                        msg = "Ya fue escaneado ese producto!!";
+                    }
+                    else
+                    {
+                        //EntregaAlmacen rep = await ManagerRepuestos.addRepuesto(empleado.No, result.Text);
+                        //if (rep != null)
+                        //{
+                            adaptarSwipe.NotifyDataSetChanged();
+
+                            //var activityDetalleRepuestoActivity = new Intent(this.Activity, typeof(detalleRepuestoActivity));
+                            //activityDetalleRepuestoActivity.PutExtra("idEntregaAlmacen", rep.Key);
+                            //StartActivity(activityDetalleRepuestoActivity);
+
+
+                            Android.Support.V4.App.Fragment fragment = new AlmacenRepuestosXamarin.Fragments.DetalleRepuesto();
+
+                            Bundle bundle = new Bundle();
+                            bundle.PutString("idEntregaAlmacen", rep.Key);
+                            fragment.Arguments = bundle;
+
+
+
+
+                            FragmentManager.BeginTransaction()
+                                .Replace(Resource.Id.content_frame, fragment)
+                                .AddToBackStack("ListaRepuestosEntrega")
+                               .Commit();
+                    
+                    }
+
                 }
                 else
-                {
-                    EntregaAlmacen rep = await ManagerRepuestos.addRepuesto(empleado.No, result.Text);
-                    adaptarSwipe.NotifyDataSetChanged();
-
-                    //var activityDetalleRepuestoActivity = new Intent(this.Activity, typeof(detalleRepuestoActivity));
-                    //activityDetalleRepuestoActivity.PutExtra("idEntregaAlmacen", rep.Key);
-                    //StartActivity(activityDetalleRepuestoActivity);
-
-
-                    Android.Support.V4.App.Fragment fragment = new AlmacenRepuestosXamarin.Fragments.DetalleRepuesto();
-
-                    Bundle bundle = new Bundle();
-                    bundle.PutString("idEntregaAlmacen", rep.Key);
-                    fragment.Arguments=bundle;
-
-                   
-
-
-                    FragmentManager.BeginTransaction()
-                        .Replace(Resource.Id.content_frame, fragment)
-                        .AddToBackStack("ListaRepuestosEntrega")
-                       .Commit();
+                { 
+                    msg = "Scaneo Cancelado";
+                    this.Activity.RunOnUiThread(() => Toast.MakeText(this.Activity, msg, ToastLength.Short).Show());
                 }
             }
             else
-                msg = "Scaneo Cancelado";
+            {
+                Android.App.AlertDialog.Builder alert = new Android.App.AlertDialog.Builder(this.Activity);
+                alert.SetTitle("Error en lectura de Código de Barras");
+                alert.SetMessage("Código leido: " + result);
+                alert.SetPositiveButton("Ok", (s, e) =>
+                {
+                    rep = null;
+                    //msg = "Código leido: " + result;
+                    //this.Activity.RunOnUiThread(() => Toast.MakeText(this.Activity, msg, ToastLength.Short).Show());
+                });
+                alert.Show();
+            }
 
-
-            this.Activity.RunOnUiThread(() => Toast.MakeText(this.Activity, msg, ToastLength.Short).Show());
         }
 
         public bool HasActions(int p0, SwipeDirection direction)

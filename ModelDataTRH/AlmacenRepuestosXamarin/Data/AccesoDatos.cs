@@ -24,8 +24,8 @@ namespace AlmacenRepuestosXamarin.Data
 {
     public  class AccesoDatos
     {
-       //private const string webBase = @"http://intranet.trh-be.com/WSTRH/";
-       private const string webBase = @"http://192.168.1.2/WSTRH/";
+       private const string webBase = @"http://intranet.trh-be.com/WSTRH/";
+      // private const string webBase = @"http://192.168.1.2/WSTRH/";
         private  HttpClient client = new HttpClient(new NativeMessageHandler());
 
 

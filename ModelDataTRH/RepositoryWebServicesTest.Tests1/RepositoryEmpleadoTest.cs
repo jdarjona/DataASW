@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RepositoryWebServiceTRH;
 using RepositoryWebServiceTRH.EntregaAlmacenEpisContext;
-using AlmacenRepuestosXamarin.Model;
+//using AlmacenRepuestosXamarin.Model;
 
 namespace RepositoryWebServicesTest.Tests1
 {

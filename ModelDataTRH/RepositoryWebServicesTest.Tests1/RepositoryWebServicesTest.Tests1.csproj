@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AlmacenRepuestosXamarin\AlmacenRepuestosXamarin.csproj">
-      <Project>{8601A199-3212-48D9-8F32-27B4AB37066A}</Project>
+      <Project>{8601a199-3212-48d9-8f32-27b4ab37066a}</Project>
       <Name>AlmacenRepuestosXamarin</Name>
     </ProjectReference>
     <ProjectReference Include="..\InterfazNavision\InterfazNavision.csproj">

@@ -44,16 +44,18 @@ namespace AlmacenRepuestosXamarin.Adapter
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
+            
             View view = convertView;
-
+           
             if (view == null)
                 view = context.LayoutInflater.Inflate(Resource.Layout.listRowRepuestos, parent, false);
 
             EntregaAlmacen item = this[position];
-            view.FindViewById<TextView>(Resource.Id.idRepuesto).Text = item.Cod_Producto.ToString();
-            view.FindViewById<TextView>(Resource.Id.Description).Text = item.Descripcion_Producto;
-            view.FindViewById<TextView>(Resource.Id.Cantidad).Text = item.Cantidad.ToString("N0");
-
+            if (item!=null) {
+                view.FindViewById<TextView>(Resource.Id.idRepuesto).Text = item.Cod_Producto.ToString();
+                view.FindViewById<TextView>(Resource.Id.Description).Text = item.Descripcion_Producto;
+                view.FindViewById<TextView>(Resource.Id.Cantidad).Text = item.Cantidad.ToString("N0");
+            }
             return view;
         }
     }
