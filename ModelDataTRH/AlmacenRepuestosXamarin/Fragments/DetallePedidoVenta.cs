@@ -6,6 +6,7 @@ using AlmacenRepuestosXamarin.Adapter;
 using AlmacenRepuestosXamarin.Data;
 using Android.App;
 using Android.Content;
+using Android.Net.Wifi;
 using Android.OS;
 using Android.Runtime;
 using Android.Util;
@@ -43,6 +44,22 @@ namespace AlmacenRepuestosXamarin.Fragments
 
             fillDetallePedidoVenta();
 
+            ////OBTENER CONEXION WIFI O LOCAL
+            //WifiManager wifiManager = (WifiManager)this.Context.GetSystemService(Service.WifiService);
+            //int ip = wifiManager.ConnectionInfo.IpAddress;
+            //string SSID = wifiManager.ConnectionInfo.SSID;
+            //string conexionWifi = string.Empty;
+
+            //if (wifiManager.IsWifiEnabled)
+            //{
+            //    conexionWifi = "Activada";
+            //}
+            //else
+            //{
+            //    conexionWifi = "Desactivada";
+            //}
+            //Toast.MakeText(this.Activity, "Conexión Wifi: "+conexionWifi+" IP: " + ip + " SSID: " + SSID, ToastLength.Short).Show();
+            ////FIN OBTENER WIFI O LACAL
             return view;
         }
 

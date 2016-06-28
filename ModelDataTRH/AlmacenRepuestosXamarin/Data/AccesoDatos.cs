@@ -19,6 +19,7 @@ using RepositoryWebServiceTRH.EmpleadoContext;
 using RepositoryWebServiceTRH.EntregaAlmacenEpisContext;
 using ModelDataTRH;
 using RepositoryWebServiceTRH.PedidoVentasContext;
+using Android.Net.Wifi;
 
 namespace AlmacenRepuestosXamarin.Data
 {
@@ -253,6 +254,8 @@ namespace AlmacenRepuestosXamarin.Data
                 //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 string url = string.Format(@"api/Pedidos?codPedido={0}", codPedido);
                 var response = await client.GetAsync(url);
+                
+
                 if (response.IsSuccessStatusCode && response!=null)
                 {
                     var content = await response.Content.ReadAsStringAsync();
