@@ -76,8 +76,13 @@ namespace AlmacenRepuestosXamarin.Fragments
 
             _searchView.QueryTextChange += (s, e) => {
 
-                adaptadorEmpleados.Filter.InvokeFilter(e.NewText);
-                adaptadorEmpleados.NotifyDataSetChanged();
+                
+                this.Activity.RunOnUiThread(()=> {
+
+                    adaptadorEmpleados.Filter.InvokeFilter(new Java.Lang.String(e.NewText.ToString()));
+                    adaptadorEmpleados.NotifyDataSetChanged();
+                    
+                    });
 
 
                 };

@@ -30,7 +30,7 @@ namespace AlmacenRepuestosXamarin.Activities
         private ListView drawerListView;
         FirebaseClient<PedidoFireBase> _client;
         private static readonly string[] Sections = new[] {
-            "App Almacen", "Monitor Carga", "Ventas"
+            "App Almacen", "Monitor Carga", "Configuracion"
         };
 
         protected override int LayoutResource
@@ -133,18 +133,24 @@ namespace AlmacenRepuestosXamarin.Activities
             {
                 case 0:
                     fragment = new BuscadorEmpleados();
+                    SupportFragmentManager.BeginTransaction()
+                       .Replace(Resource.Id.content_frame, fragment)
+                       .Commit();
                     break;
                 case 1:
                    fragment = new ListadoMonitorizacion();
-                   break;
-                //case 2:
-                //    fragment = new ProfileFragment();
-                //    break;
+                    SupportFragmentManager.BeginTransaction()
+                           .Replace(Resource.Id.content_frame, fragment)
+                           .Commit();
+                    break;
+                case 2:
+                    var actityConfiguracion = new Intent(this, typeof(OpcionesActivity));
+                    StartActivity(actityConfiguracion);
+                    
+                    break;
             }
 
-            SupportFragmentManager.BeginTransaction()
-                .Replace(Resource.Id.content_frame, fragment)
-                .Commit();
+           
 
             this.drawerListView.SetItemChecked(position, true);
             SupportActionBar.Title = this.title = Sections[position];

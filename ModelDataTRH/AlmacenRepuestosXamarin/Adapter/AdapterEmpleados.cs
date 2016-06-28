@@ -73,9 +73,13 @@ namespace AlmacenRepuestosXamarin.Adapter
                 if (_adapter._originalData == null)
                     _adapter._originalData = _adapter.list;
 
-                
+                var textoFiltro=(Java.Lang.Object)constraint;
                 //if (constraint == null || constraint.Length() > 0)
-                if(string.IsNullOrEmpty(constraint.ToString()))
+                //var textoFiltro = ObjectExtensions.ToJavaObject<Java.Lang.ICharSequence>(constraint);//ObjectExtensions.ToNetObject<System.String>();
+
+               
+
+                if (textoFiltro==null)
                 {
                     constraint = new Java.Lang.String(" "); 
                 }
@@ -91,7 +95,7 @@ namespace AlmacenRepuestosXamarin.Adapter
                 }
 
                 // Nasty piece of .NET to Java wrapping, be careful with this!
-                returnObj.Values = FromArray(results.Select(r => r.ToJavaObject()).ToArray());
+                returnObj.Values =  FromArray(results.Select(r => r.ToJavaObject()).ToArray());
                 returnObj.Count = results.Count;
 
                 //constraint.Dispose();
@@ -104,7 +108,7 @@ namespace AlmacenRepuestosXamarin.Adapter
                 using (var values = results.Values)
                     _adapter.list = values.ToArray<Object>().Select(r => r.ToNetObject<Empleados>()).ToList();
 
-                _adapter.NotifyDataSetChanged();
+               _adapter.NotifyDataSetChanged();
 
                 // Don't do this and see GREF counts rising
                 //constraint.Dispose();
