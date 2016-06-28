@@ -59,15 +59,21 @@ namespace AlmacenRepuestosXamarin.Fragments
             }
             var pedidoVenta = await datos.getPedidoVenta(codPedido);
 
-            if (pedidoVenta != null) { 
+            if (pedidoVenta != null)
+            {
 
                 listViewDetallePedidoVenta = (ListView)view.FindViewById(Resource.Id.listViewDetallePedidoVenta);
                 adapterDetallePedidoVenta = new AdapterDetallePedidoVenta(this.Activity, pedidoVenta.SalesLines.ToList());
-
                 listViewDetallePedidoVenta.Adapter = adapterDetallePedidoVenta;
+                progressLayout.Visibility = ViewStates.Gone;
             }
-            progressLayout.Visibility = ViewStates.Gone;
+            else {
+                progressLayout.Visibility = ViewStates.Gone;
+                Toast.MakeText(this.Activity, "Sin información del pedido seleccionado.", ToastLength.Short).Show();
+                FragmentManager.PopBackStack();
+            }
 
+            
 
         }
 
