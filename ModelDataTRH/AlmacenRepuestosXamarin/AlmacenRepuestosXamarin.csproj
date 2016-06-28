@@ -156,6 +156,7 @@
     <Compile Include="Fragments\ListadoMonitorizacion.cs" />
     <Compile Include="Fragments\ListaRepuestosEntrega.cs" />
     <Compile Include="Helpers\MyActionBarDrawerToggle.cs" />
+    <Compile Include="Helpers\Preferencias.cs" />
     <Compile Include="ListEPISRepuestos.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="fragmentTabEmpleados.cs" />
