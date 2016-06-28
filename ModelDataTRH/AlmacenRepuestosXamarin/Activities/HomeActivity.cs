@@ -14,6 +14,7 @@ using Android.Support.V7.App;
 using Firebase.Xamarin;
 using Firebase.Xamarin.Streaming;
 using Android.Content;
+using Android.Net.Wifi;
 
 namespace AlmacenRepuestosXamarin.Activities
 {
@@ -101,11 +102,34 @@ namespace AlmacenRepuestosXamarin.Activities
             _client = new FirebaseClient<PedidoFireBase>(@"https://flickering-fire-4088.firebaseio.com/", "XQsDE173GieFhbMUUs2t2OD5eUwZFjjrEsAYbq6B");
 
             StreamToken<PedidoFireBase> _token = _client.GetStreamToken(@"Pedidos/TRH Liege");
+
+
+            obtenerWifi();
+            
             //_token
             //   // .Where(q => q.EventType == FirebaseEventType.InsertOrUpdate)
             //    .Subscribe(OnItemMessage);
         }
 
+        private void obtenerWifi()
+        {
+            //OBTENER CONEXION WIFI O LOCAL
+            WifiManager wifiManager = (WifiManager)this.GetSystemService(Service.WifiService);
+            int ip = wifiManager.ConnectionInfo.IpAddress;
+            string SSID = wifiManager.ConnectionInfo.SSID;
+            string conexionWifi = string.Empty;
+
+            if (wifiManager.IsWifiEnabled)
+            {
+                conexionWifi = "Activada";
+            }
+            else
+            {
+                conexionWifi = "Desactivada";
+            }
+            Toast.MakeText(this, "Conexión Wifi: " + conexionWifi + " IP: " + ip + " SSID: " + SSID, ToastLength.Short).Show();
+            //FIN OBTENER WIFI O LACAL
+        }
 
         public override void OnBackPressed()
         {
