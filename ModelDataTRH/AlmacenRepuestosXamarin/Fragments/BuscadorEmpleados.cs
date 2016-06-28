@@ -79,7 +79,7 @@ namespace AlmacenRepuestosXamarin.Fragments
                 
                 this.Activity.RunOnUiThread(()=> {
 
-                    adaptadorEmpleados.Filter.InvokeFilter(e.NewText);
+                    adaptadorEmpleados.Filter.InvokeFilter(new Java.Lang.String(e.NewText.ToString()));
                     adaptadorEmpleados.NotifyDataSetChanged();
                     
                     });

@@ -73,9 +73,13 @@ namespace AlmacenRepuestosXamarin.Adapter
                 if (_adapter._originalData == null)
                     _adapter._originalData = _adapter.list;
 
-                
+                var textoFiltro=(Java.Lang.Object)constraint;
                 //if (constraint == null || constraint.Length() > 0)
-                if(string.IsNullOrEmpty(constraint.ToString()))
+                //var textoFiltro = ObjectExtensions.ToJavaObject<Java.Lang.ICharSequence>(constraint);//ObjectExtensions.ToNetObject<System.String>();
+
+               
+
+                if (textoFiltro==null)
                 {
                     constraint = new Java.Lang.String(" "); 
                 }
