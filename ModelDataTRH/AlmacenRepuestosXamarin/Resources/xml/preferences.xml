@@ -1,26 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android">
-  <PreferenceCategory android:title="Configuracion Local">
-    <CheckBoxPreference
-        android:key="local"
-        android:title="Activa Config Local"
-        android:summary="Se usará la ip local para conectarse" />
+  <PreferenceCategory android:title="Configuracion Sevilla">
     <EditTextPreference
-        android:key="urlLocal"
-        android:title="Url"
+        android:key="urlLocalSevilla"
+        android:title="Url Local"
+        android:summary="Descripción de la preferencia 2"
+        android:dialogTitle="Introduce valor" />
+   <EditTextPreference
+        android:key="urlPublicaSevilla"
+        android:title="Url Publica"
         android:summary="Descripción de la preferencia 2"
         android:dialogTitle="Introduce valor" />
   </PreferenceCategory>
-  <PreferenceCategory android:title="Configuracion Remota ">
-    <CheckBoxPreference
-         android:key="remota"
-        android:title="Activa Config Remota"
-        android:summary="Se usará la ip local para conectarse" />
-    <EditTextPreference
-        android:key="urlRemota"
-        android:title="Url"
-        android:summary="Descripción de la preferencia 2"
+  <PreferenceCategory android:title="Configuracion Lieja ">
+   <EditTextPreference
+        android:key="urlLocalLieja"
+        android:title="Url Local"
+        android:summary="Url local para la conexion a datos de Lieja"
+        android:dialogTitle="Introduce valor" />
+   <EditTextPreference
+        android:key="urlPublicaLieja"
+        android:title="Url Publica"
+        android:summary="Url Publica para la conexion a datos de Lieja"
         android:dialogTitle="Introduce valor" />
   </PreferenceCategory>
 </PreferenceScreen>
