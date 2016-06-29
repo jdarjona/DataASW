@@ -117,9 +117,15 @@ namespace AlmacenRepuestosXamarin.Activities
             
         }
 
-        
+        protected override void OnResume()
+        {
+            base.OnResume();
+        }
 
-        
+
+
+
+
 
         public override void OnBackPressed()
         {
@@ -221,8 +227,9 @@ namespace AlmacenRepuestosXamarin.Activities
 
 
 
-            Intent intent = new Intent(this,typeof(HomeView));
-
+            Intent notificationIntent = new Intent(this,typeof(HomeView));
+            notificationIntent.SetFlags(ActivityFlags.ClearTop |
+                           ActivityFlags.SingleTop);
             //intent.SetAction("OPEN_TAB_1");
             //intent.SetComponent.set
             //Intent intent = new Intent();
@@ -240,7 +247,7 @@ namespace AlmacenRepuestosXamarin.Activities
 
             const int pendingIntentId = 0;
             //this.Activity.RunOnUiThread(() => Toast.MakeText(this.Activity, message.Object.descripcion, ToastLength.Short).Show());
-            PendingIntent pendingIntent = PendingIntent.GetActivity(this, pendingIntentId, intent, PendingIntentFlags.UpdateCurrent);
+            PendingIntent pendingIntent = PendingIntent.GetActivity(this, pendingIntentId, notificationIntent, 0);
             if (message.EventType == FirebaseEventType.InsertOrUpdate)
                 this.RunOnUiThread(() => {
                 if (message.EventType == FirebaseEventType.InsertOrUpdate)
