@@ -23,7 +23,7 @@ namespace AlmacenRepuestosXamarin.Fragments
     public class BuscadorEmpleados : Android.Support.V4.App.Fragment
     {
         List<Empleados> empleados = new List<Empleados>();
-        Data.AccesoDatos restService = new Data.AccesoDatos();
+        Data.AccesoDatos restService ;
         ListView listViewEmpleados;
         Adapter.AdapterEmpleados adaptadorEmpleados;
         private Android.Support.V7.Widget.SearchView _searchView;
@@ -55,7 +55,7 @@ namespace AlmacenRepuestosXamarin.Fragments
 
              view = inflater.Inflate(Resource.Layout.Main, null);
 
-            
+            restService = new Data.AccesoDatos();
 
             progressLayout = view.FindViewById<LinearLayout>(Resource.Id.progressBarMain);
              listViewEmpleados = (ListView)view.FindViewById(Resource.Id.listEmpleados);

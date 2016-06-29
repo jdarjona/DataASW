@@ -33,7 +33,7 @@ namespace AlmacenRepuestosXamarin.Model
         private static Empleados empleado;
 
         private static int count;
-        private static AccesoDatos datos = new AccesoDatos();
+        private static AccesoDatos datos ;
 
         public static async Task<EntregaAlmacen> addRepuesto(string codEmpleado, string codRepuesto) {
 

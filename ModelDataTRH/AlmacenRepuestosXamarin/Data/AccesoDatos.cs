@@ -22,6 +22,7 @@ using RepositoryWebServiceTRH.PedidoVentasContext;
 using Android.Net.Wifi;
 using AlmacenRepuestosXamarin.Activities;
 
+
 namespace AlmacenRepuestosXamarin.Data
 {
     public  class AccesoDatos
@@ -32,16 +33,17 @@ namespace AlmacenRepuestosXamarin.Data
         private const string webBase = @"http://intranet.trh-be.com/WSTRH/";
       // private const string webBase = @"http://192.168.1.2/WSTRH/";
         private  HttpClient client = new HttpClient(new NativeMessageHandler());
-
+       
 
         public AccesoDatos()
         {
-            datosRedWifi();
+            getDatosRedWifi();
+            // prefencias = new Helpers.Preferencias(context);
             client = new HttpClient(new NativeMessageHandler())
             {
-                // BaseAddress = new Uri(webBase)
-                BaseAddress = new Uri(obtenerDatosConexionEmpresa("Liege"))
-             };
+            // BaseAddress = new Uri(webBase)
+               BaseAddress = new Uri(getDatosConexionEmpresa("Liege"))
+            };
 
 
             client.DefaultRequestHeaders.Accept.Clear();
@@ -50,7 +52,7 @@ namespace AlmacenRepuestosXamarin.Data
 
         }
 
-        public void datosRedWifi()
+        public void getDatosRedWifi()
         {
             //OBTENER DATOS WIFI O LOCAL
             WifiManager wifiManager = (WifiManager)Application.Context.GetSystemService(Service.WifiService);
@@ -61,7 +63,7 @@ namespace AlmacenRepuestosXamarin.Data
             //FIN OBTENER WIFI O LACAL
         }
 
-        public static string obtenerDatosConexionEmpresa(string empresa)
+        public  string getDatosConexionEmpresa(string empresa)
         {
             string resultado = "no se puede establecer conexión";
 
@@ -71,10 +73,11 @@ namespace AlmacenRepuestosXamarin.Data
                
                 if (conexionWifi && SSID.Equals("TRH_admin"))
                 {
-                    resultado = @"http://192.168.1.2/WSTRH/";
+                    resultado = Helpers.Preferencias.getUrlLocalLieja();//= @"http://192.168.1.2/WSTRH/";
                 }
-                else {
-                    resultado = @"http://intranet.trh-be.com/WSTRH/";
+                else
+                {
+                    resultado = Helpers.Preferencias.getUrlPublicaLieja(); ;
                 }
             }
 
@@ -83,10 +86,11 @@ namespace AlmacenRepuestosXamarin.Data
                 
                 if (conexionWifi && SSID.Equals("TRH_Admin"))
                 {
-                    resultado = @"http://192.168.1.2/WSTRH/";
+                    resultado = Helpers.Preferencias.getUrlLocalSevilla();
                 }
-                else {
-                    resultado = @"http://intranet.trh-es.com/WSTRH/";
+                else
+                {
+                    resultado = Helpers.Preferencias.getUrlPublicaSevilla();
                 }
             }
 

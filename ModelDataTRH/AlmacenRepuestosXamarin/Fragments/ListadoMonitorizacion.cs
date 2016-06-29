@@ -35,7 +35,7 @@ namespace AlmacenRepuestosXamarin.Fragments
         private View view;
         private ListView listViewMonitorizacion;
         private LinearLayout progressLayout;
-        private AccesoDatos datos=new AccesoDatos();
+        private AccesoDatos datos;
         private AdapterMonitoriaion adapterMonitorizacion;
         private List<vListadoPedidosMonitorizacion> listMonitorizacion;
         FirebaseClient<PedidoFireBase> _client;
@@ -57,6 +57,7 @@ namespace AlmacenRepuestosXamarin.Fragments
             var olderView =base.OnCreateView(inflater, container, savedInstanceState);
             view = inflater.Inflate(Resource.Layout.ListaMonitorizacionLayout, null);
 
+            datos = new AccesoDatos();
             progressLayout = view.FindViewById<LinearLayout>(Resource.Id.progressListaMonitorizacion);
             progressLayout.Visibility = ViewStates.Gone;
 

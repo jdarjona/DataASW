@@ -15,7 +15,7 @@ namespace AlmacenRepuestosXamarin.Helpers
 {
     public  class Preferencias
     {
-        ISharedPreferences prefs;
+        static ISharedPreferences prefs;
         const string urlLocalLieja= "urlLocalLieja";
         const string urlLocalSevilla = "urlLocalSevilla";
         const string urlPublicaLieja = "urlPublicaLieja";
@@ -28,10 +28,10 @@ namespace AlmacenRepuestosXamarin.Helpers
 
             if (getUrlLocalLieja().Equals(string.Empty)){
 
-                editPreference.PutString(urlLocalLieja, @"http://192.168.1.2/WSTRH");
-                editPreference.PutString(urlLocalSevilla, @"http://192.168.1.2/WSTRH");
-                editPreference.PutString(urlPublicaLieja, @"http://intranet.trh-be.com/WSTRH");
-                editPreference.PutString(ipPublicaSevilla, @"http://intranet.trh-es.com/WSTRH");
+                editPreference.PutString(urlLocalLieja, @"http://192.168.1.2/WSTRH/");
+                editPreference.PutString(urlLocalSevilla, @"http://192.168.1.2/WSTRH/");
+                editPreference.PutString(urlPublicaLieja, @"http://intranet.trh-be.com/WSTRH/");
+                editPreference.PutString(ipPublicaSevilla, @"http://intranet.trh-es.com/WSTRH/");
                 editPreference.Apply();
                 var a = getUrlLocalLieja();
 
@@ -39,22 +39,22 @@ namespace AlmacenRepuestosXamarin.Helpers
             
         }
 
-        public string getUrlLocalLieja() {
+        public static string getUrlLocalLieja() {
 
             return prefs.GetString(urlLocalLieja, string.Empty);
         }
 
-        public string getUrlLocalSevilla()
+        public static string getUrlLocalSevilla()
         {
            return prefs.GetString(urlLocalSevilla, string.Empty);
         }
 
-        public string getUrlPublicaLieja()
+        public static string getUrlPublicaLieja()
         {
             return prefs.GetString(urlPublicaLieja, string.Empty);
         }
 
-        public string getUrlPublicaSevilla()
+        public static string getUrlPublicaSevilla()
         {
             return prefs.GetString(ipPublicaSevilla, string.Empty);
         }
