@@ -119,6 +119,20 @@ namespace AlmacenRepuestosXamarin.Activities
 
         protected override void OnResume()
         {
+            string action = this.Intent.GetStringExtra("idFragment");
+
+            if (!string.IsNullOrEmpty(action)){
+
+                int idFragment;
+
+                int.TryParse(action, out idFragment);
+
+                ListItemClicked(idFragment);
+
+            }
+                  
+
+
             base.OnResume();
         }
 
@@ -225,12 +239,14 @@ namespace AlmacenRepuestosXamarin.Activities
         {
 
 
+           
+            Intent notificationIntent = this.PackageManager.GetLaunchIntentForPackage(this.PackageName);
+            //Intent notificationIntent = new Intent(this,typeof(HomeView));
+            //notificationIntent.SetFlags(ActivityFlags.ClearTop |
+            //               ActivityFlags.SingleTop);
 
-
-            Intent notificationIntent = new Intent(this,typeof(HomeView));
-            notificationIntent.SetFlags(ActivityFlags.ClearTop |
-                           ActivityFlags.SingleTop);
-            //intent.SetAction("OPEN_TAB_1");
+           
+            notificationIntent.PutExtra("idFragment", "1");
             //intent.SetComponent.set
             //Intent intent = new Intent();
 
@@ -247,14 +263,15 @@ namespace AlmacenRepuestosXamarin.Activities
 
             const int pendingIntentId = 0;
             //this.Activity.RunOnUiThread(() => Toast.MakeText(this.Activity, message.Object.descripcion, ToastLength.Short).Show());
-            PendingIntent pendingIntent = PendingIntent.GetActivity(this, pendingIntentId, notificationIntent, 0);
+            PendingIntent pendingIntent = PendingIntent.GetActivity(this, -1, notificationIntent, 0);
             if (message.EventType == FirebaseEventType.InsertOrUpdate)
                 this.RunOnUiThread(() => {
                 if (message.EventType == FirebaseEventType.InsertOrUpdate)
                 {
                     this.RunOnUiThread(() => Toast.MakeText(this, message.Object.descripcion, ToastLength.Short).Show());
                         Notification.Builder builder = new Notification.Builder(this)
-                        
+                       // setLatestEventInfo
+                       
                             .SetContentIntent(pendingIntent)
                             .SetContentTitle(message.Object.codPedido)
                             .SetContentText(message.Object.descripcion)
@@ -264,7 +281,7 @@ namespace AlmacenRepuestosXamarin.Activities
 
                     // Build the notification:
                     Notification notification = builder.Build();
-
+                    
                     // Get the notification manager:
                     NotificationManager notificationManager =
                         GetSystemService(Context.NotificationService) as NotificationManager;
@@ -272,7 +289,7 @@ namespace AlmacenRepuestosXamarin.Activities
                     // Publish the notification:
                    // const int notificationId = 0;
                     notificationManager.Notify(message.Object.codPedido,0, notification);
-                      //  ListItemClicked(1);
+                    //ListItemClicked(1);
                 }
               
             });
