@@ -20,6 +20,8 @@ namespace AlmacenRepuestosXamarin.Helpers
         const string urlLocalSevilla = "urlLocalSevilla";
         const string urlPublicaLieja = "urlPublicaLieja";
         const string ipPublicaSevilla = "urlPublicaSevilla";
+        const string empresaSevilla = "Sevilla";
+        const string empresaLiege = "Liege";
         public static string[] listSSIDLiege { get; set; }
         public static string[] listSSIDSevilla { get; set; }
 
@@ -37,6 +39,8 @@ namespace AlmacenRepuestosXamarin.Helpers
                 editPreference.PutString(urlLocalSevilla, @"http://192.168.1.2/WSTRH/");
                 editPreference.PutString(urlPublicaLieja, @"http://intranet.trh-be.com/WSTRH/");
                 editPreference.PutString(ipPublicaSevilla, @"http://intranet.trh-es.com/WSTRH/");
+                editPreference.PutString(empresaSevilla,"Sevilla");
+                editPreference.PutString(empresaLiege, "Liege");
                 editPreference.Apply();
                 var a = getUrlLocalLieja();
 
@@ -62,6 +66,16 @@ namespace AlmacenRepuestosXamarin.Helpers
         public static string getUrlPublicaSevilla()
         {
             return prefs.GetString(ipPublicaSevilla, string.Empty);
+        }
+
+        public static string getEmpresaSevilla()
+        {
+            return prefs.GetString(empresaSevilla, string.Empty);
+        }
+
+        public static string getEmpresaLiege()
+        {
+            return prefs.GetString(empresaLiege, string.Empty);
         }
 
 

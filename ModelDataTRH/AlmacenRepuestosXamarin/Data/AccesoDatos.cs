@@ -47,7 +47,7 @@ namespace AlmacenRepuestosXamarin.Data
             client = new HttpClient(new NativeMessageHandler())
             {
                 // BaseAddress = new Uri(webBase)
-                BaseAddress = new Uri(getDatosConexionEmpresa("Sevilla"))
+                BaseAddress = new Uri(getDatosConexionEmpresa(Preferencias.getEmpresaLiege()))
             };
 
 

@@ -108,11 +108,13 @@ namespace AlmacenRepuestosXamarin.Activities
             StreamToken<PedidoFireBase> _token = _client.GetStreamToken(@"Pedidos/TRH Liege");
 
 
-         
 
-            //_token
-            //   // .Where(q => q.EventType == FirebaseEventType.InsertOrUpdate)
-            //    .Subscribe(OnItemMessage);
+
+            _token
+                // .Where(q => q.EventType == FirebaseEventType.InsertOrUpdate)
+                .Subscribe(OnItemMessage);
+
+            
         }
 
         
@@ -203,21 +205,55 @@ namespace AlmacenRepuestosXamarin.Activities
             return base.OnOptionsItemSelected(item);
         }
 
+        protected override void OnSaveInstanceState(Bundle savedInstanceState)
+        {
+            // Save the user's current game state
+            savedInstanceState.PutInt("idFrameOpen", 1);
+           
+
+            // Always call the superclass so it can save the view hierarchy state
+            base.OnSaveInstanceState(savedInstanceState);
+        }
 
         private void OnItemMessage(FirebaseEvent<PedidoFireBase> message)
         {
-            //this.Activity.RunOnUiThread(() => Toast.MakeText(this.Activity, message.Object.descripcion, ToastLength.Short).Show());
 
+
+
+
+            Intent intent = new Intent(this,typeof(HomeView));
+
+            //intent.SetAction("OPEN_TAB_1");
+            //intent.SetComponent.set
+            //Intent intent = new Intent();
+
+            //TaskStackBuilder stackBuilder = TaskStackBuilder.Create(this);
+
+            //// Add all parents of SecondActivity to the stack: 
+            //stackBuilder.AddParentStack(Java.Lang.Class.FromType(typeof(ListadoMonitorizacion)));
+
+            //// Push the intent that starts SecondActivity onto the stack:
+            //stackBuilder.AddNextIntent(intent);
+
+
+
+
+            const int pendingIntentId = 0;
+            //this.Activity.RunOnUiThread(() => Toast.MakeText(this.Activity, message.Object.descripcion, ToastLength.Short).Show());
+            PendingIntent pendingIntent = PendingIntent.GetActivity(this, pendingIntentId, intent, PendingIntentFlags.UpdateCurrent);
             if (message.EventType == FirebaseEventType.InsertOrUpdate)
                 this.RunOnUiThread(() => {
                 if (message.EventType == FirebaseEventType.InsertOrUpdate)
                 {
                     this.RunOnUiThread(() => Toast.MakeText(this, message.Object.descripcion, ToastLength.Short).Show());
-                    Notification.Builder builder = new Notification.Builder(this)
+                        Notification.Builder builder = new Notification.Builder(this)
+                        
+                            .SetContentIntent(pendingIntent)
                             .SetContentTitle(message.Object.codPedido)
                             .SetContentText(message.Object.descripcion)
                             .SetDefaults(NotificationDefaults.Sound | NotificationDefaults.Vibrate)
                             .SetSmallIcon(Resource.Drawable.carretilla);
+                            
 
                     // Build the notification:
                     Notification notification = builder.Build();
@@ -229,6 +265,7 @@ namespace AlmacenRepuestosXamarin.Activities
                     // Publish the notification:
                    // const int notificationId = 0;
                     notificationManager.Notify(message.Object.codPedido,0, notification);
+                      //  ListItemClicked(1);
                 }
               
             });
