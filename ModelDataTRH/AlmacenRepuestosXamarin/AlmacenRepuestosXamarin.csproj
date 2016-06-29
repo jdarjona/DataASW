@@ -199,6 +199,9 @@
     <AndroidResource Include="Resources\layout\page_home_view.axml" />
     <AndroidResource Include="Resources\layout\RowDetallePedidoVenta.axml" />
     <AndroidResource Include="Resources\layout\RowListMonitorizacion.axml" />
+    <AndroidResource Include="Resources\layout\groupListMonitorizacionLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml">

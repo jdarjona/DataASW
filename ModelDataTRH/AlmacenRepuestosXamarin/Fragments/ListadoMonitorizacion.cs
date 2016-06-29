@@ -17,6 +17,7 @@ using Firebase.Xamarin;
 using Firebase.Xamarin.Streaming;
 using OkHttp;
 using Firebase.Xamarin.Query;
+using Android.Support.V7.App;
 
 namespace AlmacenRepuestosXamarin.Fragments
 {
@@ -83,15 +84,8 @@ namespace AlmacenRepuestosXamarin.Fragments
                    .Commit();
             };
 
-            //_client = new FirebaseClient<PedidoFireBase>(@"https://flickering-fire-4088.firebaseio.com/", "XQsDE173GieFhbMUUs2t2OD5eUwZFjjrEsAYbq6B");
            
-            //StreamToken<PedidoFireBase> _token = _client.GetStreamToken(@"Pedidos/TRH Liege");
-            //_token
-            //    .Where(q=>q.EventType== FirebaseEventType.InsertOrUpdate)
-            //    .Subscribe(OnItemMessage);
 
-         
-            //getFireBase();
 
             return view;
         }
@@ -139,6 +133,13 @@ namespace AlmacenRepuestosXamarin.Fragments
             adapterMonitorizacion = new AdapterMonitoriaion(this.Activity, listMonitorizacion);
 
             listViewMonitorizacion.Adapter = adapterMonitorizacion;
+
+            AppCompatActivity activity = (AppCompatActivity)this.Activity;
+            var numCamionesRuta = listMonitorizacion.Where(q => q.Estado == 6).Count().ToString("N0");
+            var numTmRuta = listMonitorizacion.Where(q => q.Estado == 6).Sum(q => q.pesoKg / 1000).ToString("N0");
+           
+            activity.SupportActionBar.Title = string.Format(@"Camiones Ruta:{0}", numCamionesRuta); ;
+            activity.SupportActionBar.Subtitle = string.Format(@"Tm envidas: {0}", numTmRuta);
 
             progressLayout.Visibility = ViewStates.Gone;
 

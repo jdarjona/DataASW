@@ -62,8 +62,8 @@ namespace AlmacenRepuestosXamarin.Fragments
             
             
             AppCompatActivity activity = (AppCompatActivity)this.Activity;
-            activity.SupportActionBar.Title = string.Format(@"{0} - {1}", repuesto.Cod_Producto, repuesto.Unit_of_Measure_Code);
-
+            activity.SupportActionBar.Title = string.Format(@"Producto: {0}", repuesto.Cod_Producto);
+            activity.SupportActionBar.Subtitle = string.Format(@"Unidad Medida: {0}", repuesto.Unit_of_Measure_Code);
             edittext = view.FindViewById<EditText>(Resource.Id.textCantidad);
 
 
