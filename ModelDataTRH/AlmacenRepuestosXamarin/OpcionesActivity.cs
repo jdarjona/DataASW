@@ -56,6 +56,7 @@ namespace AlmacenRepuestosXamarin
                 AddPreferencesFromResource(Resource.Xml.preferencesRed);
             }
         }
+       
         public class Prefs1FragmentInner : PreferenceFragment
         {
             public override void OnCreate(Bundle savedInstanceState)
@@ -69,9 +70,13 @@ namespace AlmacenRepuestosXamarin
                 AddPreferencesFromResource(Resource.Xml.preferencesRed);
             }
         }
-
+        [Register("AlmacenRepuestos.AlmacenRepuestosXamarin.Prefs2Fragment")]
         public class Prefs2Fragment : PreferenceFragment
+
         {
+            public Prefs2Fragment():base() {
+
+            }
             public override void OnCreate(Bundle savedInstanceState)
             {
                 base.OnCreate(savedInstanceState);
