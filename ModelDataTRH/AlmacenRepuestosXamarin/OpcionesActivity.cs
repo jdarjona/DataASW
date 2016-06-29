@@ -53,7 +53,7 @@ namespace AlmacenRepuestosXamarin
                 base.OnCreate(savedInstanceState);
 
                 // Load the preferences from an XML resource
-                AddPreferencesFromResource(Resource.Xml.preferences);
+                AddPreferencesFromResource(Resource.Xml.preferencesRed);
             }
         }
         public class Prefs1FragmentInner : PreferenceFragment
@@ -66,7 +66,7 @@ namespace AlmacenRepuestosXamarin
                 Log.Info("args", "Arguments: " + Arguments);
 
                 // Load the preferences from an XML resource
-                AddPreferencesFromResource(Resource.Xml.preferences);
+                AddPreferencesFromResource(Resource.Xml.preferencesRed);
             }
         }
 
@@ -80,7 +80,7 @@ namespace AlmacenRepuestosXamarin
                 Log.Info("args", "Arguments: " + Arguments);
 
                 // Load the preferences from an XML resource
-                AddPreferencesFromResource(Resource.Xml.preferences);
+                AddPreferencesFromResource(Resource.Xml.preferencesUsuario);
             }
         }
     }

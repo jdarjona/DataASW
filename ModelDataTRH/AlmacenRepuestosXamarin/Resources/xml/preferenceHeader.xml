@@ -4,13 +4,13 @@
 
   <header android:fragment="AlmacenRepuestos.AlmacenRepuestosXamarin.Prefs1Fragment"
           android:icon="@drawable/wifi_64"
-          android:title="Configuración Local"
-          android:summary="Dentro de la red de TRH" />
+          android:title="Configuración Red"
+          android:summary="Configurarcion de URL conexion" />
 
-  <header android:fragment="AlmacenRepuestos.AlmacenRepuestosXamarin.Prefs1Fragment"
+  <header android:fragment="AlmacenRepuestos.AlmacenRepuestosXamarin.Prefs2Fragment"
           android:icon="@drawable/icon_globe_64"
-          android:title="Configuracion Remota"
-          android:summary="Fuera de la red de TRH">
+          android:title="Configuracion Empresa"
+          android:summary="Seleccionar Empresa por defecto">
     <!-- Arbitrary key/value pairs can be included with a header as
              arguments to its fragment. -->
     <extra android:name="someKey" android:value="someHeaderValue" />

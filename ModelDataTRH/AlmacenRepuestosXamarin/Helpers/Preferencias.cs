@@ -20,11 +20,16 @@ namespace AlmacenRepuestosXamarin.Helpers
         const string urlLocalSevilla = "urlLocalSevilla";
         const string urlPublicaLieja = "urlPublicaLieja";
         const string ipPublicaSevilla = "urlPublicaSevilla";
+        public static string[] listSSIDLiege { get; set; }
+        public static string[] listSSIDSevilla { get; set; }
 
         public Preferencias(Activity context) {
 
             prefs = PreferenceManager.GetDefaultSharedPreferences(context);
             ISharedPreferencesEditor editPreference = prefs.Edit();
+
+            listSSIDLiege = context.Resources.GetStringArray(Resource.Array.ListSSIDLiege);
+            listSSIDSevilla = context.Resources.GetStringArray(Resource.Array.ListSSIDSevilla);
 
             if (getUrlLocalLieja().Equals(string.Empty)){
 
@@ -58,6 +63,7 @@ namespace AlmacenRepuestosXamarin.Helpers
         {
             return prefs.GetString(ipPublicaSevilla, string.Empty);
         }
+
 
     }
 }

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+  <PreferenceCategory android:title="Configuracion Empresa">
+    <EditTextPreference
+        android:key="idEmpresaDefecto"
+        android:title="Nombre Empresa Inicial"
+        android:summary="Establece la empresa por defecto"
+        android:dialogTitle="Introduce valor" />
+   <EditTextPreference
+        android:key="urlPublicaSevilla"
+        android:title="Url Publica"
+        android:summary="Descripción de la preferencia 2"
+        android:dialogTitle="Introduce valor" />
+  </PreferenceCategory>
+  <PreferenceCategory android:title="Configuracion Usuario ">
+   <EditTextPreference
+        android:key="idUsuario"
+        android:title="Nombre usuario"
+        android:summary="Usuario Active Directory"
+        android:dialogTitle="Introduce valor" />
+   <EditTextPreference
+        android:key="passwordUsuario"
+        android:title="Password Usuario"
+        android:summary="Password usuario Active Directory"
+        android:dialogTitle="Introduce valor" />
+  </PreferenceCategory>
+</PreferenceScreen>

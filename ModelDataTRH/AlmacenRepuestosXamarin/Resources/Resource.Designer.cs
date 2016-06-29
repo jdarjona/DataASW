@@ -103,17 +103,20 @@ namespace AlmacenRepuestosXamarin
 		public partial class Array
 		{
 			
-			// aapt resource value: 0x7f0d0004
-			public const int Destinos = 2131558404;
+			// aapt resource value: 0x7f0d0005
+			public const int Destinos = 2131558405;
 			
 			// aapt resource value: 0x7f0d0002
 			public const int Empresas = 2131558402;
 			
-			// aapt resource value: 0x7f0d0003
-			public const int ListaSSID = 2131558403;
+			// aapt resource value: 0x7f0d0004
+			public const int ListSSIDLiege = 2131558404;
 			
-			// aapt resource value: 0x7f0d0005
-			public const int Maquinas = 2131558405;
+			// aapt resource value: 0x7f0d0003
+			public const int ListSSIDSevilla = 2131558403;
+			
+			// aapt resource value: 0x7f0d0006
+			public const int Maquinas = 2131558406;
 			
 			// aapt resource value: 0x7f0d0000
 			public const int entries_list_preference = 2131558400;
@@ -3503,7 +3506,10 @@ namespace AlmacenRepuestosXamarin
 			public const int preferenceHeader = 2131034112;
 			
 			// aapt resource value: 0x7f050001
-			public const int preferences = 2131034113;
+			public const int preferencesRed = 2131034113;
+			
+			// aapt resource value: 0x7f050002
+			public const int preferencesUsuario = 2131034114;
 			
 			static Xml()
 			{

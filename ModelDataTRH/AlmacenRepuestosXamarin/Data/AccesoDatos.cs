@@ -21,7 +21,7 @@ using ModelDataTRH;
 using RepositoryWebServiceTRH.PedidoVentasContext;
 using Android.Net.Wifi;
 using AlmacenRepuestosXamarin.Activities;
-
+using AlmacenRepuestosXamarin.Helpers;
 
 namespace AlmacenRepuestosXamarin.Data
 {
@@ -30,7 +30,7 @@ namespace AlmacenRepuestosXamarin.Data
         static int ip = 0;
         static string SSID = string.Empty;
         static bool conexionWifi = false;
-        private const string webBase = @"http://intranet.trh-be.com/WSTRH/";
+       // private const string webBase = @"http://intranet.trh-be.com/WSTRH/";
       // private const string webBase = @"http://192.168.1.2/WSTRH/";
         private  HttpClient client = new HttpClient(new NativeMessageHandler());
        
@@ -38,11 +38,16 @@ namespace AlmacenRepuestosXamarin.Data
         public AccesoDatos()
         {
             getDatosRedWifi();
-            // prefencias = new Helpers.Preferencias(context);
+            client = initClient();
+            
+
+        }
+
+        public HttpClient initClient() {
             client = new HttpClient(new NativeMessageHandler())
             {
-            // BaseAddress = new Uri(webBase)
-               BaseAddress = new Uri(getDatosConexionEmpresa("Liege"))
+                // BaseAddress = new Uri(webBase)
+                BaseAddress = new Uri(getDatosConexionEmpresa("Sevilla"))
             };
 
 
@@ -50,6 +55,7 @@ namespace AlmacenRepuestosXamarin.Data
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/pdf"));
 
+            return client;
         }
 
         public void getDatosRedWifi()
@@ -57,7 +63,7 @@ namespace AlmacenRepuestosXamarin.Data
             //OBTENER DATOS WIFI O LOCAL
             WifiManager wifiManager = (WifiManager)Application.Context.GetSystemService(Service.WifiService);
             ip = wifiManager.ConnectionInfo.IpAddress;
-            SSID = wifiManager.ConnectionInfo.SSID;
+            SSID = wifiManager.ConnectionInfo.SSID.Replace('"', ' ').Trim(); 
             conexionWifi = wifiManager.IsWifiEnabled;
             //  Toast.MakeText(this, "Conexión Wifi: " + conexionWifi + " IP: " + ip + " SSID: " + SSID, ToastLength.Short).Show();
             //FIN OBTENER WIFI O LACAL
@@ -67,11 +73,12 @@ namespace AlmacenRepuestosXamarin.Data
         {
             string resultado = "no se puede establecer conexión";
 
+            var lista = Preferencias.listSSIDLiege;
+
 
             if (empresa.Equals("Liege"))
             {
-               
-                if (conexionWifi && SSID.Equals("TRH_admin"))
+                if (conexionWifi && Preferencias.listSSIDLiege.Contains(SSID))
                 {
                     resultado = Helpers.Preferencias.getUrlLocalLieja();//= @"http://192.168.1.2/WSTRH/";
                 }
@@ -84,7 +91,7 @@ namespace AlmacenRepuestosXamarin.Data
             if (empresa.Equals("Sevilla"))
             {
                 
-                if (conexionWifi && SSID.Equals("TRH_Admin"))
+                if (conexionWifi && Preferencias.listSSIDSevilla.ToArray().Contains(SSID))
                 {
                     resultado = Helpers.Preferencias.getUrlLocalSevilla();
                 }
@@ -102,9 +109,7 @@ namespace AlmacenRepuestosXamarin.Data
         {
             try
             {
-                // Uri uri = new Uri(string.Format("{0}/{1}", webBase, @"api/Empleado"));
-                //client.DefaultRequestHeaders.Accept.Clear();
-                //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client = initClient();
 
                 var response = await client.GetAsync(@"api/Empleado");
                 if (response.IsSuccessStatusCode)
@@ -130,7 +135,7 @@ namespace AlmacenRepuestosXamarin.Data
 
             try
             {
-                
+                client = initClient();
                 //var json = JsonConvert.SerializeObject(item);
                 var contentPost = new StringContent(string.Empty, Encoding.UTF8, "application/json");
                 string url = string.Format(@"api/EntregaAlmacen?codRepusto={0}&codEmpleado={1}", codRepuesto, codEmpleado);
@@ -159,7 +164,7 @@ namespace AlmacenRepuestosXamarin.Data
             try
             {
 
-                
+                client = initClient();
                 var contentPost = new StringContent("", Encoding.UTF8, "application/json");
                 string url = string.Format(@"api/EntregaAlmacen?key={0}&cantidad={1}&destino={2}&maquina={3}"
                                                       , repuesto.Cod_Producto,repuesto.Cantidad,repuesto.Destino,repuesto.Maquina);
@@ -188,6 +193,7 @@ namespace AlmacenRepuestosXamarin.Data
 
         public async Task<bool> deleteRepuesto(string key) {
 
+            client = initClient();
             string url = string.Format(@"api/EntregaAlmacen?key={0}", key);
             var response = await client.DeleteAsync(url);
             if (response.IsSuccessStatusCode)
@@ -206,8 +212,8 @@ namespace AlmacenRepuestosXamarin.Data
             string codDocumento = string.Empty;
             try
             {
-                
-              //  var respustosJson = JsonConvert.SerializeObject(repuestos);
+
+                client = initClient();
                 var contentPost = new StringContent("", Encoding.UTF8, "application/json");
                 string url = string.Format(@"api/EntregaAlmacen?codEmpleado={0}",  codEmpleado);
                 var response = await client.PutAsync(url, contentPost);
@@ -235,9 +241,9 @@ namespace AlmacenRepuestosXamarin.Data
 
             try
             {
-               
 
 
+                client = initClient();
                 string url = string.Format(@"api/EntregaAlmacen?codDocumento={0}", codDocumento);
                 string nombreFichero=string.Empty;
                 var response = await client.GetAsync(url);
@@ -254,13 +260,8 @@ namespace AlmacenRepuestosXamarin.Data
                 byte[] bytes =  await client.GetByteArrayAsync(url);
 
                 var localPath =string.Format(@"{0}/{1}", global::Android.OS.Environment.ExternalStorageDirectory.Path , nombreFichero);
-                //byte[] bytes = new byte[response.Length];
-                //response.Read(bytes, 0, (int)response.Length);
-
 
                 File.WriteAllBytes(localPath, bytes);
-
-               
 
                 return localPath;
             }
@@ -278,10 +279,7 @@ namespace AlmacenRepuestosXamarin.Data
         {
             try
             {
-                // Uri uri = new Uri(string.Format("{0}/{1}", webBase, @"api/Empleado"));
-                //client.DefaultRequestHeaders.Accept.Clear();
-                //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
+                client = initClient();
                 var response = await client.GetAsync(@"api/ListadoMonitorizacion");
                 if (response.IsSuccessStatusCode)
                 {
@@ -304,9 +302,7 @@ namespace AlmacenRepuestosXamarin.Data
         {
             try
             {
-                // Uri uri = new Uri(string.Format("{0}/{1}", webBase, @"api/Empleado"));
-                //client.DefaultRequestHeaders.Accept.Clear();
-                //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client = initClient();
                 string url = string.Format(@"api/Pedidos?codPedido={0}", codPedido);
                 var response = await client.GetAsync(url);
                 

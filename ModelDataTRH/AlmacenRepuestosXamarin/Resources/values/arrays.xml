@@ -20,11 +20,14 @@
     <item>Liege</item>
   </string-array>
 
-  <string-array name="ListaSSID">
+  <string-array name="ListSSIDSevilla">
     <item>TRH_Admin</item>
     <item>Vodafone4327</item>
+  </string-array>
+  
+  <string-array name="ListSSIDLiege">
     <item>TRH_admin</item>
     <item>TRH Liege</item>
   </string-array>
-
+  
 </resources>

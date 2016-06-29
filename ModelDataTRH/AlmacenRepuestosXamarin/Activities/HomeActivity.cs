@@ -56,6 +56,10 @@ namespace AlmacenRepuestosXamarin.Activities
             // SetContentView(Resource.Layout.page_home_view);
             this.title = this.drawerTitle = this.Title;
 
+            Helpers.Preferencias preferencias = new Preferencias(this);
+
+
+
             this.drawerLayout = this.FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
             this.drawerListView = this.FindViewById<ListView>(Resource.Id.left_drawer_Menu);
 
@@ -68,7 +72,6 @@ namespace AlmacenRepuestosXamarin.Activities
 
             //Set Drawer Shadow
             this.drawerLayout.SetDrawerShadow(Resource.Drawable.drawer_shadow_dark, (int)GravityFlags.Start);
-
 
 
             //DrawerToggle is the animation that happens with the indicator next to the actionbar
@@ -105,7 +108,7 @@ namespace AlmacenRepuestosXamarin.Activities
             StreamToken<PedidoFireBase> _token = _client.GetStreamToken(@"Pedidos/TRH Liege");
 
 
-            Helpers.Preferencias preferencias = new Preferencias(this);
+         
 
             //_token
             //   // .Where(q => q.EventType == FirebaseEventType.InsertOrUpdate)
