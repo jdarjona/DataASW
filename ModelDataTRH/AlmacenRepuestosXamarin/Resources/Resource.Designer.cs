@@ -1597,61 +1597,64 @@ namespace AlmacenRepuestosXamarin
 			public const int botonOK = 2130837579;
 			
 			// aapt resource value: 0x7f02004c
-			public const int carretilla = 2130837580;
+			public const int campana32 = 2130837580;
 			
 			// aapt resource value: 0x7f02004d
-			public const int descarga = 2130837581;
+			public const int carretilla = 2130837581;
 			
 			// aapt resource value: 0x7f02004e
-			public const int drawer_shadow = 2130837582;
+			public const int descarga = 2130837582;
 			
 			// aapt resource value: 0x7f02004f
-			public const int drawer_shadow_dark = 2130837583;
+			public const int drawer_shadow = 2130837583;
 			
 			// aapt resource value: 0x7f020050
-			public const int drawer_shadow_light = 2130837584;
+			public const int drawer_shadow_dark = 2130837584;
 			
 			// aapt resource value: 0x7f020051
-			public const int fab_128x128 = 2130837585;
+			public const int drawer_shadow_light = 2130837585;
 			
 			// aapt resource value: 0x7f020052
-			public const int fab_512x512 = 2130837586;
+			public const int fab_128x128 = 2130837586;
 			
 			// aapt resource value: 0x7f020053
-			public const int fab_shadow = 2130837587;
+			public const int fab_512x512 = 2130837587;
 			
 			// aapt resource value: 0x7f020054
-			public const int fab_shadow_mini = 2130837588;
+			public const int fab_shadow = 2130837588;
 			
 			// aapt resource value: 0x7f020055
-			public const int ic_drawer = 2130837589;
+			public const int fab_shadow_mini = 2130837589;
 			
 			// aapt resource value: 0x7f020056
-			public const int ic_launcher = 2130837590;
+			public const int ic_drawer = 2130837590;
 			
 			// aapt resource value: 0x7f020057
-			public const int ic_menu_refresh = 2130837591;
+			public const int ic_launcher = 2130837591;
 			
 			// aapt resource value: 0x7f020058
-			public const int ic_tab_white = 2130837592;
+			public const int ic_menu_refresh = 2130837592;
 			
 			// aapt resource value: 0x7f020059
-			public const int Icon = 2130837593;
+			public const int ic_tab_white = 2130837593;
 			
 			// aapt resource value: 0x7f02005a
-			public const int icon_globe_64 = 2130837594;
-			
-			// aapt resource value: 0x7f02005e
-			public const int notification_template_icon_bg = 2130837598;
+			public const int Icon = 2130837594;
 			
 			// aapt resource value: 0x7f02005b
-			public const int rectangle = 2130837595;
+			public const int icon_globe_64 = 2130837595;
+			
+			// aapt resource value: 0x7f02005f
+			public const int notification_template_icon_bg = 2130837599;
 			
 			// aapt resource value: 0x7f02005c
-			public const int sample_dashboard_item_background = 2130837596;
+			public const int rectangle = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int wifi_64 = 2130837597;
+			public const int sample_dashboard_item_background = 2130837597;
+			
+			// aapt resource value: 0x7f02005e
+			public const int wifi_64 = 2130837598;
 			
 			static Drawable()
 			{
