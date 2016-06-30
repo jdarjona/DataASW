@@ -17,6 +17,7 @@ using Android.Content;
 using Android.Net.Wifi;
 using AlmacenRepuestosXamarin.Model;
 using AlmacenRepuestosXamarin.Data;
+using System.Threading.Tasks;
 
 namespace AlmacenRepuestosXamarin.Activities
 {
@@ -257,68 +258,67 @@ namespace AlmacenRepuestosXamarin.Activities
             base.OnSaveInstanceState(savedInstanceState);
         }
 
-        private void OnItemMessage(FirebaseEvent<PedidoFireBase> message)
-        {
+        private async Task notificar(FirebaseEvent<PedidoFireBase> message) {
 
-
-           
+            await Monitorizacion.updateListMonitorizacion();
             Intent notificationIntent = this.PackageManager.GetLaunchIntentForPackage(this.PackageName);
             //Intent notificationIntent = new Intent(this,typeof(HomeView));
             notificationIntent.SetFlags(ActivityFlags.ClearTop);
-            //               ActivityFlags.SingleTop);
+            //ActivityFlags.SingleTop);
 
-           
+
             notificationIntent.PutExtra("idFragment", "1");
-            //intent.SetComponent.set
-            //Intent intent = new Intent();
-
-            //TaskStackBuilder stackBuilder = TaskStackBuilder.Create(this);
-
-            //// Add all parents of SecondActivity to the stack: 
-            //stackBuilder.AddParentStack(Java.Lang.Class.FromType(typeof(ListadoMonitorizacion)));
-
-            //// Push the intent that starts SecondActivity onto the stack:
-            //stackBuilder.AddNextIntent(intent);
-
-
-
-
-             int pendingIntentId = (int)(System.DateTime.Now.Millisecond & 0xfffffff); 
+            int pendingIntentId = (int)(System.DateTime.Now.Millisecond & 0xfffffff);
             //this.Activity.RunOnUiThread(() => Toast.MakeText(this.Activity, message.Object.descripcion, ToastLength.Short).Show());
-            PendingIntent pendingIntent = PendingIntent.GetActivity(this, pendingIntentId, notificationIntent,   PendingIntentFlags.UpdateCurrent);
-            if (message.EventType == FirebaseEventType.InsertOrUpdate)
-                this.RunOnUiThread(() => {
-                if (message.EventType == FirebaseEventType.InsertOrUpdate)
-                {
-                    this.RunOnUiThread(() => Toast.MakeText(this, message.Object.descripcion, ToastLength.Short).Show());
-                        Notification.Builder builder = new Notification.Builder(this)
-                       // setLatestEventInfo
-                       .SetTicker(message.Key)
-                            .SetContentIntent(pendingIntent)
-                            .SetContentTitle(message.Object.codPedido)
-                            .SetContentText(message.Object.descripcion)
-                            .SetDefaults(NotificationDefaults.Sound | NotificationDefaults.Vibrate)
-                            .SetSmallIcon(Resource.Drawable.campana32)
-                            .SetAutoCancel(true);
+            PendingIntent pendingIntent = PendingIntent.GetActivity(this, pendingIntentId, notificationIntent, PendingIntentFlags.UpdateCurrent);
+            this.RunOnUiThread(() => {
+              
 
-                        // Build the notification:
-                        Notification notification = builder.Build();
-                        notification.Flags =  NotificationFlags.AutoCancel| NotificationFlags.OngoingEvent ;
-                        notification.Extras.PutString("idFragment", "1");
+                    Toast.MakeText(this, message.Object.descripcion, ToastLength.Short).Show();
+
+
+
+
+                    Notification.Builder builder = new Notification.Builder(this)
+                        // setLatestEventInfo
+                        //.SetTicker(message.Key)
+                        .SetContentIntent(pendingIntent)
+                        .SetContentTitle(message.Object.codPedido)
+                        .SetContentText(message.Object.descripcion)
+                        .SetDefaults(NotificationDefaults.Sound | NotificationDefaults.Vibrate)
+                        .SetSmallIcon(Resource.Drawable.campana32);
+                    //.SetAutoCancel(true);
+
+                    // Build the notification:
+                    Notification notification = builder.Build();
+                    notification.Flags = NotificationFlags.AutoCancel | NotificationFlags.OngoingEvent;
+                    notification.Extras.PutString("idFragment", "1");
 
                     // Get the notification manager:
                     NotificationManager notificationManager =
                         GetSystemService(Context.NotificationService) as NotificationManager;
 
                     // Publish the notification:
-                   // const int notificationId = 0;
-                    notificationManager.Notify(message.Object.codPedido,0, notification);
-                    //ListItemClicked(1);
-                }
-              
+                    // const int notificationId = 0;
+                    notificationManager.Notify(message.Object.codPedido, 0, notification);
+                   //ListItemClicked(1);
+                
+
             });
-            
-            
+
+
+        }
+
+        private  void OnItemMessage(FirebaseEvent<PedidoFireBase> message)
+        {
+
+         
+           
+            if (message.EventType == FirebaseEventType.InsertOrUpdate) {
+                //  
+                notificar(message);
+            }
+
         }
     }
 }

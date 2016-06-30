@@ -78,8 +78,8 @@ namespace AlmacenRepuestosXamarin.Fragments
                    .Commit();
             };
 
-           
 
+            
 
             return view;
         }
@@ -116,14 +116,24 @@ namespace AlmacenRepuestosXamarin.Fragments
         public void PopBackStack()
         {
         }
-        private async void fillListaMonitorizacion() {
+
+        public override void OnResume()
+        {
+           
+            var countManager = Monitorizacion.getListMonitorizacion();
+            var countListView = this.adapterMonitorizacion.list;
+            adapterMonitorizacion.NotifyDataSetChanged();
+            base.OnResume();
+            
+        }
+        private  void fillListaMonitorizacion() {
 
 
             progressLayout.Visibility = ViewStates.Visible;
-
+            
             //listMonitorizacion = await datos.getListadoMonitorCarga();
 
-            Monitorizacion.updateListMonitorizacion();
+           // Monitorizacion.updateListMonitorizacion();
             listMonitorizacion = Monitorizacion.getListMonitorizacion();
             adapterMonitorizacion = new AdapterMonitoriaion(this.Activity, listMonitorizacion);
 
