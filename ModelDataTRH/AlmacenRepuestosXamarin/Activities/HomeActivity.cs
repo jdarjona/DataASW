@@ -293,17 +293,17 @@ namespace AlmacenRepuestosXamarin.Activities
                     this.RunOnUiThread(() => Toast.MakeText(this, message.Object.descripcion, ToastLength.Short).Show());
                         Notification.Builder builder = new Notification.Builder(this)
                        // setLatestEventInfo
-                       .SetTicker(message.Key)
+                            .SetTicker(message.Key)
                             .SetContentIntent(pendingIntent)
                             .SetContentTitle(message.Object.codPedido)
                             .SetContentText(message.Object.descripcion)
                             .SetDefaults(NotificationDefaults.Sound | NotificationDefaults.Vibrate)
-                            .SetSmallIcon(Resource.Drawable.campana32)
-                            .SetAutoCancel(true);
+                            .SetSmallIcon(Resource.Drawable.campana32);
+                           // .SetAutoCancel(true);
 
                         // Build the notification:
                         Notification notification = builder.Build();
-                        notification.Flags =  NotificationFlags.AutoCancel| NotificationFlags.OngoingEvent ;
+                        //notification.Flags =  NotificationFlags.AutoCancel| NotificationFlags.OngoingEvent ;
                         notification.Extras.PutString("idFragment", "1");
 
                     // Get the notification manager:
