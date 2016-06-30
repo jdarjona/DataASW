@@ -15,6 +15,8 @@ using Firebase.Xamarin;
 using Firebase.Xamarin.Streaming;
 using Android.Content;
 using Android.Net.Wifi;
+using AlmacenRepuestosXamarin.Model;
+using AlmacenRepuestosXamarin.Data;
 
 namespace AlmacenRepuestosXamarin.Activities
 {
@@ -24,10 +26,10 @@ namespace AlmacenRepuestosXamarin.Activities
     {
        
 
-        private MyActionBarDrawerToggle drawerToggle;
+        private MyActionBarDrawerToggle drawerToggle;        
         private string drawerTitle;
         private string title;
-
+        private AccesoDatos datos ;
         private DrawerLayout drawerLayout;
         private ListView drawerListView;
         FirebaseClient<PedidoFireBase> _client;
@@ -124,13 +126,12 @@ namespace AlmacenRepuestosXamarin.Activities
             StreamToken<PedidoFireBase> _token = _client.GetStreamToken(@"Pedidos/TRH Liege");
 
 
+            
 
 
             _token
                 // .Where(q => q.EventType == FirebaseEventType.InsertOrUpdate)
                 .Subscribe(OnItemMessage);
-
-            
         }
 
         protected override void OnResume()
@@ -150,6 +151,7 @@ namespace AlmacenRepuestosXamarin.Activities
 
 
             base.OnResume();
+           
         }
 
 
@@ -223,6 +225,7 @@ namespace AlmacenRepuestosXamarin.Activities
         {
             base.OnPostCreate(savedInstanceState);
             this.drawerToggle.SyncState();
+            Monitorizacion.updateListMonitorizacion();            
         }
 
         public override void OnConfigurationChanged(Configuration newConfig)

@@ -15,17 +15,17 @@ using RepositoryWebServiceTRH.EntregaAlmacenEpisContext;
 
 namespace AlmacenRepuestosXamarin.Model
 {
-    public class Repuesto
-    {
-        public int idRepuesto {get;set;}
-        public string description { get; set; }
-        public int quantity { get; set; }
-        public string destino { get; set; }
-        public string maquina { get; set; }
+    //public class Repuesto
+    //{
+    //    public int idRepuesto {get;set;}
+    //    public string description { get; set; }
+    //    public int quantity { get; set; }
+    //    public string destino { get; set; }
+    //    public string maquina { get; set; }
 
 
 
-    }
+    //}
 
     public static class ManagerRepuestos {
 
@@ -129,4 +129,6 @@ namespace AlmacenRepuestosXamarin.Model
 
         }
     }
+
+    
 }

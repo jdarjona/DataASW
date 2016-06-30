@@ -1,13 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-
 using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Util;
 using Android.Views;
 using Android.Widget;
 using AlmacenRepuestosXamarin.Data;
@@ -15,13 +9,13 @@ using AlmacenRepuestosXamarin.Adapter;
 using ModelDataTRH;
 using Firebase.Xamarin;
 using Firebase.Xamarin.Streaming;
-using OkHttp;
 using Firebase.Xamarin.Query;
 using Android.Support.V7.App;
+using AlmacenRepuestosXamarin.Model;
 
 namespace AlmacenRepuestosXamarin.Fragments
 {
-   
+
 
     public class ListadoMonitorizacion : Android.Support.V4.App.Fragment
     {
@@ -127,9 +121,10 @@ namespace AlmacenRepuestosXamarin.Fragments
 
             progressLayout.Visibility = ViewStates.Visible;
 
-            listMonitorizacion = await datos.getListadoMonitorCarga();
+            //listMonitorizacion = await datos.getListadoMonitorCarga();
 
-            
+            Monitorizacion.updateListMonitorizacion();
+            listMonitorizacion = Monitorizacion.getListMonitorizacion();
             adapterMonitorizacion = new AdapterMonitoriaion(this.Activity, listMonitorizacion);
 
             listViewMonitorizacion.Adapter = adapterMonitorizacion;

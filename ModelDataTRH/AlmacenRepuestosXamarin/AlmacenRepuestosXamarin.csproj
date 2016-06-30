@@ -160,6 +160,7 @@
     <Compile Include="ListEPISRepuestos.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="fragmentTabEmpleados.cs" />
+    <Compile Include="Model\Monitorizacion.cs" />
     <Compile Include="Model\Repuestos.cs" />
     <Compile Include="ObjectExtensions.cs" />
     <Compile Include="OpcionesActivity.cs" />
