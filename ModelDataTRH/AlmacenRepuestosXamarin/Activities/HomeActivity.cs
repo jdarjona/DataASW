@@ -82,13 +82,13 @@ namespace AlmacenRepuestosXamarin.Activities
 
             //Display the current fragments title and update the options menu
             this.drawerToggle.DrawerClosed += (o, args) => {
-                this.SupportActionBar.Title = this.title;
+                //this.SupportActionBar.Title = this.title;
                 this.InvalidateOptionsMenu();
             };
 
             //Display the drawer title and update the options menu
             this.drawerToggle.DrawerOpened += (o, args) => {
-                this.SupportActionBar.Title = this.drawerTitle;
+                //this.SupportActionBar.Title = this.drawerTitle;
                 this.InvalidateOptionsMenu();
             };
 
