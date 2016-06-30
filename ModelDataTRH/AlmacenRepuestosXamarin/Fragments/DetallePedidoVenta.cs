@@ -9,6 +9,7 @@ using Android.Content;
 using Android.Net.Wifi;
 using Android.OS;
 using Android.Runtime;
+using Android.Support.V7.App;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
@@ -78,6 +79,14 @@ namespace AlmacenRepuestosXamarin.Fragments
 
             if (pedidoVenta != null)
             {
+                AppCompatActivity activity = (AppCompatActivity)this.Activity;
+
+                activity.SupportActionBar.Title = pedidoVenta.Sell_to_Customer_Name;
+                var tmTotal = pedidoVenta.SalesLines.Sum(q => q.Cantidad_KG / 1000).ToString("N0");
+                var importeTotal = pedidoVenta.SalesLines.Sum(q => q.PrecioLineaTotal).ToString("N2");
+
+                activity.SupportActionBar.Subtitle = string.Format("{0} Tm - {1} €",tmTotal,importeTotal);
+
 
                 listViewDetallePedidoVenta = (ListView)view.FindViewById(Resource.Id.listViewDetallePedidoVenta);
                 adapterDetallePedidoVenta = new AdapterDetallePedidoVenta(this.Activity, pedidoVenta.SalesLines.ToList());

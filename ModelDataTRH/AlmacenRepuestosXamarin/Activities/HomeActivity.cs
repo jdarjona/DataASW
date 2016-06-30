@@ -179,9 +179,13 @@ namespace AlmacenRepuestosXamarin.Activities
         private void ListItemClicked(int position)
         {
             Android.Support.V4.App.Fragment fragment = null;
+
+            //SupportActionBar.Title = this.title = Sections[position];
+            SupportActionBar.Subtitle = "Peazo App";
             switch (position)
             {
                 case 0:
+                    SupportActionBar.Title = this.title = Sections[position];
                     fragment = new BuscadorEmpleados();
                     SupportFragmentManager.BeginTransaction()
                        .Replace(Resource.Id.content_frame, fragment)
@@ -203,7 +207,6 @@ namespace AlmacenRepuestosXamarin.Activities
            
 
             this.drawerListView.SetItemChecked(position, true);
-            SupportActionBar.Title = this.title = Sections[position];
             this.drawerLayout.CloseDrawers();
         }
 
