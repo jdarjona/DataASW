@@ -98,8 +98,24 @@ namespace AlmacenRepuestosXamarin.Activities
 
 
             //if first time you will want to go ahead and click first item.
-            if (savedInstanceState == null)
+            //if (savedInstanceState == null)
+            //{
+            //    ListItemClicked(0);
+            //}
+
+            string action = this.Intent.GetStringExtra("idFragment");
+
+            if (!string.IsNullOrEmpty(action))
             {
+
+                int idFragment;
+
+                int.TryParse(action, out idFragment);
+
+                ListItemClicked(idFragment);
+
+            }
+            else {
                 ListItemClicked(0);
             }
 
@@ -119,17 +135,17 @@ namespace AlmacenRepuestosXamarin.Activities
 
         protected override void OnResume()
         {
-            string action = this.Intent.GetStringExtra("idFragment");
+            //string action = this.Intent.GetStringExtra("idFragment");
+            //var a =this.Intent.Extras;
+            //if (!string.IsNullOrEmpty(action)){
 
-            if (!string.IsNullOrEmpty(action)){
+            //    int idFragment;
 
-                int idFragment;
+            //    int.TryParse(action, out idFragment);
 
-                int.TryParse(action, out idFragment);
+            //    ListItemClicked(idFragment);
 
-                ListItemClicked(idFragment);
-
-            }
+            //}
                   
 
 
@@ -242,7 +258,7 @@ namespace AlmacenRepuestosXamarin.Activities
            
             Intent notificationIntent = this.PackageManager.GetLaunchIntentForPackage(this.PackageName);
             //Intent notificationIntent = new Intent(this,typeof(HomeView));
-            //notificationIntent.SetFlags(ActivityFlags.ClearTop |
+            notificationIntent.SetFlags(ActivityFlags.ClearTop);
             //               ActivityFlags.SingleTop);
 
            
@@ -261,9 +277,9 @@ namespace AlmacenRepuestosXamarin.Activities
 
 
 
-            const int pendingIntentId = 0;
+             int pendingIntentId = (int)(System.DateTime.Now.Millisecond & 0xfffffff); 
             //this.Activity.RunOnUiThread(() => Toast.MakeText(this.Activity, message.Object.descripcion, ToastLength.Short).Show());
-            PendingIntent pendingIntent = PendingIntent.GetActivity(this, -1, notificationIntent, 0);
+            PendingIntent pendingIntent = PendingIntent.GetActivity(this, pendingIntentId, notificationIntent,   PendingIntentFlags.UpdateCurrent);
             if (message.EventType == FirebaseEventType.InsertOrUpdate)
                 this.RunOnUiThread(() => {
                 if (message.EventType == FirebaseEventType.InsertOrUpdate)
@@ -271,17 +287,19 @@ namespace AlmacenRepuestosXamarin.Activities
                     this.RunOnUiThread(() => Toast.MakeText(this, message.Object.descripcion, ToastLength.Short).Show());
                         Notification.Builder builder = new Notification.Builder(this)
                        // setLatestEventInfo
-                       
+                       .SetTicker(message.Key)
                             .SetContentIntent(pendingIntent)
                             .SetContentTitle(message.Object.codPedido)
                             .SetContentText(message.Object.descripcion)
                             .SetDefaults(NotificationDefaults.Sound | NotificationDefaults.Vibrate)
-                            .SetSmallIcon(Resource.Drawable.carretilla);
-                            
+                            .SetSmallIcon(Resource.Drawable.campana32)
+                            .SetAutoCancel(true);
 
-                    // Build the notification:
-                    Notification notification = builder.Build();
-                    
+                        // Build the notification:
+                        Notification notification = builder.Build();
+                        notification.Flags =  NotificationFlags.AutoCancel| NotificationFlags.OngoingEvent ;
+                        notification.Extras.PutString("idFragment", "1");
+
                     // Get the notification manager:
                     NotificationManager notificationManager =
                         GetSystemService(Context.NotificationService) as NotificationManager;
