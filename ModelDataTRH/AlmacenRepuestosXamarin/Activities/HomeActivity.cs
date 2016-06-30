@@ -84,13 +84,13 @@ namespace AlmacenRepuestosXamarin.Activities
 
             //Display the current fragments title and update the options menu
             this.drawerToggle.DrawerClosed += (o, args) => {
-                this.SupportActionBar.Title = this.title;
+                //this.SupportActionBar.Title = this.title;
                 this.InvalidateOptionsMenu();
             };
 
             //Display the drawer title and update the options menu
             this.drawerToggle.DrawerOpened += (o, args) => {
-                this.SupportActionBar.Title = this.drawerTitle;
+                //this.SupportActionBar.Title = this.drawerTitle;
                 this.InvalidateOptionsMenu();
             };
 
@@ -181,9 +181,13 @@ namespace AlmacenRepuestosXamarin.Activities
         private void ListItemClicked(int position)
         {
             Android.Support.V4.App.Fragment fragment = null;
+
+            //SupportActionBar.Title = this.title = Sections[position];
+            SupportActionBar.Subtitle = "Peazo App";
             switch (position)
             {
                 case 0:
+                    SupportActionBar.Title = this.title = Sections[position];
                     fragment = new BuscadorEmpleados();
                     SupportFragmentManager.BeginTransaction()
                        .Replace(Resource.Id.content_frame, fragment)
@@ -205,7 +209,6 @@ namespace AlmacenRepuestosXamarin.Activities
            
 
             this.drawerListView.SetItemChecked(position, true);
-            SupportActionBar.Title = this.title = Sections[position];
             this.drawerLayout.CloseDrawers();
         }
 
