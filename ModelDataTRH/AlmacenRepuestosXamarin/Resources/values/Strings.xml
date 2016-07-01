@@ -13,4 +13,13 @@
   <string name="drawer_open">Open</string>
   <string name="drawer_close">Close</string>
   <string name="menu_refresh">Refresh</string>
+
+  <string-array name="Empresas">
+    
+    <item>Liege</item>
+    <item>Sevilla</item>
+    
+  </string-array>
+
+  
 </resources>

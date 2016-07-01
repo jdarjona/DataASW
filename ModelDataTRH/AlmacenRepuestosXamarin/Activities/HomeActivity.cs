@@ -34,6 +34,7 @@ namespace AlmacenRepuestosXamarin.Activities
         private DrawerLayout drawerLayout;
         private ListView drawerListView;
         FirebaseClient<PedidoFireBase> _client;
+        Spinner spinner;
         private static readonly string[] Sections = new[] {
             "App Almacen", "Monitor Carga", "Configuracion"
         };
