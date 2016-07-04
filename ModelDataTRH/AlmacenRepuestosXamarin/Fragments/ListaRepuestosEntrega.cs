@@ -146,8 +146,8 @@ namespace AlmacenRepuestosXamarin.Fragments
         public  override void OnResume()
         {
             base.OnResume();
-         
-            
+
+            //this.adapterRepuestos.list = ManagerRepuestos.getRepuestos();
             this.adapterRepuestos.NotifyDataSetChanged();
 
         }
@@ -271,6 +271,7 @@ namespace AlmacenRepuestosXamarin.Fragments
                 }
 
                 ManagerRepuestos.clearRepuestos();
+                progressLayout.Visibility = ViewStates.Gone;
                 return true;
 
             }
@@ -279,6 +280,7 @@ namespace AlmacenRepuestosXamarin.Fragments
                 alert.SetMessage("Error al realizar el registro, pongase en contacto con el departamento informática");
                 alert.SetNeutralButton("Ok", (s, e) => { });
                 alert.Show();
+                progressLayout.Visibility = ViewStates.Gone;
                 return false;
             }
 
@@ -328,23 +330,38 @@ namespace AlmacenRepuestosXamarin.Fragments
             //Start scanning!
             var result = await scanner.Scan();
 
-            EntregaAlmacen rep = await ManagerRepuestos.addRepuesto(empleado.No, result.Text);
+            
+
+            Toast.MakeText(this.Activity, result.Text, ToastLength.Long);
             //HandleScanResult(result);
 
-            string msg = "";
-            if (rep != null)
+            string msg = string.Empty;
+            if (!ManagerRepuestos.existeRepuestoEnLista(empleado.No, result.Text))
+             
             {
                 if (result != null && !string.IsNullOrEmpty(result.Text))
                 {
-                msg = "Found Barcode: " + result.Text;
+                    EntregaAlmacen rep = await ManagerRepuestos.addRepuesto(empleado.No, result.Text);
 
-                    if (ManagerRepuestos.existeRepuestoEnLista(empleado.No, result.Text))
+                    if (rep == null)
                     {
-                        msg = "Ya fue escaneado ese producto!!";
+
+                        Android.App.AlertDialog.Builder alert = new Android.App.AlertDialog.Builder(this.Activity);
+                        alert.SetTitle("Error en lectura de Código de Barras");
+                        alert.SetMessage("Código leido: " + result);
+                        alert.SetPositiveButton("Ok", (s, e) =>
+                        {
+                            rep = null;
+                            //msg = "Código leido: " + result;
+                            //this.Activity.RunOnUiThread(() => Toast.MakeText(this.Activity, msg, ToastLength.Short).Show());
+                        });
+                        alert.Show();
+
+                       
                     }
                     else
                     {
-                        //EntregaAlmacen rep = await ManagerRepuestos.addRepuesto(empleado.No, result.Text);
+                        //var rep = await ManagerRepuestos.addRepuesto(empleado.No, result.Text);
                         //if (rep != null)
                         //{
                             adaptarSwipe.NotifyDataSetChanged();
@@ -367,6 +384,7 @@ namespace AlmacenRepuestosXamarin.Fragments
                                 .Replace(Resource.Id.content_frame, fragment)
                                 .AddToBackStack("ListaRepuestosEntrega")
                                .Commit();
+                        //}
                     
                     }
 
@@ -374,22 +392,16 @@ namespace AlmacenRepuestosXamarin.Fragments
                 else
                 { 
                     msg = "Scaneo Cancelado";
-                    this.Activity.RunOnUiThread(() => Toast.MakeText(this.Activity, msg, ToastLength.Short).Show());
+                   
                 }
             }
             else
             {
-                Android.App.AlertDialog.Builder alert = new Android.App.AlertDialog.Builder(this.Activity);
-                alert.SetTitle("Error en lectura de Código de Barras");
-                alert.SetMessage("Código leido: " + result);
-                alert.SetPositiveButton("Ok", (s, e) =>
-                {
-                    rep = null;
-                    //msg = "Código leido: " + result;
-                    //this.Activity.RunOnUiThread(() => Toast.MakeText(this.Activity, msg, ToastLength.Short).Show());
-                });
-                alert.Show();
+                msg = "Ya fue escaneado ese producto!!";
+
             }
+
+            if (!string.IsNullOrEmpty(msg)) this.Activity.RunOnUiThread(() => Toast.MakeText(this.Activity, msg, ToastLength.Short).Show());
 
         }
 

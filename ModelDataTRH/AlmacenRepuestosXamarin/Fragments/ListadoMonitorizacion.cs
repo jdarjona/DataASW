@@ -119,10 +119,11 @@ namespace AlmacenRepuestosXamarin.Fragments
 
         public override void OnResume()
         {
+            listMonitorizacion = Monitorizacion.getListMonitorizacion();
+            
+             this.adapterMonitorizacion.list= listMonitorizacion;
+            this.Activity.RunOnUiThread(() => adapterMonitorizacion.NotifyDataSetChanged());
            
-            var countManager = Monitorizacion.getListMonitorizacion();
-            var countListView = this.adapterMonitorizacion.list;
-            adapterMonitorizacion.NotifyDataSetChanged();
             base.OnResume();
             
         }
