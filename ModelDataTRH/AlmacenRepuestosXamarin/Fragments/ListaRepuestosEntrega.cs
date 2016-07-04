@@ -272,6 +272,7 @@ namespace AlmacenRepuestosXamarin.Fragments
 
                 ManagerRepuestos.clearRepuestos();
                 progressLayout.Visibility = ViewStates.Gone;
+                FragmentManager.PopBackStack();
                 return true;
 
             }
