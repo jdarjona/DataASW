@@ -35,6 +35,8 @@ namespace AlmacenRepuestosXamarin.Fragments
         private List<vListadoPedidosMonitorizacion> listMonitorizacion;
         FirebaseClient<PedidoFireBase> _client;
         FirebaseCache<PedidoFireBase> cacheFireBase;
+        
+        private String[] states;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -48,7 +50,7 @@ namespace AlmacenRepuestosXamarin.Fragments
         {
             // Use this to return your custom view for this Fragment
             // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
-
+            
             var olderView =base.OnCreateView(inflater, container, savedInstanceState);
             view = inflater.Inflate(Resource.Layout.ListaMonitorizacionLayout, null);
 
