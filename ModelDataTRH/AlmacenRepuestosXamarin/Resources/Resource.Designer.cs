@@ -1732,8 +1732,8 @@ namespace AlmacenRepuestosXamarin
 			// aapt resource value: 0x7f07006f
 			public const int Description = 2131165295;
 			
-			// aapt resource value: 0x7f070066
-			public const int Empresas = 2131165286;
+			// aapt resource value: 0x7f070067
+			public const int Empresas = 2131165287;
 			
 			// aapt resource value: 0x7f070091
 			public const int Estado = 2131165329;
@@ -1957,8 +1957,8 @@ namespace AlmacenRepuestosXamarin
 			// aapt resource value: 0x7f07005c
 			public const int mainDetallePedidoVenta = 2131165276;
 			
-			// aapt resource value: 0x7f070067
-			public const int mainListaMonitorizacion = 2131165287;
+			// aapt resource value: 0x7f070066
+			public const int mainListaMonitorizacion = 2131165286;
 			
 			// aapt resource value: 0x7f07006a
 			public const int main_content = 2131165290;

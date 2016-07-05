@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using Android.App;
 using Android.Content.PM;
 using Android.Content.Res;
@@ -10,11 +8,9 @@ using Android.Widget;
 
 using AlmacenRepuestosXamarin.Fragments;
 using AlmacenRepuestosXamarin.Helpers;
-using Android.Support.V7.App;
 using Firebase.Xamarin;
 using Firebase.Xamarin.Streaming;
 using Android.Content;
-using Android.Net.Wifi;
 using AlmacenRepuestosXamarin.Model;
 using AlmacenRepuestosXamarin.Data;
 using System.Threading.Tasks;

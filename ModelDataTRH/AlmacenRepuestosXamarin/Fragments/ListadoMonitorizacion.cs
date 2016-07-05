@@ -12,6 +12,8 @@ using Firebase.Xamarin.Streaming;
 using Firebase.Xamarin.Query;
 using Android.Support.V7.App;
 using AlmacenRepuestosXamarin.Model;
+using System;
+using RepositoryWebServiceTRH.EntregaAlmacenEpisContext;
 
 namespace AlmacenRepuestosXamarin.Fragments
 {
@@ -21,7 +23,6 @@ namespace AlmacenRepuestosXamarin.Fragments
     {
         protected class PedidoFireBase
         {
-
             public string codPedido { get; set; }
             public int estado { get; set; }
             public string descripcion { get; set; }
@@ -32,11 +33,13 @@ namespace AlmacenRepuestosXamarin.Fragments
         private LinearLayout progressLayout;
         private AccesoDatos datos;
         private AdapterMonitoriaion adapterMonitorizacion;
+        AdapterSpinner<Empresas> adapterEmpresas;
         private List<vListadoPedidosMonitorizacion> listMonitorizacion;
         FirebaseClient<PedidoFireBase> _client;
         FirebaseCache<PedidoFireBase> cacheFireBase;
-        
-        private String[] states;
+        private Spinner spinnerEmpresa ;
+
+        //private String[] states;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -50,7 +53,7 @@ namespace AlmacenRepuestosXamarin.Fragments
         {
             // Use this to return your custom view for this Fragment
             // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
-            
+            spinnerEmpresa = new Spinner(container.Context);
             var olderView =base.OnCreateView(inflater, container, savedInstanceState);
             view = inflater.Inflate(Resource.Layout.ListaMonitorizacionLayout, null);
 
@@ -80,10 +83,17 @@ namespace AlmacenRepuestosXamarin.Fragments
                    .Commit();
             };
 
-
             
 
             return view;
+        }
+
+        private  void spinnerEmpresa_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+
+            Spinner spinner = (Spinner)sender;
+             spinner.SetSelection( e.Position);
+
         }
 
 
@@ -133,10 +143,19 @@ namespace AlmacenRepuestosXamarin.Fragments
 
 
             progressLayout.Visibility = ViewStates.Visible;
-            
+            var s = (Empresas[])Enum.GetValues(typeof(Empresas));
+
+            adapterEmpresas = new AdapterSpinner<Empresas>(this.Activity, Android.Resource.Layout.SimpleSpinnerItem, s);
+            adapterEmpresas.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+            spinnerEmpresa = (Spinner) view.FindViewById(Resource.Id.Empresas);
+            spinnerEmpresa.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(spinnerEmpresa_ItemSelected);
+            spinnerEmpresa.Adapter = adapterEmpresas;
+            spinnerEmpresa.Focusable = true;
+            spinnerEmpresa.FocusableInTouchMode = true;
+            spinnerEmpresa.RequestFocus(FocusSearchDirection.Up);
             //listMonitorizacion = await datos.getListadoMonitorCarga();
 
-           // Monitorizacion.updateListMonitorizacion();
+            // Monitorizacion.updateListMonitorizacion();
             listMonitorizacion = Monitorizacion.getListMonitorizacion();
             adapterMonitorizacion = new AdapterMonitoriaion(this.Activity, listMonitorizacion);
 
