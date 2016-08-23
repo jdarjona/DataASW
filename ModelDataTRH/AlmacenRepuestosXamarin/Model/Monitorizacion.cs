@@ -19,5 +19,10 @@ namespace AlmacenRepuestosXamarin.Model
             datos = new AccesoDatos();
             listMonitorizacion = await datos.getListadoMonitorCarga();
         }
+        public static async Task updateListMonitorizacion(string empresa)
+        {
+            datos = new AccesoDatos();
+            listMonitorizacion = await datos.getListadoMonitorCarga(empresa);
+        }
     }
 }

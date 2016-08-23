@@ -8,12 +8,17 @@ using Android.Widget;
 
 using AlmacenRepuestosXamarin.Fragments;
 using AlmacenRepuestosXamarin.Helpers;
-using Firebase.Xamarin;
-using Firebase.Xamarin.Streaming;
+
+
 using Android.Content;
 using AlmacenRepuestosXamarin.Model;
 using AlmacenRepuestosXamarin.Data;
 using System.Threading.Tasks;
+
+using Firebase.Xamarin.Database.Streaming;
+using Firebase.Xamarin.Database;
+using System;
+using Firebase.Xamarin.Auth;
 
 namespace AlmacenRepuestosXamarin.Activities
 {
@@ -29,7 +34,7 @@ namespace AlmacenRepuestosXamarin.Activities
         private AccesoDatos datos ;
         private DrawerLayout drawerLayout;
         private ListView drawerListView;
-        FirebaseClient<PedidoFireBase> _client;
+       
         Spinner spinner;
         private static readonly string[] Sections = new[] {
             "App Almacen", "Monitor Carga", "Configuracion"
@@ -119,17 +124,54 @@ namespace AlmacenRepuestosXamarin.Activities
                 ListItemClicked(0);
             }
 
-            _client = new FirebaseClient<PedidoFireBase>(@"https://flickering-fire-4088.firebaseio.com/", "XQsDE173GieFhbMUUs2t2OD5eUwZFjjrEsAYbq6B");
 
-            StreamToken<PedidoFireBase> _token = _client.GetStreamToken(@"Pedidos/TRH Liege");
+            //Firebase.Xamarin.Auth.FirebaseAuth auth = new Firebase.Xamarin.Auth.FirebaseAuth();
 
+            //auth.FirebaseToken = "XQsDE173GieFhbMUUs2t2OD5eUwZFjjrEsAYbq6B";
+            
 
+           
             
 
 
-            _token
-                // .Where(q => q.EventType == FirebaseEventType.InsertOrUpdate)
-                .Subscribe(OnItemMessage);
+            // StreamToken<PedidoFireBase> _token = _client.GetStreamToken(@"Pedidos/TRH Liege");
+
+           //// initFirebase();
+
+
+
+            //_token
+            //    // .Where(q => q.EventType == FirebaseEventType.InsertOrUpdate)
+            //    .Subscribe(OnItemMessage);
+        }
+        private async void initFirebase() {
+
+          
+
+            Func<Task<string>> authToken = async delegate()
+            {
+
+                //var authProvider = await new FirebaseAuthProvider(new FirebaseConfig("eb3a8e67-fe78-47e5-aaa1-a6c1ba18caa9")).SignInWithEmailAndPasswordAsync("jdarjona@hotmail.com", "juande80");
+                
+
+                ////var auth = await FirebaseAuthProvider.SignInWithEmailAndPasswordAsync("jdarjona@hotmail.com", "juande80");
+                //authProvider.FirebaseToken = "XQsDE173GieFhbMUUs2t2OD5eUwZFjjrEsAYbq6B";
+                //var token = authProvider.FirebaseToken;
+                return  "XQsDE173GieFhbMUUs2t2OD5eUwZFjjrEsAYbq6B";
+
+            };
+
+           // var auth = (string) => { return "XQsDE173GieFhbMUUs2t2OD5eUwZFjjrEsAYbq6B"; }
+
+            var firebase = new FirebaseClient(@"https://flickering-fire-4088.firebaseio.com/", authToken);
+            var items =  firebase
+             .Child(@"Pedidos/TRH Liege")//.OnceAsync<PedidoFireBase>();
+           
+            .AsObservable<PedidoFireBase>()
+            
+             .Subscribe(OnItemMessage);
+
+
         }
 
         protected override void OnResume()

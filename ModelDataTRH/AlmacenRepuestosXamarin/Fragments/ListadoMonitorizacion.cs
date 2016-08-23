@@ -8,12 +8,14 @@ using AlmacenRepuestosXamarin.Data;
 using AlmacenRepuestosXamarin.Adapter;
 using ModelDataTRH;
 using Firebase.Xamarin;
-using Firebase.Xamarin.Streaming;
-using Firebase.Xamarin.Query;
+
 using Android.Support.V7.App;
 using AlmacenRepuestosXamarin.Model;
 using System;
 using RepositoryWebServiceTRH.EntregaAlmacenEpisContext;
+using Firebase.Xamarin.Database.Streaming;
+using AlmacenRepuestosXamarin.Activities;
+using Firebase.Xamarin.Database;
 
 namespace AlmacenRepuestosXamarin.Fragments
 {
@@ -35,11 +37,10 @@ namespace AlmacenRepuestosXamarin.Fragments
         private AdapterMonitoriaion adapterMonitorizacion;
         AdapterSpinner<Empresas> adapterEmpresas;
         private List<vListadoPedidosMonitorizacion> listMonitorizacion;
-        FirebaseClient<PedidoFireBase> _client;
+        FirebaseClient _client;
         FirebaseCache<PedidoFireBase> cacheFireBase;
         private Spinner spinnerEmpresa ;
 
-        //private String[] states;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -52,7 +53,7 @@ namespace AlmacenRepuestosXamarin.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             // Use this to return your custom view for this Fragment
-            // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
+
             spinnerEmpresa = new Spinner(container.Context);
             var olderView =base.OnCreateView(inflater, container, savedInstanceState);
             view = inflater.Inflate(Resource.Layout.ListaMonitorizacionLayout, null);
@@ -67,9 +68,6 @@ namespace AlmacenRepuestosXamarin.Fragments
 
             listViewMonitorizacion.ItemClick += (sender, e) =>
             {
-                //var activityDetalleRepuestoActivity = new Intent(this.Activity, typeof(detalleRepuestoActivity));
-                //activityDetalleRepuestoActivity.PutExtra("idEntregaAlmacen", ManagerRepuestos.getRepuestos()[e.Position].Key);
-                //StartActivity(activityDetalleRepuestoActivity);
 
                 Android.Support.V4.App.Fragment fragment = new AlmacenRepuestosXamarin.Fragments.DetallePedidoVenta();
 
@@ -88,32 +86,37 @@ namespace AlmacenRepuestosXamarin.Fragments
             return view;
         }
 
-        private  void spinnerEmpresa_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        private async void spinnerEmpresa_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
 
             Spinner spinner = (Spinner)sender;
-             spinner.SetSelection( e.Position);
+            spinner.SetSelection(e.Position);
+            string empresa = "Sevilla";
+            if (e.Position == 1) {
+                empresa = "Liege";
+            }
+            await Monitorizacion.updateListMonitorizacion(empresa);
+            listMonitorizacion = Monitorizacion.getListMonitorizacion();
+            adapterMonitorizacion = new AdapterMonitoriaion(this.Activity, listMonitorizacion);
 
+            listViewMonitorizacion.Adapter = adapterMonitorizacion;
         }
 
 
-        private async void getFireBase() {
+        //private async void getFireBase() {
 
-            var items = await _client
-                              .Child("Pedidos/TRH Liege")
-                              .OrderByKey()
-                              .LimitToFirst(2)
-                              .OnceAsync<PedidoFireBase>();
+        //    var items = await _client
+        //                      .Child("Pedidos/TRH Liege")
+        //                      .OrderByKey()
+        //                      .LimitToFirst(2)
+        //                      .OnceAsync<PedidoFireBase>();
 
 
 
-        }
+        //}
 
         private void OnItemMessage(FirebaseEvent<PedidoFireBase> message)
         {
-            //this.Activity.RunOnUiThread(() => Toast.MakeText(this.Activity, message.Object.descripcion, ToastLength.Short).Show());
-
-           
            
                 if (message.EventType == FirebaseEventType.InsertOrUpdate)
                 {
@@ -124,9 +127,6 @@ namespace AlmacenRepuestosXamarin.Fragments
                     //Do Something else
                 }
             
-        }
-        public void PopBackStack()
-        {
         }
 
         public override void OnResume()
