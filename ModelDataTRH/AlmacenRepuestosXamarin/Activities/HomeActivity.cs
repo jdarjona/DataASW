@@ -18,13 +18,16 @@ using System.Threading.Tasks;
 using Firebase.Xamarin.Database.Streaming;
 using Firebase.Xamarin.Database;
 using System;
-using Firebase.Xamarin.Auth;
+using ModelDataTRH;
+using System.Collections.Generic;
+//using Firebase.Xamarin.Auth;
+//using Firebase.Auth;
+//using Firebase;
 
 namespace AlmacenRepuestosXamarin.Activities
 {
     [Activity(Label = "Almacen Repuestos", MainLauncher = true, LaunchMode = LaunchMode.SingleTop, Icon = "@drawable/carretilla", ScreenOrientation = ScreenOrientation.Portrait)]
-    // [Activity(Label = "Almacen Repuestos", MainLauncher = true, Icon = "@drawable/carretilla", Theme = "@style/Theme.AppCompat.Light", ScreenOrientation = ScreenOrientation.Portrait)]
-    public class HomeView : BaseActivity
+    public class HomeView : BaseActivity 
     {
        
 
@@ -34,8 +37,8 @@ namespace AlmacenRepuestosXamarin.Activities
         private AccesoDatos datos ;
         private DrawerLayout drawerLayout;
         private ListView drawerListView;
-       
         Spinner spinner;
+
         private static readonly string[] Sections = new[] {
             "App Almacen", "Monitor Carga", "Configuracion"
         };
@@ -49,7 +52,6 @@ namespace AlmacenRepuestosXamarin.Activities
         }
         protected class PedidoFireBase
         {
-
             public string codPedido { get; set; }
             public int estado { get; set; }
             public string descripcion { get; set; }
@@ -58,16 +60,12 @@ namespace AlmacenRepuestosXamarin.Activities
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            // SetContentView(Resource.Layout.page_home_view);
             this.title = this.drawerTitle = this.Title;
 
             Helpers.Preferencias preferencias = new Preferencias(this);
 
-
-
             this.drawerLayout = this.FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
             this.drawerListView = this.FindViewById<ListView>(Resource.Id.left_drawer_Menu);
-
 
             //Create Adapter for drawer List
             this.drawerListView.Adapter = new ArrayAdapter<string>(this, Resource.Layout.item_menu, Sections);
@@ -100,14 +98,6 @@ namespace AlmacenRepuestosXamarin.Activities
             //Set the drawer lister to be the toggle.
             this.drawerLayout.SetDrawerListener(this.drawerToggle);
 
-
-
-            //if first time you will want to go ahead and click first item.
-            //if (savedInstanceState == null)
-            //{
-            //    ListItemClicked(0);
-            //}
-
             string action = this.Intent.GetStringExtra("idFragment");
 
             if (!string.IsNullOrEmpty(action))
@@ -124,44 +114,17 @@ namespace AlmacenRepuestosXamarin.Activities
                 ListItemClicked(0);
             }
 
-
-            //Firebase.Xamarin.Auth.FirebaseAuth auth = new Firebase.Xamarin.Auth.FirebaseAuth();
-
-            //auth.FirebaseToken = "XQsDE173GieFhbMUUs2t2OD5eUwZFjjrEsAYbq6B";
-            
-
-           
-            
-
-
-            // StreamToken<PedidoFireBase> _token = _client.GetStreamToken(@"Pedidos/TRH Liege");
-
-           //// initFirebase();
-
-
-
-            //_token
-            //    // .Where(q => q.EventType == FirebaseEventType.InsertOrUpdate)
-            //    .Subscribe(OnItemMessage);
+             initFirebase();
         }
-        private async void initFirebase() {
 
-          
+
+
+        private async void initFirebase() {
 
             Func<Task<string>> authToken = async delegate()
             {
-
-                //var authProvider = await new FirebaseAuthProvider(new FirebaseConfig("eb3a8e67-fe78-47e5-aaa1-a6c1ba18caa9")).SignInWithEmailAndPasswordAsync("jdarjona@hotmail.com", "juande80");
-                
-
-                ////var auth = await FirebaseAuthProvider.SignInWithEmailAndPasswordAsync("jdarjona@hotmail.com", "juande80");
-                //authProvider.FirebaseToken = "XQsDE173GieFhbMUUs2t2OD5eUwZFjjrEsAYbq6B";
-                //var token = authProvider.FirebaseToken;
                 return  "XQsDE173GieFhbMUUs2t2OD5eUwZFjjrEsAYbq6B";
-
             };
-
-           // var auth = (string) => { return "XQsDE173GieFhbMUUs2t2OD5eUwZFjjrEsAYbq6B"; }
 
             var firebase = new FirebaseClient(@"https://flickering-fire-4088.firebaseio.com/", authToken);
             var items =  firebase
@@ -170,59 +133,33 @@ namespace AlmacenRepuestosXamarin.Activities
             .AsObservable<PedidoFireBase>()
             
              .Subscribe(OnItemMessage);
-
+            
 
         }
 
         protected override void OnResume()
         {
-            //string action = this.Intent.GetStringExtra("idFragment");
-            //var a =this.Intent.Extras;
-            //if (!string.IsNullOrEmpty(action)){
-
-            //    int idFragment;
-
-            //    int.TryParse(action, out idFragment);
-
-            //    ListItemClicked(idFragment);
-
-            //}
-                  
-
-
             base.OnResume();
-           
         }
-
-
-
-
-
 
         public override void OnBackPressed()
         {
-            
-
             int count = SupportFragmentManager.BackStackEntryCount;
 
             if (count == 0)
             {
                 base.OnBackPressed();
-                //additional code
             }
             else
             {
                 SupportFragmentManager.PopBackStack();
             }
-
-
-           
         }
+
         private void ListItemClicked(int position)
         {
             Android.Support.V4.App.Fragment fragment = null;
 
-            //SupportActionBar.Title = this.title = Sections[position];
             SupportActionBar.Subtitle = "Peazo App";
             switch (position)
             {
@@ -245,9 +182,6 @@ namespace AlmacenRepuestosXamarin.Activities
                     
                     break;
             }
-
-           
-
             this.drawerListView.SetItemChecked(position, true);
             this.drawerLayout.CloseDrawers();
         }
@@ -264,11 +198,11 @@ namespace AlmacenRepuestosXamarin.Activities
             return base.OnPrepareOptionsMenu(menu);
         }
 
-        protected override void OnPostCreate(Bundle savedInstanceState)
+        protected async override void OnPostCreate(Bundle savedInstanceState)
         {
             base.OnPostCreate(savedInstanceState);
             this.drawerToggle.SyncState();
-            Monitorizacion.updateListMonitorizacion();            
+            await Monitorizacion.updateListMonitorizacion();            
         }
 
         public override void OnConfigurationChanged(Configuration newConfig)
@@ -289,76 +223,66 @@ namespace AlmacenRepuestosXamarin.Activities
 
         protected override void OnSaveInstanceState(Bundle savedInstanceState)
         {
-            // Save the user's current game state
             savedInstanceState.PutInt("idFrameOpen", 1);
-           
-
-            // Always call the superclass so it can save the view hierarchy state
             base.OnSaveInstanceState(savedInstanceState);
         }
 
         private async Task notificar(FirebaseEvent<PedidoFireBase> message) {
 
-            await Monitorizacion.updateListMonitorizacion();
-          
             Intent notificationIntent = this.PackageManager.GetLaunchIntentForPackage(this.PackageName);
-            //Intent notificationIntent = new Intent(this,typeof(HomeView));
             notificationIntent.SetFlags(ActivityFlags.ClearTop);
-            //ActivityFlags.SingleTop);
-
 
             notificationIntent.PutExtra("idFragment", "1");
             int pendingIntentId = (int)(System.DateTime.Now.Millisecond & 0xfffffff);
-            //this.Activity.RunOnUiThread(() => Toast.MakeText(this.Activity, message.Object.descripcion, ToastLength.Short).Show());
             PendingIntent pendingIntent = PendingIntent.GetActivity(this, pendingIntentId, notificationIntent, PendingIntentFlags.UpdateCurrent);
             this.RunOnUiThread(() => {
               
 
                     Toast.MakeText(this, message.Object.descripcion, ToastLength.Short).Show();
 
-
-
-
                     Notification.Builder builder = new Notification.Builder(this)
-                        // setLatestEventInfo
                         .SetTicker(message.Key)
                         .SetContentIntent(pendingIntent)
                         .SetContentTitle(message.Object.codPedido)
                         .SetContentText(message.Object.descripcion)
                         .SetDefaults(NotificationDefaults.Sound | NotificationDefaults.Vibrate)
                         .SetSmallIcon(Resource.Drawable.campana32)
+                     
                          .SetAutoCancel(true);
 
                     // Build the notification:
                     Notification notification = builder.Build();
-                    notification.Flags = NotificationFlags.AutoCancel | NotificationFlags.OngoingEvent;
-                    notification.Extras.PutString("idFragment", "1");
+                    
+                    notification.Defaults =  NotificationDefaults.All; //NotificationFlags.AutoCancel |
+                notification.Extras.PutString("idFragment", "1");
 
                     // Get the notification manager:
                     NotificationManager notificationManager =
                         GetSystemService(Context.NotificationService) as NotificationManager;
 
-                    // Publish the notification:
-                    // const int notificationId = 0;
                     notificationManager.Notify(message.Object.codPedido, 0, notification);
-                   //ListItemClicked(1);
-                
 
             });
-
-
         }
 
-        private  void OnItemMessage(FirebaseEvent<PedidoFireBase> message)
+        //Comprobamos que la notificacion de cambio del estado del pedido es diferente a la inicial y así mandar la notificación
+        private async void OnItemMessage(FirebaseEvent<PedidoFireBase> message)
         {
+            string pedMessage = message.Object.codPedido.ToString();
+            string estadoMessage = message.Object.descripcion.ToString();
 
-         
-           
-            if (message.EventType == FirebaseEventType.InsertOrUpdate) {
-                //  
-                notificar(message);
+            if (Monitorizacion.listMonitorizacion.Count>0) {
+                for (int i = 0; i < Monitorizacion.listMonitorizacion.Count; i++)
+                {
+                    string pedidoListado = Monitorizacion.listMonitorizacion[i].codigoPedido.ToString();
+                    if (message.Object.codPedido.Equals(Monitorizacion.listMonitorizacion[i].codigoPedido)) {
+                        string estadoListado = Monitorizacion.listMonitorizacion[i].Estado.ToString();
+                        if (!Monitorizacion.listMonitorizacion[i].Estado.Equals( message.Object.descripcion) && (message.EventType == FirebaseEventType.InsertOrUpdate)) {
+                            notificar(message);
+                        }
+                    }
+                }
             }
-
         }
     }
 }
