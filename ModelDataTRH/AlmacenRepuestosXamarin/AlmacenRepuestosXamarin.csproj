@@ -150,12 +150,18 @@
   <ItemGroup>
     <Compile Include="Activities\BaseActivity.cs" />
     <Compile Include="Activities\HomeActivity.cs" />
+    <Compile Include="Activities\SinopticoActivity.cs" />
     <Compile Include="Adapter\AdapterDetallePedidoVenta.cs" />
     <Compile Include="Adapter\AdapterEmpleados.cs" />
+    <Compile Include="Adapter\AdapterSinoptico.cs" />
     <Compile Include="Adapter\AdapterMonitoriaion.cs" />
     <Compile Include="Adapter\AdapterRepuestos.cs" />
     <Compile Include="Adapter\AdapterSpinner.cs" />
     <Compile Include="Adapter\AdapterView.cs" />
+    <Compile Include="Clases\SinopticoFabrica.cs" />
+    <Compile Include="Clases\SlidingTabScrollView.cs" />
+    <Compile Include="Clases\SlidingTabsFragment.cs" />
+    <Compile Include="Clases\SlidingTabStrip.cs" />
     <Compile Include="Data\AccesoDatos.cs" />
     <Compile Include="detalleRepuestoActivity.cs" />
     <Compile Include="Fragments\BuscadorEmpleados.cs" />
@@ -210,6 +216,24 @@
     <AndroidResource Include="Resources\layout\RowListMonitorizacion.axml" />
     <AndroidResource Include="Resources\layout\groupListMonitorizacionLayout.axml">
       <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\pager_item.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_sample.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\menu\actionbar_main.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\sinoptico.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\RowListSinoptico.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\ListaSinopticoLayout.axml">
+      <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
@@ -386,6 +410,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\campana32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_action_overflow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

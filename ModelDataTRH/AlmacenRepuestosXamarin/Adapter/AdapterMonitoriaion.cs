@@ -46,10 +46,6 @@ namespace AlmacenRepuestosXamarin.Adapter
             if (view == null)
                 view = context.LayoutInflater.Inflate(Resource.Layout.RowListMonitorizacion, parent, false);
 
-
-            //if (position > 0)
-            //{
-            //    view = context.LayoutInflater.Inflate(Resource.Layout.RowListMonitorizacion, parent, false);
                 vListadoPedidosMonitorizacion item = this[position];
                 view.FindViewById<TextView>(Resource.Id.CodPedido).Text = string.Format(@"{0}-{1}", item.Cod__Agrupacion_Pedido, item.Cod__Pedido_Transporte);
                 view.FindViewById<TextView>(Resource.Id.Cliente).Text = item.Nombre_Agencia;
@@ -58,15 +54,6 @@ namespace AlmacenRepuestosXamarin.Adapter
                 view.FindViewById<TextView>(Resource.Id.Comercial).Text = item.inicialesComercial;
 
                 view.FindViewById<TextView>(Resource.Id.Estado).SetBackgroundResource(ColorEstado(item.Estado));
-
-            //}
-            //else {
-            //    view = context.LayoutInflater.Inflate(Resource.Layout.groupListMonitorizacionLayout, parent, false);
-            //    var numCamionesRuta = list.Where(q => q.Estado == 6).Count().ToString("N0");
-            //    var numTmRuta= list.Where(q => q.Estado == 6).Sum(q=>q.pesoKg/1000).ToString("N0");
-            //    view.FindViewById<TextView>(Resource.Id.header).Text = string.Format(@"Camiones Ruta:{0}-{1} Tm", numCamionesRuta, numTmRuta);
-
-            //}
 
             return view;
         }

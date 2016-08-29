@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="50dp"
+    android:orientation="horizontal">
+    <TextView
+        android:id="@+id/Maquina"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="2dp"
+        android:layout_alignParentLeft="true" />
+    <TextView
+        android:id="@+id/ProductoMaquina"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Maquina"
+        android:paddingLeft="2dp"
+        android:paddingTop="2dp" />
+    <TextView
+        android:id="@+id/RecursoMaquina"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ProductoMaquina"
+        android:paddingLeft="2dp"
+        android:paddingTop="2dp" />
+    <TextView
+        android:id="@+id/RendimientoMaquina"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/RecursoMaquina"
+        android:paddingLeft="2dp"
+        android:paddingTop="2dp" />
+    <TextView
+        android:id="@+id/EstadoMaquina"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:paddingLeft="10dp"
+        android:paddingTop="2dp" />
+</RelativeLayout>

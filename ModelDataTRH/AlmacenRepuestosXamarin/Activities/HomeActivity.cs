@@ -40,7 +40,7 @@ namespace AlmacenRepuestosXamarin.Activities
         Spinner spinner;
 
         private static readonly string[] Sections = new[] {
-            "App Almacen", "Monitor Carga", "Configuracion"
+            "App Almacen", "Monitor Carga", "Sinóptico", "Configuracion"
         };
 
         protected override int LayoutResource
@@ -177,9 +177,15 @@ namespace AlmacenRepuestosXamarin.Activities
                            .Commit();
                     break;
                 case 2:
+                    var sinoptico = new Intent(this, typeof(SinopticoActivity));
+                    StartActivity(sinoptico);
+                    
+                    break;
+
+                case 3://actityConfiguracion
                     var actityConfiguracion = new Intent(this, typeof(OpcionesActivity));
                     StartActivity(actityConfiguracion);
-                    
+
                     break;
             }
             this.drawerListView.SetItemChecked(position, true);
