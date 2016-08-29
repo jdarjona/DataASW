@@ -165,7 +165,7 @@ namespace AlmacenRepuestosXamarin.Fragments
             var numCamionesRuta = listMonitorizacion.Where(q => q.Estado == 6).Count().ToString("N0");
             var numTmRuta = listMonitorizacion.Where(q => q.Estado == 6).Sum(q => q.pesoKg / 1000).ToString("N0");
            
-            activity.SupportActionBar.Title = string.Format(@"Camiones Ruta:{0}", numCamionesRuta); ;
+            activity.SupportActionBar.Title = string.Format(@"Camiones Ruta:{0}", numCamionesRuta); 
             activity.SupportActionBar.Subtitle = string.Format(@"Tm envidas: {0}", numTmRuta);
 
             progressLayout.Visibility = ViewStates.Gone;

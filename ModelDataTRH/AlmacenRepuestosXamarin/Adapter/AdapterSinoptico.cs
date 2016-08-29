@@ -56,7 +56,7 @@ namespace AlmacenRepuestosXamarin.Adapter
 
                 SinopticoFabrica item = this[position];
                 view.FindViewById<TextView>(Resource.Id.Maquina).Text = item.maquina;
-                view.FindViewById<TextView>(Resource.Id.EstadoMaquina).Text = item.EstadoMaquina;
+                //view.FindViewById<ImageView>(Resource.Id.EstadoMaquina). = item.EstadoMaquina;
                 view.FindViewById<TextView>(Resource.Id.RecursoMaquina).Text = item.RecursoMaquina;
                 view.FindViewById<TextView>(Resource.Id.RendimientoMaquina).Text = item.RendimientoMaquina;
                 view.FindViewById<TextView>(Resource.Id.ProductoMaquina).Text = item.ProductoMaquina;

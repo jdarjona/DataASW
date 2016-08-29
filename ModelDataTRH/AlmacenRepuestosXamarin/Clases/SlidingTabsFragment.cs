@@ -11,11 +11,11 @@ using Android.Widget;
 
 namespace AlmacenRepuestosXamarin.Clases
 {
-    public class SlidingTabsFragment : Fragment
+    public class SlidingTabsFragment : Android.Support.V4.App.Fragment
     {
         private SlidingTabScrollView mSlidingTabScrollView;
         private ViewPager mViewPager;
-
+        
         private View view;
         private AccesoDatos datos;
         private LinearLayout progressLayout;
@@ -27,7 +27,7 @@ namespace AlmacenRepuestosXamarin.Clases
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             view = inflater.Inflate(Resource.Layout.fragment_sample, container, false);
-
+            ImageView estado = new ImageView(Context);
           
             return view;// inflater.Inflate(Resource.Layout.fragment_sample, container, false);
         }
@@ -78,6 +78,8 @@ namespace AlmacenRepuestosXamarin.Clases
 
         public class SamplePagerAdapter : PagerAdapter
         {
+            private string sevilla = " TRH Sevilla ";
+            private string liege = " TRH Liege ";
             public List<SinopticoFabrica> listSinoptico { get; set; }
             List<string> items = new List<string>();
             private Activity context;
@@ -86,8 +88,8 @@ namespace AlmacenRepuestosXamarin.Clases
 
             public SamplePagerAdapter(Activity context) : base()
             {
-                items.Add(" TRH Sevilla ");
-                items.Add(" TRH Liege ");
+                items.Add(sevilla);
+                items.Add(liege);
                 this.context = context;
             }
             //public SamplePagerAdapter(Activity _context, List<SinopticoFabrica> _list)
@@ -108,42 +110,49 @@ namespace AlmacenRepuestosXamarin.Clases
             {
                 listSinoptico = new List<SinopticoFabrica>();
                 SinopticoFabrica sf = new SinopticoFabrica();
-                if (empresa.Equals(" TRH Sevilla "))
+                if (empresa.Equals(sevilla))
                 {
 
-                    sf.maquina = "M1";
-                    sf.EstadoMaquina = "OK";
-                    sf.ProductoMaquina = "MM00126";
-                    sf.RecursoMaquina = "Mani";
-                    sf.RendimientoMaquina = @"99%";
+                    sf.maquina = "MÁQUINA: M1";
+                    sf.EstadoMaquina = "ON";
+                    sf.ProductoMaquina = "PRODUCTO: MM00126";
+                    sf.RecursoMaquina = "OPERARIO: Mani";
+                    sf.RendimientoMaquina = @"RENDIMIENTO: 99%";
                     listSinoptico.Add(sf);
                     sf = new SinopticoFabrica();
-                    sf.maquina = "M2";
-                    sf.EstadoMaquina = "Error";
-                    sf.ProductoMaquina = "MM00127";
-                    sf.RecursoMaquina = "Mani";
-                    sf.RendimientoMaquina = @"95%";
+                    sf.maquina = "MÁQUINA: M2";
+                    sf.EstadoMaquina = "OFF";
+                    sf.ProductoMaquina = "PRODUCTO: MM00127";
+                    sf.RecursoMaquina = "OPERARIO: Mani";
+                    sf.RendimientoMaquina = @"RENDIMIENTO: 95%";
                     listSinoptico.Add(sf);
 
                 }
-                else if(empresa.Equals(" TRH Liege "))
+                else if (empresa.Equals(liege))
                 {
-                    sf.maquina = "M3";
-                    sf.EstadoMaquina = "OK";
-                    sf.ProductoMaquina = "MM00126";
-                    sf.RecursoMaquina = "Mani";
-                    sf.RendimientoMaquina = @"99%";
+                    sf.maquina = "MÁQUINA: M3";
+                    sf.EstadoMaquina = "ON";
+                    sf.ProductoMaquina = "PRODUCTO: MM00126";
+                    sf.RecursoMaquina = "OPERARIO: Mani";
+                    sf.RendimientoMaquina = @"RENDIMIENTO: 99%";
                     listSinoptico.Add(sf);
                     sf = new SinopticoFabrica();
-                    sf.maquina = "M4";
-                    sf.EstadoMaquina = "Error";
-                    sf.ProductoMaquina = "MM00127";
-                    sf.RecursoMaquina = "Mani";
-                    sf.RendimientoMaquina = @"95%";
+                    sf.maquina = "MÁQUINA: M4";
+                    sf.EstadoMaquina = "OFF";
+                    sf.ProductoMaquina = "PRODUCTO: MM00127";
+                    sf.RecursoMaquina = "OPERARIO: Mani";
+                    sf.RendimientoMaquina = @"RENDIMIENTO: 95%";
                     listSinoptico.Add(sf);
+                }
+                else {
+                    Toast.MakeText(context, "Error al cargar empresa", ToastLength.Long).Show();
                 }
 
                 adapterSinoptico = new AdapterSinoptico(this.context, listSinoptico);
+
+                AppCompatActivity activity = (AppCompatActivity)this.context;
+                activity.SupportActionBar.Title = "SINÓPTICO FÁBRICA";
+                activity.SupportActionBar.Subtitle = "";
 
                 return adapterSinoptico;
 

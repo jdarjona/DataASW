@@ -18,11 +18,7 @@ using System.Threading.Tasks;
 using Firebase.Xamarin.Database.Streaming;
 using Firebase.Xamarin.Database;
 using System;
-using ModelDataTRH;
-using System.Collections.Generic;
-//using Firebase.Xamarin.Auth;
-//using Firebase.Auth;
-//using Firebase;
+using AlmacenRepuestosXamarin.Clases;
 
 namespace AlmacenRepuestosXamarin.Activities
 {
@@ -177,9 +173,20 @@ namespace AlmacenRepuestosXamarin.Activities
                            .Commit();
                     break;
                 case 2:
-                    var sinoptico = new Intent(this, typeof(SinopticoActivity));
-                    StartActivity(sinoptico);
-                    
+                    //SetContentView(Resource.Layout.sinoptico);
+
+                    //FragmentTransaction transaction = FragmentManager.BeginTransaction();
+                    //SlidingTabsFragment fragmentSliding = new SlidingTabsFragment();
+                    //transaction.Replace(Resource.Id.content_frame, fragmentSliding);
+                    //transaction.Commit();
+                    fragment = new SlidingTabsFragment();
+                    SupportFragmentManager.BeginTransaction()
+                          .Replace(Resource.Id.content_frame, fragment)
+                          .Commit();
+
+                    //var sinoptico = new Intent(this, typeof(SinopticoActivity));
+                    //StartActivity(sinoptico);
+
                     break;
 
                 case 3://actityConfiguracion
