@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:minHeight="50dp"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    tools:gridSpec="1|8|#0093eeff|K:#00ff00ff:16,l:72,l:16,r|S:#83ee00ff:16,0,l:16,56,l:16,0,r">
     <TextView
         android:id="@+id/Maquina"
         android:layout_width="wrap_content"
@@ -24,14 +26,24 @@
         android:layout_below="@+id/ProductoMaquina"
         android:paddingLeft="2dp"
         android:paddingTop="2dp" />
-    <TextView
+    <ProgressBar
         android:id="@+id/RendimientoMaquina"
-        android:layout_width="fill_parent"
+        android:layout_width="156.0dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/RecursoMaquina"
         android:paddingLeft="2dp"
-        android:paddingTop="2dp" />
+        android:paddingTop="2dp"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_marginRight="0.0dp" />
     <TextView
+        android:id="@+id/textoRendimiento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:layout_below="@+id/RecursoMaquina"
+        android:layout_toRightOf="@+id/RendimientoMaquina"
+        android:text="" />
+    <ImageView
         android:id="@+id/EstadoMaquina"
         android:textSize="20sp"
         android:layout_width="wrap_content"

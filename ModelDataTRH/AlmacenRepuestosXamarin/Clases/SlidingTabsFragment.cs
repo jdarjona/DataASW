@@ -108,40 +108,57 @@ namespace AlmacenRepuestosXamarin.Clases
 
             public AdapterSinoptico fillListaSinoptico(string empresa)
             {
+
+               
                 listSinoptico = new List<SinopticoFabrica>();
-                SinopticoFabrica sf = new SinopticoFabrica();
+                SinopticoFabrica sf;
                 if (empresa.Equals(sevilla))
                 {
-
+                    sf = new SinopticoFabrica();
                     sf.maquina = "M핽UINA: M1";
                     sf.EstadoMaquina = "ON";
                     sf.ProductoMaquina = "PRODUCTO: MM00126";
-                    sf.RecursoMaquina = "OPERARIO: Mani";
-                    sf.RendimientoMaquina = @"RENDIMIENTO: 99%";
+                    sf.RecursoMaquina = "OPERARIO: Manuel";
+                    sf.RendimientoMaquina = "100";
                     listSinoptico.Add(sf);
                     sf = new SinopticoFabrica();
                     sf.maquina = "M핽UINA: M2";
                     sf.EstadoMaquina = "OFF";
                     sf.ProductoMaquina = "PRODUCTO: MM00127";
-                    sf.RecursoMaquina = "OPERARIO: Mani";
-                    sf.RendimientoMaquina = @"RENDIMIENTO: 95%";
+                    sf.RecursoMaquina = "OPERARIO: Rafael";
+                    sf.RendimientoMaquina = "70";
                     listSinoptico.Add(sf);
 
                 }
                 else if (empresa.Equals(liege))
                 {
+                    sf = new SinopticoFabrica();
                     sf.maquina = "M핽UINA: M3";
-                    sf.EstadoMaquina = "ON";
+                    sf.EstadoMaquina = "OFF";
                     sf.ProductoMaquina = "PRODUCTO: MM00126";
-                    sf.RecursoMaquina = "OPERARIO: Mani";
-                    sf.RendimientoMaquina = @"RENDIMIENTO: 99%";
+                    sf.RecursoMaquina = "OPERARIO: Daniel";
+                    sf.RendimientoMaquina = "20";
                     listSinoptico.Add(sf);
                     sf = new SinopticoFabrica();
                     sf.maquina = "M핽UINA: M4";
-                    sf.EstadoMaquina = "OFF";
+                    sf.EstadoMaquina = "ON";
                     sf.ProductoMaquina = "PRODUCTO: MM00127";
-                    sf.RecursoMaquina = "OPERARIO: Mani";
-                    sf.RendimientoMaquina = @"RENDIMIENTO: 95%";
+                    sf.RecursoMaquina = "OPERARIO: Jesus";
+                    sf.RendimientoMaquina = "60";
+                    listSinoptico.Add(sf);
+                    sf = new SinopticoFabrica();
+                    sf.maquina = "M핽UINA: M6";
+                    sf.EstadoMaquina = "OFF";
+                    sf.ProductoMaquina = "PRODUCTO: MM00128";
+                    sf.RecursoMaquina = "OPERARIO: Samuel";
+                    sf.RendimientoMaquina = "90";
+                    listSinoptico.Add(sf);
+                    sf = new SinopticoFabrica();
+                    sf.maquina = "M핽UINA: M7";
+                    sf.EstadoMaquina = "OFF";
+                    sf.ProductoMaquina = "PRODUCTO: MM00129";
+                    sf.RecursoMaquina = "OPERARIO: Esteban";
+                    sf.RendimientoMaquina = "40";
                     listSinoptico.Add(sf);
                 }
                 else {

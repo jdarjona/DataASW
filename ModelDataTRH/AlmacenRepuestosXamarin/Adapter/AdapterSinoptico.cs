@@ -1,15 +1,12 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using AlmacenRepuestosXamarin.Clases;
 using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
+using Android.Graphics;
 using Android.Views;
 using Android.Widget;
-using ModelDataTRH;
+using static AlmacenRepuestosXamarin.Resource;
+
 namespace AlmacenRepuestosXamarin.Adapter
 {
     public class AdapterSinoptico : BaseAdapter<SinopticoFabrica>
@@ -19,12 +16,14 @@ namespace AlmacenRepuestosXamarin.Adapter
         public List<SinopticoFabrica> list;
         private Context context1;
         private List<SinopticoFabrica> listSinoptico;
+        ImageView imagen;
 
         public AdapterSinoptico(Activity _context, List<SinopticoFabrica> _list)
             : base()
         {
             this.context = _context;
             this.list = _list;
+            imagen = new ImageView(_context);
         }
         public AdapterSinoptico(Fragment fragment, List<SinopticoFabrica> _list)
             : base()
@@ -50,16 +49,43 @@ namespace AlmacenRepuestosXamarin.Adapter
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             View view = convertView;
-
+            int rendimiento = 0;
             if (view == null)
-                view = context.LayoutInflater.Inflate(Resource.Layout.RowListSinoptico, parent, false);
+                view = context.LayoutInflater.Inflate(Layout.RowListSinoptico, parent, false);
 
-                SinopticoFabrica item = this[position];
-                view.FindViewById<TextView>(Resource.Id.Maquina).Text = item.maquina;
-                //view.FindViewById<ImageView>(Resource.Id.EstadoMaquina). = item.EstadoMaquina;
-                view.FindViewById<TextView>(Resource.Id.RecursoMaquina).Text = item.RecursoMaquina;
-                view.FindViewById<TextView>(Resource.Id.RendimientoMaquina).Text = item.RendimientoMaquina;
-                view.FindViewById<TextView>(Resource.Id.ProductoMaquina).Text = item.ProductoMaquina;
+            
+            ImageView imagenEstado =(ImageView) view.FindViewById<ImageView>(Resource.Id.EstadoMaquina);
+            ProgressBar barraRendimiento = (ProgressBar)view.FindViewById<ProgressBar>(Resource.Id.RendimientoMaquina);
+            SinopticoFabrica item = this[position];
+
+            view.FindViewById<TextView>(Resource.Id.Maquina).Text = item.maquina;
+            view.FindViewById<TextView>(Resource.Id.Maquina).SetTypeface(null, TypefaceStyle.Bold);
+
+            string estadoMaquina = item.EstadoMaquina;
+            if (estadoMaquina.Equals("ON") ) {
+                imagenEstado.SetBackgroundResource(Resource.Drawable.on);
+            } else if (estadoMaquina.Equals("OFF") ) {
+                imagenEstado.SetBackgroundResource(Resource.Drawable.off);
+            }
+               
+            view.FindViewById<TextView>(Resource.Id.RecursoMaquina).Text = item.RecursoMaquina;
+            view.FindViewById<TextView>(Resource.Id.RecursoMaquina).SetTypeface(null, TypefaceStyle.Bold);
+
+            int.TryParse(item.RendimientoMaquina,out rendimiento);
+            barraRendimiento.Progress = rendimiento;
+            view.FindViewById<TextView>(Resource.Id.textoRendimiento).Text = item.RendimientoMaquina + @" %";
+            if (rendimiento > 76)
+            {
+                view.FindViewById<TextView>(Resource.Id.textoRendimiento).SetTextColor(Android.Graphics.Color.Green);
+            }
+            else {
+                view.FindViewById<TextView>(Resource.Id.textoRendimiento).SetTextColor(Android.Graphics.Color.Red);
+            }
+            
+            view.FindViewById<TextView>(Resource.Id.textoRendimiento).SetTypeface(null, TypefaceStyle.Bold);
+
+            view.FindViewById<TextView>(Resource.Id.ProductoMaquina).Text = item.ProductoMaquina;
+            view.FindViewById<TextView>(Resource.Id.ProductoMaquina).SetTypeface(null, TypefaceStyle.Bold);
 
 
             return view;

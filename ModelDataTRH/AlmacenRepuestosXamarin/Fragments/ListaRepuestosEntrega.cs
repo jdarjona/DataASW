@@ -250,7 +250,7 @@ namespace AlmacenRepuestosXamarin.Fragments
             if (!string.IsNullOrEmpty(numeroDocumento))
             {
 
-                if (1 == 1 || ManagerRepuestos.getRepuestos()[0].Destino.Equals(Destino.Liege) || ManagerRepuestos.getRepuestos()[0].Destino.Equals(Destino.Sevilla))
+                if (ManagerRepuestos.getRepuestos()[0].Destino.Equals(Destino.Liege) || ManagerRepuestos.getRepuestos()[0].Destino.Equals(Destino.Sevilla))
                 {
                     alert.SetMessage("¿Desea descargar el albarán?");
                     alert.SetPositiveButton("SÍ", alertAlbaran_Ok);
