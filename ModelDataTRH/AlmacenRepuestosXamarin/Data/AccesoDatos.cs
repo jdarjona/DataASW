@@ -32,6 +32,7 @@ namespace AlmacenRepuestosXamarin.Data
         static bool conexionWifi = false;
        // private const string webBase = @"http://intranet.trh-be.com/WSTRH/";
       // private const string webBase = @"http://192.168.1.2/WSTRH/";
+      public  static string empre=string.Empty;
         private  HttpClient client = new HttpClient(new NativeMessageHandler());
        
 
@@ -47,9 +48,8 @@ namespace AlmacenRepuestosXamarin.Data
             client = new HttpClient(new NativeMessageHandler())
             {
                 // BaseAddress = new Uri(webBase)
-                BaseAddress = new Uri(getDatosConexionEmpresa(Preferencias.getEmpresaLiege()))
+                BaseAddress = new Uri(getDatosConexionEmpresa(Preferencias.getEmpresaSevilla()))
             };
-
 
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -298,11 +298,82 @@ namespace AlmacenRepuestosXamarin.Data
             return null;
         }
 
+        public async Task<List<vListadoPedidosMonitorizacion>> getListadoMonitorCarga(String empresa)
+        {
+            empre = empresa;
+            try
+            {
+                if (empresa.Equals("Liege"))
+                {
+                    client = new HttpClient(new NativeMessageHandler())
+                    {
+                        // BaseAddress = new Uri(webBase)
+                        BaseAddress = new Uri(getDatosConexionEmpresa(Preferencias.getEmpresaLiege()))
+                    };
+
+                }
+                else {
+                    client = new HttpClient(new NativeMessageHandler())
+                    {
+                        // BaseAddress = new Uri(webBase)
+                        BaseAddress = new Uri(getDatosConexionEmpresa(Preferencias.getEmpresaSevilla()))
+                    };
+
+                }
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/pdf"));
+                //client = initClient();
+                var response = await client.GetAsync(@"api/ListadoMonitorizacion");
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+
+                    var result = JsonConvert.DeserializeObject<List<vListadoPedidosMonitorizacion>>(content);
+                    return result;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Se ha producido una excipcion no controlada", ex.InnerException);
+            }
+
+            return null;
+        }
+
+        public HttpClient getCliente() {
+           
+            if (empre.Equals("Liege"))
+            {
+                client = new HttpClient(new NativeMessageHandler())
+                {
+                    // BaseAddress = new Uri(webBase)
+                    BaseAddress = new Uri(getDatosConexionEmpresa(Preferencias.getEmpresaLiege()))
+                };
+
+            }
+            else
+            {
+                client = new HttpClient(new NativeMessageHandler())
+                {
+                    // BaseAddress = new Uri(webBase)
+                    BaseAddress = new Uri(getDatosConexionEmpresa(Preferencias.getEmpresaSevilla()))
+                };
+
+            }
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/pdf"));
+            return client;
+        }
+
         public async Task<Pedidos> getPedidoVenta(string codPedido)
         {
             try
             {
-                client = initClient();
+                // client = initClient();
+                client = getCliente();
                 string url = string.Format(@"api/Pedidos?codPedido={0}", codPedido);
                 var response = await client.GetAsync(url);
                 

@@ -622,6 +622,19 @@ namespace RepositoryWebServiceTRH.EntregaAlmacenEpisContext {
 
     //}
 
+    public enum Empresas
+    {
+
+        /// <comentarios/>
+        Sevilla,
+
+        /// <comentarios/>
+        Liege,
+
+        
+
+
+    }
     /// <comentarios/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1064.2")]
     [System.SerializableAttribute()]
