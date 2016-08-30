@@ -14,8 +14,8 @@ namespace AlmacenRepuestosXamarin.Adapter
         Activity context;
         Fragment fragment;
         public List<SinopticoFabrica> list;
-        private Context context1;
-        private List<SinopticoFabrica> listSinoptico;
+        //private Context context1;
+        //private List<SinopticoFabrica> listSinoptico;
         ImageView imagen;
 
         public AdapterSinoptico(Activity _context, List<SinopticoFabrica> _list)
@@ -62,9 +62,12 @@ namespace AlmacenRepuestosXamarin.Adapter
             view.FindViewById<TextView>(Resource.Id.Maquina).SetTypeface(null, TypefaceStyle.Bold);
 
             string estadoMaquina = item.EstadoMaquina;
-            if (estadoMaquina.Equals("ON") ) {
+            if (estadoMaquina.Equals("ON") )
+            {
                 imagenEstado.SetBackgroundResource(Resource.Drawable.on);
-            } else if (estadoMaquina.Equals("OFF") ) {
+            }
+            else if (estadoMaquina.Equals("OFF") )
+            {
                 imagenEstado.SetBackgroundResource(Resource.Drawable.off);
             }
                
@@ -78,7 +81,8 @@ namespace AlmacenRepuestosXamarin.Adapter
             {
                 view.FindViewById<TextView>(Resource.Id.textoRendimiento).SetTextColor(Android.Graphics.Color.Green);
             }
-            else {
+            else
+            {
                 view.FindViewById<TextView>(Resource.Id.textoRendimiento).SetTextColor(Android.Graphics.Color.Red);
             }
             
