@@ -5,10 +5,10 @@ using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Views;
 using Android.Widget;
-
+using System.Linq;
 using AlmacenRepuestosXamarin.Fragments;
 using AlmacenRepuestosXamarin.Helpers;
-
+using System.Collections.Generic;
 
 using Android.Content;
 using AlmacenRepuestosXamarin.Model;
@@ -123,11 +123,18 @@ namespace AlmacenRepuestosXamarin.Activities
                 return  "XQsDE173GieFhbMUUs2t2OD5eUwZFjjrEsAYbq6B";
             };
 
-            var firebase = new FirebaseClient(@"https://flickering-fire-4088.firebaseio.com/", authToken);
-            var items =  firebase
-             .Child(@"Pedidos/TRH Liege")//.OnceAsync<PedidoFireBase>();
+
            
-            .AsObservable<PedidoFireBase>()
+
+            var firebase = new FirebaseClient(@"https://flickering-fire-4088.firebaseio.com/", authToken);
+
+            //var consulta = await firebase.Child(@"Pedidos")
+            //    .OnceAsync<Dictionary<string,PedidoFireBase>>();
+
+            var items =  firebase
+             .Child(@"Pedidos")//.OnceAsync<PedidoFireBase>();
+           
+            .AsObservable<Dictionary<string, PedidoFireBase>>()
             
              .Subscribe(OnItemMessage);
             
@@ -237,7 +244,7 @@ namespace AlmacenRepuestosXamarin.Activities
             base.OnSaveInstanceState(savedInstanceState);
         }
 
-        private async Task notificar(FirebaseEvent<PedidoFireBase> message) {
+        private async Task notificar(PedidoFireBase message) {
 
             Intent notificationIntent = this.PackageManager.GetLaunchIntentForPackage(this.PackageName);
             notificationIntent.SetFlags(ActivityFlags.ClearTop);
@@ -248,13 +255,13 @@ namespace AlmacenRepuestosXamarin.Activities
             this.RunOnUiThread(() => {
               
 
-                    Toast.MakeText(this, message.Object.descripcion, ToastLength.Short).Show();
+                    Toast.MakeText(this, message.descripcion, ToastLength.Short).Show();
 
                     Notification.Builder builder = new Notification.Builder(this)
-                        .SetTicker(message.Key)
+                        .SetTicker(message.codPedido)
                         .SetContentIntent(pendingIntent)
-                        .SetContentTitle(message.Object.codPedido)
-                        .SetContentText(message.Object.descripcion)
+                        .SetContentTitle(message.codPedido)
+                        .SetContentText(message.descripcion)
                         .SetDefaults(NotificationDefaults.Sound | NotificationDefaults.Vibrate)
                         .SetSmallIcon(Resource.Drawable.campana32)
                      
@@ -270,30 +277,58 @@ namespace AlmacenRepuestosXamarin.Activities
                     NotificationManager notificationManager =
                         GetSystemService(Context.NotificationService) as NotificationManager;
 
-                    notificationManager.Notify(message.Object.codPedido, 0, notification);
+                    notificationManager.Notify(message.codPedido, 0, notification);
 
             });
         }
 
         //Comprobamos que la notificacion de cambio del estado del pedido es diferente a la inicial y así mandar la notificación
-        private async void OnItemMessage(FirebaseEvent<PedidoFireBase> message)
+        private async  void OnItemMessage(FirebaseEvent<Dictionary<string, PedidoFireBase>> message)
         {
-           
-            string pedMessage = message.Object.codPedido.ToString();
-            string estadoMessage = message.Object.descripcion.ToString();
+            foreach (KeyValuePair<string, PedidoFireBase> item in message.Object)
+            {
+                string pedMessage = item.Value.codPedido.ToString();
+                string estadoMessage = item.Value.descripcion.ToString();
 
-            if (Monitorizacion.listMonitorizacion.Count>0) {
-                for (int i = 0; i < Monitorizacion.listMonitorizacion.Count; i++)
+
+                if (Monitorizacion.listMonitorizacion != null)
                 {
-                    string pedidoListado = Monitorizacion.listMonitorizacion[i].codigoPedido.ToString();
-                    if (message.Object.codPedido.Equals(Monitorizacion.listMonitorizacion[i].codigoPedido)) {
-                        string estadoListado = Monitorizacion.listMonitorizacion[i].Estado.ToString();
-                        if (!Monitorizacion.listMonitorizacion[i].Estado.Equals( message.Object.descripcion) && (message.EventType == FirebaseEventType.InsertOrUpdate)) {
-                            notificar(message);
+                    var pedido = Monitorizacion.listMonitorizacion.Where(q => q.codigoPedido.Equals(item.Value.codPedido)).FirstOrDefault();
+                    if (pedido != null)
+                    {
+
+                        if (pedido.Estado != item.Value.estado)
+                        {
+                            if (pedido != null)
+                            {
+                                notificar(item.Value);
+                            }
+
+                        }
+                        else
+                        {
+                            notificar(item.Value);
                         }
                     }
-                }
+                }   
+                //if (Monitorizacion.listMonitorizacion.Count > 0)
+                //{
+                //    for (int i = 0; i < Monitorizacion.listMonitorizacion.Count; i++)
+                //    {
+                //        string pedidoListado = Monitorizacion.listMonitorizacion[i].codigoPedido.ToString();
+                //        if (item.Value.codPedido.Equals(Monitorizacion.listMonitorizacion[i].codigoPedido))
+                //        {
+                //            string estadoListado = Monitorizacion.listMonitorizacion[i].Estado.ToString();
+                //            if (!Monitorizacion.listMonitorizacion[i].Estado.Equals(item.Value.descripcion) && (message.EventType == FirebaseEventType.InsertOrUpdate))
+                //            {
+                //                notificar(item.Value);
+                //            }
+                //        }
+                //    }
+                //}
             }
+           
+            
         }
     }
 }
