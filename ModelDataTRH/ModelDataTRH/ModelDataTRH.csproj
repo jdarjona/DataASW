@@ -43,13 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proyectos\AppAlmacen\AlmacenRepuestoCU.cs" />
     <Compile Include="Proyectos\AppAlmacen\Empleados.cs" />
     <Compile Include="Proyectos\AppAlmacen\EntragaDeEpis.cs" />
     <Compile Include="Proyectos\AppAlmacen\Item.cs" />
     <Compile Include="Proyectos\AppBascula\Matriculas.cs" />
+    <Compile Include="Proyectos\Trazabilidad Generico\MaquinaFirebase.cs" />
     <Compile Include="vListadoPedidosMonitorizacion.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -58,6 +58,7 @@
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

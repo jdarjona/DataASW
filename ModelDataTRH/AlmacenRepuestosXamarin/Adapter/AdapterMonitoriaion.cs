@@ -34,6 +34,8 @@ namespace AlmacenRepuestosXamarin.Adapter
             return position;
         }
 
+       
+
         public override vListadoPedidosMonitorizacion this[int index]
         {
             get { return list[index]; }
@@ -54,7 +56,7 @@ namespace AlmacenRepuestosXamarin.Adapter
                 view.FindViewById<TextView>(Resource.Id.Comercial).Text = item.inicialesComercial;
 
                 view.FindViewById<TextView>(Resource.Id.Estado).SetBackgroundResource(ColorEstado(item.Estado));
-
+            
             return view;
         }
 

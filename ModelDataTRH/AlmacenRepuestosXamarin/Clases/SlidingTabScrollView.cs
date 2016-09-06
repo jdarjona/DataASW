@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using AlmacenRepuestosXamarin.Fragments;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -20,9 +20,9 @@ namespace AlmacenRepuestosXamarin.Clases
         private const int TITLE_OFFSET_DIPS = 24;
         private const int TAB_VIEW_PADDING_DIPS = 16;
         private const int TAB_VIEW_TEXT_SIZE_SP = 12;
-
+        public static int tabseleccionado=7;
         private int mTitleOffset;
-
+        private Context _context;
         private int mTabViewLayoutID;
         private int mTabViewTextViewID;
 
@@ -39,9 +39,9 @@ namespace AlmacenRepuestosXamarin.Clases
             int GetDividerColor(int position);
         }
 
-        public SlidingTabScrollView(Context context) : this(context, null) { }
+        public SlidingTabScrollView(Context context) : this(context, null) { _context = context; }
 
-        public SlidingTabScrollView(Context context, IAttributeSet attrs) : this(context, attrs, 0) { }
+        public SlidingTabScrollView(Context context, IAttributeSet attrs) : this(context, attrs, 0) { _context = context; }
 
         public SlidingTabScrollView(Context context, IAttributeSet attrs, int defaultStyle) : base(context, attrs, defaultStyle)
         {
@@ -53,7 +53,7 @@ namespace AlmacenRepuestosXamarin.Clases
             this.SetBackgroundColor(Android.Graphics.Color.Rgb(0xE5, 0xE5, 0xE5)); //Gray color
 
             mTitleOffset = (int)(TITLE_OFFSET_DIPS * Resources.DisplayMetrics.Density);
-
+            _context = context;
             mTabStrip = new SlidingTabStrip(context);
             this.AddView(mTabStrip, LayoutParams.MatchParent, LayoutParams.MatchParent);
         }
@@ -90,6 +90,7 @@ namespace AlmacenRepuestosXamarin.Clases
                     value.PageSelected += value_PageSelected;
                     value.PageScrollStateChanged += value_PageScrollStateChanged;
                     value.PageScrolled += value_PageScrolled;
+                    
                     PopulateTabStrip();
                 }
             }
@@ -122,6 +123,20 @@ namespace AlmacenRepuestosXamarin.Clases
 
         void value_PageScrollStateChanged(object sender, ViewPager.PageScrollStateChangedEventArgs e)
         {
+            //PagerAdapter adapter = mViewPager.Adapter;
+            //string tipo = adapter.GetType().ToString();
+            //if (tipo.Contains("ListadoMonitorizacion") && e.State == 0)
+            //{
+            //    tabseleccionado = 0;
+            //}
+            //else if (tipo.Contains("ListadoMonitorizacion") && e.State == 1)
+            //{
+            //    tabseleccionado = 1;
+            //}
+            //else {
+            //    tabseleccionado = 7;
+            //}
+
             mScrollState = e.State;
 
             if (mViewPagerPageChangeListener != null)
@@ -132,14 +147,16 @@ namespace AlmacenRepuestosXamarin.Clases
 
         void value_PageSelected(object sender, ViewPager.PageSelectedEventArgs e)
         {
+
             if (mScrollState == ViewPager.ScrollStateIdle)
             {
                 mTabStrip.OnViewPagerPageChanged(e.Position, 0f);
                 ScrollToTab(e.Position, 0);
 
             }
+            
 
-            if (mViewPagerPageChangeListener != null)
+                if (mViewPagerPageChangeListener != null)
             {
                 mViewPagerPageChangeListener.OnPageSelected(e.Position);
             }
@@ -147,12 +164,22 @@ namespace AlmacenRepuestosXamarin.Clases
 
         private void PopulateTabStrip()
         {
-            PagerAdapter adapter = mViewPager.Adapter;
 
+            PagerAdapter adapter = mViewPager.Adapter;
+            string tipo=adapter.GetType().ToString();
+            
             for (int i = 0; i < adapter.Count; i++)
             {
                 TextView tabView = CreateDefaultTabView(Context);
-                tabView.Text = ((SlidingTabsFragment.SamplePagerAdapter)adapter).GetHeaderTitle(i);
+                if (tipo.Contains("ListadoMonitorizacion"))
+                {
+                    tabView.Text = ((ListadoMonitorizacion.SamplePagerAdapter)adapter).GetHeaderTitle(i);
+                }
+                else if (tipo.Contains("SlidingTabsFragment"))
+                {
+                    tabView.Text = ((SlidingTabsFragment.SamplePagerAdapter)adapter).GetHeaderTitle(i);
+                }
+
                 tabView.SetTextColor(Android.Graphics.Color.Black);
                 tabView.Tag = i;
                 tabView.Click += tabView_Click;

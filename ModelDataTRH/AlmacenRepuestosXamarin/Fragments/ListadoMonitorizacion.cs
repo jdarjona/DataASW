@@ -16,12 +16,17 @@ using RepositoryWebServiceTRH.EntregaAlmacenEpisContext;
 using Firebase.Xamarin.Database.Streaming;
 using AlmacenRepuestosXamarin.Activities;
 using Firebase.Xamarin.Database;
+using Android.Support.V4.View;
+using Java.Lang;
+using AlmacenRepuestosXamarin.Clases;
+using System.Threading.Tasks;
+using static Android.Widget.AdapterView;
 
 namespace AlmacenRepuestosXamarin.Fragments
 {
 
 
-    public class ListadoMonitorizacion : Android.Support.V4.App.Fragment
+    public class ListadoMonitorizacion : Android.Support.V4.App.Fragment, ViewPager.IOnPageChangeListener
     {
         protected class PedidoFireBase
         {
@@ -30,147 +35,321 @@ namespace AlmacenRepuestosXamarin.Fragments
             public string descripcion { get; set; }
         }
 
+        private SlidingTabScrollView mSlidingTabScrollView;
+        private ViewPager mViewPager;
+        private int tabSeleccionado = 7;
         private View view;
-        private ListView listViewMonitorizacion;
-        private LinearLayout progressLayout;
-        private AccesoDatos datos;
-        private AdapterMonitoriaion adapterMonitorizacion;
-        AdapterSpinner<Empresas> adapterEmpresas;
-        private List<vListadoPedidosMonitorizacion> listMonitorizacion;
-        FirebaseClient _client;
-        FirebaseCache<PedidoFireBase> cacheFireBase;
-        private Spinner spinnerEmpresa ;
-
-
-        public override void OnCreate(Bundle savedInstanceState)
-        {
-            base.OnCreate(savedInstanceState);
-            this.HasOptionsMenu = true;
-
-            // Create your fragment here
-        }
-
+        //private ListView listViewMonitorizacion;
+        //private LinearLayout progressLayout;
+        //private AccesoDatos datos;
+        //private AdapterMonitoriaion adapterMonitorizacion;
+        //AdapterSpinner<Empresas> adapterEmpresas;
+        //private List<vListadoPedidosMonitorizacion> listMonitorizacion;
+        //FirebaseClient _client;
+        //FirebaseCache<PedidoFireBase> cacheFireBase;
+        //private Spinner spinnerEmpresa ;
+        LinearLayout progressLayout;
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            // Use this to return your custom view for this Fragment
-
-            spinnerEmpresa = new Spinner(container.Context);
-            var olderView =base.OnCreateView(inflater, container, savedInstanceState);
-            view = inflater.Inflate(Resource.Layout.ListaMonitorizacionLayout, null);
-
-            datos = new AccesoDatos();
-            progressLayout = view.FindViewById<LinearLayout>(Resource.Id.progressListaMonitorizacion);
-            progressLayout.Visibility = ViewStates.Gone;
-
-            listViewMonitorizacion = (ListView)view.FindViewById(Resource.Id.listViewMonitorizacion);
-
-            fillListaMonitorizacion();
-
-            listViewMonitorizacion.ItemClick += (sender, e) =>
-            {
-
-                Android.Support.V4.App.Fragment fragment = new AlmacenRepuestosXamarin.Fragments.DetallePedidoVenta();
-
-                Bundle bundle = new Bundle();
-                bundle.PutString("codPedido", listMonitorizacion[e.Position].Cod__Agrupacion_Pedido);
-                fragment.Arguments = bundle;
-
-                FragmentManager.BeginTransaction()
-                    .Replace(Resource.Id.content_frame, fragment)
-                    .AddToBackStack("ListadoMonitorizacion")
-                   .Commit();
-            };
-
-            
+            HasOptionsMenu = true;
+            view = inflater.Inflate(Resource.Layout.fragment_sample, null);
 
             return view;
         }
 
-        private async void spinnerEmpresa_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        public override void OnViewCreated(View view, Bundle savedInstanceState)
         {
+            mSlidingTabScrollView = view.FindViewById<SlidingTabScrollView>(Resource.Id.sliding_tabs);
+            mViewPager = view.FindViewById<ViewPager>(Resource.Id.viewpager);
+            this.mViewPager.AddOnPageChangeListener(this);
+            mViewPager.Adapter = new SamplePagerAdapter(this.Activity,mViewPager);
+            mSlidingTabScrollView.ViewPager = mViewPager;
+            progressLayout = view.FindViewById<LinearLayout>(Resource.Id.progressBarLista);
+            progressLayout.Visibility = ViewStates.Gone;
+        }
+        
 
-            Spinner spinner = (Spinner)sender;
-            spinner.SetSelection(e.Position);
-            string empresa = "Sevilla";
-            if (e.Position == 1) {
-                empresa = "Liege";
-            }
-            await Monitorizacion.updateListMonitorizacion(empresa);
-            listMonitorizacion = Monitorizacion.getListMonitorizacion();
-            adapterMonitorizacion = new AdapterMonitoriaion(this.Activity, listMonitorizacion);
-
-            listViewMonitorizacion.Adapter = adapterMonitorizacion;
+        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
+        {
+            base.OnCreateOptionsMenu(menu, inflater);
+            inflater.Inflate(Resource.Menu.actionbar_main, menu);
         }
 
-
-        //private async void getFireBase() {
-
-        //    var items = await _client
-        //                      .Child("Pedidos/TRH Liege")
-        //                      .OrderByKey()
-        //                      .LimitToFirst(2)
-        //                      .OnceAsync<PedidoFireBase>();
-
-
-
-        //}
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            mViewPager.Adapter = new SamplePagerAdapter(this.Activity, mViewPager, item,tabSeleccionado);
+            return base.OnOptionsItemSelected(item);
+        }
 
         private void OnItemMessage(FirebaseEvent<PedidoFireBase> message)
         {
-           
-                if (message.EventType == FirebaseEventType.InsertOrUpdate)
-                {
-                    this.Activity.RunOnUiThread(() => Toast.MakeText(this.Activity, message.Object.descripcion, ToastLength.Short).Show());
-                }
-                else
-                {
-                    //Do Something else
-                }
-            
+
+            if (message.EventType == FirebaseEventType.InsertOrUpdate)
+            {
+                this.Activity.RunOnUiThread(() => Toast.MakeText(this.Activity, message.Object.descripcion, ToastLength.Short).Show());
+            }
         }
 
         public override void OnResume()
         {
-            listMonitorizacion = Monitorizacion.getListMonitorizacion();
-            
-             this.adapterMonitorizacion.list= listMonitorizacion;
-            this.Activity.RunOnUiThread(() => adapterMonitorizacion.NotifyDataSetChanged());
-           
             base.OnResume();
-            
         }
-        private  void fillListaMonitorizacion() {
+
+        public void OnPageScrollStateChanged(int state)
+        {
+
+        }
+
+        public void OnPageScrolled(int position, float positionOffset, int positionOffsetPixels)
+        {
+            tabSeleccionado = position;
+        }
+
+        public void OnPageSelected(int position)
+        {
+            tabSeleccionado = position;
+        }
+
+        //NUEVO TAB
+
+        public class SamplePagerAdapter : PagerAdapter, ViewPager.IOnPageChangeListener
+        {
+            
+            private  List<vListadoPedidosMonitorizacion> listMonitorizacionSevilla { get; set; }
+            private List<vListadoPedidosMonitorizacion> listMonitorizacionLiege { get; set; }
+            private List<vListadoPedidosMonitorizacion> listMonitorizacion { get; set; }
+
+            private AdapterMonitoriaion adapterMonitorizacion { get; set; }
+            private ListView monitorizacionListView;
+            private List<string> items = new List<string>();
+            private ViewPager _mViewPager;
+            private Activity context;
+            private  List<vListadoPedidosMonitorizacion> list;
+            private IMenuItem order;
+            private string sevilla = " TRH Sevilla ";
+            private string liege = " TRH Liege ";
+            private int _tabSeleccionado= 7;
+            LinearLayout progressLayout;
 
 
-            progressLayout.Visibility = ViewStates.Visible;
-            var s = (Empresas[])Enum.GetValues(typeof(Empresas));
+            public SamplePagerAdapter(Activity context, ViewPager mViewPager) : base()
+            {
+                items.Add(sevilla);
+                items.Add(liege);
+                this.context = context;
+                updateListadosMonitorizacion();
+                _mViewPager = mViewPager;
+                this._mViewPager.AddOnPageChangeListener(this);
+                
+            }
 
-            adapterEmpresas = new AdapterSpinner<Empresas>(this.Activity, Android.Resource.Layout.SimpleSpinnerItem, s);
-            adapterEmpresas.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
-            spinnerEmpresa = (Spinner) view.FindViewById(Resource.Id.Empresas);
-            spinnerEmpresa.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(spinnerEmpresa_ItemSelected);
-            spinnerEmpresa.Adapter = adapterEmpresas;
-            spinnerEmpresa.Focusable = true;
-            spinnerEmpresa.FocusableInTouchMode = true;
-            spinnerEmpresa.RequestFocus(FocusSearchDirection.Up);
-            //listMonitorizacion = await datos.getListadoMonitorCarga();
+            public SamplePagerAdapter(Activity context, ViewPager mViewPager, IMenuItem order, int tabSeleccionado) : this(context, mViewPager)
+            {
+                updateListadosMonitorizacion();
+                //items.Add(sevilla);
+                //items.Add(liege);
+                this.context = context;
+                _tabSeleccionado = tabSeleccionado;
+                //_mViewPager = mViewPager;
+                //this._mViewPager.AddOnPageChangeListener(this);
+                
+                this.order = order;
+                ordenarListados(order);
+            }
 
-            // Monitorizacion.updateListMonitorizacion();
-            listMonitorizacion = Monitorizacion.getListMonitorizacion();
-            adapterMonitorizacion = new AdapterMonitoriaion(this.Activity, listMonitorizacion);
+            private void ordenarListados(IMenuItem order)
+            {
+                switch (order.ToString())
+                {
+                    case "Ordenar por Empleado":
+                        listMonitorizacionSevilla = listMonitorizacionSevilla.OrderBy(o => o.inicialesComercial).ToList();
+                        listMonitorizacionLiege = listMonitorizacionLiege.OrderBy(o => o.inicialesComercial).ToList();
+                        break;
+                    case "Ordenar por Estado":
+                        listMonitorizacionSevilla = listMonitorizacionSevilla.OrderBy(o => o.Estado).ToList();
+                        listMonitorizacionLiege = listMonitorizacionLiege.OrderBy(o => o.Estado).ToList();
+                        break;
+                    case "Ordenar por Pedido":
+                        listMonitorizacionSevilla = listMonitorizacionSevilla.OrderBy(o => o.codigoPedido).ToList();
+                        listMonitorizacionLiege = listMonitorizacionLiege.OrderBy(o => o.codigoPedido).ToList();
+                        break;
+                    case "Ordenar por Fecha":
+                        listMonitorizacionSevilla = listMonitorizacionSevilla.OrderBy(o => o.Fecha_Carga_Requerida).ToList();
+                        listMonitorizacionLiege = listMonitorizacionLiege.OrderBy(o => o.Fecha_Carga_Requerida).ToList();
+                        break;
+                    default:
+                        break;
+                }
+                
+            }
 
-            listViewMonitorizacion.Adapter = adapterMonitorizacion;
-
-            AppCompatActivity activity = (AppCompatActivity)this.Activity;
-            var numCamionesRuta = listMonitorizacion.Where(q => q.Estado == 6).Count().ToString("N0");
-            var numTmRuta = listMonitorizacion.Where(q => q.Estado == 6).Sum(q => q.pesoKg / 1000).ToString("N0");
            
-            activity.SupportActionBar.Title = string.Format(@"Camiones Ruta:{0}", numCamionesRuta); 
-            activity.SupportActionBar.Subtitle = string.Format(@"Tm envidas: {0}", numTmRuta);
 
-            progressLayout.Visibility = ViewStates.Gone;
+            public override int Count
+            {
+                get { return items.Count; }
+            }
 
             
+            public AdapterMonitoriaion getListaMonitorizacion(string empresa)
+            {
+                
+
+                if (empresa.Equals(sevilla))
+                {
+                    
+                    listMonitorizacion = listMonitorizacionSevilla;
+
+
+                   
+                }
+                else if (empresa.Equals(liege))
+                {
+                    
+                    listMonitorizacion = listMonitorizacionLiege;
+                }
+               
+
+                
+                adapterMonitorizacion = new AdapterMonitoriaion(this.context, listMonitorizacion);
+                this.context.RunOnUiThread(() => adapterMonitorizacion.NotifyDataSetChanged());
+                AppCompatActivity activity = (AppCompatActivity)this.context;
+                var numCamionesRuta = listMonitorizacionSevilla.Where(q => q.Estado == 6).Count().ToString("N0");
+                var numTmRuta = listMonitorizacionSevilla.Where(q => q.Estado == 6).Sum(q => q.pesoKg / 1000).ToString("N0");
+
+                activity.SupportActionBar.Title = string.Format(@"Camiones Ruta:{0}", numCamionesRuta);
+                activity.SupportActionBar.Subtitle = string.Format(@"Tm envidas: {0}", numTmRuta);
+
+
+                return adapterMonitorizacion;
+
+            }
+
+
+            public override bool IsViewFromObject(View view, Java.Lang.Object obj)
+            {
+                
+                
+                return view == obj;
+                
+            }
+            public override int GetItemPosition(Java.Lang.Object objectValue)
+            {
+                return base.GetItemPosition(objectValue);
+            }
+            public override void NotifyDataSetChanged()
+            {
+
+                base.NotifyDataSetChanged();
+            }
+
+            public override Java.Lang.Object InstantiateItem(ViewGroup container, int position)
+            {
+                SlidingTabsFragment stf = new SlidingTabsFragment();
+                View view = LayoutInflater.From(container.Context).Inflate(Resource.Layout.ListaMonitorizacionLayout, container, false);
+                monitorizacionListView = view.FindViewById<ListView>(Resource.Id.listViewMonitorizacion);
+                
+                
+                monitorizacionListView.ItemClick += (sender, e) =>
+                {
+
+                    Android.Support.V4.App.Fragment fragment = new AlmacenRepuestosXamarin.Fragments.DetallePedidoVenta();
+
+                    Bundle bundle = new Bundle();
+                    bundle.PutString("codPedido", listMonitorizacion[e.Position].Cod__Agrupacion_Pedido);
+                    fragment.Arguments = bundle;
+
+                    //FragmentManager.BeginTransaction()
+                    //    .Replace(Resource.Id.content_frame, fragment)
+                    //    .AddToBackStack("ListadoMonitorizacion")
+                    //   .Commit();
+                };
+                monitorizacionListView.Adapter = getListaMonitorizacion(items[position].ToString());
+                container.AddView(view);
+                
+                return view;
+            }
+
+            private async void  getListadoLiege()
+            {
+                listMonitorizacionLiege = await Monitorizacion.getListMonitorizacion(liege);
+
+                
+            }
+
+            private async void getListadoSevilla()
+            {
+                listMonitorizacionSevilla = await Monitorizacion.getListMonitorizacion(sevilla);
+            }
+
+            public string GetHeaderTitle(int position)
+            {
+       
+                return items[position];
+            }
+
+            public override void DestroyItem(ViewGroup container, int position, Java.Lang.Object obj)
+            {
+                container.RemoveView((View)obj);
+            }
+
+
+
+            public void OnPageScrollStateChanged(int state)
+            {
+            }
+
+            public void OnPageScrolled(int position, float positionOffset, int positionOffsetPixels)
+            {
+
+            }
+
+            public void OnPageSelected(int position)
+            {
+                string numCamionesRuta = string.Empty;
+                string numTmRuta = string.Empty;
+                AppCompatActivity activity = (AppCompatActivity)this.context;
+                if (position == 0)
+                {
+                    
+
+                    numCamionesRuta = listMonitorizacionSevilla.Where(q => q.Estado == 6).Count().ToString("N0");
+                    numTmRuta = listMonitorizacionSevilla.Where(q => q.Estado == 6).Sum(q => q.pesoKg / 1000).ToString("N0");
+
+                }
+                else if (position == 1)
+                {
+                    
+                    numCamionesRuta = listMonitorizacionLiege.Where(q => q.Estado == 6).Count().ToString("N0");
+                    numTmRuta = listMonitorizacionLiege.Where(q => q.Estado == 6).Sum(q => q.pesoKg / 1000).ToString("N0");
+
+                }
+                else
+                {
+
+                }
+                activity.SupportActionBar.Title = string.Format(@"Camiones Ruta:{0}", numCamionesRuta);
+                activity.SupportActionBar.Subtitle = string.Format(@"Tm envidas: {0}", numTmRuta);
+            }
+
+            public  void updateListadosMonitorizacion() {
+                getListadoLiege();
+                getListadoSevilla(); 
+            }
         }
+
+            //FIN NUEVO TAB
+
+        //public override void OnResume()
+        //{
+        //    listMonitorizacion = Monitorizacion.getListMonitorizacion();
+
+        //    this.adapterMonitorizacion.list = listMonitorizacion;
+        //    this.Activity.RunOnUiThread(() => adapterMonitorizacion.NotifyDataSetChanged());
+
+        //    base.OnResume();
+
+        //}
+      
     }
 }

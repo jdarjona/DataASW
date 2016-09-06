@@ -22,6 +22,7 @@ using RepositoryWebServiceTRH.PedidoVentasContext;
 using Android.Net.Wifi;
 using AlmacenRepuestosXamarin.Activities;
 using AlmacenRepuestosXamarin.Helpers;
+using ModelDataTRH.Proyectos.Trazabilidad_Generico;
 
 namespace AlmacenRepuestosXamarin.Data
 {
@@ -30,9 +31,12 @@ namespace AlmacenRepuestosXamarin.Data
         static int ip = 0;
         static string SSID = string.Empty;
         static bool conexionWifi = false;
-       // private const string webBase = @"http://intranet.trh-be.com/WSTRH/";
-      // private const string webBase = @"http://192.168.1.2/WSTRH/";
-      public  static string empre=string.Empty;
+
+        
+
+        // private const string webBase = @"http://intranet.trh-be.com/WSTRH/";
+        // private const string webBase = @"http://192.168.1.2/WSTRH/";
+        public  static string empre=string.Empty;
         private  HttpClient client = new HttpClient(new NativeMessageHandler());
        
 
@@ -298,12 +302,14 @@ namespace AlmacenRepuestosXamarin.Data
             return null;
         }
 
+        
+
         public async Task<List<vListadoPedidosMonitorizacion>> getListadoMonitorCarga(String empresa)
         {
             empre = empresa;
             try
             {
-                if (empresa.Equals("Liege"))
+                if (empresa.Equals(" TRH Liege "))
                 {
                     client = new HttpClient(new NativeMessageHandler())
                     {
@@ -324,12 +330,80 @@ namespace AlmacenRepuestosXamarin.Data
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/pdf"));
                 //client = initClient();
+                var response = client.GetAsync(@"api/ListadoMonitorizacion");
+                if (response.Result.IsSuccessStatusCode)
+                {
+                    var content = await response.Result.Content.ReadAsStringAsync();
+
+                    var result = JsonConvert.DeserializeObject<List<vListadoPedidosMonitorizacion>>(content);
+                    return result;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Se ha producido una excipcion no controlada", ex.InnerException);
+            }
+
+            return null;
+        }
+
+        public async Task<List<MaquinaFirebase>> getListadoMaquinaFirebase()
+        {
+            try
+            {
+                client = initClient();
                 var response = await client.GetAsync(@"api/ListadoMonitorizacion");
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
 
-                    var result = JsonConvert.DeserializeObject<List<vListadoPedidosMonitorizacion>>(content);
+                    var result = JsonConvert.DeserializeObject<List<MaquinaFirebase>>(content);
+                    return result;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Se ha producido una excipcion no controlada", ex.InnerException);
+            }
+
+            return null;
+        }
+
+        public async Task<List<MaquinaFirebase>> getListadoMaquinaFirebase(string empresa)
+        {
+            empre = empresa;
+            try
+            {
+                if (empresa.Equals(" TRH Liege "))
+                {
+                    client = new HttpClient(new NativeMessageHandler())
+                    {
+                        // BaseAddress = new Uri(webBase)
+                        BaseAddress = new Uri(getDatosConexionEmpresa(Preferencias.getEmpresaLiege()))
+                    };
+
+                }
+                else
+                {
+                    client = new HttpClient(new NativeMessageHandler())
+                    {
+                        // BaseAddress = new Uri(webBase)
+                        BaseAddress = new Uri(getDatosConexionEmpresa(Preferencias.getEmpresaSevilla()))
+                    };
+
+                }
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/pdf"));
+                //client = initClient();
+                var response = client.GetAsync(@"api/ListadoMonitorizacion");
+                if (response.Result.IsSuccessStatusCode)
+                {
+                    var content = await response.Result.Content.ReadAsStringAsync();
+
+                    var result = JsonConvert.DeserializeObject<List<MaquinaFirebase>>(content);
                     return result;
                 }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using AlmacenRepuestosXamarin.Clases;
 using Android.App;
@@ -5,27 +6,27 @@ using Android.Content;
 using Android.Graphics;
 using Android.Views;
 using Android.Widget;
+using Java.Lang;
+using ModelDataTRH.Proyectos.Trazabilidad_Generico;
 using static AlmacenRepuestosXamarin.Resource;
 
 namespace AlmacenRepuestosXamarin.Adapter
 {
-    public class AdapterSinoptico : BaseAdapter<SinopticoFabrica>
+    public class AdapterSinoptico : BaseAdapter<MaquinaFirebase>
     {
         Activity context;
         Fragment fragment;
-        public List<SinopticoFabrica> list;
-        //private Context context1;
-        //private List<SinopticoFabrica> listSinoptico;
+        public List<MaquinaFirebase> list;
         ImageView imagen;
 
-        public AdapterSinoptico(Activity _context, List<SinopticoFabrica> _list)
+        public AdapterSinoptico(Activity _context, List<MaquinaFirebase> _list)
             : base()
         {
             this.context = _context;
             this.list = _list;
             imagen = new ImageView(_context);
         }
-        public AdapterSinoptico(Fragment fragment, List<SinopticoFabrica> _list)
+        public AdapterSinoptico(Fragment fragment, List<MaquinaFirebase> _list)
             : base()
         {
             this.fragment = fragment;
@@ -41,13 +42,16 @@ namespace AlmacenRepuestosXamarin.Adapter
             return position;
         }
 
-        public override SinopticoFabrica this[int index]
+        public override MaquinaFirebase this[int index]
         {
             get { return list[index]; }
         }
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
+
+             int cantidadObjetivo=0;
+            int cantidadProducida = 0;
             View view = convertView;
             int rendimiento = 0;
             if (view == null)
@@ -55,29 +59,114 @@ namespace AlmacenRepuestosXamarin.Adapter
 
             
             ImageView imagenEstado =(ImageView) view.FindViewById<ImageView>(Resource.Id.EstadoMaquina);
-            ProgressBar barraRendimiento = (ProgressBar)view.FindViewById<ProgressBar>(Resource.Id.RendimientoMaquina);
-            SinopticoFabrica item = this[position];
+            ImageView ImagenMaquinaMarcha = (ImageView)view.FindViewById<ImageView>(Resource.Id.ImagenMaquinaMarcha);
+            ImageView ImagenMaquina = (ImageView)view.FindViewById<ImageView>(Resource.Id.ImagenMaquina);
 
-            view.FindViewById<TextView>(Resource.Id.Maquina).Text = item.maquina;
+            ProgressBar barraRendimiento = (ProgressBar)view.FindViewById<ProgressBar>(Resource.Id.RendimientoMaquina);
+            MaquinaFirebase item = this[position];
+
+            view.FindViewById<TextView>(Resource.Id.Maquina).Text = item.IdMaquina;
             view.FindViewById<TextView>(Resource.Id.Maquina).SetTypeface(null, TypefaceStyle.Bold);
 
-            string estadoMaquina = item.EstadoMaquina;
-            if (estadoMaquina.Equals("ON") )
+            bool estadoMaquina = item.Marcha;
+            bool conexion = item.Conexion;
+
+            switch (item.IdMaquina)
             {
-                imagenEstado.SetBackgroundResource(Resource.Drawable.on);
+                case "M1":
+                    ImagenMaquina.SetBackgroundResource(Resource.Drawable.Fino);
+                    break;
+                case "M2":
+                    ImagenMaquina.SetBackgroundResource(Resource.Drawable.Fino);
+                    break;
+                case "M3":
+                    ImagenMaquina.SetBackgroundResource(Resource.Drawable.grueso);
+                    break;
+                case "M4":
+                    ImagenMaquina.SetBackgroundResource(Resource.Drawable.grueso);
+                    break;
+                case "M6":
+                    ImagenMaquina.SetBackgroundResource(Resource.Drawable.grueso);
+                    break;
+                case "M7":
+                    ImagenMaquina.SetBackgroundResource(Resource.Drawable.Fino);
+                    break;
+
+                case "T1":
+                    ImagenMaquina.SetBackgroundResource(Resource.Drawable.t1);
+                    break;
+                case "T2":
+                    ImagenMaquina.SetBackgroundResource(Resource.Drawable.t2);
+                    break;
+                case "T3":
+                    ImagenMaquina.SetBackgroundResource(Resource.Drawable.t3);
+                    break;
+                case "T4":
+                    ImagenMaquina.SetBackgroundResource(Resource.Drawable.t4);
+                    break;
+                case "T5":
+                    ImagenMaquina.SetBackgroundResource(Resource.Drawable.t5);
+                    break;
+                case "T6":
+                    ImagenMaquina.SetBackgroundResource(Resource.Drawable.t6);
+                    break;
+                case "T7":
+                    ImagenMaquina.SetBackgroundResource(Resource.Drawable.t7);
+                    break;
+                case "T8":
+                    ImagenMaquina.SetBackgroundResource(Resource.Drawable.t8);
+                    break;
+                case "T9":
+                    ImagenMaquina.SetBackgroundResource(Resource.Drawable.t9);
+                    break;
+                case "T10":
+                    ImagenMaquina.SetBackgroundResource(Resource.Drawable.t10);
+                    break;
+                case "T11":
+                    ImagenMaquina.SetBackgroundResource(Resource.Drawable.t11);
+                    break;
+                case "T12":
+                    ImagenMaquina.SetBackgroundResource(Resource.Drawable.t12);
+                    break;
+                case "T13":
+                    ImagenMaquina.SetBackgroundResource(Resource.Drawable.t1);
+                    break;
+                case "T14":
+                    ImagenMaquina.SetBackgroundResource(Resource.Drawable.t2);
+                    break;
+                case "T15":
+                    ImagenMaquina.SetBackgroundResource(Resource.Drawable.t3);
+                    break;
+                
+                default:
+                    ImagenMaquina.SetBackgroundResource(Resource.Drawable.enderezado);
+                    break;
             }
-            else if (estadoMaquina.Equals("OFF") )
+
+            //ImagenMaquina.SetBackgroundResource(Resource.Drawable.t2);
+            if (estadoMaquina)
             {
-                imagenEstado.SetBackgroundResource(Resource.Drawable.off);
+                imagenEstado.SetBackgroundResource(Resource.Drawable.marcha30x30);
             }
-               
-            view.FindViewById<TextView>(Resource.Id.RecursoMaquina).Text = item.RecursoMaquina;
+            else 
+            {
+                imagenEstado.SetBackgroundResource(Resource.Drawable.marchaNo30x30);
+            }
+            if (conexion)
+            {
+                ImagenMaquinaMarcha.SetBackgroundResource(Resource.Drawable.conexionOk30x30);
+            }
+            else
+            {
+                ImagenMaquinaMarcha.SetBackgroundResource(Resource.Drawable.conectadaNo30x30);
+            }
+            view.FindViewById<TextView>(Resource.Id.RecursoMaquina).Text = item.Operario1;
             view.FindViewById<TextView>(Resource.Id.RecursoMaquina).SetTypeface(null, TypefaceStyle.Bold);
 
-            int.TryParse(item.RendimientoMaquina,out rendimiento);
-            barraRendimiento.Progress = rendimiento;
-            view.FindViewById<TextView>(Resource.Id.textoRendimiento).Text = item.RendimientoMaquina + @" %";
-            if (rendimiento > 76)
+            //int.TryParse(item.Rendimiento,out rendimiento);
+            barraRendimiento.Progress = item.Rendimiento;
+            view.FindViewById<TextView>(Resource.Id.textoRendimiento).Text = item.Rendimiento + @" %";
+            if (item.Rendimiento > 76)
             {
                 view.FindViewById<TextView>(Resource.Id.textoRendimiento).SetTextColor(Android.Graphics.Color.Green);
             }
@@ -88,10 +177,15 @@ namespace AlmacenRepuestosXamarin.Adapter
             
             view.FindViewById<TextView>(Resource.Id.textoRendimiento).SetTypeface(null, TypefaceStyle.Bold);
 
-            view.FindViewById<TextView>(Resource.Id.ProductoMaquina).Text = item.ProductoMaquina;
+            view.FindViewById<TextView>(Resource.Id.SeccionMaquina).Text = item.SeccionMaquina.ToString();
+            view.FindViewById<TextView>(Resource.Id.ProductoMaquina).Text = item.CodProducto;
             view.FindViewById<TextView>(Resource.Id.ProductoMaquina).SetTypeface(null, TypefaceStyle.Bold);
+            view.FindViewById<TextView>(Resource.Id.CantidadProducida).Text = (Convert.ToInt32(item.CantidadProducidad)).ToString();
 
-
+            view.FindViewById<TextView>(Resource.Id.CantidadObjetivo).Text = (Convert.ToInt32(item.CantidadObjectivo)).ToString();
+            view.FindViewById<TextView>(Resource.Id.UnidadMedida).Text = item.UnidadMedida.ToString() + @"/";
+            view.FindViewById<TextView>(Resource.Id.UnidadMedidaObjetivo).Text = item.UnidadMedida.ToString() + " Objetivo";
+            
             return view;
         }
       

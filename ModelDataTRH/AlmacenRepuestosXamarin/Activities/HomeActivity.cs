@@ -34,6 +34,7 @@ namespace AlmacenRepuestosXamarin.Activities
         private DrawerLayout drawerLayout;
         private ListView drawerListView;
         Spinner spinner;
+        IMenu _imenu;
 
         private static readonly string[] Sections = new[] {
             "App Almacen", "Monitor Carga", "Sinóptico", "Configuracion"
@@ -157,6 +158,7 @@ namespace AlmacenRepuestosXamarin.Activities
             Android.Support.V4.App.Fragment fragment = null;
 
             SupportActionBar.Subtitle = "Peazo App";
+            
             switch (position)
             {
                 case 0:
@@ -167,18 +169,14 @@ namespace AlmacenRepuestosXamarin.Activities
                        .Commit();
                     break;
                 case 1:
-                   fragment = new ListadoMonitorizacion();
+                    //MenuInflater.Inflate(Resource.Menu.menu, _imenu);
+                    fragment = new ListadoMonitorizacion();
                     SupportFragmentManager.BeginTransaction()
                            .Replace(Resource.Id.content_frame, fragment)
                            .Commit();
                     break;
                 case 2:
-                    //SetContentView(Resource.Layout.sinoptico);
 
-                    //FragmentTransaction transaction = FragmentManager.BeginTransaction();
-                    //SlidingTabsFragment fragmentSliding = new SlidingTabsFragment();
-                    //transaction.Replace(Resource.Id.content_frame, fragmentSliding);
-                    //transaction.Commit();
                     fragment = new SlidingTabsFragment();
                     SupportFragmentManager.BeginTransaction()
                           .Replace(Resource.Id.content_frame, fragment)
@@ -201,12 +199,11 @@ namespace AlmacenRepuestosXamarin.Activities
 
         public override bool OnPrepareOptionsMenu(IMenu menu)
         {
-
-            var drawerOpen = this.drawerLayout.IsDrawerOpen((int)GravityFlags.Left);
-            //when open don't show anything
-            for (int i = 0; i < menu.Size(); i++)
-                menu.GetItem(i).SetVisible(!drawerOpen);
-
+             _imenu = menu;
+            //var drawerOpen = this.drawerLayout.IsDrawerOpen((int)GravityFlags.Left);
+            ////when open don't show anything
+            //for (int i = 0; i < menu.Size(); i++)
+            //    menu.GetItem(i).SetVisible(!drawerOpen);
 
             return base.OnPrepareOptionsMenu(menu);
         }
@@ -281,6 +278,7 @@ namespace AlmacenRepuestosXamarin.Activities
         //Comprobamos que la notificacion de cambio del estado del pedido es diferente a la inicial y así mandar la notificación
         private async void OnItemMessage(FirebaseEvent<PedidoFireBase> message)
         {
+           
             string pedMessage = message.Object.codPedido.ToString();
             string estadoMessage = message.Object.descripcion.ToString();
 

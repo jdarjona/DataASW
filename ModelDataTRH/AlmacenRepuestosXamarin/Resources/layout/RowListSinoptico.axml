@@ -8,48 +8,134 @@
     tools:gridSpec="1|8|#0093eeff|K:#00ff00ff:16,l:72,l:16,r|S:#83ee00ff:16,0,l:16,56,l:16,0,r">
     <TextView
         android:id="@+id/Maquina"
-        android:layout_width="wrap_content"
+        android:layout_width="54.0dp"
         android:layout_height="wrap_content"
         android:paddingLeft="2dp"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="false"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:textColor="@android:color/black" />
     <TextView
         android:id="@+id/ProductoMaquina"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Maquina"
-        android:paddingLeft="2dp"
-        android:paddingTop="2dp" />
-    <TextView
-        android:id="@+id/RecursoMaquina"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ProductoMaquina"
-        android:paddingLeft="2dp"
-        android:paddingTop="2dp" />
-    <ProgressBar
-        android:id="@+id/RendimientoMaquina"
-        android:layout_width="156.0dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/RecursoMaquina"
         android:paddingLeft="2dp"
         android:paddingTop="2dp"
+        android:layout_below="@+id/ImagenMaquina"
+        android:textStyle="normal"
+        android:textSize="15dp"
+        android:textColor="@android:color/black"
+        android:gravity="center_horizontal" />
+    <TextView
+        android:id="@+id/SeccionMaquina"
+        android:layout_width="105.3dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="2dp"
+        android:paddingTop="2dp"
+        android:layout_toRightOf="@+id/RecursoMaquina"
+        android:gravity="right"
+        android:textSize="12dp"
+        android:textColor="@android:color/black" />
+    <TextView
+        android:id="@+id/RecursoMaquina"
+        android:layout_width="241.3dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="2dp"
+        android:paddingTop="2dp"
+        android:layout_toRightOf="@+id/Maquina"
+        android:textAlignment="center"
+        android:textSize="14dp"
+        android:textColor="@android:color/black" />
+    <TextView
+        android:id="@+id/CantidadProducida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="2dp"
+        android:paddingTop="2dp"
+        android:layout_toRightOf="@+id/EstadoMaquina"
+        android:textAlignment="center"
+        android:textSize="12dp"
+        android:layout_below="@+id/RendimientoMaquina"
+        android:layout_marginLeft="15dp" />
+    <TextView
+        android:id="@+id/UnidadMedida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="2dp"
+        android:paddingTop="2dp"
+        android:layout_toRightOf="@+id/CantidadProducida"
+        android:textAlignment="center"
+        android:textSize="12dp"
+        android:layout_below="@+id/RendimientoMaquina" />
+    <TextView
+        android:id="@+id/CantidadObjetivo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="2dp"
+        android:paddingTop="2dp"
+        android:layout_toRightOf="@+id/UnidadMedida"
+        android:textAlignment="center"
+        android:textSize="12dp"
+        android:layout_below="@+id/RendimientoMaquina" />
+    <TextView
+        android:id="@+id/UnidadMedidaObjetivo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="2dp"
+        android:paddingTop="2dp"
+        android:layout_toRightOf="@+id/CantidadObjetivo"
+        android:textAlignment="center"
+        android:textSize="12dp"
+        android:layout_below="@+id/RendimientoMaquina" />
+    <ProgressBar
+        android:id="@+id/RendimientoMaquina"
+        android:layout_width="match_parent"
+        android:layout_height="2.0dp"
+        android:layout_below="@+id/textoRendimiento"
+        android:paddingLeft="2dp"
         style="@android:style/Widget.ProgressBar.Horizontal"
-        android:layout_marginRight="0.0dp" />
+        android:layout_toRightOf="@+id/EstadoMaquina"
+        android:layout_marginLeft="10dp"
+        android:foregroundGravity="center_horizontal"
+        android:textAlignment="center"
+        android:layout_marginRight="10dp" />
     <TextView
         android:id="@+id/textoRendimiento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="27.3dp"
+        android:text=""
         android:layout_below="@+id/RecursoMaquina"
-        android:layout_toRightOf="@+id/RendimientoMaquina"
-        android:text="" />
+        android:layout_toRightOf="@+id/EstadoMaquina"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textStyle="bold"
+        android:textSize="@dimen/margin_medium"
+        android:gravity="center_horizontal"
+        android:layout_marginRight="10dp" />
+    <ImageView
+        android:id="@+id/ImagenMaquina"
+        android:textSize="20sp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:paddingTop="2dp"
+        android:layout_below="@+id/Maquina" />
+    <ImageView
+        android:id="@+id/ImagenMaquinaMarcha"
+        android:textSize="10sp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="2dp"
+        android:layout_below="@+id/RecursoMaquina"
+        android:layout_toRightOf="@+id/ImagenMaquina"
+        android:layout_marginTop="13dp" />
     <ImageView
         android:id="@+id/EstadoMaquina"
-        android:textSize="20sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
+        android:textSize="10sp"
+        android:layout_width="30dp"
+        android:layout_height="30.0dp"
         android:paddingLeft="10dp"
-        android:paddingTop="2dp" />
+        android:layout_toRightOf="@+id/ImagenMaquinaMarcha"
+        android:layout_below="@+id/RecursoMaquina"
+        android:layout_marginTop="13dp" />
 </RelativeLayout>
