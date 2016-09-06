@@ -7,7 +7,13 @@ namespace AlmacenRepuestosXamarin.Model
 {
     public static class Monitorizacion
     {
+        public static  string empresaSevilla = " TRH Sevilla ";
+        public static  string empresaLiege = " TRH Liege ";
+
         public static List<vListadoPedidosMonitorizacion> listMonitorizacion = new List<vListadoPedidosMonitorizacion>();
+        public static List<vListadoPedidosMonitorizacion> listMonitorizacionSevilla = new List<vListadoPedidosMonitorizacion>();
+        public static List<vListadoPedidosMonitorizacion> listMonitorizacionLieja = new List<vListadoPedidosMonitorizacion>();
+
         private static AccesoDatos datos;
         public static List<vListadoPedidosMonitorizacion> getListMonitorizacion()
         {
@@ -29,6 +35,17 @@ namespace AlmacenRepuestosXamarin.Model
         {
             datos = new AccesoDatos();
             listMonitorizacion = await datos.getListadoMonitorCarga(empresa);
+
+
+            if (empresa == empresaSevilla)
+            {
+                listMonitorizacionSevilla.Clear();
+                listMonitorizacionSevilla.AddRange(listMonitorizacion);
+            } else if (empresa == empresaLiege) { 
+                listMonitorizacionLieja.Clear();
+                listMonitorizacionLieja.AddRange(listMonitorizacion);
+            }
+           
 
             return listMonitorizacion;
         }
