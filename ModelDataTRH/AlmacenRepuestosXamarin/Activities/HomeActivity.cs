@@ -288,6 +288,15 @@ namespace AlmacenRepuestosXamarin.Activities
         //Comprobamos que la notificacion de cambio del estado del pedido es diferente a la inicial y así mandar la notificación
         private async  void OnItemMessage(FirebaseEvent<Dictionary<string, PedidoFireBase>> message)
         {
+            String empresa;
+            if (message.Key.Contains("Liege"))
+            {
+                 empresa = Monitorizacion.empresaLiege;
+            }
+            else {
+                empresa = Monitorizacion.empresaSevilla;
+            }
+            
             foreach (KeyValuePair<string, PedidoFireBase> item in message.Object)
             {
                 string pedMessage = item.Value.codPedido.ToString();
@@ -298,14 +307,17 @@ namespace AlmacenRepuestosXamarin.Activities
                 {
                     var pedido = Monitorizacion.listMonitorizacionLieja.Where(q => q.codigoPedido.Equals(item.Value.codPedido)).FirstOrDefault();
                     if (pedido== null)
-                        pedido = Monitorizacion.listMonitorizacionSevilla.Where(q => q.codigoPedido.Equals(item.Value.codPedido)).FirstOrDefault();
-
+                         pedido = Monitorizacion.listMonitorizacionSevilla.Where(q => q.codigoPedido.Equals(item.Value.codPedido)).FirstOrDefault();
+                       
+                   
+                        
                     if (pedido != null)
                     {
 
                         if (pedido.Estado != item.Value.estado)
                         {
-                          
+
+                                await Monitorizacion.getListMonitorizacion(empresa);
                                 notificar(item.Value);
                             
 
@@ -314,6 +326,7 @@ namespace AlmacenRepuestosXamarin.Activities
                     }
                     else
                     {
+                        await Monitorizacion.getListMonitorizacion(empresa);
                         notificar(item.Value);
                     }
                 }   
