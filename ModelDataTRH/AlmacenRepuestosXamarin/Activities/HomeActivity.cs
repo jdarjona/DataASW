@@ -294,7 +294,7 @@ namespace AlmacenRepuestosXamarin.Activities
                 string estadoMessage = item.Value.descripcion.ToString();
 
 
-                if (Monitorizacion.listMonitorizacion != null)
+                if (Monitorizacion.listMonitorizacionLieja != null || Monitorizacion.listMonitorizacionSevilla != null)
                 {
                     var pedido = Monitorizacion.listMonitorizacionLieja.Where(q => q.codigoPedido.Equals(item.Value.codPedido)).FirstOrDefault();
                     if (pedido== null)
@@ -305,16 +305,16 @@ namespace AlmacenRepuestosXamarin.Activities
 
                         if (pedido.Estado != item.Value.estado)
                         {
-                            if (pedido != null)
-                            {
+                          
                                 notificar(item.Value);
-                            }
+                            
 
                         }
-                        else
-                        {
-                            notificar(item.Value);
-                        }
+
+                    }
+                    else
+                    {
+                        notificar(item.Value);
                     }
                 }   
                 //if (Monitorizacion.listMonitorizacion.Count > 0)

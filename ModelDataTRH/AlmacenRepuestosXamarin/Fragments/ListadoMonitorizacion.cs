@@ -203,7 +203,7 @@ namespace AlmacenRepuestosXamarin.Fragments
 
                    
                 }
-                else if (empresa.Equals(Monitorizacion.listMonitorizacionLieja))
+                else if (empresa.Equals(Monitorizacion.empresaLiege))
                 {
                     
                     listMonitorizacion = listMonitorizacionLiege;
