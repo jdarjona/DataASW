@@ -111,6 +111,7 @@ namespace AlmacenRepuestosXamarin.Activities
                 ListItemClicked(0);
             }
 
+            
              initFirebase();
         }
 
@@ -118,6 +119,8 @@ namespace AlmacenRepuestosXamarin.Activities
 
         private async void initFirebase() {
 
+           await Monitorizacion.getListMonitorizacion(Monitorizacion.empresaLiege);
+            await Monitorizacion.getListMonitorizacion(Monitorizacion.empresaSevilla);
             Func<Task<string>> authToken = async delegate()
             {
                 return  "XQsDE173GieFhbMUUs2t2OD5eUwZFjjrEsAYbq6B";
@@ -293,7 +296,10 @@ namespace AlmacenRepuestosXamarin.Activities
 
                 if (Monitorizacion.listMonitorizacion != null)
                 {
-                    var pedido = Monitorizacion.listMonitorizacion.Where(q => q.codigoPedido.Equals(item.Value.codPedido)).FirstOrDefault();
+                    var pedido = Monitorizacion.listMonitorizacionLieja.Where(q => q.codigoPedido.Equals(item.Value.codPedido)).FirstOrDefault();
+                    if (pedido== null)
+                        pedido = Monitorizacion.listMonitorizacionSevilla.Where(q => q.codigoPedido.Equals(item.Value.codPedido)).FirstOrDefault();
+
                     if (pedido != null)
                     {
 

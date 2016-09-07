@@ -126,16 +126,16 @@ namespace AlmacenRepuestosXamarin.Fragments
             private Activity context;
             private  List<vListadoPedidosMonitorizacion> list;
             private IMenuItem order;
-            private string sevilla = " TRH Sevilla ";
-            private string liege = " TRH Liege ";
+            //private const string sevilla = " TRH Sevilla ";
+            //private cont string liege = " TRH Liege ";
             private int _tabSeleccionado= 7;
             LinearLayout progressLayout;
 
 
             public SamplePagerAdapter(Activity context, ViewPager mViewPager) : base()
             {
-                items.Add(sevilla);
-                items.Add(liege);
+                items.Add(Monitorizacion.empresaSevilla);
+                items.Add(Monitorizacion.empresaLiege);
                 this.context = context;
                 updateListadosMonitorizacion();
                 _mViewPager = mViewPager;
@@ -195,7 +195,7 @@ namespace AlmacenRepuestosXamarin.Fragments
             {
                 
 
-                if (empresa.Equals(sevilla))
+                if (empresa.Equals(Monitorizacion.empresaSevilla))
                 {
                     
                     listMonitorizacion = listMonitorizacionSevilla;
@@ -203,7 +203,7 @@ namespace AlmacenRepuestosXamarin.Fragments
 
                    
                 }
-                else if (empresa.Equals(liege))
+                else if (empresa.Equals(Monitorizacion.listMonitorizacionLieja))
                 {
                     
                     listMonitorizacion = listMonitorizacionLiege;
@@ -272,14 +272,14 @@ namespace AlmacenRepuestosXamarin.Fragments
 
             private async void  getListadoLiege()
             {
-                listMonitorizacionLiege = await Monitorizacion.getListMonitorizacion(liege);
+                listMonitorizacionLiege = await Monitorizacion.getListMonitorizacion(Monitorizacion.empresaLiege);
 
                 
             }
 
             private async void getListadoSevilla()
             {
-                listMonitorizacionSevilla = await Monitorizacion.getListMonitorizacion(sevilla);
+                listMonitorizacionSevilla = await Monitorizacion.getListMonitorizacion(Monitorizacion.empresaSevilla);
             }
 
             public string GetHeaderTitle(int position)
