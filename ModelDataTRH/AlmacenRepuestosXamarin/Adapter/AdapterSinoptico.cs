@@ -146,19 +146,19 @@ namespace AlmacenRepuestosXamarin.Adapter
             //ImagenMaquina.SetBackgroundResource(Resource.Drawable.t2);
             if (estadoMaquina)
             {
-                imagenEstado.SetBackgroundResource(Resource.Drawable.marcha30x30);
+                imagenEstado.SetBackgroundResource(Resource.Drawable.marcha);
             }
             else 
             {
-                imagenEstado.SetBackgroundResource(Resource.Drawable.marchaNo30x30);
+                imagenEstado.SetBackgroundResource(Resource.Drawable.marchaNo);
             }
             if (conexion)
             {
-                ImagenMaquinaMarcha.SetBackgroundResource(Resource.Drawable.conexionOk30x30);
+                ImagenMaquinaMarcha.SetBackgroundResource(Resource.Drawable.conexionOk);
             }
             else
             {
-                ImagenMaquinaMarcha.SetBackgroundResource(Resource.Drawable.conectadaNo30x30);
+                ImagenMaquinaMarcha.SetBackgroundResource(Resource.Drawable.conectadaNo);
             }
             view.FindViewById<TextView>(Resource.Id.RecursoMaquina).Text = item.Operario1;
             view.FindViewById<TextView>(Resource.Id.RecursoMaquina).SetTypeface(null, TypefaceStyle.Bold);
