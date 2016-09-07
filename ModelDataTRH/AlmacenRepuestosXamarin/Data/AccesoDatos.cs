@@ -23,6 +23,8 @@ using Android.Net.Wifi;
 using AlmacenRepuestosXamarin.Activities;
 using AlmacenRepuestosXamarin.Helpers;
 using ModelDataTRH.Proyectos.Trazabilidad_Generico;
+using static AlmacenRepuestosXamarin.Clases.SlidingTabsFragment;
+using AlmacenRepuestosXamarin.Fragments;
 
 namespace AlmacenRepuestosXamarin.Data
 {
@@ -348,77 +350,10 @@ namespace AlmacenRepuestosXamarin.Data
             return null;
         }
 
-        public async Task<List<MaquinaFirebase>> getListadoMaquinaFirebase()
-        {
-            try
-            {
-                client = initClient();
-                var response = await client.GetAsync(@"api/ListadoMonitorizacion");
-                if (response.IsSuccessStatusCode)
-                {
-                    var content = await response.Content.ReadAsStringAsync();
 
-                    var result = JsonConvert.DeserializeObject<List<MaquinaFirebase>>(content);
-                    return result;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Se ha producido una excipcion no controlada", ex.InnerException);
-            }
-
-            return null;
-        }
-
-        public async Task<List<MaquinaFirebase>> getListadoMaquinaFirebase(string empresa)
-        {
-            empre = empresa;
-            try
-            {
-                if (empresa.Equals(" TRH Liege "))
-                {
-                    client = new HttpClient(new NativeMessageHandler())
-                    {
-                        // BaseAddress = new Uri(webBase)
-                        BaseAddress = new Uri(getDatosConexionEmpresa(Preferencias.getEmpresaLiege()))
-                    };
-
-                }
-                else
-                {
-                    client = new HttpClient(new NativeMessageHandler())
-                    {
-                        // BaseAddress = new Uri(webBase)
-                        BaseAddress = new Uri(getDatosConexionEmpresa(Preferencias.getEmpresaSevilla()))
-                    };
-
-                }
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/pdf"));
-                //client = initClient();
-                var response = client.GetAsync(@"api/ListadoMonitorizacion");
-                if (response.Result.IsSuccessStatusCode)
-                {
-                    var content = await response.Result.Content.ReadAsStringAsync();
-
-                    var result = JsonConvert.DeserializeObject<List<MaquinaFirebase>>(content);
-                    return result;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Se ha producido una excipcion no controlada", ex.InnerException);
-            }
-
-            return null;
-        }
-
-        public HttpClient getCliente() {
+        public HttpClient getCliente(string empresa) {
            
-            if (empre.Equals("Liege"))
+            if (empresa.Equals("Liege"))
             {
                 client = new HttpClient(new NativeMessageHandler())
                 {
@@ -444,10 +379,14 @@ namespace AlmacenRepuestosXamarin.Data
 
         public async Task<Pedidos> getPedidoVenta(string codPedido)
         {
+            string empresa = String.Empty;
             try
             {
-                // client = initClient();
-                client = getCliente();
+                int pag=ListadoMonitorizacion.SamplePagerAdapter.pagSeleccionada;
+                if (pag==1) {
+                    empresa = "Liege";
+                }
+                client = getCliente(empresa);
                 string url = string.Format(@"api/Pedidos?codPedido={0}", codPedido);
                 var response = await client.GetAsync(url);
                 

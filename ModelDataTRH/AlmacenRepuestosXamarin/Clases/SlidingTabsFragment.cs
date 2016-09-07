@@ -20,7 +20,7 @@ namespace AlmacenRepuestosXamarin.Clases
         private SlidingTabScrollView mSlidingTabScrollView;
         private ViewPager mViewPager;
         private View view;
-        public List<SinopticoFabrica> listSinoptico { get; set; }
+        
         public AdapterSinoptico adapterSinoptico { get;  set; }
         public LinearLayout progressLayout;
 
@@ -55,7 +55,7 @@ namespace AlmacenRepuestosXamarin.Clases
             private List<MaquinaFirebase> listSinoptico = new List<MaquinaFirebase>();
             List<string> items = new List<string>();
             private Activity context;
-            public List<SinopticoFabrica> list;
+            
             public AdapterSinoptico adapterSinoptico { get; set; }
             
             List<MaquinaFirebase> listTemporalSinoptico;

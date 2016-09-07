@@ -21,6 +21,7 @@ using Java.Lang;
 using AlmacenRepuestosXamarin.Clases;
 using System.Threading.Tasks;
 using static Android.Widget.AdapterView;
+using Android.Content;
 
 namespace AlmacenRepuestosXamarin.Fragments
 {
@@ -37,7 +38,7 @@ namespace AlmacenRepuestosXamarin.Fragments
 
         private SlidingTabScrollView mSlidingTabScrollView;
         private ViewPager mViewPager;
-        private int tabSeleccionado = 7;
+        public static int tabSeleccionado = 7;
         private View view;
         //private ListView listViewMonitorizacion;
         //private LinearLayout progressLayout;
@@ -123,9 +124,10 @@ namespace AlmacenRepuestosXamarin.Fragments
             private ListView monitorizacionListView;
             private List<string> items = new List<string>();
             private ViewPager _mViewPager;
-            private Activity context;
+            private AppCompatActivity context;
             private  List<vListadoPedidosMonitorizacion> list;
             private IMenuItem order;
+            public static int pagSeleccionada;
             //private const string sevilla = " TRH Sevilla ";
             //private cont string liege = " TRH Liege ";
             private int _tabSeleccionado= 7;
@@ -136,7 +138,7 @@ namespace AlmacenRepuestosXamarin.Fragments
             {
                 items.Add(Monitorizacion.empresaSevilla);
                 items.Add(Monitorizacion.empresaLiege);
-                this.context = context;
+                this.context = (AppCompatActivity) context;
                 updateListadosMonitorizacion();
                 _mViewPager = mViewPager;
                 this._mViewPager.AddOnPageChangeListener(this);
@@ -148,7 +150,7 @@ namespace AlmacenRepuestosXamarin.Fragments
                 updateListadosMonitorizacion();
                 //items.Add(sevilla);
                 //items.Add(liege);
-                this.context = context;
+                this.context = (AppCompatActivity)context;
                 _tabSeleccionado = tabSeleccionado;
                 //_mViewPager = mViewPager;
                 //this._mViewPager.AddOnPageChangeListener(this);
@@ -199,10 +201,9 @@ namespace AlmacenRepuestosXamarin.Fragments
                 {
                     
                     listMonitorizacion = listMonitorizacionSevilla;
-
-
-                   
+  
                 }
+
                 else if (empresa.Equals(Monitorizacion.empresaLiege))
                 {
                     
@@ -245,29 +246,47 @@ namespace AlmacenRepuestosXamarin.Fragments
 
             public override Java.Lang.Object InstantiateItem(ViewGroup container, int position)
             {
+                int tabSeleccionado = position;
                 SlidingTabsFragment stf = new SlidingTabsFragment();
                 View view = LayoutInflater.From(container.Context).Inflate(Resource.Layout.ListaMonitorizacionLayout, container, false);
                 monitorizacionListView = view.FindViewById<ListView>(Resource.Id.listViewMonitorizacion);
-                
-                
+
+                monitorizacionListView.Adapter = getListaMonitorizacion(items[position].ToString());
                 monitorizacionListView.ItemClick += (sender, e) =>
                 {
 
                     Android.Support.V4.App.Fragment fragment = new AlmacenRepuestosXamarin.Fragments.DetallePedidoVenta();
-
+                   
+                    string codPedido = ((AdapterMonitoriaion)((ListView)sender).Adapter).list[e.Position].Cod__Agrupacion_Pedido;
                     Bundle bundle = new Bundle();
-                    bundle.PutString("codPedido", listMonitorizacion[e.Position].Cod__Agrupacion_Pedido);
+                    bundle.PutString("codPedido", codPedido);
                     fragment.Arguments = bundle;
 
-                    //FragmentManager.BeginTransaction()
-                    //    .Replace(Resource.Id.content_frame, fragment)
-                    //    .AddToBackStack("ListadoMonitorizacion")
-                    //   .Commit();
+                    //verDetallePedido();
+
+                    //fragment = new SlidingTabsFragment();
+                    //SupportFragmentManager.BeginTransaction()
+                    //      .Replace(Resource.Id.content_frame, fragment)
+                    //      .Commit();
+                    //Android.Support.V4.App.Fragment _fragment = new Android.Support.V4.App.Fragment();
+                    
+
+                    context.SupportFragmentManager.BeginTransaction()
+                        .Replace(Resource.Id.content_frame, fragment)
+                        .AddToBackStack("ListadoMonitorizacion")
+                       .Commit();
                 };
-                monitorizacionListView.Adapter = getListaMonitorizacion(items[position].ToString());
+                
                 container.AddView(view);
                 
                 return view;
+            }
+
+            private void verDetallePedido()
+            {
+                Fragment _fragment = new Fragment();
+                Intent detalleMonitorizacion = new Intent(this.context, typeof(DetalleMonitorizacionActivity));
+                _fragment.StartActivity(detalleMonitorizacion);
             }
 
             private async void  getListadoLiege()
@@ -301,7 +320,7 @@ namespace AlmacenRepuestosXamarin.Fragments
 
             public void OnPageScrolled(int position, float positionOffset, int positionOffsetPixels)
             {
-
+                pagSeleccionada = position;
             }
 
             public void OnPageSelected(int position)
