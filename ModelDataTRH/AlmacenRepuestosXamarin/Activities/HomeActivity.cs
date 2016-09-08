@@ -22,7 +22,7 @@ using AlmacenRepuestosXamarin.Clases;
 
 namespace AlmacenRepuestosXamarin.Activities
 {
-    [Activity(Label = "Almacen Repuestos", MainLauncher = true, LaunchMode = LaunchMode.SingleTop, Icon = "@drawable/carretilla", ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(Label = "TRH", MainLauncher = true, LaunchMode = LaunchMode.SingleTop, Icon = "@drawable/TRH", ScreenOrientation = ScreenOrientation.Portrait)]
     public class HomeView : BaseActivity 
     {
        
@@ -37,7 +37,7 @@ namespace AlmacenRepuestosXamarin.Activities
         IMenu _imenu;
 
         private static readonly string[] Sections = new[] {
-            "App Almacen", "Monitor Carga", "Sinóptico", "Configuracion"
+            "App Almacen", "Monitor Carga", "Sinóptico" //, "Configuracion"
         };
 
         protected override int LayoutResource
@@ -167,7 +167,7 @@ namespace AlmacenRepuestosXamarin.Activities
         {
             Android.Support.V4.App.Fragment fragment = null;
 
-            SupportActionBar.Subtitle = "Peazo App";
+            SupportActionBar.Subtitle = "";
             
             switch (position)
             {

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reactive.Threading.Tasks;
 using System.Threading.Tasks;
 using AlmacenRepuestosXamarin.Adapter;
@@ -49,6 +50,12 @@ namespace AlmacenRepuestosXamarin.Clases
             inflater.Inflate(Resource.Menu.actionbarSinoptico, menu);
         }
 
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            mViewPager.Adapter = new SamplePagerAdapter(this.Activity, mViewPager, item);
+            return base.OnOptionsItemSelected(item);
+        }
+
         public class SamplePagerAdapter : PagerAdapter, ViewPager.IOnPageChangeListener
         {
             private string sevilla = " TRH Sevilla ";
@@ -56,6 +63,7 @@ namespace AlmacenRepuestosXamarin.Clases
             private const string urlSevilla = @"Maquinas/TRH";
             private const string urlLieja = @"Maquinas/TRH Liege";
             private ViewPager _mViewPager;
+            private bool  vertodo = false;
             private string url;
             private List<MaquinaFirebase> listSinoptico = new List<MaquinaFirebase>();
             private List<string> items = new List<string>();
@@ -63,6 +71,8 @@ namespace AlmacenRepuestosXamarin.Clases
             public AdapterSinoptico adapterSinoptico { get; set; }
             private ListView sinopticoListView;
             private LinearLayout progressLayout;
+            private IMenuItem item;
+
             public SamplePagerAdapter(Activity context, ViewPager mViewPager) : base()
             {
                 items.Add(sevilla);
@@ -70,6 +80,12 @@ namespace AlmacenRepuestosXamarin.Clases
                 _mViewPager = mViewPager;
                 this.context = context;
                 this._mViewPager.AddOnPageChangeListener(this);
+            }
+
+            public SamplePagerAdapter(Activity context, ViewPager mViewPager, IMenuItem item) : this(context, mViewPager)
+            {
+                this.item = item;
+                tipoListado(item);
             }
 
             public override int Count
@@ -92,8 +108,19 @@ namespace AlmacenRepuestosXamarin.Clases
                 listSinoptico.Clear();
                 foreach (var item in itemsFirebase)
                 {
-                    listSinoptico.Add(item.Object);
+                    if (!vertodo)
+                    {
+                        if (!item.Object.CodOperario.Equals(string.Empty) && item.Object.Conexion.Equals(true))
+                        {
+                            listSinoptico.Add(item.Object);
+                        }
+                    }
+                    else
+                    {
+                        listSinoptico.Add(item.Object);
+                    }
                 }
+                //listSinoptico=listSinoptico.Where(o => o.CodOperario != "" && o.Conexion.Equals(true)).ToList();
                  adapterSinoptico.NotifyDataSetChanged();
                  //.Subscribe(OnItemMessage);
 
@@ -115,7 +142,7 @@ namespace AlmacenRepuestosXamarin.Clases
                 View view = LayoutInflater.From(container.Context).Inflate(Resource.Layout.pager_item, container, false);
                 sinopticoListView = view.FindViewById<ListView>(Resource.Id.listViewSinopticoFragment);
                 progressLayout = view.FindViewById<LinearLayout>(Resource.Id.progressBar);
-                
+                //listSinoptico.OrderBy(o => o.CodOperario != null && o.Conexion);
                 adapterSinoptico = new AdapterSinoptico(this.context, listSinoptico);
                 sinopticoListView.Adapter = adapterSinoptico;
                 if (position == 0) {
@@ -172,29 +199,21 @@ namespace AlmacenRepuestosXamarin.Clases
                 }
             }
 
-            private void ordenarListado(IMenuItem order)
+            private void tipoListado(IMenuItem order)
             {
-                //switch (order.ToString())
-                //{
-                //    case "Ordenar por Operario":
-                //        listSinopticoSevilla = listSinopticoSevilla.OrderBy(o => o.inicialesComercial).ToList();
-                //        listSinopticoLiege = listSinopticoLiege.OrderBy(o => o.inicialesComercial).ToList();
-                //        break;
-                //    case "Ordenar por Estado":
-                //        listSinopticoSevilla = listSinopticoSevilla.OrderBy(o => o.Estado).ToList();
-                //        listSinopticoLiege = listSinopticoLiege.OrderBy(o => o.Estado).ToList();
-                //        break;
-                //    case "Ordenar por Pedido":
-                //        listSinopticoSevilla = listSinopticoSevilla.OrderBy(o => o.codigoPedido).ToList();
-                //        listSinopticoLiege = listSinopticoLiege.OrderBy(o => o.codigoPedido).ToList();
-                //        break;
-                //    case "Ordenar por Fecha":
-                //        listSinopticoSevilla = listSinopticoSevilla.OrderBy(o => o.Fecha_Carga_Requerida).ToList();
-                //        listSinopticoLiege = listSinopticoLiege.OrderBy(o => o.Fecha_Carga_Requerida).ToList();
-                //        break;
-                //    default:
-                //        break;
-                //}
+                switch (order.ToString())
+                {
+                    case "Ver Todo":
+                        vertodo = true;
+                        break;
+                    case "En Producción":
+                        vertodo = false;
+                        break;
+                    
+                    default:
+                        vertodo = false;
+                        break;
+                }
             }
         }
     }

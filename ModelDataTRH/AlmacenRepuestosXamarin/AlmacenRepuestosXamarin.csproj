@@ -308,9 +308,6 @@
     <AndroidResource Include="Resources\menu\row_bg_right_far.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\carretilla.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\ModelDataTRH\ModelDataTRH.csproj">
       <Project>{611166da-d47d-4c02-b63e-8e20e7d5521a}</Project>
       <Name>ModelDataTRH</Name>
@@ -505,6 +502,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\t1_30x30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\TRH.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets')" />
