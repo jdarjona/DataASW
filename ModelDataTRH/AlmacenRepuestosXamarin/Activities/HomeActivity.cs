@@ -22,7 +22,7 @@ using AlmacenRepuestosXamarin.Clases;
 
 namespace AlmacenRepuestosXamarin.Activities
 {
-    [Activity(Label = "TRH", MainLauncher = true, LaunchMode = LaunchMode.SingleTop, Icon = "@drawable/TRH", ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(Label = "Almacen Repuestos", MainLauncher = true, LaunchMode = LaunchMode.SingleTop, Icon = "@drawable/carretilla", ScreenOrientation = ScreenOrientation.Portrait)]
     public class HomeView : BaseActivity 
     {
        
@@ -37,7 +37,7 @@ namespace AlmacenRepuestosXamarin.Activities
         IMenu _imenu;
 
         private static readonly string[] Sections = new[] {
-             "Monitor Carga", "Sinóptico" ,"App Almacen"//, "Configuracion"
+            "App Almacen", "Monitor Carga", "Sinóptico", "Configuracion"
         };
 
         protected override int LayoutResource
@@ -167,32 +167,37 @@ namespace AlmacenRepuestosXamarin.Activities
         {
             Android.Support.V4.App.Fragment fragment = null;
 
-            SupportActionBar.Subtitle = "";
+            SupportActionBar.Subtitle = "Peazo App";
             
             switch (position)
             {
-                
                 case 0:
-                    fragment = new ListadoMonitorizacion();
-                    SupportFragmentManager.BeginTransaction()
-                           .Replace(Resource.Id.content_frame, fragment)
-                           .Commit();
-                    break;
-                case 1:
-
-                    fragment = new SlidingTabsFragment();
-                    SupportFragmentManager.BeginTransaction()
-                          .Replace(Resource.Id.content_frame, fragment)
-                          .Commit();
-                    break;
-                case 2:
                     SupportActionBar.Title = this.title = Sections[position];
                     fragment = new BuscadorEmpleados();
                     SupportFragmentManager.BeginTransaction()
                        .Replace(Resource.Id.content_frame, fragment)
                        .Commit();
                     break;
-                case 3:
+                case 1:
+                    //MenuInflater.Inflate(Resource.Menu.menu, _imenu);
+                    fragment = new ListadoMonitorizacion();
+                    SupportFragmentManager.BeginTransaction()
+                           .Replace(Resource.Id.content_frame, fragment)
+                           .Commit();
+                    break;
+                case 2:
+
+                    fragment = new SlidingTabsFragment();
+                    SupportFragmentManager.BeginTransaction()
+                          .Replace(Resource.Id.content_frame, fragment)
+                          .Commit();
+
+                    //var sinoptico = new Intent(this, typeof(SinopticoActivity));
+                    //StartActivity(sinoptico);
+
+                    break;
+
+                case 3://actityConfiguracion
                     var actityConfiguracion = new Intent(this, typeof(OpcionesActivity));
                     StartActivity(actityConfiguracion);
 
@@ -205,6 +210,11 @@ namespace AlmacenRepuestosXamarin.Activities
         public override bool OnPrepareOptionsMenu(IMenu menu)
         {
              _imenu = menu;
+            //var drawerOpen = this.drawerLayout.IsDrawerOpen((int)GravityFlags.Left);
+            ////when open don't show anything
+            //for (int i = 0; i < menu.Size(); i++)
+            //    menu.GetItem(i).SetVisible(!drawerOpen);
+
             return base.OnPrepareOptionsMenu(menu);
         }
 
@@ -221,6 +231,8 @@ namespace AlmacenRepuestosXamarin.Activities
             this.drawerToggle.OnConfigurationChanged(newConfig);
         }
 
+        // Pass the event to ActionBarDrawerToggle, if it returns
+        // true, then it has handled the app icon touch event
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             if (this.drawerToggle.OnOptionsItemSelected(item))
@@ -276,32 +288,66 @@ namespace AlmacenRepuestosXamarin.Activities
         //Comprobamos que la notificacion de cambio del estado del pedido es diferente a la inicial y así mandar la notificación
         private async  void OnItemMessage(FirebaseEvent<Dictionary<string, PedidoFireBase>> message)
         {
+            String empresa;
+            if (message.Key.Contains("Liege"))
+            {
+                 empresa = Monitorizacion.empresaLiege;
+            }
+            else {
+                empresa = Monitorizacion.empresaSevilla;
+            }
+            
             foreach (KeyValuePair<string, PedidoFireBase> item in message.Object)
             {
                 string pedMessage = item.Value.codPedido.ToString();
                 string estadoMessage = item.Value.descripcion.ToString();
 
+
                 if (Monitorizacion.listMonitorizacionLieja != null || Monitorizacion.listMonitorizacionSevilla != null)
                 {
-                    var list = Monitorizacion.listMonitorizacionSevilla;
                     var pedido = Monitorizacion.listMonitorizacionLieja.Where(q => q.codigoPedido.Equals(item.Value.codPedido)).FirstOrDefault();
-                    if (pedido == null)
-                        pedido = Monitorizacion.listMonitorizacionSevilla.Where(q => q.codigoPedido.Contains(item.Value.codPedido)).FirstOrDefault();
-
+                    if (pedido== null)
+                         pedido = Monitorizacion.listMonitorizacionSevilla.Where(q => q.codigoPedido.Equals(item.Value.codPedido)).FirstOrDefault();
+                       
+                   
+                        
                     if (pedido != null)
                     {
 
                         if (pedido.Estado != item.Value.estado)
                         {
+
+                                await Monitorizacion.getListMonitorizacion(empresa);
                                 notificar(item.Value);
+                            
+
                         }
+
                     }
                     else
                     {
+                        await Monitorizacion.getListMonitorizacion(empresa);
                         notificar(item.Value);
                     }
                 }   
+                //if (Monitorizacion.listMonitorizacion.Count > 0)
+                //{
+                //    for (int i = 0; i < Monitorizacion.listMonitorizacion.Count; i++)
+                //    {
+                //        string pedidoListado = Monitorizacion.listMonitorizacion[i].codigoPedido.ToString();
+                //        if (item.Value.codPedido.Equals(Monitorizacion.listMonitorizacion[i].codigoPedido))
+                //        {
+                //            string estadoListado = Monitorizacion.listMonitorizacion[i].Estado.ToString();
+                //            if (!Monitorizacion.listMonitorizacion[i].Estado.Equals(item.Value.descripcion) && (message.EventType == FirebaseEventType.InsertOrUpdate))
+                //            {
+                //                notificar(item.Value);
+                //            }
+                //        }
+                //    }
+                //}
             }
+           
+            
         }
     }
 }
