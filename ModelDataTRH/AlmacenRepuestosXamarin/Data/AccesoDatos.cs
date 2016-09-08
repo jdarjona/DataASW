@@ -56,6 +56,7 @@ namespace AlmacenRepuestosXamarin.Data
                 BaseAddress = new Uri(getDatosConexionEmpresa(Preferencias.getEmpresaSevilla()))
             };
 
+
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/pdf"));
