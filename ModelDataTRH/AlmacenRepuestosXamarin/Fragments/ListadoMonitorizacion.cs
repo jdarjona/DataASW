@@ -200,14 +200,14 @@ namespace AlmacenRepuestosXamarin.Fragments
                 if (empresa.Equals(Monitorizacion.empresaSevilla))
                 {
                     
-                    listMonitorizacion = listMonitorizacionSevilla;
+                    listMonitorizacion = listMonitorizacionSevilla.OrderBy(o => o.Estado).ToList();
   
                 }
 
                 else if (empresa.Equals(Monitorizacion.empresaLiege))
                 {
                     
-                    listMonitorizacion = listMonitorizacionLiege;
+                    listMonitorizacion = listMonitorizacionLiege.OrderBy(o => o.Estado).ToList(); 
                 }
                
 
