@@ -143,7 +143,6 @@ namespace AlmacenRepuestosXamarin.Adapter
                     break;
             }
 
-            //ImagenMaquina.SetBackgroundResource(Resource.Drawable.t2);
             if (estadoMaquina)
             {
                 imagenEstado.SetBackgroundResource(Resource.Drawable.marcha);
@@ -163,7 +162,6 @@ namespace AlmacenRepuestosXamarin.Adapter
             view.FindViewById<TextView>(Resource.Id.RecursoMaquina).Text = item.Operario1;
             view.FindViewById<TextView>(Resource.Id.RecursoMaquina).SetTypeface(null, TypefaceStyle.Bold);
 
-            //int.TryParse(item.Rendimiento,out rendimiento);
             barraRendimiento.Progress = item.Rendimiento;
             view.FindViewById<TextView>(Resource.Id.textoRendimiento).Text = item.Rendimiento + @" %";
             if (item.Rendimiento > 76)
@@ -180,9 +178,9 @@ namespace AlmacenRepuestosXamarin.Adapter
             view.FindViewById<TextView>(Resource.Id.SeccionMaquina).Text = item.SeccionMaquina.ToString();
             view.FindViewById<TextView>(Resource.Id.ProductoMaquina).Text = item.CodProducto;
             view.FindViewById<TextView>(Resource.Id.ProductoMaquina).SetTypeface(null, TypefaceStyle.Bold);
-            view.FindViewById<TextView>(Resource.Id.CantidadProducida).Text = (Convert.ToInt32(item.CantidadProducidad)).ToString();
+            view.FindViewById<TextView>(Resource.Id.CantidadProducida).Text = (Convert.ToInt32(item.CantidadProducidad)).ToString("#,##0");
 
-            view.FindViewById<TextView>(Resource.Id.CantidadObjetivo).Text = (Convert.ToInt32(item.CantidadObjectivo)).ToString();
+            view.FindViewById<TextView>(Resource.Id.CantidadObjetivo).Text = (Convert.ToInt32(item.CantidadObjectivo)).ToString("#,##0");
             view.FindViewById<TextView>(Resource.Id.UnidadMedida).Text = item.UnidadMedida.ToString() + @"/";
             view.FindViewById<TextView>(Resource.Id.UnidadMedidaObjetivo).Text = item.UnidadMedida.ToString() + " Objetivo";
             
