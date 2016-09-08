@@ -283,9 +283,10 @@ namespace AlmacenRepuestosXamarin.Activities
 
                 if (Monitorizacion.listMonitorizacionLieja != null || Monitorizacion.listMonitorizacionSevilla != null)
                 {
+                    var list = Monitorizacion.listMonitorizacionSevilla;
                     var pedido = Monitorizacion.listMonitorizacionLieja.Where(q => q.codigoPedido.Equals(item.Value.codPedido)).FirstOrDefault();
-                    if (pedido== null)
-                        pedido = Monitorizacion.listMonitorizacionSevilla.Where(q => q.codigoPedido.Equals(item.Value.codPedido)).FirstOrDefault();
+                    if (pedido == null)
+                        pedido = Monitorizacion.listMonitorizacionSevilla.Where(q => q.codigoPedido.Contains(item.Value.codPedido)).FirstOrDefault();
 
                     if (pedido != null)
                     {
