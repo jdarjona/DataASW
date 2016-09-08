@@ -53,8 +53,7 @@ namespace AlmacenRepuestosXamarin.Data
         public HttpClient initClient() {
             client = new HttpClient(new NativeMessageHandler())
             {
-                // BaseAddress = new Uri(webBase)
-                BaseAddress = new Uri(getDatosConexionEmpresa(Preferencias.getEmpresaLiege()))
+                BaseAddress = new Uri(getDatosConexionEmpresa(Preferencias.getEmpresaSevilla()))
             };
 
             client.DefaultRequestHeaders.Accept.Clear();

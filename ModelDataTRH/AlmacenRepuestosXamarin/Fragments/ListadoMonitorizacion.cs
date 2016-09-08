@@ -262,15 +262,6 @@ namespace AlmacenRepuestosXamarin.Fragments
                     bundle.PutString("codPedido", codPedido);
                     fragment.Arguments = bundle;
 
-                    //verDetallePedido();
-
-                    //fragment = new SlidingTabsFragment();
-                    //SupportFragmentManager.BeginTransaction()
-                    //      .Replace(Resource.Id.content_frame, fragment)
-                    //      .Commit();
-                    //Android.Support.V4.App.Fragment _fragment = new Android.Support.V4.App.Fragment();
-                    
-
                     context.SupportFragmentManager.BeginTransaction()
                         .Replace(Resource.Id.content_frame, fragment)
                         .AddToBackStack("ListadoMonitorizacion")
@@ -282,12 +273,7 @@ namespace AlmacenRepuestosXamarin.Fragments
                 return view;
             }
 
-            private void verDetallePedido()
-            {
-                Fragment _fragment = new Fragment();
-                Intent detalleMonitorizacion = new Intent(this.context, typeof(DetalleMonitorizacionActivity));
-                _fragment.StartActivity(detalleMonitorizacion);
-            }
+            
 
             private async void  getListadoLiege()
             {

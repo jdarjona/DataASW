@@ -150,7 +150,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activities\BaseActivity.cs" />
-    <Compile Include="Activities\DetalleMonitorizacionActivity.cs" />
     <Compile Include="Activities\HomeActivity.cs" />
     <Compile Include="Adapter\AdapterDetallePedidoVenta.cs" />
     <Compile Include="Adapter\AdapterEmpleados.cs" />
@@ -231,6 +230,9 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\ListaSinopticoLayout.axml">
       <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\menu\actionbarSinoptico.axml">
+      <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>

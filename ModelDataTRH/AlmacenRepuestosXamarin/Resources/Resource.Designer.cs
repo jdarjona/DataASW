@@ -2576,31 +2576,34 @@ namespace AlmacenRepuestosXamarin
 			public const int actionbar_main = 2131623936;
 			
 			// aapt resource value: 0x7f0e0001
-			public const int buscador = 2131623937;
+			public const int actionbarSinoptico = 2131623937;
 			
 			// aapt resource value: 0x7f0e0002
-			public const int menu = 2131623938;
+			public const int buscador = 2131623938;
 			
 			// aapt resource value: 0x7f0e0003
-			public const int menu_botton = 2131623939;
+			public const int menu = 2131623939;
 			
 			// aapt resource value: 0x7f0e0004
-			public const int menuDetalle = 2131623940;
+			public const int menu_botton = 2131623940;
 			
 			// aapt resource value: 0x7f0e0005
-			public const int navigation_drawer = 2131623941;
+			public const int menuDetalle = 2131623941;
 			
 			// aapt resource value: 0x7f0e0006
-			public const int row_bg_left = 2131623942;
+			public const int navigation_drawer = 2131623942;
 			
 			// aapt resource value: 0x7f0e0007
-			public const int row_bg_left_far = 2131623943;
+			public const int row_bg_left = 2131623943;
 			
 			// aapt resource value: 0x7f0e0008
-			public const int row_bg_right = 2131623944;
+			public const int row_bg_left_far = 2131623944;
 			
 			// aapt resource value: 0x7f0e0009
-			public const int row_bg_right_far = 2131623945;
+			public const int row_bg_right = 2131623945;
+			
+			// aapt resource value: 0x7f0e000a
+			public const int row_bg_right_far = 2131623946;
 			
 			static Menu()
 			{
