@@ -261,7 +261,7 @@ namespace AlmacenRepuestosXamarin.Data
 
                 }
 
-                url = string.Format(@"pdf/{0}", nombreFichero);
+                url = string.Format(@"PDF/{0}", nombreFichero);
                 byte[] bytes =  await client.GetByteArrayAsync(url);
 
                 var localPath =string.Format(@"{0}/{1}", global::Android.OS.Environment.ExternalStorageDirectory.Path , nombreFichero);

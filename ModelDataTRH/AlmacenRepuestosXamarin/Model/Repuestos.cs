@@ -104,8 +104,18 @@ namespace AlmacenRepuestosXamarin.Model
         }
 
         public static async Task<string> getAlbaran(string codDocumento) {
+            
+            try
+            {
+               
+                return await datos.getAlbaranEntreEmpresas(codDocumento);
+            }
+            catch (Exception)
+            {
 
-            return await datos.getAlbaranEntreEmpresas(codDocumento);
+                return string.Empty;
+            }
+           
         }
 
         public static void clearRepuestos() {
