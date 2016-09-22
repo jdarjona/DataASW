@@ -10,6 +10,7 @@ using RepositoryWebServiceTRH.AlmacenRepuestosContext;
 using RepositoryWebServiceTRH.ItemContext;
 using RepositoryWebServiceTRH.DatosEntreEmpresasContext;
 using RepositoryWebServiceTRH.PedidoVentasContext;
+using RepositoryWebServiceTRH.OfertaListadoContext;
 
 
 namespace RepositoryWebServiceTRH
@@ -21,9 +22,10 @@ namespace RepositoryWebServiceTRH
         public static AlmacenRepuestos_PortClient contextAlmacenesRepuestos { get; private set; }
         public static NuevaListaProductos_PortClient contextItem { get; private set; }
         public static DatosEntreEmpresas_PortClient contextDatosEntreEmpresas { get; private set; }
-       // public static DatosEntreEmpresas_PortClient contextDatosEntreEmpresas { get; private set; }
+        public static OfertaListado_PortClient contextOfertaListado { get; private set; }
+        // public static DatosEntreEmpresas_PortClient contextDatosEntreEmpresas { get; private set; }
 
-            public static Pedidos_PortClient contextPedidosVenta { get; private set; }
+        public static Pedidos_PortClient contextPedidosVenta { get; private set; }
 
         public static string usuario=@"TRHSEVILLA0\administrador";
 
@@ -101,7 +103,12 @@ namespace RepositoryWebServiceTRH
             contextPedidosVenta.ClientCredentials.Windows.AllowedImpersonationLevel = System.Security.Principal.TokenImpersonationLevel.Delegation;
             contextPedidosVenta.ClientCredentials.Windows.ClientCredential = new System.Net.NetworkCredential(hostWs.user, hostWs.password);
         }
-
+        private static void initOfertaListadoPortCliente(BasicHttpBinding navisionWSBinding, HostWebService hostWs)
+        {
+            contextOfertaListado = new OfertaListado_PortClient(navisionWSBinding, new EndpointAddress(string.Format(hostWs.urlHost, "OfertaListado", HostWebService.tipoWebService.Page.ToString())));
+            contextOfertaListado.ClientCredentials.Windows.AllowedImpersonationLevel = System.Security.Principal.TokenImpersonationLevel.Delegation;
+            contextOfertaListado.ClientCredentials.Windows.ClientCredential = new System.Net.NetworkCredential(hostWs.user, hostWs.password);
+        }
         private static void DatosEntreEmpresas_PortClient(BasicHttpBinding navisionWSBinding, HostWebService hostWs)
         {
             contextDatosEntreEmpresas = new DatosEntreEmpresas_PortClient(navisionWSBinding, new EndpointAddress(string.Format(hostWs.urlHost, "DatosEntreEmpresas", HostWebService.tipoWebService.Codeunit.ToString())));

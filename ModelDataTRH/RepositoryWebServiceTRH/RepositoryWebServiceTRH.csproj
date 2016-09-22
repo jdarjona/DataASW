@@ -54,6 +54,7 @@
     <Compile Include="IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryDatosEntreEmpresasCU.cs" />
+    <Compile Include="RepositoryOfertaListado.cs" />
     <Compile Include="RepositoryPedidosVenta.cs" />
     <Compile Include="RepositoryRepuestosCU.cs" />
     <Compile Include="RepositoryEmpleado.cs" />
@@ -81,6 +82,11 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Service References\ItemContext\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\OfertaListadoContext\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -195,6 +201,25 @@
     <None Include="Service References\ItemContext\RepositoryWebServiceTRH.ItemContext.Update_Result.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\OfertaListadoContext\OfertaListado.wsdl" />
+    <None Include="Service References\OfertaListadoContext\RepositoryWebServiceTRH.OfertaListadoContext.GetRecIdFromKey_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\OfertaListadoContext\RepositoryWebServiceTRH.OfertaListadoContext.IsUpdated_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\OfertaListadoContext\RepositoryWebServiceTRH.OfertaListadoContext.OfertaListado.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\OfertaListadoContext\RepositoryWebServiceTRH.OfertaListadoContext.ReadByRecId_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\OfertaListadoContext\RepositoryWebServiceTRH.OfertaListadoContext.ReadMultiple_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\OfertaListadoContext\RepositoryWebServiceTRH.OfertaListadoContext.Read_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\PedidoVentasContext\Pedidos.wsdl" />
     <None Include="Service References\PedidoVentasContext\RepositoryWebServiceTRH.PedidoVentasContext.CreateMultiple_Result.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -239,6 +264,7 @@
     <WCFMetadataStorage Include="Service References\EntregaAlmacenEpisContext\" />
     <WCFMetadataStorage Include="Service References\AlmacenRepuestosContext\" />
     <WCFMetadataStorage Include="Service References\ItemContext\" />
+    <WCFMetadataStorage Include="Service References\OfertaListadoContext\" />
     <WCFMetadataStorage Include="Service References\PedidoVentasContext\" />
   </ItemGroup>
   <ItemGroup>
@@ -309,6 +335,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\PedidoVentasContext\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\OfertaListadoContext\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\OfertaListadoContext\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\OfertaListadoContext\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
