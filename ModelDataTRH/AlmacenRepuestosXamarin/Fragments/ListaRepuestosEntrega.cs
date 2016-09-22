@@ -123,20 +123,30 @@ namespace AlmacenRepuestosXamarin.Fragments
         {
 
             string localPath = await ManagerRepuestos.getAlbaran(codDocumento);
-
             var localImage = new Java.IO.File(localPath);
-            if (localImage.Exists())
+            if (!localPath.Equals(string.Empty))
             {
 
-                global::Android.Net.Uri uri = global::Android.Net.Uri.FromFile(localImage);
+                if (localImage.Exists())
+                {
 
-                var intent = new Intent(Intent.ActionView, uri);
-                //  intent.SetType ("application/pdf");
+                    global::Android.Net.Uri uri = global::Android.Net.Uri.FromFile(localImage);
 
-                intent.SetDataAndType(global::Android.Net.Uri.FromFile(localImage), "application/pdf");
+                    var intent = new Intent(Intent.ActionView, uri);
+                    // intent.SetType ("application/pdf");
 
-                this.StartActivity(intent);
+                    intent.SetDataAndType(global::Android.Net.Uri.FromFile(localImage), "application/pdf");
+
+                    //this.StartActivity(intent);
+                    ((Activity)view.Context).StartActivity(intent);
+                }
             }
+            else {
+
+                Toast.MakeText(this.Activity, "No se ha encontrado ninguna Ruta.", ToastLength.Long);
+                return false;
+            }
+
             return true;
         }
 
@@ -305,6 +315,10 @@ namespace AlmacenRepuestosXamarin.Fragments
                     Toast.MakeText(this.Activity, "No se encuentra albarán!!!", ToastLength.Long).Show();
                 }
                 progressLayout.Visibility = ViewStates.Gone;
+            }
+            else {
+
+                Toast.MakeText(this.Activity, "No existe numero documento, nada que imprimir", ToastLength.Long).Show();
             }
         }
 

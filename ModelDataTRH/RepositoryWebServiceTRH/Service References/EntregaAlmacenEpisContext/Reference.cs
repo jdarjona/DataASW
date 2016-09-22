@@ -567,7 +567,7 @@ namespace RepositoryWebServiceTRH.EntregaAlmacenEpisContext {
     //    /// <comentarios/>
     //    T8,
     //}
-    ///Lieja
+    /////Lieja
     public enum Maquina
     {
 

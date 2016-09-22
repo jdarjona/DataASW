@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Runtime.Serialization;
+
 namespace RepositoryWebServiceTRH.PedidoVentasContext {
     
     
@@ -110,156 +112,158 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:microsoft-dynamics-schemas/page/pedidos")]
+    [DataContract]
     public partial class Pedidos : object, System.ComponentModel.INotifyPropertyChanged {
-        
+        [DataMember]
         private string keyField;
-        
+        [DataMember]
         private string noField;
-        
+        [DataMember]
         private string sell_to_Customer_NoField;
-        
+        [DataMember]
         private string sell_to_Contact_NoField;
-        
+        [DataMember]
         private string sell_to_Customer_NameField;
-        
+        [DataMember]
         private string sell_to_AddressField;
-        
+        [DataMember]
         private string sell_to_Address_2Field;
-        
+        [DataMember]
         private string sell_to_CityField;
-        
+        [DataMember]
         private string codigo_Cliente_ContactoField;
-        
+        [DataMember]
         private string telefono_ClienteField;
-        
+        [DataMember]
         private string fax_ClienteField;
-        
+        [DataMember]
         private string email_ClienteField;
-        
+        [DataMember]
         private string vAT_Registration_NoField;
-        
+        [DataMember]
         private string sell_to_ContactField;
-        
+        [DataMember]
         private int no_of_Archived_VersionsField;
-        
+        [DataMember]
         private bool no_of_Archived_VersionsFieldSpecified;
-        
+        [DataMember]
         private System.DateTime order_DateField;
-        
+        [DataMember]
         private bool order_DateFieldSpecified;
-        
+        [DataMember]
         private System.DateTime document_DateField;
-        
+        [DataMember]
         private bool document_DateFieldSpecified;
-        
+        [DataMember]
         private System.DateTime requested_Delivery_DateField;
-        
+        [DataMember]
         private bool requested_Delivery_DateFieldSpecified;
-        
+        [DataMember]
         private System.DateTime promised_Delivery_DateField;
-        
+        [DataMember]
         private bool promised_Delivery_DateFieldSpecified;
-        
+        [DataMember]
         private int numero_IncidenciasField;
-        
+        [DataMember]
         private bool numero_IncidenciasFieldSpecified;
-        
+        [DataMember]
         private string salesperson_CodeField;
-        
+        [DataMember]
         private string cod_Agrupacion_PedidoField;
-        
+        [DataMember]
         private Status statusField;
-        
+        [DataMember]
         private bool statusFieldSpecified;
-        
+        [DataMember]
         private bool eslingasField;
-        
+        [DataMember]
         private bool eslingasFieldSpecified;
-        
+        [DataMember]
         private System.DateTime fecha_Revision_PreciosField;
-        
+        [DataMember]
         private bool fecha_Revision_PreciosFieldSpecified;
-        
+        [DataMember]
         private string external_Document_NoField;
-        
+        [DataMember]
         private string ship_to_CodeField;
-        
+        [DataMember]
         private string ship_to_NameField;
-        
+        [DataMember]
         private string ship_to_AddressField;
-        
+        [DataMember]
         private string ship_to_Address_2Field;
-        
+        [DataMember]
         private string ship_to_Post_CodeField;
-        
+        [DataMember]
         private string ship_to_CityField;
-        
+        [DataMember]
         private string ship_to_CountyField;
-        
+        [DataMember]
         private string ship_to_ContactField;
-        
+        [DataMember]
         private string ship_to_Country_Region_CodeField;
-        
+        [DataMember]
         private string location_CodeField;
-        
+        [DataMember]
         private System.DateTime shipment_DateField;
-        
+        [DataMember]
         private bool shipment_DateFieldSpecified;
-        
+        [DataMember]
         private decimal coste_Total_TransporteField;
-        
+        [DataMember]
         private bool coste_Total_TransporteFieldSpecified;
-        
+        [DataMember]
         private decimal euros_Tm_PorteField;
-        
+        [DataMember]
         private bool euros_Tm_PorteFieldSpecified;
-        
+        [DataMember]
         private Tipo_Gestion_Transporte tipo_Gestion_TransporteField;
-        
+        [DataMember]
         private bool tipo_Gestion_TransporteFieldSpecified;
-        
+        [DataMember]
         private int nº_Camiones_CalField;
-        
+        [DataMember]
         private bool nº_Camiones_CalFieldSpecified;
-        
+        [DataMember]
         private string telefono_ContactoField;
-        
+        [DataMember]
         private string email_ContactoField;
-        
+        [DataMember]
         private string movil_ContactoField;
-        
+        [DataMember]
         private string fax_ContactoField;
-        
+        [DataMember]
         private string cargo_ContactoField;
-        
+        [DataMember]
         private string comentariosField;
-        
+        [DataMember]
         private string email_EnvioField;
-        
+        [DataMember]
         private string telefono_EnvioField;
-        
+        [DataMember]
         private string fax_EnvioField;
-        
+        [DataMember]
         private bool doble_DescargaField;
-        
+        [DataMember]
         private bool doble_DescargaFieldSpecified;
-        
+        [DataMember]
         private string cod_Agencia_TransporteField;
-        
+        [DataMember]
         private bool camion_GruaField;
-        
+        [DataMember]
         private bool camion_GruaFieldSpecified;
-        
+        [DataMember]
         private string cod_Pedido_TransporteField;
-        
+        [DataMember]
         private System.DateTime fecha_Carga_RequeridaField;
-        
+        [DataMember]
         private bool fecha_Carga_RequeridaFieldSpecified;
-        
+        [DataMember]
         private Sales_Order_Subform_ws[] salesLinesField;
-        
+
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        [DataMember]
         public string Key {
             get {
                 return this.keyField;
@@ -272,6 +276,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        [DataMember]
         public string No {
             get {
                 return this.noField;
@@ -284,6 +289,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        [DataMember]
         public string Sell_to_Customer_No {
             get {
                 return this.sell_to_Customer_NoField;
@@ -296,6 +302,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        [DataMember]
         public string Sell_to_Contact_No {
             get {
                 return this.sell_to_Contact_NoField;
@@ -308,6 +315,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        [DataMember]
         public string Sell_to_Customer_Name {
             get {
                 return this.sell_to_Customer_NameField;
@@ -320,6 +328,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        [DataMember]
         public string Sell_to_Address {
             get {
                 return this.sell_to_AddressField;
@@ -332,6 +341,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        [DataMember]
         public string Sell_to_Address_2 {
             get {
                 return this.sell_to_Address_2Field;
@@ -344,6 +354,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=7)]
+        [DataMember]
         public string Sell_to_City {
             get {
                 return this.sell_to_CityField;
@@ -356,6 +367,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=8)]
+        [DataMember]
         public string Codigo_Cliente_Contacto {
             get {
                 return this.codigo_Cliente_ContactoField;
@@ -368,6 +380,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=9)]
+        [DataMember]
         public string Telefono_Cliente {
             get {
                 return this.telefono_ClienteField;
@@ -380,6 +393,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=10)]
+        [DataMember]
         public string Fax_Cliente {
             get {
                 return this.fax_ClienteField;
@@ -392,6 +406,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=11)]
+        [DataMember]
         public string Email_Cliente {
             get {
                 return this.email_ClienteField;
@@ -404,6 +419,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=12)]
+        [DataMember]
         public string VAT_Registration_No {
             get {
                 return this.vAT_Registration_NoField;
@@ -416,6 +432,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=13)]
+        [DataMember]
         public string Sell_to_Contact {
             get {
                 return this.sell_to_ContactField;
@@ -428,6 +445,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=14)]
+        [DataMember]
         public int No_of_Archived_Versions {
             get {
                 return this.no_of_Archived_VersionsField;
@@ -440,6 +458,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool No_of_Archived_VersionsSpecified {
             get {
                 return this.no_of_Archived_VersionsFieldSpecified;
@@ -452,6 +471,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(DataType="date", Order=15)]
+        [DataMember]
         public System.DateTime Order_Date {
             get {
                 return this.order_DateField;
@@ -464,6 +484,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool Order_DateSpecified {
             get {
                 return this.order_DateFieldSpecified;
@@ -476,6 +497,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(DataType="date", Order=16)]
+        [DataMember]
         public System.DateTime Document_Date {
             get {
                 return this.document_DateField;
@@ -488,6 +510,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool Document_DateSpecified {
             get {
                 return this.document_DateFieldSpecified;
@@ -500,6 +523,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(DataType="date", Order=17)]
+        [DataMember]
         public System.DateTime Requested_Delivery_Date {
             get {
                 return this.requested_Delivery_DateField;
@@ -512,6 +536,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool Requested_Delivery_DateSpecified {
             get {
                 return this.requested_Delivery_DateFieldSpecified;
@@ -524,6 +549,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(DataType="date", Order=18)]
+        [DataMember]
         public System.DateTime Promised_Delivery_Date {
             get {
                 return this.promised_Delivery_DateField;
@@ -536,6 +562,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool Promised_Delivery_DateSpecified {
             get {
                 return this.promised_Delivery_DateFieldSpecified;
@@ -548,6 +575,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=19)]
+        [DataMember]
         public int Numero_Incidencias {
             get {
                 return this.numero_IncidenciasField;
@@ -560,6 +588,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool Numero_IncidenciasSpecified {
             get {
                 return this.numero_IncidenciasFieldSpecified;
@@ -572,6 +601,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=20)]
+        [DataMember]
         public string Salesperson_Code {
             get {
                 return this.salesperson_CodeField;
@@ -584,6 +614,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=21)]
+        [DataMember]
         public string Cod_Agrupacion_Pedido {
             get {
                 return this.cod_Agrupacion_PedidoField;
@@ -596,6 +627,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=22)]
+        [DataMember]
         public Status Status {
             get {
                 return this.statusField;
@@ -608,6 +640,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool StatusSpecified {
             get {
                 return this.statusFieldSpecified;
@@ -620,6 +653,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=23)]
+        [DataMember]
         public bool Eslingas {
             get {
                 return this.eslingasField;
@@ -632,6 +666,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool EslingasSpecified {
             get {
                 return this.eslingasFieldSpecified;
@@ -644,6 +679,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(DataType="date", Order=24)]
+        [DataMember]
         public System.DateTime Fecha_Revision_Precios {
             get {
                 return this.fecha_Revision_PreciosField;
@@ -656,6 +692,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool Fecha_Revision_PreciosSpecified {
             get {
                 return this.fecha_Revision_PreciosFieldSpecified;
@@ -668,6 +705,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=25)]
+        [DataMember]
         public string External_Document_No {
             get {
                 return this.external_Document_NoField;
@@ -680,6 +718,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=26)]
+        [DataMember]
         public string Ship_to_Code {
             get {
                 return this.ship_to_CodeField;
@@ -692,6 +731,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=27)]
+        [DataMember]
         public string Ship_to_Name {
             get {
                 return this.ship_to_NameField;
@@ -704,6 +744,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=28)]
+        [DataMember]
         public string Ship_to_Address {
             get {
                 return this.ship_to_AddressField;
@@ -716,6 +757,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=29)]
+        [DataMember]
         public string Ship_to_Address_2 {
             get {
                 return this.ship_to_Address_2Field;
@@ -728,6 +770,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=30)]
+        [DataMember]
         public string Ship_to_Post_Code {
             get {
                 return this.ship_to_Post_CodeField;
@@ -740,6 +783,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=31)]
+        [DataMember]
         public string Ship_to_City {
             get {
                 return this.ship_to_CityField;
@@ -752,6 +796,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=32)]
+        [DataMember]
         public string Ship_to_County {
             get {
                 return this.ship_to_CountyField;
@@ -764,6 +809,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=33)]
+        [DataMember]
         public string Ship_to_Contact {
             get {
                 return this.ship_to_ContactField;
@@ -776,6 +822,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=34)]
+        [DataMember]
         public string Ship_to_Country_Region_Code {
             get {
                 return this.ship_to_Country_Region_CodeField;
@@ -788,6 +835,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=35)]
+        [DataMember]
         public string Location_Code {
             get {
                 return this.location_CodeField;
@@ -800,6 +848,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(DataType="date", Order=36)]
+        [DataMember]
         public System.DateTime Shipment_Date {
             get {
                 return this.shipment_DateField;
@@ -812,6 +861,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool Shipment_DateSpecified {
             get {
                 return this.shipment_DateFieldSpecified;
@@ -824,6 +874,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=37)]
+        [DataMember]
         public decimal Coste_Total_Transporte {
             get {
                 return this.coste_Total_TransporteField;
@@ -836,6 +887,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool Coste_Total_TransporteSpecified {
             get {
                 return this.coste_Total_TransporteFieldSpecified;
@@ -848,6 +900,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=38)]
+        [DataMember]
         public decimal Euros_Tm_Porte {
             get {
                 return this.euros_Tm_PorteField;
@@ -860,6 +913,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool Euros_Tm_PorteSpecified {
             get {
                 return this.euros_Tm_PorteFieldSpecified;
@@ -872,6 +926,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=39)]
+        [DataMember]
         public Tipo_Gestion_Transporte Tipo_Gestion_Transporte {
             get {
                 return this.tipo_Gestion_TransporteField;
@@ -884,6 +939,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool Tipo_Gestion_TransporteSpecified {
             get {
                 return this.tipo_Gestion_TransporteFieldSpecified;
@@ -896,6 +952,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=40)]
+        [DataMember]
         public int Nº_Camiones_Cal {
             get {
                 return this.nº_Camiones_CalField;
@@ -908,6 +965,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool Nº_Camiones_CalSpecified {
             get {
                 return this.nº_Camiones_CalFieldSpecified;
@@ -920,6 +978,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=41)]
+        [DataMember]
         public string Telefono_Contacto {
             get {
                 return this.telefono_ContactoField;
@@ -932,6 +991,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=42)]
+        [DataMember]
         public string Email_Contacto {
             get {
                 return this.email_ContactoField;
@@ -944,6 +1004,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=43)]
+        [DataMember]
         public string Movil_Contacto {
             get {
                 return this.movil_ContactoField;
@@ -956,6 +1017,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=44)]
+        [DataMember]
         public string Fax_Contacto {
             get {
                 return this.fax_ContactoField;
@@ -968,6 +1030,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=45)]
+        [DataMember]
         public string Cargo_Contacto {
             get {
                 return this.cargo_ContactoField;
@@ -980,6 +1043,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=46)]
+        [DataMember]
         public string Comentarios {
             get {
                 return this.comentariosField;
@@ -992,6 +1056,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=47)]
+        [DataMember]
         public string Email_Envio {
             get {
                 return this.email_EnvioField;
@@ -1004,6 +1069,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=48)]
+        [DataMember]
         public string Telefono_Envio {
             get {
                 return this.telefono_EnvioField;
@@ -1016,6 +1082,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=49)]
+        [DataMember]
         public string Fax_Envio {
             get {
                 return this.fax_EnvioField;
@@ -1028,6 +1095,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=50)]
+        [DataMember]
         public bool Doble_Descarga {
             get {
                 return this.doble_DescargaField;
@@ -1040,6 +1108,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool Doble_DescargaSpecified {
             get {
                 return this.doble_DescargaFieldSpecified;
@@ -1052,6 +1121,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=51)]
+        [DataMember]
         public string Cod_Agencia_Transporte {
             get {
                 return this.cod_Agencia_TransporteField;
@@ -1064,6 +1134,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=52)]
+        [DataMember]
         public bool Camion_Grua {
             get {
                 return this.camion_GruaField;
@@ -1076,6 +1147,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool Camion_GruaSpecified {
             get {
                 return this.camion_GruaFieldSpecified;
@@ -1088,6 +1160,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=53)]
+        [DataMember]
         public string Cod_Pedido_Transporte {
             get {
                 return this.cod_Pedido_TransporteField;
@@ -1100,6 +1173,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(DataType="date", Order=54)]
+        [DataMember]
         public System.DateTime Fecha_Carga_Requerida {
             get {
                 return this.fecha_Carga_RequeridaField;
@@ -1112,6 +1186,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool Fecha_Carga_RequeridaSpecified {
             get {
                 return this.fecha_Carga_RequeridaFieldSpecified;
@@ -1125,6 +1200,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         /// <comentarios/>
         [System.Xml.Serialization.XmlArrayAttribute(Order=55)]
         [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)]
+        [DataMember]
         public Sales_Order_Subform_ws[] SalesLines {
             get {
                 return this.salesLinesField;
@@ -1186,114 +1262,116 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:microsoft-dynamics-schemas/page/pedidos")]
+    [DataContract]
     public partial class Sales_Order_Subform_ws : object, System.ComponentModel.INotifyPropertyChanged {
-        
+        [DataMember]
         private string keyField;
-        
+        [DataMember]
         private string document_NoField;
-        
+        [DataMember]
         private Type typeField;
-        
+        [DataMember]
         private bool typeFieldSpecified;
-        
+        [DataMember]
         private string noField;
-        
+        [DataMember]
         private string variant_CodeField;
-        
+        [DataMember]
         private string vAT_Prod_Posting_GroupField;
-        
+        [DataMember]
         private string descriptionField;
-        
+        [DataMember]
         private string location_CodeField;
-        
+        [DataMember]
         private decimal quantityField;
-        
+        [DataMember]
         private bool quantityFieldSpecified;
-        
+        [DataMember]
         private string unit_of_Measure_CodeField;
-        
+        [DataMember]
         private string unit_of_MeasureField;
-        
+        [DataMember]
         private decimal cantidad_PAQField;
-        
+        [DataMember]
         private bool cantidad_PAQFieldSpecified;
-        
+        [DataMember]
         private decimal cantidad_PAÑOField;
-        
+        [DataMember]
         private bool cantidad_PAÑOFieldSpecified;
-        
+        [DataMember]
         private decimal cantidad_M2Field;
-        
+        [DataMember]
         private bool cantidad_M2FieldSpecified;
-        
+        [DataMember]
         private decimal cantidad_KGField;
-        
+        [DataMember]
         private bool cantidad_KGFieldSpecified;
-        
+        [DataMember]
         private decimal descuentoField;
-        
+        [DataMember]
         private bool descuentoFieldSpecified;
-        
+        [DataMember]
         private decimal unit_PriceField;
-        
+        [DataMember]
         private bool unit_PriceFieldSpecified;
-        
+        [DataMember]
         private decimal precio_Ud_DestinoField;
-        
+        [DataMember]
         private bool precio_Ud_DestinoFieldSpecified;
-        
+        [DataMember]
         private decimal line_AmountField;
-        
+        [DataMember]
         private bool line_AmountFieldSpecified;
-        
+        [DataMember]
         private decimal precio_M2_DestinoField;
-        
+        [DataMember]
         private bool precio_M2_DestinoFieldSpecified;
-        
+        [DataMember]
         private decimal precio_PANO_DestinoField;
-        
+        [DataMember]
         private bool precio_PANO_DestinoFieldSpecified;
-        
+        [DataMember]
         private decimal precio_TM_DestinoField;
-        
+        [DataMember]
         private bool precio_TM_DestinoFieldSpecified;
-        
+        [DataMember]
         private decimal paquetesPendientesCargarField;
-        
+        [DataMember]
         private bool paquetesPendientesCargarFieldSpecified;
-        
+        [DataMember]
         private decimal paquetes_CargadosField;
-        
+        [DataMember]
         private bool paquetes_CargadosFieldSpecified;
-        
+        [DataMember]
         private int line_NoField;
-        
+        [DataMember]
         private bool line_NoFieldSpecified;
-        
+        [DataMember]
         private string aliasField;
-        
+        [DataMember]
         private decimal precio_Patio_M2Field;
-        
+        [DataMember]
         private bool precio_Patio_M2FieldSpecified;
-        
+        [DataMember]
         private decimal precio_Patio_TMField;
-        
+        [DataMember]
         private bool precio_Patio_TMFieldSpecified;
-        
+        [DataMember]
         private decimal precio_Patio_PanoField;
-        
+        [DataMember]
         private bool precio_Patio_PanoFieldSpecified;
-        
+        [DataMember]
         private decimal precioLineaTotalField;
-        
+        [DataMember]
         private bool precioLineaTotalFieldSpecified;
-        
+        [DataMember]
         private decimal precioLineaTotalPatioField;
-        
+        [DataMember]
         private bool precioLineaTotalPatioFieldSpecified;
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        [DataMember]
         public string Key {
             get {
                 return this.keyField;
@@ -1306,6 +1384,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        [DataMember]
         public string Document_No {
             get {
                 return this.document_NoField;
@@ -1318,6 +1397,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        [DataMember]
         public Type Type {
             get {
                 return this.typeField;
@@ -1330,6 +1410,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool TypeSpecified {
             get {
                 return this.typeFieldSpecified;
@@ -1342,6 +1423,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        [DataMember]
         public string No {
             get {
                 return this.noField;
@@ -1354,6 +1436,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        [DataMember]
         public string Variant_Code {
             get {
                 return this.variant_CodeField;
@@ -1366,6 +1449,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        [DataMember]
         public string VAT_Prod_Posting_Group {
             get {
                 return this.vAT_Prod_Posting_GroupField;
@@ -1378,6 +1462,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        [DataMember]
         public string Description {
             get {
                 return this.descriptionField;
@@ -1390,6 +1475,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=7)]
+        [DataMember]
         public string Location_Code {
             get {
                 return this.location_CodeField;
@@ -1402,6 +1488,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=8)]
+        [DataMember]
         public decimal Quantity {
             get {
                 return this.quantityField;
@@ -1414,6 +1501,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool QuantitySpecified {
             get {
                 return this.quantityFieldSpecified;
@@ -1426,6 +1514,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=9)]
+        [DataMember]
         public string Unit_of_Measure_Code {
             get {
                 return this.unit_of_Measure_CodeField;
@@ -1438,6 +1527,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=10)]
+        [DataMember]
         public string Unit_of_Measure {
             get {
                 return this.unit_of_MeasureField;
@@ -1450,6 +1540,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=11)]
+        [DataMember]
         public decimal Cantidad_PAQ {
             get {
                 return this.cantidad_PAQField;
@@ -1462,6 +1553,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool Cantidad_PAQSpecified {
             get {
                 return this.cantidad_PAQFieldSpecified;
@@ -1474,6 +1566,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=12)]
+        [DataMember]
         public decimal Cantidad_PAÑO {
             get {
                 return this.cantidad_PAÑOField;
@@ -1486,6 +1579,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool Cantidad_PAÑOSpecified {
             get {
                 return this.cantidad_PAÑOFieldSpecified;
@@ -1498,6 +1592,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=13)]
+        [DataMember]
         public decimal Cantidad_M2 {
             get {
                 return this.cantidad_M2Field;
@@ -1510,6 +1605,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool Cantidad_M2Specified {
             get {
                 return this.cantidad_M2FieldSpecified;
@@ -1522,6 +1618,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=14)]
+        [DataMember]
         public decimal Cantidad_KG {
             get {
                 return this.cantidad_KGField;
@@ -1534,6 +1631,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool Cantidad_KGSpecified {
             get {
                 return this.cantidad_KGFieldSpecified;
@@ -1546,6 +1644,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=15)]
+        [DataMember]
         public decimal Descuento {
             get {
                 return this.descuentoField;
@@ -1558,6 +1657,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool DescuentoSpecified {
             get {
                 return this.descuentoFieldSpecified;
@@ -1570,6 +1670,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=16)]
+        [DataMember]
         public decimal Unit_Price {
             get {
                 return this.unit_PriceField;
@@ -1582,6 +1683,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool Unit_PriceSpecified {
             get {
                 return this.unit_PriceFieldSpecified;
@@ -1594,6 +1696,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=17)]
+        [DataMember]
         public decimal Precio_Ud_Destino {
             get {
                 return this.precio_Ud_DestinoField;
@@ -1606,6 +1709,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool Precio_Ud_DestinoSpecified {
             get {
                 return this.precio_Ud_DestinoFieldSpecified;
@@ -1618,6 +1722,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=18)]
+        [DataMember]
         public decimal Line_Amount {
             get {
                 return this.line_AmountField;
@@ -1630,6 +1735,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool Line_AmountSpecified {
             get {
                 return this.line_AmountFieldSpecified;
@@ -1642,6 +1748,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=19)]
+        [DataMember]
         public decimal Precio_M2_Destino {
             get {
                 return this.precio_M2_DestinoField;
@@ -1654,6 +1761,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool Precio_M2_DestinoSpecified {
             get {
                 return this.precio_M2_DestinoFieldSpecified;
@@ -1666,6 +1774,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=20)]
+        [DataMember]
         public decimal Precio_PANO_Destino {
             get {
                 return this.precio_PANO_DestinoField;
@@ -1678,6 +1787,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool Precio_PANO_DestinoSpecified {
             get {
                 return this.precio_PANO_DestinoFieldSpecified;
@@ -1690,6 +1800,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=21)]
+        [DataMember]
         public decimal Precio_TM_Destino {
             get {
                 return this.precio_TM_DestinoField;
@@ -1702,6 +1813,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool Precio_TM_DestinoSpecified {
             get {
                 return this.precio_TM_DestinoFieldSpecified;
@@ -1714,6 +1826,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=22)]
+        [DataMember]
         public decimal PaquetesPendientesCargar {
             get {
                 return this.paquetesPendientesCargarField;
@@ -1726,6 +1839,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool PaquetesPendientesCargarSpecified {
             get {
                 return this.paquetesPendientesCargarFieldSpecified;
@@ -1738,6 +1852,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=23)]
+        [DataMember]
         public decimal Paquetes_Cargados {
             get {
                 return this.paquetes_CargadosField;
@@ -1750,6 +1865,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool Paquetes_CargadosSpecified {
             get {
                 return this.paquetes_CargadosFieldSpecified;
@@ -1762,6 +1878,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=24)]
+        [DataMember]
         public int Line_No {
             get {
                 return this.line_NoField;
@@ -1774,6 +1891,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool Line_NoSpecified {
             get {
                 return this.line_NoFieldSpecified;
@@ -1786,6 +1904,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=25)]
+        [DataMember]
         public string Alias {
             get {
                 return this.aliasField;
@@ -1798,6 +1917,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=26)]
+        [DataMember]
         public decimal Precio_Patio_M2 {
             get {
                 return this.precio_Patio_M2Field;
@@ -1810,6 +1930,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool Precio_Patio_M2Specified {
             get {
                 return this.precio_Patio_M2FieldSpecified;
@@ -1822,6 +1943,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=27)]
+        [DataMember]
         public decimal Precio_Patio_TM {
             get {
                 return this.precio_Patio_TMField;
@@ -1834,6 +1956,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool Precio_Patio_TMSpecified {
             get {
                 return this.precio_Patio_TMFieldSpecified;
@@ -1846,6 +1969,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=28)]
+        [DataMember]
         public decimal Precio_Patio_Pano {
             get {
                 return this.precio_Patio_PanoField;
@@ -1858,6 +1982,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool Precio_Patio_PanoSpecified {
             get {
                 return this.precio_Patio_PanoFieldSpecified;
@@ -1870,6 +1995,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=29)]
+        [DataMember]
         public decimal PrecioLineaTotal {
             get {
                 return this.precioLineaTotalField;
@@ -1882,6 +2008,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool PrecioLineaTotalSpecified {
             get {
                 return this.precioLineaTotalFieldSpecified;
@@ -1894,6 +2021,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=30)]
+        [DataMember]
         public decimal PrecioLineaTotalPatio {
             get {
                 return this.precioLineaTotalPatioField;
@@ -1906,6 +2034,7 @@ namespace RepositoryWebServiceTRH.PedidoVentasContext {
         
         /// <comentarios/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [DataMember]
         public bool PrecioLineaTotalPatioSpecified {
             get {
                 return this.precioLineaTotalPatioFieldSpecified;
