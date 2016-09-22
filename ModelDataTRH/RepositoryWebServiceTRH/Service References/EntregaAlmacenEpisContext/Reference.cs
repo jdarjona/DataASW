@@ -513,61 +513,6 @@ namespace RepositoryWebServiceTRH.EntregaAlmacenEpisContext {
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:microsoft-dynamics-schemas/page/entregaalmacen")]
     ///Sevilla
-    public enum Maquina
-    {
-
-        /// <comentarios/>
-        _blank_,
-
-        /// <comentarios/>
-        M1,
-
-        /// <comentarios/>
-        M2,
-
-        /// <comentarios/>
-        M3,
-
-        /// <comentarios/>
-        M4,
-
-        /// <comentarios/>
-        R1,
-
-        /// <comentarios/>
-        R2,
-
-        /// <comentarios/>
-        E1,
-
-        /// <comentarios/>
-        E2,
-
-        /// <comentarios/>
-        T1,
-
-        /// <comentarios/>
-        T2,
-
-        /// <comentarios/>
-        T3,
-
-        /// <comentarios/>
-        T4,
-
-        /// <comentarios/>
-        T5,
-
-        /// <comentarios/>
-        T6,
-
-        /// <comentarios/>
-        T7,
-
-        /// <comentarios/>
-        T8,
-    }
-    /////Lieja
     //public enum Maquina
     //{
 
@@ -575,52 +520,107 @@ namespace RepositoryWebServiceTRH.EntregaAlmacenEpisContext {
     //    _blank_,
 
     //    /// <comentarios/>
-    //    M5,
+    //    M1,
 
     //    /// <comentarios/>
-    //    M6,
+    //    M2,
 
     //    /// <comentarios/>
-    //    M7,
+    //    M3,
 
     //    /// <comentarios/>
-    //    M8,
+    //    M4,
 
     //    /// <comentarios/>
-    //    R3,
+    //    R1,
 
     //    /// <comentarios/>
-    //    R4,
+    //    R2,
 
     //    /// <comentarios/>
-    //    E3,
+    //    E1,
 
     //    /// <comentarios/>
-    //    E4,
+    //    E2,
 
     //    /// <comentarios/>
-    //    T9,
+    //    T1,
 
     //    /// <comentarios/>
-    //    T10,
+    //    T2,
 
     //    /// <comentarios/>
-    //    T11,
+    //    T3,
 
     //    /// <comentarios/>
-    //    T12,
+    //    T4,
 
     //    /// <comentarios/>
-    //    T13,
+    //    T5,
 
     //    /// <comentarios/>
-    //    T14,
+    //    T6,
 
     //    /// <comentarios/>
-    //    T15
+    //    T7,
 
-
+    //    /// <comentarios/>
+    //    T8,
     //}
+    ///Lieja
+    public enum Maquina
+    {
+
+        /// <comentarios/>
+        _blank_,
+
+        /// <comentarios/>
+        M5,
+
+        /// <comentarios/>
+        M6,
+
+        /// <comentarios/>
+        M7,
+
+        /// <comentarios/>
+        M8,
+
+        /// <comentarios/>
+        R3,
+
+        /// <comentarios/>
+        R4,
+
+        /// <comentarios/>
+        E3,
+
+        /// <comentarios/>
+        E4,
+
+        /// <comentarios/>
+        T9,
+
+        /// <comentarios/>
+        T10,
+
+        /// <comentarios/>
+        T11,
+
+        /// <comentarios/>
+        T12,
+
+        /// <comentarios/>
+        T13,
+
+        /// <comentarios/>
+        T14,
+
+        /// <comentarios/>
+        T15
+
+
+    }
 
     public enum Empresas
     {
