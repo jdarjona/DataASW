@@ -52,8 +52,14 @@
     <Compile Include="ContextoWebService.cs" />
     <Compile Include="EncryptDecrypt.cs" />
     <Compile Include="IRepository.cs" />
+    <Compile Include="RepositoryPedidoListado.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryAlmacenClientes.cs" />
+    <Compile Include="RepositoryClientes.cs" />
+    <Compile Include="RepositoryCodigoPostales.cs" />
+    <Compile Include="RepositoryContactos.cs" />
     <Compile Include="RepositoryDatosEntreEmpresasCU.cs" />
+    <Compile Include="RepositoryDireccionEnvio.cs" />
     <Compile Include="RepositoryOfertaListado.cs" />
     <Compile Include="RepositoryPedidosVenta.cs" />
     <Compile Include="RepositoryRepuestosCU.cs" />
@@ -61,7 +67,32 @@
     <Compile Include="RepositoryEntragaAlmacenEpis.cs" />
     <Compile Include="RepositoryItem.cs" />
     <Compile Include="RespositoryBase.cs" />
+    <Compile Include="Service References\AlmacenesClientesContext\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ClientesContext\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\CodigoPostalesContext\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ContactosContext\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\DatosEntreEmpresasContext\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\DireccionesEnvioContext\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -81,12 +112,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\FuncionesVentasContext\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\ItemContext\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Service References\OfertaListadoContext\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\PedidoListadoContext\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -103,6 +144,40 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="RepositorioPaTo.snk" />
+    <None Include="Service References\AlmacenesClientesContext\AlmacenesClientes.wsdl" />
+    <None Include="Service References\AlmacenesClientesContext\RepositoryWebServiceTRH.AlmacenesClientesContext.AlmacenesClientes.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlmacenesClientesContext\RepositoryWebServiceTRH.AlmacenesClientesContext.CreateMultiple_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlmacenesClientesContext\RepositoryWebServiceTRH.AlmacenesClientesContext.Create_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlmacenesClientesContext\RepositoryWebServiceTRH.AlmacenesClientesContext.Delete_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlmacenesClientesContext\RepositoryWebServiceTRH.AlmacenesClientesContext.GetRecIdFromKey_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlmacenesClientesContext\RepositoryWebServiceTRH.AlmacenesClientesContext.IsUpdated_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlmacenesClientesContext\RepositoryWebServiceTRH.AlmacenesClientesContext.ReadByRecId_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlmacenesClientesContext\RepositoryWebServiceTRH.AlmacenesClientesContext.ReadMultiple_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlmacenesClientesContext\RepositoryWebServiceTRH.AlmacenesClientesContext.Read_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlmacenesClientesContext\RepositoryWebServiceTRH.AlmacenesClientesContext.UpdateMultiple_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlmacenesClientesContext\RepositoryWebServiceTRH.AlmacenesClientesContext.Update_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\AlmacenRepuestosContext\AlmacenRepuestos.wsdl" />
     <None Include="Service References\AlmacenRepuestosContext\RepositoryWebServiceTRH.AlmacenRepuestosContext.GetAlbaran_Result.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -110,8 +185,144 @@
     <None Include="Service References\AlmacenRepuestosContext\RepositoryWebServiceTRH.AlmacenRepuestosContext.RegistrarEntrega_Result.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\ClientesContext\Clientes.wsdl" />
+    <None Include="Service References\ClientesContext\RepositoryWebServiceTRH.ClientesContext.Clientes.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ClientesContext\RepositoryWebServiceTRH.ClientesContext.CreateMultiple_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ClientesContext\RepositoryWebServiceTRH.ClientesContext.Create_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ClientesContext\RepositoryWebServiceTRH.ClientesContext.Delete_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ClientesContext\RepositoryWebServiceTRH.ClientesContext.GetRecIdFromKey_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ClientesContext\RepositoryWebServiceTRH.ClientesContext.IsUpdated_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ClientesContext\RepositoryWebServiceTRH.ClientesContext.ReadByRecId_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ClientesContext\RepositoryWebServiceTRH.ClientesContext.ReadMultiple_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ClientesContext\RepositoryWebServiceTRH.ClientesContext.Read_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ClientesContext\RepositoryWebServiceTRH.ClientesContext.UpdateMultiple_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ClientesContext\RepositoryWebServiceTRH.ClientesContext.Update_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CodigoPostalesContext\CodigoPostales.wsdl" />
+    <None Include="Service References\CodigoPostalesContext\RepositoryWebServiceTRH.CodigoPostalesContext.CodigoPostales.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CodigoPostalesContext\RepositoryWebServiceTRH.CodigoPostalesContext.CreateMultiple_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CodigoPostalesContext\RepositoryWebServiceTRH.CodigoPostalesContext.Create_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CodigoPostalesContext\RepositoryWebServiceTRH.CodigoPostalesContext.Delete_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CodigoPostalesContext\RepositoryWebServiceTRH.CodigoPostalesContext.GetRecIdFromKey_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CodigoPostalesContext\RepositoryWebServiceTRH.CodigoPostalesContext.IsUpdated_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CodigoPostalesContext\RepositoryWebServiceTRH.CodigoPostalesContext.ReadByRecId_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CodigoPostalesContext\RepositoryWebServiceTRH.CodigoPostalesContext.ReadMultiple_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CodigoPostalesContext\RepositoryWebServiceTRH.CodigoPostalesContext.Read_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CodigoPostalesContext\RepositoryWebServiceTRH.CodigoPostalesContext.UpdateMultiple_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CodigoPostalesContext\RepositoryWebServiceTRH.CodigoPostalesContext.Update_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ContactosContext\Contactos.wsdl" />
+    <None Include="Service References\ContactosContext\RepositoryWebServiceTRH.ContactosContext.Contactos.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ContactosContext\RepositoryWebServiceTRH.ContactosContext.CreateMultiple_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ContactosContext\RepositoryWebServiceTRH.ContactosContext.Create_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ContactosContext\RepositoryWebServiceTRH.ContactosContext.Delete_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ContactosContext\RepositoryWebServiceTRH.ContactosContext.GetRecIdFromKey_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ContactosContext\RepositoryWebServiceTRH.ContactosContext.IsUpdated_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ContactosContext\RepositoryWebServiceTRH.ContactosContext.ReadByRecId_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ContactosContext\RepositoryWebServiceTRH.ContactosContext.ReadMultiple_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ContactosContext\RepositoryWebServiceTRH.ContactosContext.Read_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ContactosContext\RepositoryWebServiceTRH.ContactosContext.UpdateMultiple_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ContactosContext\RepositoryWebServiceTRH.ContactosContext.Update_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\DatosEntreEmpresasContext\DatosEntreEmpresas.wsdl" />
     <None Include="Service References\DatosEntreEmpresasContext\RepositoryWebServiceTRH.DatosEntreEmpresasContext.GetInventarioCosteUnitario_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DireccionesEnvioContext\DireccionesEnvio.wsdl" />
+    <None Include="Service References\DireccionesEnvioContext\RepositoryWebServiceTRH.DireccionesEnvioContext.CreateMultiple_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DireccionesEnvioContext\RepositoryWebServiceTRH.DireccionesEnvioContext.Create_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DireccionesEnvioContext\RepositoryWebServiceTRH.DireccionesEnvioContext.Delete_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DireccionesEnvioContext\RepositoryWebServiceTRH.DireccionesEnvioContext.DireccionesEnvio.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DireccionesEnvioContext\RepositoryWebServiceTRH.DireccionesEnvioContext.GetRecIdFromKey_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DireccionesEnvioContext\RepositoryWebServiceTRH.DireccionesEnvioContext.IsUpdated_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DireccionesEnvioContext\RepositoryWebServiceTRH.DireccionesEnvioContext.ReadByRecId_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DireccionesEnvioContext\RepositoryWebServiceTRH.DireccionesEnvioContext.ReadMultiple_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DireccionesEnvioContext\RepositoryWebServiceTRH.DireccionesEnvioContext.Read_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DireccionesEnvioContext\RepositoryWebServiceTRH.DireccionesEnvioContext.UpdateMultiple_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DireccionesEnvioContext\RepositoryWebServiceTRH.DireccionesEnvioContext.Update_Result.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\EmpleadoContext\Empleados.wsdl" />
@@ -167,6 +378,214 @@
     <None Include="Service References\EntregaAlmacenEpisContext\RepositoryWebServiceTRH.EntregaAlmacenEpisContext.Update_Result.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\FuncionesVentasContext\Avisos.wsdl" />
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.AceptarIncidenicia_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.AgruparPedidos_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.BorrarOferta_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.CaducadoToPedido_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.CambioComercial_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.CamionToOrdenCarga_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.CargarTarifa_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.CerrarOPLanzadas_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.ClientesAlmcen_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.ComercialPais_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.ComercialZona_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.ConsumoAlambron_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.CrearCarpertaIsNotExist_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.CrearContactoPersona_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.CrearDireccionEnvio_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.CrearPedidoCompraTransporte_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.CreateCustomer_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.DeleteTarifaProductos_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.EliminarCamion_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.EliminarLineaCamion_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.EliminarLineaDocumento_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.EmailComercial_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.EnviarEncuesta_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.EnviarIncidencia2_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.EnviarIncidencia_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.Eslingas_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.EtiquetProductos_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.FacturasPG_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.FiltroCif_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.GetNumeroIncidencia_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.ImprimirOrdenCargaDestino_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.ImprimirOrdenCarga_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.ImprimirPdfPedido_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.IncializarTransportistas_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.IncidenciaClientePedido_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.IncidenciaCliente_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.IncidenciasServicio_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.IncidenciasWS_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.InformePedidos_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.Inventario_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.OfertaToPedido_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.OrdeCargaToPedidoCompra_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.PdfAbonoDestino_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.PdfAlbaranVenta_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.PdfFacturaDestino_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.PdfFactura_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.PdfIncidenciaDestino_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.PdfOfertaDestino_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.PdfOferta_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.PdfOrdeCarga_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.PdfPedidoCompra_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.PdfPedidoDestino_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.PdfPedidoTransDestino_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.PdfPedido_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.PdfPlanillaProductoDestino_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.PdfTarifaDestino_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.PedidoCompraToOferta_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.PedidoTransferenciaRepuestos_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.PesoMaxPais_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.PesoPruebaIP_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.Portes_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.ProductoAcamion_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.ProductoToOferta_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.ReferenciaACamionCompleto2_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.ReferenciaACamionCompleto_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.StockProductoAlmacen_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.TarifaProductos_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.ValidarCarga_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FuncionesVentasContext\RepositoryWebServiceTRH.FuncionesVentasContext.ValidarIncidencia_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ItemContext\NuevaListaProductos.wsdl" />
     <None Include="Service References\ItemContext\RepositoryWebServiceTRH.ItemContext.CreateMultiple_Result.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -220,6 +639,25 @@
     <None Include="Service References\OfertaListadoContext\RepositoryWebServiceTRH.OfertaListadoContext.Read_Result.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\PedidoListadoContext\PedidoListado.wsdl" />
+    <None Include="Service References\PedidoListadoContext\RepositoryWebServiceTRH.PedidoListadoContext.GetRecIdFromKey_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PedidoListadoContext\RepositoryWebServiceTRH.PedidoListadoContext.IsUpdated_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PedidoListadoContext\RepositoryWebServiceTRH.PedidoListadoContext.PedidoListado.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PedidoListadoContext\RepositoryWebServiceTRH.PedidoListadoContext.ReadByRecId_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PedidoListadoContext\RepositoryWebServiceTRH.PedidoListadoContext.ReadMultiple_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PedidoListadoContext\RepositoryWebServiceTRH.PedidoListadoContext.Read_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\PedidoVentasContext\Pedidos.wsdl" />
     <None Include="Service References\PedidoVentasContext\RepositoryWebServiceTRH.PedidoVentasContext.CreateMultiple_Result.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -259,12 +697,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\AlmacenesClientesContext\" />
+    <WCFMetadataStorage Include="Service References\ClientesContext\" />
+    <WCFMetadataStorage Include="Service References\CodigoPostalesContext\" />
+    <WCFMetadataStorage Include="Service References\ContactosContext\" />
     <WCFMetadataStorage Include="Service References\DatosEntreEmpresasContext\" />
+    <WCFMetadataStorage Include="Service References\DireccionesEnvioContext\" />
     <WCFMetadataStorage Include="Service References\EmpleadoContext\" />
     <WCFMetadataStorage Include="Service References\EntregaAlmacenEpisContext\" />
     <WCFMetadataStorage Include="Service References\AlmacenRepuestosContext\" />
+    <WCFMetadataStorage Include="Service References\FuncionesVentasContext\" />
     <WCFMetadataStorage Include="Service References\ItemContext\" />
     <WCFMetadataStorage Include="Service References\OfertaListadoContext\" />
+    <WCFMetadataStorage Include="Service References\PedidoListadoContext\" />
     <WCFMetadataStorage Include="Service References\PedidoVentasContext\" />
   </ItemGroup>
   <ItemGroup>
@@ -347,6 +792,90 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\OfertaListadoContext\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AlmacenesClientesContext\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AlmacenesClientesContext\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AlmacenesClientesContext\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ClientesContext\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ClientesContext\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ClientesContext\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CodigoPostalesContext\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CodigoPostalesContext\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CodigoPostalesContext\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ContactosContext\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ContactosContext\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ContactosContext\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DireccionesEnvioContext\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DireccionesEnvioContext\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DireccionesEnvioContext\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PedidoListadoContext\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PedidoListadoContext\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PedidoListadoContext\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FuncionesVentasContext\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FuncionesVentasContext\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FuncionesVentasContext\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

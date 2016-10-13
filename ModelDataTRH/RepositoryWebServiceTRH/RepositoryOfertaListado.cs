@@ -8,7 +8,7 @@ using RepositoryWebServiceTRH.OfertaListadoContext;
 
 namespace RepositoryWebServiceTRH
 {
-    class RepositoryOfertaListado : RespositoryBase, IRepository<OfertaListado, String>
+   public class RepositoryOfertaListado : RespositoryBase, IRepository<OfertaListado, String>
     {
 
 
@@ -64,6 +64,9 @@ namespace RepositoryWebServiceTRH
         {
             try
             {
+                DateTime fecha = DateTime.Today.AddDays(-15);
+                String fechaString = fecha.ToString("d");
+                OfertaListado_Filter[] filtro = new OfertaListado_Filter[] { new OfertaListado_Filter { Field = OfertaListado_Fields.Posting_Date, Criteria = ">" + fechaString } };
                 return Context.contextOfertaListado.ReadMultiple(null, null, 0).ToList();
             }
             catch (Exception ex)

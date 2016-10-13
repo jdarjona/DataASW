@@ -18,7 +18,7 @@ namespace RepositoryWebServicesTest.Tests1
         [SetUp]
         public void initEmpeladoContext() {
 
-            hostWs = new HostWebService(HostWebService.tipoIp.local, HostWebService.empresaWS.TRHSevilla, HostWebService.tipoWebService.Page, "Empleados", @"TRHSEVILLA0\administrador", "Paulagallardo2014");
+            hostWs = new HostWebService(HostWebService.tipoIp.local, HostWebService.empresaWS.TRHLieja, HostWebService.tipoWebService.Page, "Empleados", @"TRH.LIEJA\administrador", "Paulagallardo2014");
 
 
         }

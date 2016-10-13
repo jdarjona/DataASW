@@ -11,6 +11,13 @@ using RepositoryWebServiceTRH.ItemContext;
 using RepositoryWebServiceTRH.DatosEntreEmpresasContext;
 using RepositoryWebServiceTRH.PedidoVentasContext;
 using RepositoryWebServiceTRH.OfertaListadoContext;
+using RepositoryWebServiceTRH.AlmacenesClientesContext;
+using RepositoryWebServiceTRH.CodigoPostalesContext;
+using RepositoryWebServiceTRH.ContactosContext;
+using RepositoryWebServiceTRH.PedidoListadoContext;
+using RepositoryWebServiceTRH.ClientesContext;
+using RepositoryWebServiceTRH.DireccionesEnvioContext;
+
 
 
 namespace RepositoryWebServiceTRH
@@ -24,7 +31,12 @@ namespace RepositoryWebServiceTRH
         public static DatosEntreEmpresas_PortClient contextDatosEntreEmpresas { get; private set; }
         public static OfertaListado_PortClient contextOfertaListado { get; private set; }
         // public static DatosEntreEmpresas_PortClient contextDatosEntreEmpresas { get; private set; }
-
+        public static AlmacenesClientes_PortClient contextAlmacenesClientes { get; set; }
+        public static Clientes_PortClient contextClientes { get; set; }
+        public static CodigoPostales_PortClient contextCodigoPostales { get; set; }
+        public static Contactos_PortClient contextContactos { get; set; }
+        public static DireccionesEnvio_PortClient contextDireccionesEnvio { get; set; }
+        public static PedidoListado_PortClient contextPedidoListado { get; set; }
         public static Pedidos_PortClient contextPedidosVenta { get; private set; }
 
         public static string usuario=@"TRHSEVILLA0\administrador";
@@ -39,13 +51,29 @@ namespace RepositoryWebServiceTRH
             navisionWSBinding.Security.Transport.ClientCredentialType = HttpClientCredentialType.Windows;
             navisionWSBinding.MaxReceivedMessageSize = 2000971520;
 
-            initEmpleadosPortCliente(navisionWSBinding, hostWS);
-            initEntregaAlmacenEpisPortCliente(navisionWSBinding, hostWS);
-            hostWS.tipoServicioWeb = HostWebService.tipoWebService.Codeunit;
-            initAlmacenesClientesPortCliente(navisionWSBinding, hostWS);
+            //Page
             hostWS.tipoServicioWeb = HostWebService.tipoWebService.Page;
+            initAlmacenesClientesPortClient(navisionWSBinding, hostWS);
+            initEntregaAlmacenEpisPortCliente(navisionWSBinding, hostWS);
+            initClientesPortClient(navisionWSBinding, hostWS);
+            initCodigoPostalesPortClient(navisionWSBinding, hostWS);
+            initContactosPortClient(navisionWSBinding, hostWS);
+            initDireccionesEnvioPortClient(navisionWSBinding, hostWS);
+            initEmpleadosPortCliente(navisionWSBinding, hostWS);
+            initOfertaListadoPortCliente(navisionWSBinding, hostWS);
             initItemPortCliente(navisionWSBinding, hostWS);
             initPedidoVentasPortCliente(navisionWSBinding, hostWS);
+            initPedidoListadoPortClient(navisionWSBinding, hostWS);
+            //CU
+            hostWS.tipoServicioWeb = HostWebService.tipoWebService.Codeunit;
+            initAlmacenesClientesPortCliente(navisionWSBinding, hostWS);
+
+
+            
+            
+           
+           
+            
         }
         private static BasicHttpBinding CreateBasicHttp()
         {
@@ -63,8 +91,57 @@ namespace RepositoryWebServiceTRH
             return binding;
         }
         #endregion
-        
+
         #region INICIALIZACION DE PORT_CLIENTS
+        private static void initAlmacenesClientesPortClient(BasicHttpBinding navisionWSBinding, HostWebService hostWs) {
+            contextAlmacenesClientes = new AlmacenesClientes_PortClient(navisionWSBinding, new EndpointAddress(string.Format(hostWs.urlHost, "AlmacenesClientes", HostWebService.tipoWebService.Page.ToString())));
+            contextAlmacenesClientes.ClientCredentials.Windows.AllowedImpersonationLevel = System.Security.Principal.TokenImpersonationLevel.Delegation;
+            contextAlmacenesClientes.ClientCredentials.Windows.ClientCredential = new System.Net.NetworkCredential(hostWs.user, hostWs.password);
+
+
+        }
+
+        private static void initClientesPortClient(BasicHttpBinding navisionWSBinding, HostWebService hostWs)
+        {
+            contextClientes = new Clientes_PortClient(navisionWSBinding, new EndpointAddress(string.Format(hostWs.urlHost, "Clientes", HostWebService.tipoWebService.Page.ToString())));
+            contextClientes.ClientCredentials.Windows.AllowedImpersonationLevel = System.Security.Principal.TokenImpersonationLevel.Delegation;
+            contextClientes.ClientCredentials.Windows.ClientCredential = new System.Net.NetworkCredential(hostWs.user, hostWs.password);
+
+
+        }
+        private static void initCodigoPostalesPortClient(BasicHttpBinding navisionWSBinding, HostWebService hostWs)
+        {
+            contextCodigoPostales = new CodigoPostales_PortClient(navisionWSBinding, new EndpointAddress(string.Format(hostWs.urlHost, "CodigoPostales", HostWebService.tipoWebService.Page.ToString())));
+            contextCodigoPostales.ClientCredentials.Windows.AllowedImpersonationLevel = System.Security.Principal.TokenImpersonationLevel.Delegation;
+            contextCodigoPostales.ClientCredentials.Windows.ClientCredential = new System.Net.NetworkCredential(hostWs.user, hostWs.password);
+
+
+        }
+
+        private static void initContactosPortClient(BasicHttpBinding navisionWSBinding, HostWebService hostWs)
+        {
+            contextContactos = new Contactos_PortClient(navisionWSBinding, new EndpointAddress(string.Format(hostWs.urlHost, "Contactos", HostWebService.tipoWebService.Page.ToString())));
+            contextContactos.ClientCredentials.Windows.AllowedImpersonationLevel = System.Security.Principal.TokenImpersonationLevel.Delegation;
+            contextContactos.ClientCredentials.Windows.ClientCredential = new System.Net.NetworkCredential(hostWs.user, hostWs.password);
+
+
+        }
+        private static void initDireccionesEnvioPortClient(BasicHttpBinding navisionWSBinding, HostWebService hostWs)
+        {
+            contextDireccionesEnvio = new DireccionesEnvio_PortClient(navisionWSBinding, new EndpointAddress(string.Format(hostWs.urlHost, "DireccionesEnvio", HostWebService.tipoWebService.Page.ToString())));
+            contextDireccionesEnvio.ClientCredentials.Windows.AllowedImpersonationLevel = System.Security.Principal.TokenImpersonationLevel.Delegation;
+            contextDireccionesEnvio.ClientCredentials.Windows.ClientCredential = new System.Net.NetworkCredential(hostWs.user, hostWs.password);
+            
+        }
+
+        private static void initPedidoListadoPortClient(BasicHttpBinding navisionWSBinding, HostWebService hostWs)
+        {
+            contextPedidoListado = new PedidoListado_PortClient(navisionWSBinding, new EndpointAddress(string.Format(hostWs.urlHost, "PedidoListado", HostWebService.tipoWebService.Page.ToString())));
+            contextPedidoListado.ClientCredentials.Windows.AllowedImpersonationLevel = System.Security.Principal.TokenImpersonationLevel.Delegation;
+            contextPedidoListado.ClientCredentials.Windows.ClientCredential = new System.Net.NetworkCredential(hostWs.user, hostWs.password);
+
+        }
+
         private static void initEmpleadosPortCliente(BasicHttpBinding navisionWSBinding, HostWebService hostWs)
         {
            

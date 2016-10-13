@@ -1,0 +1,2294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/Avisos" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Avisos" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Avisos" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="InformePedidos">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="InformePedidos_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="IncidenciasWS">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codpedido" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="IncidenciasWS_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="IncidenciasServicio">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codpedido" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="codReport" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="IncidenciasServicio_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="Portes">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="insertarPorte" type="boolean" />
+            <element minOccurs="1" maxOccurs="1" name="precioTransporte" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="codPedidoAgrupado" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="insertarEslinga" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="Portes_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="IncidenciaCliente">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codCliente" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="codPedido" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="IncidenciaCliente_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="EnviarIncidencia">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codPedido" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="comentarios" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="codComercial" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="EnviarIncidencia_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="EnviarIncidencia2">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codPedido" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="comentarios" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="EnviarIncidencia2_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="OfertaToPedido">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codOferta" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="OfertaToPedido_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="BorrarOferta">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codOferta" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="BorrarOferta_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="PdfOferta">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codOferta" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PdfOferta_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ValidarIncidencia">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codDocumento" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="idUsuario" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="respuesta" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ValidarIncidencia_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PdfPedido">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codPedido" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PdfPedido_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ProductoAcamion">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codOferta" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="numeroCamion" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="lineaOferta" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="numeroPaquetes" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="pilaCamion" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ProductoAcamion_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="EliminarCamion">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codOferta" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="numeroCamion" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="EliminarCamion_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="CamionToOrdenCarga">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="numeroCamion" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="codPedido" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="fechaSuministro" type="dateTime" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CamionToOrdenCarga_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="OrdeCargaToPedidoCompra">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codPedido" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="OrdeCargaToPedidoCompra_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="PedidoCompraToOferta">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="PedidoCompraToOferta_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="ImprimirOrdenCarga">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codPedido" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ImprimirOrdenCarga_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CreateCustomer">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="customerTemplate" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="codigoContacto" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CreateCustomer_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CrearContactoPersona">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="nombre" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="email" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="telefono" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="movil" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="fax" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="cargo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="codigoCliente" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="codContacto" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CrearContactoPersona_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CrearDireccionEnvio">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codeDireccionEnvio" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="customer_Noa46" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="name" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="address" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="address_2" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="city" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="contact" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="phone_Noa46" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="fax_Noa46" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="post_Code" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="county" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="ea45Mail" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="otros_datos" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CrearDireccionEnvio_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ProductoToOferta">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codProducto" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="codOferta" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ProductoToOferta_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="EliminarLineaDocumento">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codDocumento" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="lineaDocumento" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="EliminarLineaDocumento_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PdfOfertaDestino">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codOferta" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="ubicacion" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="bnombreCliente" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PdfOfertaDestino_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ImprimirOrdenCargaDestino">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codPedido" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="ubicacion" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ImprimirOrdenCargaDestino_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="EliminarLineaCamion">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codDocumento" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="numeroCamion" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="lineaCamion" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="pila" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="EliminarLineaCamion_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetNumeroIncidencia">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="idDocumento" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetNumeroIncidencia_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ComercialZona">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="ComercialZona_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="CaducadoToPedido">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codPedido" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CaducadoToPedido_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="Eslingas">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codDocumento" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="insertar" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="Eslingas_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PdfPedidoDestino">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codOferta" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="ubicacion" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PdfPedidoDestino_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ComercialPais">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codComercial" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ComercialPais_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PdfFacturaDestino">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codFactura" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PdfFacturaDestino_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PdfTarifaDestino">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codArea" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PdfTarifaDestino_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="FacturasPG">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="FacturasPG_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="IncializarTransportistas">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="IncializarTransportistas_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="EnviarEncuesta">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="persona" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="email" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="idCliente" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="EnviarEncuesta_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="PdfOrdeCarga">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codPedido" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PdfOrdeCarga_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ImprimirPdfPedido">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codPedido" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ImprimirPdfPedido_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PdfFactura">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codFactura" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="carpeta" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PdfFactura_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PesoMaxPais">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codPais" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PesoMaxPais_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ValidarCarga">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="cargaOk" type="boolean" />
+            <element minOccurs="1" maxOccurs="1" name="codAgrupacion" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ValidarCarga_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="ConsumoAlambron">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="idAlambrom" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="no_" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="colada" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="pesoMedio" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="cantidad" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="idMaquina" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="turno" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="idOperario" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="idJefeEquipo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="tiempo" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ConsumoAlambron_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="TarifaProductos">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codOferta" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="tipoTarifa" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="TarifaProductos_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ReferenciaACamionCompleto">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codProducto" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="codOferta" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="paquetescamion" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="numeroCamion" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ReferenciaACamionCompleto_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="DeleteTarifaProductos">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codOferta" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="tipoTarifa" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="DeleteTarifaProductos_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="AgruparPedidos">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codPedido" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="codPedido2" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="AgruparPedidos_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CargarTarifa">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="CargarTarifa_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="ReferenciaACamionCompleto2">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codProducto" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="codOferta" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ReferenciaACamionCompleto2_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CrearPedidoCompraTransporte">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codPedido" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="crear" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CrearPedidoCompraTransporte_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="EmailComercial">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codComercial" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="EmailComercial_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PdfPedidoCompra">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codPedido" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PdfPedidoCompra_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="FiltroCif">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="FiltroCif_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="PdfAbonoDestino">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codAbono" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PdfAbonoDestino_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PdfPedidoTransDestino">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codPedidoTransporte" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="ruta" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PdfPedidoTransDestino_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PdfIncidenciaDestino">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codOferta" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="ubicacion" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="bnombreCliente" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PdfIncidenciaDestino_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ClientesAlmcen">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="ClientesAlmcen_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="PdfPlanillaProductoDestino">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codProducto" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PdfPlanillaProductoDestino_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PesoPruebaIP">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="bascula" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PesoPruebaIP_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="StockProductoAlmacen">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="producto" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="almacen" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="cantidadBaseOferta" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="StockProductoAlmacen_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="EtiquetProductos">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="EtiquetProductos_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PdfAlbaranVenta">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codAlbaran" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PdfAlbaranVenta_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="AceptarIncidenicia">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codPedido" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="aceptar" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="AceptarIncidenicia_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="Inventario">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="Inventario_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="CrearCarpertaIsNotExist">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="carpeta" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CrearCarpertaIsNotExist_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PedidoTransferenciaRepuestos">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="PedidoTransferenciaRepuestos_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="CambioComercial">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="comercialNuevo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="comercialAntiguo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CambioComercial_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="CerrarOPLanzadas">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="CerrarOPLanzadas_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="IncidenciaClientePedido">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codCliente" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="codPedido" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="IncidenciaClientePedido_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+    </schema>
+  </types>
+  <message name="InformePedidos">
+    <part name="parameters" element="tns:InformePedidos" />
+  </message>
+  <message name="InformePedidos_Result">
+    <part name="parameters" element="tns:InformePedidos_Result" />
+  </message>
+  <message name="IncidenciasWS">
+    <part name="parameters" element="tns:IncidenciasWS" />
+  </message>
+  <message name="IncidenciasWS_Result">
+    <part name="parameters" element="tns:IncidenciasWS_Result" />
+  </message>
+  <message name="IncidenciasServicio">
+    <part name="parameters" element="tns:IncidenciasServicio" />
+  </message>
+  <message name="IncidenciasServicio_Result">
+    <part name="parameters" element="tns:IncidenciasServicio_Result" />
+  </message>
+  <message name="Portes">
+    <part name="parameters" element="tns:Portes" />
+  </message>
+  <message name="Portes_Result">
+    <part name="parameters" element="tns:Portes_Result" />
+  </message>
+  <message name="IncidenciaCliente">
+    <part name="parameters" element="tns:IncidenciaCliente" />
+  </message>
+  <message name="IncidenciaCliente_Result">
+    <part name="parameters" element="tns:IncidenciaCliente_Result" />
+  </message>
+  <message name="EnviarIncidencia">
+    <part name="parameters" element="tns:EnviarIncidencia" />
+  </message>
+  <message name="EnviarIncidencia_Result">
+    <part name="parameters" element="tns:EnviarIncidencia_Result" />
+  </message>
+  <message name="EnviarIncidencia2">
+    <part name="parameters" element="tns:EnviarIncidencia2" />
+  </message>
+  <message name="EnviarIncidencia2_Result">
+    <part name="parameters" element="tns:EnviarIncidencia2_Result" />
+  </message>
+  <message name="OfertaToPedido">
+    <part name="parameters" element="tns:OfertaToPedido" />
+  </message>
+  <message name="OfertaToPedido_Result">
+    <part name="parameters" element="tns:OfertaToPedido_Result" />
+  </message>
+  <message name="BorrarOferta">
+    <part name="parameters" element="tns:BorrarOferta" />
+  </message>
+  <message name="BorrarOferta_Result">
+    <part name="parameters" element="tns:BorrarOferta_Result" />
+  </message>
+  <message name="PdfOferta">
+    <part name="parameters" element="tns:PdfOferta" />
+  </message>
+  <message name="PdfOferta_Result">
+    <part name="parameters" element="tns:PdfOferta_Result" />
+  </message>
+  <message name="ValidarIncidencia">
+    <part name="parameters" element="tns:ValidarIncidencia" />
+  </message>
+  <message name="ValidarIncidencia_Result">
+    <part name="parameters" element="tns:ValidarIncidencia_Result" />
+  </message>
+  <message name="PdfPedido">
+    <part name="parameters" element="tns:PdfPedido" />
+  </message>
+  <message name="PdfPedido_Result">
+    <part name="parameters" element="tns:PdfPedido_Result" />
+  </message>
+  <message name="ProductoAcamion">
+    <part name="parameters" element="tns:ProductoAcamion" />
+  </message>
+  <message name="ProductoAcamion_Result">
+    <part name="parameters" element="tns:ProductoAcamion_Result" />
+  </message>
+  <message name="EliminarCamion">
+    <part name="parameters" element="tns:EliminarCamion" />
+  </message>
+  <message name="EliminarCamion_Result">
+    <part name="parameters" element="tns:EliminarCamion_Result" />
+  </message>
+  <message name="CamionToOrdenCarga">
+    <part name="parameters" element="tns:CamionToOrdenCarga" />
+  </message>
+  <message name="CamionToOrdenCarga_Result">
+    <part name="parameters" element="tns:CamionToOrdenCarga_Result" />
+  </message>
+  <message name="OrdeCargaToPedidoCompra">
+    <part name="parameters" element="tns:OrdeCargaToPedidoCompra" />
+  </message>
+  <message name="OrdeCargaToPedidoCompra_Result">
+    <part name="parameters" element="tns:OrdeCargaToPedidoCompra_Result" />
+  </message>
+  <message name="PedidoCompraToOferta">
+    <part name="parameters" element="tns:PedidoCompraToOferta" />
+  </message>
+  <message name="PedidoCompraToOferta_Result">
+    <part name="parameters" element="tns:PedidoCompraToOferta_Result" />
+  </message>
+  <message name="ImprimirOrdenCarga">
+    <part name="parameters" element="tns:ImprimirOrdenCarga" />
+  </message>
+  <message name="ImprimirOrdenCarga_Result">
+    <part name="parameters" element="tns:ImprimirOrdenCarga_Result" />
+  </message>
+  <message name="CreateCustomer">
+    <part name="parameters" element="tns:CreateCustomer" />
+  </message>
+  <message name="CreateCustomer_Result">
+    <part name="parameters" element="tns:CreateCustomer_Result" />
+  </message>
+  <message name="CrearContactoPersona">
+    <part name="parameters" element="tns:CrearContactoPersona" />
+  </message>
+  <message name="CrearContactoPersona_Result">
+    <part name="parameters" element="tns:CrearContactoPersona_Result" />
+  </message>
+  <message name="CrearDireccionEnvio">
+    <part name="parameters" element="tns:CrearDireccionEnvio" />
+  </message>
+  <message name="CrearDireccionEnvio_Result">
+    <part name="parameters" element="tns:CrearDireccionEnvio_Result" />
+  </message>
+  <message name="ProductoToOferta">
+    <part name="parameters" element="tns:ProductoToOferta" />
+  </message>
+  <message name="ProductoToOferta_Result">
+    <part name="parameters" element="tns:ProductoToOferta_Result" />
+  </message>
+  <message name="EliminarLineaDocumento">
+    <part name="parameters" element="tns:EliminarLineaDocumento" />
+  </message>
+  <message name="EliminarLineaDocumento_Result">
+    <part name="parameters" element="tns:EliminarLineaDocumento_Result" />
+  </message>
+  <message name="PdfOfertaDestino">
+    <part name="parameters" element="tns:PdfOfertaDestino" />
+  </message>
+  <message name="PdfOfertaDestino_Result">
+    <part name="parameters" element="tns:PdfOfertaDestino_Result" />
+  </message>
+  <message name="ImprimirOrdenCargaDestino">
+    <part name="parameters" element="tns:ImprimirOrdenCargaDestino" />
+  </message>
+  <message name="ImprimirOrdenCargaDestino_Result">
+    <part name="parameters" element="tns:ImprimirOrdenCargaDestino_Result" />
+  </message>
+  <message name="EliminarLineaCamion">
+    <part name="parameters" element="tns:EliminarLineaCamion" />
+  </message>
+  <message name="EliminarLineaCamion_Result">
+    <part name="parameters" element="tns:EliminarLineaCamion_Result" />
+  </message>
+  <message name="GetNumeroIncidencia">
+    <part name="parameters" element="tns:GetNumeroIncidencia" />
+  </message>
+  <message name="GetNumeroIncidencia_Result">
+    <part name="parameters" element="tns:GetNumeroIncidencia_Result" />
+  </message>
+  <message name="ComercialZona">
+    <part name="parameters" element="tns:ComercialZona" />
+  </message>
+  <message name="ComercialZona_Result">
+    <part name="parameters" element="tns:ComercialZona_Result" />
+  </message>
+  <message name="CaducadoToPedido">
+    <part name="parameters" element="tns:CaducadoToPedido" />
+  </message>
+  <message name="CaducadoToPedido_Result">
+    <part name="parameters" element="tns:CaducadoToPedido_Result" />
+  </message>
+  <message name="Eslingas">
+    <part name="parameters" element="tns:Eslingas" />
+  </message>
+  <message name="Eslingas_Result">
+    <part name="parameters" element="tns:Eslingas_Result" />
+  </message>
+  <message name="PdfPedidoDestino">
+    <part name="parameters" element="tns:PdfPedidoDestino" />
+  </message>
+  <message name="PdfPedidoDestino_Result">
+    <part name="parameters" element="tns:PdfPedidoDestino_Result" />
+  </message>
+  <message name="ComercialPais">
+    <part name="parameters" element="tns:ComercialPais" />
+  </message>
+  <message name="ComercialPais_Result">
+    <part name="parameters" element="tns:ComercialPais_Result" />
+  </message>
+  <message name="PdfFacturaDestino">
+    <part name="parameters" element="tns:PdfFacturaDestino" />
+  </message>
+  <message name="PdfFacturaDestino_Result">
+    <part name="parameters" element="tns:PdfFacturaDestino_Result" />
+  </message>
+  <message name="PdfTarifaDestino">
+    <part name="parameters" element="tns:PdfTarifaDestino" />
+  </message>
+  <message name="PdfTarifaDestino_Result">
+    <part name="parameters" element="tns:PdfTarifaDestino_Result" />
+  </message>
+  <message name="FacturasPG">
+    <part name="parameters" element="tns:FacturasPG" />
+  </message>
+  <message name="FacturasPG_Result">
+    <part name="parameters" element="tns:FacturasPG_Result" />
+  </message>
+  <message name="IncializarTransportistas">
+    <part name="parameters" element="tns:IncializarTransportistas" />
+  </message>
+  <message name="IncializarTransportistas_Result">
+    <part name="parameters" element="tns:IncializarTransportistas_Result" />
+  </message>
+  <message name="EnviarEncuesta">
+    <part name="parameters" element="tns:EnviarEncuesta" />
+  </message>
+  <message name="EnviarEncuesta_Result">
+    <part name="parameters" element="tns:EnviarEncuesta_Result" />
+  </message>
+  <message name="PdfOrdeCarga">
+    <part name="parameters" element="tns:PdfOrdeCarga" />
+  </message>
+  <message name="PdfOrdeCarga_Result">
+    <part name="parameters" element="tns:PdfOrdeCarga_Result" />
+  </message>
+  <message name="ImprimirPdfPedido">
+    <part name="parameters" element="tns:ImprimirPdfPedido" />
+  </message>
+  <message name="ImprimirPdfPedido_Result">
+    <part name="parameters" element="tns:ImprimirPdfPedido_Result" />
+  </message>
+  <message name="PdfFactura">
+    <part name="parameters" element="tns:PdfFactura" />
+  </message>
+  <message name="PdfFactura_Result">
+    <part name="parameters" element="tns:PdfFactura_Result" />
+  </message>
+  <message name="PesoMaxPais">
+    <part name="parameters" element="tns:PesoMaxPais" />
+  </message>
+  <message name="PesoMaxPais_Result">
+    <part name="parameters" element="tns:PesoMaxPais_Result" />
+  </message>
+  <message name="ValidarCarga">
+    <part name="parameters" element="tns:ValidarCarga" />
+  </message>
+  <message name="ValidarCarga_Result">
+    <part name="parameters" element="tns:ValidarCarga_Result" />
+  </message>
+  <message name="ConsumoAlambron">
+    <part name="parameters" element="tns:ConsumoAlambron" />
+  </message>
+  <message name="ConsumoAlambron_Result">
+    <part name="parameters" element="tns:ConsumoAlambron_Result" />
+  </message>
+  <message name="TarifaProductos">
+    <part name="parameters" element="tns:TarifaProductos" />
+  </message>
+  <message name="TarifaProductos_Result">
+    <part name="parameters" element="tns:TarifaProductos_Result" />
+  </message>
+  <message name="ReferenciaACamionCompleto">
+    <part name="parameters" element="tns:ReferenciaACamionCompleto" />
+  </message>
+  <message name="ReferenciaACamionCompleto_Result">
+    <part name="parameters" element="tns:ReferenciaACamionCompleto_Result" />
+  </message>
+  <message name="DeleteTarifaProductos">
+    <part name="parameters" element="tns:DeleteTarifaProductos" />
+  </message>
+  <message name="DeleteTarifaProductos_Result">
+    <part name="parameters" element="tns:DeleteTarifaProductos_Result" />
+  </message>
+  <message name="AgruparPedidos">
+    <part name="parameters" element="tns:AgruparPedidos" />
+  </message>
+  <message name="AgruparPedidos_Result">
+    <part name="parameters" element="tns:AgruparPedidos_Result" />
+  </message>
+  <message name="CargarTarifa">
+    <part name="parameters" element="tns:CargarTarifa" />
+  </message>
+  <message name="CargarTarifa_Result">
+    <part name="parameters" element="tns:CargarTarifa_Result" />
+  </message>
+  <message name="ReferenciaACamionCompleto2">
+    <part name="parameters" element="tns:ReferenciaACamionCompleto2" />
+  </message>
+  <message name="ReferenciaACamionCompleto2_Result">
+    <part name="parameters" element="tns:ReferenciaACamionCompleto2_Result" />
+  </message>
+  <message name="CrearPedidoCompraTransporte">
+    <part name="parameters" element="tns:CrearPedidoCompraTransporte" />
+  </message>
+  <message name="CrearPedidoCompraTransporte_Result">
+    <part name="parameters" element="tns:CrearPedidoCompraTransporte_Result" />
+  </message>
+  <message name="EmailComercial">
+    <part name="parameters" element="tns:EmailComercial" />
+  </message>
+  <message name="EmailComercial_Result">
+    <part name="parameters" element="tns:EmailComercial_Result" />
+  </message>
+  <message name="PdfPedidoCompra">
+    <part name="parameters" element="tns:PdfPedidoCompra" />
+  </message>
+  <message name="PdfPedidoCompra_Result">
+    <part name="parameters" element="tns:PdfPedidoCompra_Result" />
+  </message>
+  <message name="FiltroCif">
+    <part name="parameters" element="tns:FiltroCif" />
+  </message>
+  <message name="FiltroCif_Result">
+    <part name="parameters" element="tns:FiltroCif_Result" />
+  </message>
+  <message name="PdfAbonoDestino">
+    <part name="parameters" element="tns:PdfAbonoDestino" />
+  </message>
+  <message name="PdfAbonoDestino_Result">
+    <part name="parameters" element="tns:PdfAbonoDestino_Result" />
+  </message>
+  <message name="PdfPedidoTransDestino">
+    <part name="parameters" element="tns:PdfPedidoTransDestino" />
+  </message>
+  <message name="PdfPedidoTransDestino_Result">
+    <part name="parameters" element="tns:PdfPedidoTransDestino_Result" />
+  </message>
+  <message name="PdfIncidenciaDestino">
+    <part name="parameters" element="tns:PdfIncidenciaDestino" />
+  </message>
+  <message name="PdfIncidenciaDestino_Result">
+    <part name="parameters" element="tns:PdfIncidenciaDestino_Result" />
+  </message>
+  <message name="ClientesAlmcen">
+    <part name="parameters" element="tns:ClientesAlmcen" />
+  </message>
+  <message name="ClientesAlmcen_Result">
+    <part name="parameters" element="tns:ClientesAlmcen_Result" />
+  </message>
+  <message name="PdfPlanillaProductoDestino">
+    <part name="parameters" element="tns:PdfPlanillaProductoDestino" />
+  </message>
+  <message name="PdfPlanillaProductoDestino_Result">
+    <part name="parameters" element="tns:PdfPlanillaProductoDestino_Result" />
+  </message>
+  <message name="PesoPruebaIP">
+    <part name="parameters" element="tns:PesoPruebaIP" />
+  </message>
+  <message name="PesoPruebaIP_Result">
+    <part name="parameters" element="tns:PesoPruebaIP_Result" />
+  </message>
+  <message name="StockProductoAlmacen">
+    <part name="parameters" element="tns:StockProductoAlmacen" />
+  </message>
+  <message name="StockProductoAlmacen_Result">
+    <part name="parameters" element="tns:StockProductoAlmacen_Result" />
+  </message>
+  <message name="EtiquetProductos">
+    <part name="parameters" element="tns:EtiquetProductos" />
+  </message>
+  <message name="EtiquetProductos_Result">
+    <part name="parameters" element="tns:EtiquetProductos_Result" />
+  </message>
+  <message name="PdfAlbaranVenta">
+    <part name="parameters" element="tns:PdfAlbaranVenta" />
+  </message>
+  <message name="PdfAlbaranVenta_Result">
+    <part name="parameters" element="tns:PdfAlbaranVenta_Result" />
+  </message>
+  <message name="AceptarIncidenicia">
+    <part name="parameters" element="tns:AceptarIncidenicia" />
+  </message>
+  <message name="AceptarIncidenicia_Result">
+    <part name="parameters" element="tns:AceptarIncidenicia_Result" />
+  </message>
+  <message name="Inventario">
+    <part name="parameters" element="tns:Inventario" />
+  </message>
+  <message name="Inventario_Result">
+    <part name="parameters" element="tns:Inventario_Result" />
+  </message>
+  <message name="CrearCarpertaIsNotExist">
+    <part name="parameters" element="tns:CrearCarpertaIsNotExist" />
+  </message>
+  <message name="CrearCarpertaIsNotExist_Result">
+    <part name="parameters" element="tns:CrearCarpertaIsNotExist_Result" />
+  </message>
+  <message name="PedidoTransferenciaRepuestos">
+    <part name="parameters" element="tns:PedidoTransferenciaRepuestos" />
+  </message>
+  <message name="PedidoTransferenciaRepuestos_Result">
+    <part name="parameters" element="tns:PedidoTransferenciaRepuestos_Result" />
+  </message>
+  <message name="CambioComercial">
+    <part name="parameters" element="tns:CambioComercial" />
+  </message>
+  <message name="CambioComercial_Result">
+    <part name="parameters" element="tns:CambioComercial_Result" />
+  </message>
+  <message name="CerrarOPLanzadas">
+    <part name="parameters" element="tns:CerrarOPLanzadas" />
+  </message>
+  <message name="CerrarOPLanzadas_Result">
+    <part name="parameters" element="tns:CerrarOPLanzadas_Result" />
+  </message>
+  <message name="IncidenciaClientePedido">
+    <part name="parameters" element="tns:IncidenciaClientePedido" />
+  </message>
+  <message name="IncidenciaClientePedido_Result">
+    <part name="parameters" element="tns:IncidenciaClientePedido_Result" />
+  </message>
+  <portType name="Avisos_Port">
+    <operation name="InformePedidos">
+      <input name="InformePedidos" message="tns:InformePedidos" />
+      <output name="InformePedidos_Result" message="tns:InformePedidos_Result" />
+    </operation>
+    <operation name="IncidenciasWS">
+      <input name="IncidenciasWS" message="tns:IncidenciasWS" />
+      <output name="IncidenciasWS_Result" message="tns:IncidenciasWS_Result" />
+    </operation>
+    <operation name="IncidenciasServicio">
+      <input name="IncidenciasServicio" message="tns:IncidenciasServicio" />
+      <output name="IncidenciasServicio_Result" message="tns:IncidenciasServicio_Result" />
+    </operation>
+    <operation name="Portes">
+      <input name="Portes" message="tns:Portes" />
+      <output name="Portes_Result" message="tns:Portes_Result" />
+    </operation>
+    <operation name="IncidenciaCliente">
+      <input name="IncidenciaCliente" message="tns:IncidenciaCliente" />
+      <output name="IncidenciaCliente_Result" message="tns:IncidenciaCliente_Result" />
+    </operation>
+    <operation name="EnviarIncidencia">
+      <input name="EnviarIncidencia" message="tns:EnviarIncidencia" />
+      <output name="EnviarIncidencia_Result" message="tns:EnviarIncidencia_Result" />
+    </operation>
+    <operation name="EnviarIncidencia2">
+      <input name="EnviarIncidencia2" message="tns:EnviarIncidencia2" />
+      <output name="EnviarIncidencia2_Result" message="tns:EnviarIncidencia2_Result" />
+    </operation>
+    <operation name="OfertaToPedido">
+      <input name="OfertaToPedido" message="tns:OfertaToPedido" />
+      <output name="OfertaToPedido_Result" message="tns:OfertaToPedido_Result" />
+    </operation>
+    <operation name="BorrarOferta">
+      <input name="BorrarOferta" message="tns:BorrarOferta" />
+      <output name="BorrarOferta_Result" message="tns:BorrarOferta_Result" />
+    </operation>
+    <operation name="PdfOferta">
+      <input name="PdfOferta" message="tns:PdfOferta" />
+      <output name="PdfOferta_Result" message="tns:PdfOferta_Result" />
+    </operation>
+    <operation name="ValidarIncidencia">
+      <input name="ValidarIncidencia" message="tns:ValidarIncidencia" />
+      <output name="ValidarIncidencia_Result" message="tns:ValidarIncidencia_Result" />
+    </operation>
+    <operation name="PdfPedido">
+      <input name="PdfPedido" message="tns:PdfPedido" />
+      <output name="PdfPedido_Result" message="tns:PdfPedido_Result" />
+    </operation>
+    <operation name="ProductoAcamion">
+      <input name="ProductoAcamion" message="tns:ProductoAcamion" />
+      <output name="ProductoAcamion_Result" message="tns:ProductoAcamion_Result" />
+    </operation>
+    <operation name="EliminarCamion">
+      <input name="EliminarCamion" message="tns:EliminarCamion" />
+      <output name="EliminarCamion_Result" message="tns:EliminarCamion_Result" />
+    </operation>
+    <operation name="CamionToOrdenCarga">
+      <input name="CamionToOrdenCarga" message="tns:CamionToOrdenCarga" />
+      <output name="CamionToOrdenCarga_Result" message="tns:CamionToOrdenCarga_Result" />
+    </operation>
+    <operation name="OrdeCargaToPedidoCompra">
+      <input name="OrdeCargaToPedidoCompra" message="tns:OrdeCargaToPedidoCompra" />
+      <output name="OrdeCargaToPedidoCompra_Result" message="tns:OrdeCargaToPedidoCompra_Result" />
+    </operation>
+    <operation name="PedidoCompraToOferta">
+      <input name="PedidoCompraToOferta" message="tns:PedidoCompraToOferta" />
+      <output name="PedidoCompraToOferta_Result" message="tns:PedidoCompraToOferta_Result" />
+    </operation>
+    <operation name="ImprimirOrdenCarga">
+      <input name="ImprimirOrdenCarga" message="tns:ImprimirOrdenCarga" />
+      <output name="ImprimirOrdenCarga_Result" message="tns:ImprimirOrdenCarga_Result" />
+    </operation>
+    <operation name="CreateCustomer">
+      <input name="CreateCustomer" message="tns:CreateCustomer" />
+      <output name="CreateCustomer_Result" message="tns:CreateCustomer_Result" />
+    </operation>
+    <operation name="CrearContactoPersona">
+      <input name="CrearContactoPersona" message="tns:CrearContactoPersona" />
+      <output name="CrearContactoPersona_Result" message="tns:CrearContactoPersona_Result" />
+    </operation>
+    <operation name="CrearDireccionEnvio">
+      <input name="CrearDireccionEnvio" message="tns:CrearDireccionEnvio" />
+      <output name="CrearDireccionEnvio_Result" message="tns:CrearDireccionEnvio_Result" />
+    </operation>
+    <operation name="ProductoToOferta">
+      <input name="ProductoToOferta" message="tns:ProductoToOferta" />
+      <output name="ProductoToOferta_Result" message="tns:ProductoToOferta_Result" />
+    </operation>
+    <operation name="EliminarLineaDocumento">
+      <input name="EliminarLineaDocumento" message="tns:EliminarLineaDocumento" />
+      <output name="EliminarLineaDocumento_Result" message="tns:EliminarLineaDocumento_Result" />
+    </operation>
+    <operation name="PdfOfertaDestino">
+      <input name="PdfOfertaDestino" message="tns:PdfOfertaDestino" />
+      <output name="PdfOfertaDestino_Result" message="tns:PdfOfertaDestino_Result" />
+    </operation>
+    <operation name="ImprimirOrdenCargaDestino">
+      <input name="ImprimirOrdenCargaDestino" message="tns:ImprimirOrdenCargaDestino" />
+      <output name="ImprimirOrdenCargaDestino_Result" message="tns:ImprimirOrdenCargaDestino_Result" />
+    </operation>
+    <operation name="EliminarLineaCamion">
+      <input name="EliminarLineaCamion" message="tns:EliminarLineaCamion" />
+      <output name="EliminarLineaCamion_Result" message="tns:EliminarLineaCamion_Result" />
+    </operation>
+    <operation name="GetNumeroIncidencia">
+      <input name="GetNumeroIncidencia" message="tns:GetNumeroIncidencia" />
+      <output name="GetNumeroIncidencia_Result" message="tns:GetNumeroIncidencia_Result" />
+    </operation>
+    <operation name="ComercialZona">
+      <input name="ComercialZona" message="tns:ComercialZona" />
+      <output name="ComercialZona_Result" message="tns:ComercialZona_Result" />
+    </operation>
+    <operation name="CaducadoToPedido">
+      <input name="CaducadoToPedido" message="tns:CaducadoToPedido" />
+      <output name="CaducadoToPedido_Result" message="tns:CaducadoToPedido_Result" />
+    </operation>
+    <operation name="Eslingas">
+      <input name="Eslingas" message="tns:Eslingas" />
+      <output name="Eslingas_Result" message="tns:Eslingas_Result" />
+    </operation>
+    <operation name="PdfPedidoDestino">
+      <input name="PdfPedidoDestino" message="tns:PdfPedidoDestino" />
+      <output name="PdfPedidoDestino_Result" message="tns:PdfPedidoDestino_Result" />
+    </operation>
+    <operation name="ComercialPais">
+      <input name="ComercialPais" message="tns:ComercialPais" />
+      <output name="ComercialPais_Result" message="tns:ComercialPais_Result" />
+    </operation>
+    <operation name="PdfFacturaDestino">
+      <input name="PdfFacturaDestino" message="tns:PdfFacturaDestino" />
+      <output name="PdfFacturaDestino_Result" message="tns:PdfFacturaDestino_Result" />
+    </operation>
+    <operation name="PdfTarifaDestino">
+      <input name="PdfTarifaDestino" message="tns:PdfTarifaDestino" />
+      <output name="PdfTarifaDestino_Result" message="tns:PdfTarifaDestino_Result" />
+    </operation>
+    <operation name="FacturasPG">
+      <input name="FacturasPG" message="tns:FacturasPG" />
+      <output name="FacturasPG_Result" message="tns:FacturasPG_Result" />
+    </operation>
+    <operation name="IncializarTransportistas">
+      <input name="IncializarTransportistas" message="tns:IncializarTransportistas" />
+      <output name="IncializarTransportistas_Result" message="tns:IncializarTransportistas_Result" />
+    </operation>
+    <operation name="EnviarEncuesta">
+      <input name="EnviarEncuesta" message="tns:EnviarEncuesta" />
+      <output name="EnviarEncuesta_Result" message="tns:EnviarEncuesta_Result" />
+    </operation>
+    <operation name="PdfOrdeCarga">
+      <input name="PdfOrdeCarga" message="tns:PdfOrdeCarga" />
+      <output name="PdfOrdeCarga_Result" message="tns:PdfOrdeCarga_Result" />
+    </operation>
+    <operation name="ImprimirPdfPedido">
+      <input name="ImprimirPdfPedido" message="tns:ImprimirPdfPedido" />
+      <output name="ImprimirPdfPedido_Result" message="tns:ImprimirPdfPedido_Result" />
+    </operation>
+    <operation name="PdfFactura">
+      <input name="PdfFactura" message="tns:PdfFactura" />
+      <output name="PdfFactura_Result" message="tns:PdfFactura_Result" />
+    </operation>
+    <operation name="PesoMaxPais">
+      <input name="PesoMaxPais" message="tns:PesoMaxPais" />
+      <output name="PesoMaxPais_Result" message="tns:PesoMaxPais_Result" />
+    </operation>
+    <operation name="ValidarCarga">
+      <input name="ValidarCarga" message="tns:ValidarCarga" />
+      <output name="ValidarCarga_Result" message="tns:ValidarCarga_Result" />
+    </operation>
+    <operation name="ConsumoAlambron">
+      <input name="ConsumoAlambron" message="tns:ConsumoAlambron" />
+      <output name="ConsumoAlambron_Result" message="tns:ConsumoAlambron_Result" />
+    </operation>
+    <operation name="TarifaProductos">
+      <input name="TarifaProductos" message="tns:TarifaProductos" />
+      <output name="TarifaProductos_Result" message="tns:TarifaProductos_Result" />
+    </operation>
+    <operation name="ReferenciaACamionCompleto">
+      <input name="ReferenciaACamionCompleto" message="tns:ReferenciaACamionCompleto" />
+      <output name="ReferenciaACamionCompleto_Result" message="tns:ReferenciaACamionCompleto_Result" />
+    </operation>
+    <operation name="DeleteTarifaProductos">
+      <input name="DeleteTarifaProductos" message="tns:DeleteTarifaProductos" />
+      <output name="DeleteTarifaProductos_Result" message="tns:DeleteTarifaProductos_Result" />
+    </operation>
+    <operation name="AgruparPedidos">
+      <input name="AgruparPedidos" message="tns:AgruparPedidos" />
+      <output name="AgruparPedidos_Result" message="tns:AgruparPedidos_Result" />
+    </operation>
+    <operation name="CargarTarifa">
+      <input name="CargarTarifa" message="tns:CargarTarifa" />
+      <output name="CargarTarifa_Result" message="tns:CargarTarifa_Result" />
+    </operation>
+    <operation name="ReferenciaACamionCompleto2">
+      <input name="ReferenciaACamionCompleto2" message="tns:ReferenciaACamionCompleto2" />
+      <output name="ReferenciaACamionCompleto2_Result" message="tns:ReferenciaACamionCompleto2_Result" />
+    </operation>
+    <operation name="CrearPedidoCompraTransporte">
+      <input name="CrearPedidoCompraTransporte" message="tns:CrearPedidoCompraTransporte" />
+      <output name="CrearPedidoCompraTransporte_Result" message="tns:CrearPedidoCompraTransporte_Result" />
+    </operation>
+    <operation name="EmailComercial">
+      <input name="EmailComercial" message="tns:EmailComercial" />
+      <output name="EmailComercial_Result" message="tns:EmailComercial_Result" />
+    </operation>
+    <operation name="PdfPedidoCompra">
+      <input name="PdfPedidoCompra" message="tns:PdfPedidoCompra" />
+      <output name="PdfPedidoCompra_Result" message="tns:PdfPedidoCompra_Result" />
+    </operation>
+    <operation name="FiltroCif">
+      <input name="FiltroCif" message="tns:FiltroCif" />
+      <output name="FiltroCif_Result" message="tns:FiltroCif_Result" />
+    </operation>
+    <operation name="PdfAbonoDestino">
+      <input name="PdfAbonoDestino" message="tns:PdfAbonoDestino" />
+      <output name="PdfAbonoDestino_Result" message="tns:PdfAbonoDestino_Result" />
+    </operation>
+    <operation name="PdfPedidoTransDestino">
+      <input name="PdfPedidoTransDestino" message="tns:PdfPedidoTransDestino" />
+      <output name="PdfPedidoTransDestino_Result" message="tns:PdfPedidoTransDestino_Result" />
+    </operation>
+    <operation name="PdfIncidenciaDestino">
+      <input name="PdfIncidenciaDestino" message="tns:PdfIncidenciaDestino" />
+      <output name="PdfIncidenciaDestino_Result" message="tns:PdfIncidenciaDestino_Result" />
+    </operation>
+    <operation name="ClientesAlmcen">
+      <input name="ClientesAlmcen" message="tns:ClientesAlmcen" />
+      <output name="ClientesAlmcen_Result" message="tns:ClientesAlmcen_Result" />
+    </operation>
+    <operation name="PdfPlanillaProductoDestino">
+      <input name="PdfPlanillaProductoDestino" message="tns:PdfPlanillaProductoDestino" />
+      <output name="PdfPlanillaProductoDestino_Result" message="tns:PdfPlanillaProductoDestino_Result" />
+    </operation>
+    <operation name="PesoPruebaIP">
+      <input name="PesoPruebaIP" message="tns:PesoPruebaIP" />
+      <output name="PesoPruebaIP_Result" message="tns:PesoPruebaIP_Result" />
+    </operation>
+    <operation name="StockProductoAlmacen">
+      <input name="StockProductoAlmacen" message="tns:StockProductoAlmacen" />
+      <output name="StockProductoAlmacen_Result" message="tns:StockProductoAlmacen_Result" />
+    </operation>
+    <operation name="EtiquetProductos">
+      <input name="EtiquetProductos" message="tns:EtiquetProductos" />
+      <output name="EtiquetProductos_Result" message="tns:EtiquetProductos_Result" />
+    </operation>
+    <operation name="PdfAlbaranVenta">
+      <input name="PdfAlbaranVenta" message="tns:PdfAlbaranVenta" />
+      <output name="PdfAlbaranVenta_Result" message="tns:PdfAlbaranVenta_Result" />
+    </operation>
+    <operation name="AceptarIncidenicia">
+      <input name="AceptarIncidenicia" message="tns:AceptarIncidenicia" />
+      <output name="AceptarIncidenicia_Result" message="tns:AceptarIncidenicia_Result" />
+    </operation>
+    <operation name="Inventario">
+      <input name="Inventario" message="tns:Inventario" />
+      <output name="Inventario_Result" message="tns:Inventario_Result" />
+    </operation>
+    <operation name="CrearCarpertaIsNotExist">
+      <input name="CrearCarpertaIsNotExist" message="tns:CrearCarpertaIsNotExist" />
+      <output name="CrearCarpertaIsNotExist_Result" message="tns:CrearCarpertaIsNotExist_Result" />
+    </operation>
+    <operation name="PedidoTransferenciaRepuestos">
+      <input name="PedidoTransferenciaRepuestos" message="tns:PedidoTransferenciaRepuestos" />
+      <output name="PedidoTransferenciaRepuestos_Result" message="tns:PedidoTransferenciaRepuestos_Result" />
+    </operation>
+    <operation name="CambioComercial">
+      <input name="CambioComercial" message="tns:CambioComercial" />
+      <output name="CambioComercial_Result" message="tns:CambioComercial_Result" />
+    </operation>
+    <operation name="CerrarOPLanzadas">
+      <input name="CerrarOPLanzadas" message="tns:CerrarOPLanzadas" />
+      <output name="CerrarOPLanzadas_Result" message="tns:CerrarOPLanzadas_Result" />
+    </operation>
+    <operation name="IncidenciaClientePedido">
+      <input name="IncidenciaClientePedido" message="tns:IncidenciaClientePedido" />
+      <output name="IncidenciaClientePedido_Result" message="tns:IncidenciaClientePedido_Result" />
+    </operation>
+  </portType>
+  <binding name="Avisos_Binding" type="tns:Avisos_Port">
+    <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="InformePedidos">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:InformePedidos" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="InformePedidos">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="InformePedidos_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="IncidenciasWS">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:IncidenciasWS" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="IncidenciasWS">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="IncidenciasWS_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="IncidenciasServicio">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:IncidenciasServicio" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="IncidenciasServicio">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="IncidenciasServicio_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="Portes">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:Portes" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="Portes">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="Portes_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="IncidenciaCliente">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:IncidenciaCliente" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="IncidenciaCliente">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="IncidenciaCliente_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="EnviarIncidencia">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:EnviarIncidencia" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="EnviarIncidencia">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="EnviarIncidencia_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="EnviarIncidencia2">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:EnviarIncidencia2" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="EnviarIncidencia2">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="EnviarIncidencia2_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="OfertaToPedido">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:OfertaToPedido" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="OfertaToPedido">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="OfertaToPedido_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="BorrarOferta">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:BorrarOferta" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="BorrarOferta">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="BorrarOferta_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PdfOferta">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:PdfOferta" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PdfOferta">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PdfOferta_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ValidarIncidencia">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:ValidarIncidencia" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ValidarIncidencia">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ValidarIncidencia_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PdfPedido">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:PdfPedido" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PdfPedido">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PdfPedido_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ProductoAcamion">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:ProductoAcamion" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ProductoAcamion">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ProductoAcamion_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="EliminarCamion">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:EliminarCamion" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="EliminarCamion">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="EliminarCamion_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CamionToOrdenCarga">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:CamionToOrdenCarga" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CamionToOrdenCarga">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CamionToOrdenCarga_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="OrdeCargaToPedidoCompra">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:OrdeCargaToPedidoCompra" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="OrdeCargaToPedidoCompra">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="OrdeCargaToPedidoCompra_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PedidoCompraToOferta">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:PedidoCompraToOferta" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PedidoCompraToOferta">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PedidoCompraToOferta_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ImprimirOrdenCarga">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:ImprimirOrdenCarga" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ImprimirOrdenCarga">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ImprimirOrdenCarga_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CreateCustomer">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:CreateCustomer" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CreateCustomer">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CreateCustomer_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CrearContactoPersona">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:CrearContactoPersona" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CrearContactoPersona">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CrearContactoPersona_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CrearDireccionEnvio">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:CrearDireccionEnvio" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CrearDireccionEnvio">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CrearDireccionEnvio_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ProductoToOferta">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:ProductoToOferta" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ProductoToOferta">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ProductoToOferta_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="EliminarLineaDocumento">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:EliminarLineaDocumento" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="EliminarLineaDocumento">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="EliminarLineaDocumento_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PdfOfertaDestino">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:PdfOfertaDestino" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PdfOfertaDestino">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PdfOfertaDestino_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ImprimirOrdenCargaDestino">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:ImprimirOrdenCargaDestino" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ImprimirOrdenCargaDestino">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ImprimirOrdenCargaDestino_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="EliminarLineaCamion">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:EliminarLineaCamion" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="EliminarLineaCamion">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="EliminarLineaCamion_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetNumeroIncidencia">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:GetNumeroIncidencia" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetNumeroIncidencia">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetNumeroIncidencia_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ComercialZona">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:ComercialZona" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ComercialZona">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ComercialZona_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CaducadoToPedido">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:CaducadoToPedido" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CaducadoToPedido">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CaducadoToPedido_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="Eslingas">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:Eslingas" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="Eslingas">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="Eslingas_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PdfPedidoDestino">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:PdfPedidoDestino" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PdfPedidoDestino">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PdfPedidoDestino_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ComercialPais">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:ComercialPais" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ComercialPais">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ComercialPais_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PdfFacturaDestino">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:PdfFacturaDestino" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PdfFacturaDestino">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PdfFacturaDestino_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PdfTarifaDestino">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:PdfTarifaDestino" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PdfTarifaDestino">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PdfTarifaDestino_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="FacturasPG">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:FacturasPG" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="FacturasPG">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="FacturasPG_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="IncializarTransportistas">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:IncializarTransportistas" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="IncializarTransportistas">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="IncializarTransportistas_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="EnviarEncuesta">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:EnviarEncuesta" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="EnviarEncuesta">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="EnviarEncuesta_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PdfOrdeCarga">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:PdfOrdeCarga" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PdfOrdeCarga">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PdfOrdeCarga_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ImprimirPdfPedido">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:ImprimirPdfPedido" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ImprimirPdfPedido">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ImprimirPdfPedido_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PdfFactura">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:PdfFactura" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PdfFactura">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PdfFactura_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PesoMaxPais">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:PesoMaxPais" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PesoMaxPais">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PesoMaxPais_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ValidarCarga">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:ValidarCarga" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ValidarCarga">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ValidarCarga_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ConsumoAlambron">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:ConsumoAlambron" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ConsumoAlambron">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ConsumoAlambron_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="TarifaProductos">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:TarifaProductos" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="TarifaProductos">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="TarifaProductos_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ReferenciaACamionCompleto">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:ReferenciaACamionCompleto" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ReferenciaACamionCompleto">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ReferenciaACamionCompleto_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="DeleteTarifaProductos">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:DeleteTarifaProductos" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="DeleteTarifaProductos">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="DeleteTarifaProductos_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="AgruparPedidos">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:AgruparPedidos" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="AgruparPedidos">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="AgruparPedidos_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CargarTarifa">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:CargarTarifa" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CargarTarifa">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CargarTarifa_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ReferenciaACamionCompleto2">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:ReferenciaACamionCompleto2" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ReferenciaACamionCompleto2">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ReferenciaACamionCompleto2_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CrearPedidoCompraTransporte">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:CrearPedidoCompraTransporte" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CrearPedidoCompraTransporte">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CrearPedidoCompraTransporte_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="EmailComercial">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:EmailComercial" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="EmailComercial">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="EmailComercial_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PdfPedidoCompra">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:PdfPedidoCompra" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PdfPedidoCompra">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PdfPedidoCompra_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="FiltroCif">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:FiltroCif" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="FiltroCif">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="FiltroCif_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PdfAbonoDestino">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:PdfAbonoDestino" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PdfAbonoDestino">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PdfAbonoDestino_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PdfPedidoTransDestino">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:PdfPedidoTransDestino" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PdfPedidoTransDestino">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PdfPedidoTransDestino_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PdfIncidenciaDestino">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:PdfIncidenciaDestino" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PdfIncidenciaDestino">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PdfIncidenciaDestino_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ClientesAlmcen">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:ClientesAlmcen" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ClientesAlmcen">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ClientesAlmcen_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PdfPlanillaProductoDestino">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:PdfPlanillaProductoDestino" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PdfPlanillaProductoDestino">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PdfPlanillaProductoDestino_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PesoPruebaIP">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:PesoPruebaIP" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PesoPruebaIP">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PesoPruebaIP_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="StockProductoAlmacen">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:StockProductoAlmacen" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="StockProductoAlmacen">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="StockProductoAlmacen_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="EtiquetProductos">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:EtiquetProductos" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="EtiquetProductos">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="EtiquetProductos_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PdfAlbaranVenta">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:PdfAlbaranVenta" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PdfAlbaranVenta">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PdfAlbaranVenta_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="AceptarIncidenicia">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:AceptarIncidenicia" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="AceptarIncidenicia">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="AceptarIncidenicia_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="Inventario">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:Inventario" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="Inventario">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="Inventario_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CrearCarpertaIsNotExist">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:CrearCarpertaIsNotExist" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CrearCarpertaIsNotExist">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CrearCarpertaIsNotExist_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PedidoTransferenciaRepuestos">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:PedidoTransferenciaRepuestos" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PedidoTransferenciaRepuestos">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PedidoTransferenciaRepuestos_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CambioComercial">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:CambioComercial" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CambioComercial">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CambioComercial_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CerrarOPLanzadas">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:CerrarOPLanzadas" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CerrarOPLanzadas">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CerrarOPLanzadas_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="IncidenciaClientePedido">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:IncidenciaClientePedido" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="IncidenciaClientePedido">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="IncidenciaClientePedido_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+  </binding>
+  <service name="Avisos">
+    <port name="Avisos_Port" binding="tns:Avisos_Binding">
+      <address location="http://intranet.trh-es.com:7047/DynamicsNAV/WS/T.R.H./Codeunit/Avisos" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </port>
+  </service>
+</definitions>

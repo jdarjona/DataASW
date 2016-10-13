@@ -38,6 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InterfazNavisionTest.cs" />
+    <Compile Include="RepositoryContactosTest.cs" />
     <Compile Include="RepositoryEmpleadoTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestClass1.cs" />
