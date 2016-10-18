@@ -19,10 +19,11 @@ using Firebase.Xamarin.Database.Streaming;
 using Firebase.Xamarin.Database;
 using System;
 using AlmacenRepuestosXamarin.Clases;
+using Android.Media;
 
 namespace AlmacenRepuestosXamarin.Activities
-{
-    [Activity(Label = "TRH", MainLauncher = true, LaunchMode = LaunchMode.SingleTop, Icon = "@drawable/TRH", ScreenOrientation = ScreenOrientation.Portrait)]
+{                              
+[Activity(Label = "TRH", LaunchMode = LaunchMode.SingleTop, Icon = "@drawable/TRH", ScreenOrientation = ScreenOrientation.Portrait)]
     public class HomeView : BaseActivity 
     {
        
@@ -119,7 +120,7 @@ namespace AlmacenRepuestosXamarin.Activities
 
         private async void initFirebase() {
 
-           await Monitorizacion.getListMonitorizacion(Monitorizacion.empresaLiege);
+            await Monitorizacion.getListMonitorizacion(Monitorizacion.empresaLiege);
             await Monitorizacion.getListMonitorizacion(Monitorizacion.empresaSevilla);
             Func<Task<string>> authToken = async delegate()
             {
@@ -237,21 +238,50 @@ namespace AlmacenRepuestosXamarin.Activities
 
         private async Task notificar(PedidoFireBase message) {
 
+            string empresa = string.Empty;
+
+            #region Nueva Notificacion
+            //NUEVA NOTIFICACION
+
+            Android.Net.Uri NotiSound = RingtoneManager.GetDefaultUri(RingtoneType.Notification);
+            Intent NotiIntent = new Intent(this, typeof(HomeView));
+            TaskStackBuilder stackBuilder = TaskStackBuilder.Create(this);
+            stackBuilder.AddParentStack(this);
+            stackBuilder.AddNextIntent(NotiIntent);
+            PendingIntent NotiNextIntent = stackBuilder.GetPendingIntent(0, PendingIntentFlags.CancelCurrent);
+            
+            //FIN NUEVA NOTIFICACION
+            #endregion
+
+            #region Antigua Notificacion
+            /*
+
             Intent notificationIntent = this.PackageManager.GetLaunchIntentForPackage(this.PackageName);
             notificationIntent.SetFlags(ActivityFlags.ClearTop);
 
             notificationIntent.PutExtra("idFragment", "1");
             int pendingIntentId = (int)(System.DateTime.Now.Millisecond & 0xfffffff);
-            PendingIntent pendingIntent = PendingIntent.GetActivity(this, pendingIntentId, notificationIntent, PendingIntentFlags.UpdateCurrent);
+            PendingIntent pendingIntent = PendingIntent.GetActivity(this, pendingIntentId, notificationIntent, PendingIntentFlags.OneShot);
+
+            */
+            #endregion
+
             this.RunOnUiThread(() => {
-              
+
+                if (message.codPedido.StartsWith("PV"))
+                {
+                    empresa = "Sevilla";
+                }
+                else {
+                    empresa = "Liege";
+                }
 
                     Toast.MakeText(this, message.descripcion, ToastLength.Short).Show();
 
                     Notification.Builder builder = new Notification.Builder(this)
                         .SetTicker(message.codPedido)
-                        .SetContentIntent(pendingIntent)
-                        .SetContentTitle(message.codPedido)
+                        .SetContentIntent(NotiNextIntent)
+                        .SetContentTitle(empresa + " - " + message.codPedido)
                         .SetContentText(message.descripcion)
                         .SetDefaults(NotificationDefaults.Sound | NotificationDefaults.Vibrate)
                         .SetSmallIcon(Resource.Drawable.campana32)
@@ -262,7 +292,7 @@ namespace AlmacenRepuestosXamarin.Activities
                     Notification notification = builder.Build();
                     
                     notification.Defaults =  NotificationDefaults.All; //NotificationFlags.AutoCancel |
-                notification.Extras.PutString("idFragment", "1");
+                    notification.Extras.PutString("idFragment", "1");
 
                     // Get the notification manager:
                     NotificationManager notificationManager =
@@ -280,6 +310,7 @@ namespace AlmacenRepuestosXamarin.Activities
             {
                 string pedMessage = item.Value.codPedido.ToString();
                 string estadoMessage = item.Value.descripcion.ToString();
+                
 
                 if (Monitorizacion.listMonitorizacionLieja != null || Monitorizacion.listMonitorizacionSevilla != null)
                 {

@@ -24,12 +24,19 @@
         android:paddingLeft="2dp"
         android:paddingTop="2dp" />
     <TextView
-        android:id="@+id/Estado"
+        android:id="@+id/Destino"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/Fecha"
         android:paddingLeft="2dp"
         android:paddingTop="2dp" />
+  <TextView
+    android:id="@+id/Estado"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/Destino"
+    android:paddingLeft="2dp"
+    android:paddingTop="2dp" />
     <TextView
         android:id="@+id/Comercial"
         android:textSize="20sp"
@@ -39,4 +46,5 @@
         android:layout_centerVertical="true"
         android:paddingLeft="10dp"
         android:paddingTop="2dp" />
+
 </RelativeLayout>

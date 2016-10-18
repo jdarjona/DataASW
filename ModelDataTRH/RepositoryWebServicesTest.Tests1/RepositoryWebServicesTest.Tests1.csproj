@@ -44,10 +44,6 @@
     <Compile Include="TestClass1.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AlmacenRepuestosXamarin\AlmacenRepuestosXamarin.csproj">
-      <Project>{8601a199-3212-48d9-8f32-27b4ab37066a}</Project>
-      <Name>AlmacenRepuestosXamarin</Name>
-    </ProjectReference>
     <ProjectReference Include="..\InterfazNavision\InterfazNavision.csproj">
       <Project>{83a31b71-c9a2-4252-a8b9-48a4e1db6dba}</Project>
       <Name>InterfazNavision</Name>

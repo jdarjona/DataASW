@@ -54,7 +54,7 @@ namespace AlmacenRepuestosXamarin.Adapter
                 view.FindViewById<TextView>(Resource.Id.Fecha).Text = item.Fecha_Carga_Requerida.HasValue ? item.Fecha_Carga_Requerida.Value.ToString("d") : string.Empty;
                 view.FindViewById<TextView>(Resource.Id.Estado).Text = item.estadoDescripcion;
                 view.FindViewById<TextView>(Resource.Id.Comercial).Text = item.inicialesComercial;
-
+                view.FindViewById<TextView>(Resource.Id.Destino).Text = item.Localidad;
                 view.FindViewById<TextView>(Resource.Id.Estado).SetBackgroundResource(ColorEstado(item.Estado));
             
             return view;

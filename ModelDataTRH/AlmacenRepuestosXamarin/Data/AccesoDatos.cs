@@ -33,7 +33,7 @@ namespace AlmacenRepuestosXamarin.Data
         static int ip = 0;
         static string SSID = string.Empty;
         static bool conexionWifi = false;
-
+        public static string UrlToken = string.Empty;
         
 
         // private const string webBase = @"http://intranet.trh-be.com/WSTRH/";
@@ -86,10 +86,12 @@ namespace AlmacenRepuestosXamarin.Data
                 if (conexionWifi && Preferencias.listSSIDLiege.Contains(SSID))
                 {
                     resultado = Helpers.Preferencias.getUrlLocalLieja();//= @"http://192.168.1.2/WSTRH/";
+                    UrlToken = @"http://192.168.1.2/WSTRH/Token";
                 }
                 else
                 {
-                    resultado = Helpers.Preferencias.getUrlPublicaLieja(); ;
+                    resultado = Helpers.Preferencias.getUrlPublicaLieja();
+                    UrlToken = @"http://intranet.trh-be.com/WSTRH/Token";
                 }
             }
 
@@ -99,10 +101,12 @@ namespace AlmacenRepuestosXamarin.Data
                 if (conexionWifi && Preferencias.listSSIDSevilla.ToArray().Contains(SSID))
                 {
                     resultado = Helpers.Preferencias.getUrlLocalSevilla();
+                    UrlToken = @"http://192.168.1.2/WSTRH/Token";
                 }
                 else
                 {
                     resultado = Helpers.Preferencias.getUrlPublicaSevilla();
+                    UrlToken = @"http://intranet.trh-be.com/WSTRH/Token";
                 }
             }
 

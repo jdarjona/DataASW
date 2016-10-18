@@ -99,7 +99,7 @@ namespace AlmacenRepuestosXamarin
             textDescription.Text = repuesto.Descripcion_Producto;
 
             Resources.GetDrawable(Android.Resource.Drawable.AlertLightFrame);
-            warning = (Drawable)Resources.GetDrawable(Android.Resource.Drawable.AlertLightFrame);
+            warning = Resources.GetDrawable(Android.Resource.Drawable.AlertLightFrame);
 
             if (repuesto.Cantidad!=0) {
                 spinnerDestino.SetSelection((int)repuesto.Destino);

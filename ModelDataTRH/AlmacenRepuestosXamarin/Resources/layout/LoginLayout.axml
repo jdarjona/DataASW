@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="41.5dp"
+        android:id="@+id/relativeLayout1"
+        android:layout_marginBottom="0.0dp" />
+    <TextView
+        android:text="Usuario"
+        android:layout_width="246dp"
+        android:layout_height="35.5dp"
+        android:id="@+id/textViewusuario"
+        android:editable="false"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="0.0dp"
+        android:layout_gravity="center"
+        android:textSize="@dimen/margin_large"
+        android:textStyle="bold" />
+  <EditText
+        android:text=""
+        android:inputType="textPersonName"
+        android:layout_width="246.0dp"
+        android:layout_height="41.5dp"
+        android:id="@+id/editTextUser"
+        android:gravity="center_horizontal"
+        android:layout_marginLeft="0.0dp"
+        android:layout_gravity="center"
+        android:textSize="22dp" />
+    <TextView
+        android:text="Password"
+        android:layout_width="246dp"
+        android:layout_height="35.5dp"
+        android:id="@+id/textViewPassword"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="0.0dp"
+        android:layout_gravity="center"
+        android:textSize="@dimen/margin_large"
+        android:textStyle="bold" />
+  <EditText
+        android:text=""
+        android:inputType="textPassword"
+        android:layout_width="246.0dp"
+        android:layout_height="41.5dp"
+        android:id="@+id/editTextPass"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center"
+        android:textSize="22dp" />
+    <Spinner xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="120dp"
+        android:layout_height="45.0dp"
+        android:id="@+id/spinnerLoginEmpresa"
+        android:gravity="center_horizontal"
+        android:layout_marginLeft="0.0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/margin_medium" />
+    <Button
+        android:text="Aceptar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnAceptarLogin"        
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:textSize="@dimen/margin_medium" />
+</LinearLayout>
