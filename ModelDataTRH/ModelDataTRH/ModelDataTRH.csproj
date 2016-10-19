@@ -50,6 +50,11 @@
     <Compile Include="Proyectos\AppAlmacen\Item.cs" />
     <Compile Include="Proyectos\AppBascula\Matriculas.cs" />
     <Compile Include="Proyectos\Trazabilidad Generico\MaquinaFirebase.cs" />
+    <Compile Include="Proyectos\Ventas\Almacen.cs" />
+    <Compile Include="Proyectos\Ventas\Cliente.cs" />
+    <Compile Include="Proyectos\Ventas\Contacto.cs" />
+    <Compile Include="Proyectos\Ventas\DireccionEnvio.cs" />
+    <Compile Include="Proyectos\Ventas\Oferta.cs" />
     <Compile Include="vListadoPedidosMonitorizacion.cs" />
   </ItemGroup>
   <ItemGroup>

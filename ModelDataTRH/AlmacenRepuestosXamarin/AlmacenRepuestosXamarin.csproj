@@ -153,14 +153,16 @@
     <Compile Include="Activities\BaseActivity.cs" />
     <Compile Include="Activities\HomeActivity.cs" />
     <Compile Include="Activities\LoginActivity.cs" />
+    <Compile Include="Activities\NuevaOfertaActivity.cs" />
+    <Compile Include="Activities\VentasActivity.cs" />
     <Compile Include="Adapter\AdapterDetallePedidoVenta.cs" />
     <Compile Include="Adapter\AdapterEmpleados.cs" />
+    <Compile Include="Adapter\AdapterNuevaOferta.cs" />
     <Compile Include="Adapter\AdapterSinoptico.cs" />
     <Compile Include="Adapter\AdapterMonitoriaion.cs" />
     <Compile Include="Adapter\AdapterRepuestos.cs" />
     <Compile Include="Adapter\AdapterSpinner.cs" />
     <Compile Include="Adapter\AdapterView.cs" />
-    <Compile Include="Clases\Oferta.cs" />
     <Compile Include="Clases\SlidingTabScrollView.cs" />
     <Compile Include="Clases\SlidingTabsFragment.cs" />
     <Compile Include="Clases\SlidingTabStrip.cs" />
@@ -238,6 +240,15 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\LoginLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\MenuVentasLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\pagerItemOferta.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\RowListNuevaOferta.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -511,6 +522,21 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\TRH.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\layout\Ventas\" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\LogonuevaOferta.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\logooferta.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pedido.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\productos.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets')" />

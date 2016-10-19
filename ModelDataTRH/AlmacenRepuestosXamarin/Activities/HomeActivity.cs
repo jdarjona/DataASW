@@ -38,7 +38,7 @@ namespace AlmacenRepuestosXamarin.Activities
         IMenu _imenu;
 
         private static readonly string[] Sections = new[] {
-             "Monitor Carga", "Sinóptico" ,"App Almacen"//, "Configuracion"
+             "Monitor Carga", "Sinóptico" ,"App Almacen","Ventas"//, "Configuracion"
         };
 
         protected override int LayoutResource
@@ -194,6 +194,11 @@ namespace AlmacenRepuestosXamarin.Activities
                        .Commit();
                     break;
                 case 3:
+                    var actityVentas = new Intent(this, typeof(VentasActivity));
+                    StartActivity(actityVentas);
+
+                    break;
+                case 4:
                     var actityConfiguracion = new Intent(this, typeof(OpcionesActivity));
                     StartActivity(actityConfiguracion);
 

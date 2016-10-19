@@ -20,7 +20,7 @@ using Newtonsoft.Json;
 
 namespace AlmacenRepuestosXamarin.Activities
 {
-    [Activity(Label = "LoginActivity", MainLauncher = true, LaunchMode = LaunchMode.SingleTop, Icon = "@drawable/TRH", ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(Label = "Login", MainLauncher = true, LaunchMode = LaunchMode.SingleTop, Icon = "@drawable/TRH", ScreenOrientation = ScreenOrientation.Portrait)]
     public class LoginActivity : Activity
     {
         private Spinner spinner;
@@ -28,15 +28,9 @@ namespace AlmacenRepuestosXamarin.Activities
         private View view;
         private EditText usuario;
         private EditText password;
-
-        private FirebaseAuth mAuth;
-
         private string empresaSeleccionada;
-       // private string usuario = string.Empty;
-       // private string password = string.Empty;
-
         public static readonly string[] empresas = { "Sevilla", "Liege" };
-
+        public static string comercial = "V005";
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -49,11 +43,9 @@ namespace AlmacenRepuestosXamarin.Activities
             password = FindViewById<EditText>(Resource.Id.editTextPass);
             spinner = FindViewById<Spinner>(Resource.Id.spinnerLoginEmpresa);
 
-           
             var adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerItem, empresas);
 
             spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(spinner_ItemSelected);
-
             spinner.Adapter = adapter;
             button.Click += delegate {
                 btnOneClick(this.view);
@@ -63,7 +55,6 @@ namespace AlmacenRepuestosXamarin.Activities
         private void spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
-            //Merchant merch = (Merchant)spinner.SelectedItem;
             empresaSeleccionada = spinner.GetItemAtPosition(e.Position).ToString();
             string toast = string.Format("Selected text is {0}", spinner.GetItemAtPosition(e.Position));
             Toast.MakeText(this, toast, ToastLength.Long).Show();
@@ -82,11 +73,7 @@ namespace AlmacenRepuestosXamarin.Activities
             else
             {
                 getDatosLogin(user, pass, empresaSeleccionada);
-
-                
-            }
-            
-            
+            }    
         }
 
         private async void getDatosLogin(string user, string pass, string empresaSeleccionada)
@@ -118,10 +105,6 @@ namespace AlmacenRepuestosXamarin.Activities
                 
             }
         }
-
-            
-
-        
 
         public class LoginTokenResult
         {

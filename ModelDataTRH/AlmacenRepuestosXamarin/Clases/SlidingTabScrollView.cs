@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AlmacenRepuestosXamarin.Activities;
 using AlmacenRepuestosXamarin.Fragments;
 using Android.App;
 using Android.Content;
@@ -178,6 +179,10 @@ namespace AlmacenRepuestosXamarin.Clases
                 else if (tipo.Contains("SlidingTabsFragment"))
                 {
                     tabView.Text = ((SlidingTabsFragment.SamplePagerAdapter)adapter).GetHeaderTitle(i);
+                }
+                else if (tipo.Contains("NuevaOferta"))
+                {
+                    tabView.Text = ((NuevaOfertaActivity.SPagerAdapter)adapter).GetHeaderTitle(i);
                 }
 
                 tabView.SetTextColor(Android.Graphics.Color.Black);

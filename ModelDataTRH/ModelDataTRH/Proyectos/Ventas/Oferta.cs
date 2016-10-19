@@ -3,14 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 
-namespace AlmacenRepuestosXamarin.Clases
+namespace ModelDataTRH.Ventas
 {
     public class Oferta
     {
@@ -87,8 +81,6 @@ namespace AlmacenRepuestosXamarin.Clases
         bool idAlmacenFieldSpecified { get; set; }
 
         SalesLinesField salesLinesField = new SalesLinesField();
-
-
 
         public class SalesLinesField
         {
