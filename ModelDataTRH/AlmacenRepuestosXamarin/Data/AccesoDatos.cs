@@ -25,6 +25,7 @@ using AlmacenRepuestosXamarin.Helpers;
 using ModelDataTRH.Proyectos.Trazabilidad_Generico;
 using static AlmacenRepuestosXamarin.Clases.SlidingTabsFragment;
 using AlmacenRepuestosXamarin.Fragments;
+using ModelDataTRH.Proyectos.Ventas;
 
 namespace AlmacenRepuestosXamarin.Data
 {
@@ -106,7 +107,7 @@ namespace AlmacenRepuestosXamarin.Data
                 else
                 {
                     resultado = Helpers.Preferencias.getUrlPublicaSevilla();
-                    UrlToken = @"http://intranet.trh-be.com/WSTRH/Token";
+                    UrlToken = @"http://intranet.trh-es.com/WSTRH/Token";
                 }
             }
 
@@ -380,7 +381,7 @@ namespace AlmacenRepuestosXamarin.Data
             return client;
         }
 
-        public async Task<Pedidos> getPedidoVenta(string codPedido)
+        public async Task<Pedido> getPedidoVenta(string codPedido)
         {
             string empresa = String.Empty;
             try
@@ -397,7 +398,7 @@ namespace AlmacenRepuestosXamarin.Data
                 if (response.IsSuccessStatusCode && response!=null)
                 {
                     var content = await response.Content.ReadAsStringAsync();
-                    var result = JsonConvert.DeserializeObject<Pedidos>(content);
+                    var result = JsonConvert.DeserializeObject<Pedido>(content);
                     return result;
                 }
 

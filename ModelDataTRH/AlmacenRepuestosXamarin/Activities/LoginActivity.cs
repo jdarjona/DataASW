@@ -80,11 +80,9 @@ namespace AlmacenRepuestosXamarin.Activities
         {
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(AccesoDatos.UrlToken);
+            string contenido = string.Format("grant_type=password&username={0}&password={1}", user, pass);
             HttpResponseMessage response =
-              client.PostAsync("Token",
-                new StringContent(string.Format("grant_type=password&username={0}&password={1}",
-                  user,
-                  pass), Encoding.UTF8,
+              client.PostAsync("Token", new StringContent(contenido, Encoding.UTF8,
                   "application/x-www-form-urlencoded")).Result;
 
             string resultJSON = response.Content.ReadAsStringAsync().Result;
