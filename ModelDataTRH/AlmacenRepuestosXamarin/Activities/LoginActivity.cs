@@ -31,6 +31,7 @@ namespace AlmacenRepuestosXamarin.Activities
         private string empresaSeleccionada;
         public static readonly string[] empresas = { "Sevilla", "Liege" };
         public static string comercial = "V005";
+        
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -42,22 +43,38 @@ namespace AlmacenRepuestosXamarin.Activities
             usuario = FindViewById<EditText>(Resource.Id.editTextUser);
             password = FindViewById<EditText>(Resource.Id.editTextPass);
             spinner = FindViewById<Spinner>(Resource.Id.spinnerLoginEmpresa);
+                        
+            usuario.Text = Preferencias.getUsuarioApp().ToString();
+            password.Text = Preferencias.getPasswordApp().ToString();
+            
 
             var adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerItem, empresas);
 
             spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(spinner_ItemSelected);
             spinner.Adapter = adapter;
+            spinner.SetSelection(comprobarEmpresaLogin());
             button.Click += delegate {
                 btnOneClick(this.view);
             };
+        }
+
+        private int comprobarEmpresaLogin()
+        {
+            string emp = Preferencias.getEmpresaLoginApp();
+            if (emp.Equals("Sevilla"))
+            {
+                return 0;
+            }
+            else
+            {
+                return 1;
+            }
         }
 
         private void spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
             empresaSeleccionada = spinner.GetItemAtPosition(e.Position).ToString();
-            string toast = string.Format("Selected text is {0}", spinner.GetItemAtPosition(e.Position));
-            Toast.MakeText(this, toast, ToastLength.Long).Show();
         }
 
 
@@ -89,6 +106,13 @@ namespace AlmacenRepuestosXamarin.Activities
             if (!resultJSON.Contains("Error de inicio de sesion"))
             {
                 LoginTokenResult result = JsonConvert.DeserializeObject<LoginTokenResult>(resultJSON);
+                if (Preferencias.getUsuarioApp().Equals("") && Preferencias.getPasswordApp().Equals("")){
+                    Preferencias pre = new Preferencias(this);
+                    pre.putUsuarioApp(user);
+                    pre.putPasswordApp(pass);
+                    pre.putEmpresaLoginApp(empresaSeleccionada);
+                    
+                }
                 var homeView = new Intent(this, typeof(HomeView));
                 StartActivity(homeView);
                

@@ -69,19 +69,19 @@ namespace ModelDataTRH.Proyectos.Ventas
 
         public bool no_of_Archived_VersionsFieldSpecified;
 
-        public System.DateTime order_DateField;
+        public DateTime order_DateField;
 
         public bool order_DateFieldSpecified;
 
-        public System.DateTime document_DateField;
+        public DateTime document_DateField;
 
         public bool document_DateFieldSpecified;
 
-        public System.DateTime requested_Delivery_DateField;
+        public DateTime requested_Delivery_DateField;
 
         public bool requested_Delivery_DateFieldSpecified;
 
-        public System.DateTime promised_Delivery_DateField;
+        public DateTime promised_Delivery_DateField;
 
         public bool promised_Delivery_DateFieldSpecified;
 
@@ -101,7 +101,7 @@ namespace ModelDataTRH.Proyectos.Ventas
 
         public bool eslingasFieldSpecified;
 
-        public System.DateTime fecha_Revision_PreciosField;
+        public DateTime fecha_Revision_PreciosField;
 
         public bool fecha_Revision_PreciosFieldSpecified;
 
@@ -127,7 +127,7 @@ namespace ModelDataTRH.Proyectos.Ventas
 
         public string location_CodeField;
 
-        public System.DateTime shipment_DateField;
+        public DateTime shipment_DateField;
 
         public bool shipment_DateFieldSpecified;
 
@@ -177,12 +177,35 @@ namespace ModelDataTRH.Proyectos.Ventas
 
         public string cod_Pedido_TransporteField;
 
-        public System.DateTime fecha_Carga_RequeridaField;
+        public DateTime fecha_Carga_RequeridaField;
 
         public bool fecha_Carga_RequeridaFieldSpecified;
 
         public Sales_Order_Subform_ws[] salesLinesField;
     }
+
+    public enum Type
+    {
+
+        /// <comentarios/>
+        _blank_,
+
+        /// <comentarios/>
+        G_L_Account,
+
+        /// <comentarios/>
+        Item,
+
+        /// <comentarios/>
+        Resource,
+
+        /// <comentarios/>
+        Fixed_Asset,
+
+        /// <comentarios/>
+        Charge_Item,
+    }
+
     public  class Sales_Order_Subform_ws
     {
 
