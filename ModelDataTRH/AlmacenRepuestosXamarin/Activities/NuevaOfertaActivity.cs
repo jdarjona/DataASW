@@ -142,7 +142,7 @@ namespace AlmacenRepuestosXamarin.Activities
             _menu = menu;
             SupportActionBar.SetTitle(Resource.String.Opciones_Oferta);
             MenuInflater.Inflate(Resource.Menu.soloMenuCambioDestino, _menu);
-            item = _menu.FindItem(Resource.Id.cambiarDestino);
+            //item = _menu.FindItem(Resource.Id.cambiarDestino);
             //MenuInflater.Inflate(Resource.Menu.buscador, _menu);
 
             //item = _menu.FindItem(Resource.Id.action_search);
@@ -175,7 +175,26 @@ namespace AlmacenRepuestosXamarin.Activities
 
             return base.OnCreateOptionsMenu(_menu);
         }
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
 
+
+            switch (item.ItemId)
+            {
+                case Resource.Id.cambiarDestino:
+
+                   // eliminarRepuesto();
+
+                    break;
+
+                default:
+                    Finish();
+
+                    break;
+            }
+            return base.OnOptionsItemSelected(item);
+
+        }
         public void OnPageScrolled(int position, float positionOffset, int positionOffsetPixels)
         {
 
