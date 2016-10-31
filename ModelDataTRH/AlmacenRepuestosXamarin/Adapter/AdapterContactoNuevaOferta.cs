@@ -1,40 +1,31 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 
 using Android.App;
 using Android.Content;
-using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Java.Lang;
 using ModelDataTRH.Proyectos.Ventas;
-using ModelDataTRH.Ventas;
-
 
 namespace AlmacenRepuestosXamarin.Adapter
-
-
 {
-    
-
-
-    public class AdapterNuevaOferta : BaseAdapter<Cliente>, IFilterable
+    public class AdapterContactoNuevaOferta : BaseAdapter<Contacto>, IFilterable
     {
         Activity context;
-        public List<Cliente> _originalData;
-        public List<Cliente> list;
+        public List<Contacto> _originalData;
+        public List<Contacto> list;
 
-        public AdapterNuevaOferta(Activity _context, List<Cliente> _list)
+        public AdapterContactoNuevaOferta(Activity _context, List<Contacto> _list)
             : base()
         {
             this.context = _context;
             this.list = _list;
-            Filter = new ClientesFilter(this);
+            Filter = new ContactosFilter(this);
         }
 
         public override void NotifyDataSetChanged()
@@ -53,14 +44,14 @@ namespace AlmacenRepuestosXamarin.Adapter
 
         public Filter Filter
         {
-            get; set; 
+            get; set;
         }
 
-        public class ClientesFilter : Filter
+        public class ContactosFilter : Filter
         {
 
-            private readonly AdapterNuevaOferta _adapter;
-            public ClientesFilter(AdapterNuevaOferta adapter)
+            private readonly AdapterContactoNuevaOferta _adapter;
+            public ContactosFilter(AdapterContactoNuevaOferta adapter)
             {
                 _adapter = adapter;
             }
@@ -70,7 +61,7 @@ namespace AlmacenRepuestosXamarin.Adapter
             protected override FilterResults PerformFiltering(ICharSequence constraint)
             {
                 var returnObj = new FilterResults();
-                var results = new List<Cliente>();
+                var results = new List<Contacto>();
                 if (_adapter._originalData == null)
                     _adapter._originalData = _adapter.list;
 
@@ -78,7 +69,7 @@ namespace AlmacenRepuestosXamarin.Adapter
 
                 if (constraint == null) return returnObj;
 
-                if (_adapter._originalData != null && _adapter._originalData.Any() )
+                if (_adapter._originalData != null && _adapter._originalData.Any())
                 {
                     // Compare constraint to all names lowercased. 
                     // It they are contained they are added to results.
@@ -99,14 +90,14 @@ namespace AlmacenRepuestosXamarin.Adapter
             protected override void PublishResults(ICharSequence constraint, FilterResults results)
             {
                 using (var values = results.Values)
-                    _adapter.list = values.ToArray<Java.Lang.Object>().Select(r => r.ToNetObject<Cliente>()).ToList();
+                    _adapter.list = values.ToArray<Java.Lang.Object>().Select(r => r.ToNetObject<Contacto>()).ToList();
 
                 _adapter.NotifyDataSetChanged();
 
             }
         }
 
-        public override Cliente this[int position]
+        public override Contacto this[int position]
         {
             get { return list[position]; }
         }
@@ -120,23 +111,19 @@ namespace AlmacenRepuestosXamarin.Adapter
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             View view = convertView;
-            var cultureInfo = CultureInfo.GetCultureInfo("es-ES");
+
             if (view == null)
                 view = context.LayoutInflater.Inflate(Resource.Layout.RowListNuevaOferta, parent, false);
 
-            Cliente item = this[position];
+            Contacto item = this[position];
             view.FindViewById<TextView>(Resource.Id.txt1).Text = item.nameField.ToString();
-            if (item.saldoField <= 0)
+            view.FindViewById<TextView>(Resource.Id.txt2).Text = "Tel.: " + item.phone_NoField.ToString();
+            if (item.job_TitleField == null) {
+                view.FindViewById<TextView>(Resource.Id.txt3).Text = "Cargo: -------------------";
+            } else
             {
-                view.FindViewById<TextView>(Resource.Id.txt2).SetTextColor(Color.Red);
+                view.FindViewById<TextView>(Resource.Id.txt3).Text = "Cargo: " + item.job_TitleField.ToString();
             }
-            else {
-                view.FindViewById<TextView>(Resource.Id.txt2).SetTextColor(Color.Green);
-            }
-            
-            view.FindViewById<TextView>(Resource.Id.txt2).Text = "Saldo: " + string.Format(cultureInfo, "{0:C}", item.saldoField);
-            view.FindViewById<TextView>(Resource.Id.txt3).Text = "Crédito Max.: " + string.Format(cultureInfo, "{0:C}", item.cred_Max_CESCEField);
-
             return view;
         }
     }

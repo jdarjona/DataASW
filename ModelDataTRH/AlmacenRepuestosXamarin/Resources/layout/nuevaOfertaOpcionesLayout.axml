@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:text="Tipo de Transporte"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textTipoTransporte"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="13.5dp" />
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rgTipoTrasnporte"
+        android:gravity="center_horizontal">
+        <RadioButton
+            android:layout_width="108.0dp"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="TRH"
+            android:id="@+id/rbTipoTransporteNo" />
+        <RadioButton
+            android:layout_width="108.0dp"
+            android:layout_height="wrap_content"
+            android:text="Sus Medios"
+            android:id="@+id/rbTipoTransporteSi" />
+    </RadioGroup>
+    <TextView
+        android:text="Doble Descarga"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textDobleDescarga"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="13.5dp" />
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rgDobleDescarga"
+        android:gravity="center_horizontal">
+        <RadioButton
+            android:layout_width="108.0dp"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="No"
+            android:id="@+id/rbDobleDescargaNo" />
+        <RadioButton
+            android:layout_width="108.0dp"
+            android:layout_height="wrap_content"
+            android:text="SÍ"
+            android:id="@+id/rbDobleDescargaSi" />
+    </RadioGroup>
+    <TextView
+        android:text="Camión Grúa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textCamionGrua"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="13.5dp" />
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rgCamionGrua"
+        android:gravity="center_horizontal">
+        <RadioButton
+            android:layout_width="108.0dp"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="No"
+            android:id="@+id/rbCamionGruaNo" />
+        <RadioButton
+            android:layout_width="108.0dp"
+            android:layout_height="wrap_content"
+            android:text="SÍ"
+            android:id="@+id/rbCamionGruaSi" />
+    </RadioGroup>
+</LinearLayout>

@@ -56,6 +56,7 @@
     <Compile Include="Proyectos\Ventas\DireccionEnvio.cs" />
     <Compile Include="Proyectos\Ventas\Oferta.cs" />
     <Compile Include="Proyectos\Ventas\Pedido.cs" />
+    <Compile Include="Proyectos\Ventas\Producto.cs" />
     <Compile Include="vListadoPedidosMonitorizacion.cs" />
   </ItemGroup>
   <ItemGroup>

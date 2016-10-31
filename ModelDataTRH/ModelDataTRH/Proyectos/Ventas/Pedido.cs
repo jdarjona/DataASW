@@ -37,151 +37,151 @@ namespace ModelDataTRH.Proyectos.Ventas
     {
         
 
-        public string keyField;
+        public string keyField{ get; set; }
 
-        public string noField;
+        public string noField{ get; set; }
 
-        public string sell_to_Customer_NoField;
+        public string sell_to_Customer_NoField{ get; set; }
 
-        public string sell_to_Contact_NoField;
+        public string sell_to_Contact_NoField{ get; set; }
 
-        public string sell_to_Customer_NameField;
+        public string sell_to_Customer_NameField{ get; set; }
 
-        public string sell_to_AddressField;
+        public string sell_to_AddressField{ get; set; }
 
-        public string sell_to_Address_2Field;
+        public string sell_to_Address_2Field{ get; set; }
 
-        public string sell_to_CityField;
+        public string sell_to_CityField{ get; set; }
 
-        public string codigo_Cliente_ContactoField;
+        public string codigo_Cliente_ContactoField{ get; set; }
 
-        public string telefono_ClienteField;
+        public string telefono_ClienteField{ get; set; }
 
-        public string fax_ClienteField;
+        public string fax_ClienteField{ get; set; }
 
-        public string email_ClienteField;
+        public string email_ClienteField{ get; set; }
 
-        public string vAT_Registration_NoField;
+        public string vAT_Registration_NoField{ get; set; }
 
-        public string sell_to_ContactField;
+        public string sell_to_ContactField{ get; set; }
 
-        public int no_of_Archived_VersionsField;
+        public int no_of_Archived_VersionsField{ get; set; }
 
-        public bool no_of_Archived_VersionsFieldSpecified;
+        public bool no_of_Archived_VersionsFieldSpecified{ get; set; }
 
-        public DateTime order_DateField;
+        public DateTime order_DateField{ get; set; }
 
-        public bool order_DateFieldSpecified;
+        public bool order_DateFieldSpecified{ get; set; }
 
-        public DateTime document_DateField;
+        public DateTime document_DateField{ get; set; }
 
-        public bool document_DateFieldSpecified;
+        public bool document_DateFieldSpecified{ get; set; }
 
-        public DateTime requested_Delivery_DateField;
+        public DateTime requested_Delivery_DateField{ get; set; }
 
-        public bool requested_Delivery_DateFieldSpecified;
+        public bool requested_Delivery_DateFieldSpecified{ get; set; }
 
-        public DateTime promised_Delivery_DateField;
+        public DateTime promised_Delivery_DateField{ get; set; }
 
-        public bool promised_Delivery_DateFieldSpecified;
+        public bool promised_Delivery_DateFieldSpecified{ get; set; }
 
-        public int numero_IncidenciasField;
+        public int numero_IncidenciasField{ get; set; }
 
-        public bool numero_IncidenciasFieldSpecified;
+        public bool numero_IncidenciasFieldSpecified{ get; set; }
 
-        public string salesperson_CodeField;
+        public string salesperson_CodeField{ get; set; }
 
-        public string cod_Agrupacion_PedidoField;
+        public string cod_Agrupacion_PedidoField{ get; set; }
 
-        public Status statusField;
+        public Status statusField{ get; set; }
 
-        public bool statusFieldSpecified;
+        public bool statusFieldSpecified{ get; set; }
 
-        public bool eslingasField;
+        public bool eslingasField{ get; set; }
 
-        public bool eslingasFieldSpecified;
+        public bool eslingasFieldSpecified{ get; set; }
 
-        public DateTime fecha_Revision_PreciosField;
+        public DateTime fecha_Revision_PreciosField{ get; set; }
 
-        public bool fecha_Revision_PreciosFieldSpecified;
+        public bool fecha_Revision_PreciosFieldSpecified{ get; set; }
 
-        public string external_Document_NoField;
+        public string external_Document_NoField{ get; set; }
 
-        public string ship_to_CodeField;
+        public string ship_to_CodeField{ get; set; }
 
-        public string ship_to_NameField;
+        public string ship_to_NameField{ get; set; }
 
-        public string ship_to_AddressField;
+        public string ship_to_AddressField{ get; set; }
 
-        public string ship_to_Address_2Field;
+        public string ship_to_Address_2Field{ get; set; }
 
-        public string ship_to_Post_CodeField;
+        public string ship_to_Post_CodeField{ get; set; }
 
-        public string ship_to_CityField;
+        public string ship_to_CityField{ get; set; }
 
-        public string ship_to_CountyField;
+        public string ship_to_CountyField{ get; set; }
 
-        public string ship_to_ContactField;
+        public string ship_to_ContactField{ get; set; }
 
-        public string ship_to_Country_Region_CodeField;
+        public string ship_to_Country_Region_CodeField{ get; set; }
 
-        public string location_CodeField;
+        public string location_CodeField{ get; set; }
 
-        public DateTime shipment_DateField;
+        public DateTime shipment_DateField{ get; set; }
 
-        public bool shipment_DateFieldSpecified;
+        public bool shipment_DateFieldSpecified{ get; set; }
 
-        public decimal coste_Total_TransporteField;
+        public decimal coste_Total_TransporteField{ get; set; }
 
-        public bool coste_Total_TransporteFieldSpecified;
+        public bool coste_Total_TransporteFieldSpecified{ get; set; }
 
-        public decimal euros_Tm_PorteField;
+        public decimal euros_Tm_PorteField{ get; set; }
 
-        public bool euros_Tm_PorteFieldSpecified;
+        public bool euros_Tm_PorteFieldSpecified{ get; set; }
 
-        public Tipo_Gestion_Transporte tipo_Gestion_TransporteField;
+        public Tipo_Gestion_Transporte tipo_Gestion_TransporteField{ get; set; }
 
-        public bool tipo_Gestion_TransporteFieldSpecified;
+        public bool tipo_Gestion_TransporteFieldSpecified{ get; set; }
 
-        public int nº_Camiones_CalField;
+        public int nº_Camiones_CalField{ get; set; }
 
-        public bool nº_Camiones_CalFieldSpecified;
+        public bool nº_Camiones_CalFieldSpecified{ get; set; }
 
-        public string telefono_ContactoField;
+        public string telefono_ContactoField{ get; set; }
 
-        public string email_ContactoField;
+        public string email_ContactoField{ get; set; }
 
-        public string movil_ContactoField;
+        public string movil_ContactoField{ get; set; }
 
-        public string fax_ContactoField;
+        public string fax_ContactoField{ get; set; }
 
-        public string cargo_ContactoField;
+        public string cargo_ContactoField{ get; set; }
 
-        public string comentariosField;
+        public string comentariosField{ get; set; }
 
-        public string email_EnvioField;
+        public string email_EnvioField{ get; set; }
 
-        public string telefono_EnvioField;
+        public string telefono_EnvioField{ get; set; }
 
-        public string fax_EnvioField;
+        public string fax_EnvioField{ get; set; }
 
-        public bool doble_DescargaField;
+        public bool doble_DescargaField{ get; set; }
 
-        public bool doble_DescargaFieldSpecified;
+        public bool doble_DescargaFieldSpecified{ get; set; }
 
-        public string cod_Agencia_TransporteField;
+        public string cod_Agencia_TransporteField{ get; set; }
 
-        public bool camion_GruaField;
+        public bool camion_GruaField{ get; set; }
 
-        public bool camion_GruaFieldSpecified;
+        public bool camion_GruaFieldSpecified{ get; set; }
 
-        public string cod_Pedido_TransporteField;
+        public string cod_Pedido_TransporteField{ get; set; }
 
-        public DateTime fecha_Carga_RequeridaField;
+        public DateTime? fecha_Carga_RequeridaField { get; set; }
 
-        public bool fecha_Carga_RequeridaFieldSpecified;
+        public bool fecha_Carga_RequeridaFieldSpecified{ get; set; }
 
-        public Sales_Order_Subform_ws[] salesLinesField;
+        public Sales_Order_Subform_ws[] salesLinesField{ get; set; }
     }
 
     public enum Type
@@ -209,108 +209,108 @@ namespace ModelDataTRH.Proyectos.Ventas
     public  class Sales_Order_Subform_ws
     {
 
-        public string keyField;
+        public string keyField{ get; set; }
 
-        public string document_NoField;
+        public string document_NoField{ get; set; }
 
-        public Type typeField;
+        public Type typeField{ get; set; }
 
-        public bool typeFieldSpecified;
+        public bool typeFieldSpecified{ get; set; }
 
-        public string noField;
+        public string noField{ get; set; }
 
-        public string variant_CodeField;
+        public string variant_CodeField{ get; set; }
 
-        public string vAT_Prod_Posting_GroupField;
+        public string vAT_Prod_Posting_GroupField{ get; set; }
 
-        public string descriptionField;
+        public string descriptionField{ get; set; }
 
-        public string location_CodeField;
+        public string location_CodeField{ get; set; }
 
-        public decimal quantityField;
+        public decimal quantityField{ get; set; }
 
-        public bool quantityFieldSpecified;
+        public bool quantityFieldSpecified{ get; set; }
 
-        public string unit_of_Measure_CodeField;
+        public string unit_of_Measure_CodeField{ get; set; }
 
-        public string unit_of_MeasureField;
+        public string unit_of_MeasureField{ get; set; }
 
-        public decimal cantidad_PAQField;
+        public decimal cantidad_PAQField{ get; set; }
 
-        public bool cantidad_PAQFieldSpecified;
+        public bool cantidad_PAQFieldSpecified{ get; set; }
 
-        public decimal cantidad_PAÑOField;
+        public decimal cantidad_PAÑOField{ get; set; }
 
-        public bool cantidad_PAÑOFieldSpecified;
+        public bool cantidad_PAÑOFieldSpecified{ get; set; }
 
-        public decimal cantidad_M2Field;
+        public decimal cantidad_M2Field{ get; set; }
 
-        public bool cantidad_M2FieldSpecified;
+        public bool cantidad_M2FieldSpecified{ get; set; }
 
-        public decimal cantidad_KGField;
+        public decimal cantidad_KGField{ get; set; }
 
-        public bool cantidad_KGFieldSpecified;
+        public bool cantidad_KGFieldSpecified{ get; set; }
 
-        public decimal descuentoField;
+        public decimal descuentoField{ get; set; }
 
-        public bool descuentoFieldSpecified;
+        public bool descuentoFieldSpecified{ get; set; }
 
-        public decimal unit_PriceField;
+        public decimal unit_PriceField{ get; set; }
 
-        public bool unit_PriceFieldSpecified;
+        public bool unit_PriceFieldSpecified{ get; set; }
 
-        public decimal precio_Ud_DestinoField;
+        public decimal precio_Ud_DestinoField{ get; set; }
 
-        public bool precio_Ud_DestinoFieldSpecified;
+        public bool precio_Ud_DestinoFieldSpecified{ get; set; }
 
-        public decimal line_AmountField;
+        public decimal line_AmountField{ get; set; }
 
-        public bool line_AmountFieldSpecified;
+        public bool line_AmountFieldSpecified{ get; set; }
 
-        public decimal precio_M2_DestinoField;
+        public decimal precio_M2_DestinoField{ get; set; }
 
-        public bool precio_M2_DestinoFieldSpecified;
+        public bool precio_M2_DestinoFieldSpecified{ get; set; }
 
-        public decimal precio_PANO_DestinoField;
+        public decimal precio_PANO_DestinoField{ get; set; }
 
-        public bool precio_PANO_DestinoFieldSpecified;
+        public bool precio_PANO_DestinoFieldSpecified{ get; set; }
 
-        public decimal precio_TM_DestinoField;
+        public decimal precio_TM_DestinoField{ get; set; }
 
-        public bool precio_TM_DestinoFieldSpecified;
+        public bool precio_TM_DestinoFieldSpecified{ get; set; }
 
-        public decimal paquetesPendientesCargarField;
+        public decimal paquetesPendientesCargarField{ get; set; }
 
-        public bool paquetesPendientesCargarFieldSpecified;
+        public bool paquetesPendientesCargarFieldSpecified{ get; set; }
 
-        public decimal paquetes_CargadosField;
+        public decimal paquetes_CargadosField{ get; set; }
 
-        public bool paquetes_CargadosFieldSpecified;
+        public bool paquetes_CargadosFieldSpecified{ get; set; }
 
-        public int line_NoField;
+        public int line_NoField{ get; set; }
 
-        public bool line_NoFieldSpecified;
+        public bool line_NoFieldSpecified{ get; set; }
 
-        public string aliasField;
+        public string aliasField{ get; set; }
 
-        public decimal precio_Patio_M2Field;
+        public decimal precio_Patio_M2Field{ get; set; }
 
-        public bool precio_Patio_M2FieldSpecified;
+        public bool precio_Patio_M2FieldSpecified{ get; set; }
 
-        public decimal precio_Patio_TMField;
+        public decimal precio_Patio_TMField{ get; set; }
 
-        public bool precio_Patio_TMFieldSpecified;
+        public bool precio_Patio_TMFieldSpecified{ get; set; }
 
-        public decimal precio_Patio_PanoField;
+        public decimal precio_Patio_PanoField{ get; set; }
 
-        public bool precio_Patio_PanoFieldSpecified;
+        public bool precio_Patio_PanoFieldSpecified{ get; set; }
 
-        public decimal precioLineaTotalField;
+        public decimal precioLineaTotalField{ get; set; }
 
-        public bool precioLineaTotalFieldSpecified;
+        public bool precioLineaTotalFieldSpecified{ get; set; }
 
-        public decimal precioLineaTotalPatioField;
+        public decimal precioLineaTotalPatioField{ get; set; }
 
-        public bool precioLineaTotalPatioFieldSpecified;
+        public bool precioLineaTotalPatioFieldSpecified{ get; set; }
     }
     }

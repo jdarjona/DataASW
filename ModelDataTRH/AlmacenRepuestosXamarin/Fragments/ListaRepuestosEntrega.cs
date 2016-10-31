@@ -218,8 +218,8 @@ namespace AlmacenRepuestosXamarin.Fragments
                         alert.SetMessage("Si la registras esos datos no podrán ser modificados");
                         alert.SetPositiveButton("SÍ", (s, e) =>
                         {
-
-                            RegistrarSalida();
+                        RegistrarSalida();
+                            
                         });
                         alert.SetNegativeButton("NO", (s, e) =>
                         {
@@ -269,20 +269,21 @@ namespace AlmacenRepuestosXamarin.Fragments
                         PopBackStack();
                     });
                     alert.Show();
-
-
                 }
                 else
                 {
                     alert.SetMessage("Registro correcto");
-                    alert.SetNeutralButton("Ok", (s, e) => { PopBackStack(); });
+                    alert.SetNeutralButton("Ok", (s, e) => {
+                        this.OnDestroy();
+                        //PopBackStack();
+                    });
                     alert.Show();
-
                 }
 
                 ManagerRepuestos.clearRepuestos();
                 progressLayout.Visibility = ViewStates.Gone;
-                FragmentManager.PopBackStack();
+
+                
                 return true;
 
             }

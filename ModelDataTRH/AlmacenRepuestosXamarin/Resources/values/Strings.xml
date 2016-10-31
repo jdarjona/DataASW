@@ -13,7 +13,12 @@
   <string name="drawer_open">Open</string>
   <string name="drawer_close">Close</string>
   <string name="menu_refresh">Refresh</string>
-
+  <string name="Listado_Productos">Listado Productos</string>
+  <string name="Opciones_Oferta">Opciones Oferta</string>
+  <string name="Carga">Carga</string>
+  <string name="Precios">Precios</string>
+  <string name="Incidencias">Incidencias</string>
+  <string name="Envios">Envios</string>
   <string-array name="Empresas">
     
     <item>Liege</item>
