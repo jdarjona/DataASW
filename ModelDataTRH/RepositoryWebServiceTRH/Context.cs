@@ -17,6 +17,7 @@ using RepositoryWebServiceTRH.ContactosContext;
 using RepositoryWebServiceTRH.PedidoListadoContext;
 using RepositoryWebServiceTRH.ClientesContext;
 using RepositoryWebServiceTRH.DireccionesEnvioContext;
+using RepositoryWebServiceTRH.FuncionesVentasContext;
 
 
 
@@ -38,6 +39,8 @@ namespace RepositoryWebServiceTRH
         public static DireccionesEnvio_PortClient contextDireccionesEnvio { get; set; }
         public static PedidoListado_PortClient contextPedidoListado { get; set; }
         public static Pedidos_PortClient contextPedidosVenta { get; private set; }
+
+        public static Avisos_PortClient contextCuVentas { get; private set; }
 
         public static string usuario=@"TRHSEVILLA0\administrador";
 
@@ -67,13 +70,15 @@ namespace RepositoryWebServiceTRH
             //CU
             hostWS.tipoServicioWeb = HostWebService.tipoWebService.Codeunit;
             initAlmacenesClientesPortCliente(navisionWSBinding, hostWS);
+            initCuVentasPortCliente(navisionWSBinding, hostWS);
 
 
-            
-            
-           
-           
-            
+
+
+
+
+
+
         }
         private static BasicHttpBinding CreateBasicHttp()
         {
@@ -191,6 +196,13 @@ namespace RepositoryWebServiceTRH
             contextDatosEntreEmpresas = new DatosEntreEmpresas_PortClient(navisionWSBinding, new EndpointAddress(string.Format(hostWs.urlHost, "DatosEntreEmpresas", HostWebService.tipoWebService.Codeunit.ToString())));
             contextDatosEntreEmpresas.ClientCredentials.Windows.AllowedImpersonationLevel = System.Security.Principal.TokenImpersonationLevel.Delegation;
             contextDatosEntreEmpresas.ClientCredentials.Windows.ClientCredential = new System.Net.NetworkCredential(hostWs.user, hostWs.password);
+        }
+
+        private static void initCuVentasPortCliente(BasicHttpBinding navisionWSBinding, HostWebService hostWs)
+        {
+            contextCuVentas = new Avisos_PortClient(navisionWSBinding, new EndpointAddress(string.Format(hostWs.urlHost, "Avisos", HostWebService.tipoWebService.Codeunit.ToString())));
+            contextCuVentas.ClientCredentials.Windows.AllowedImpersonationLevel = System.Security.Principal.TokenImpersonationLevel.Delegation;
+            contextCuVentas.ClientCredentials.Windows.ClientCredential = new System.Net.NetworkCredential(hostWs.user, hostWs.password);
         }
 
         #endregion

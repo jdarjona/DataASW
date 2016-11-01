@@ -968,6 +968,21 @@
           <sequence />
         </complexType>
       </element>
+      <element name="PdfIncidenciaDireccion">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codDocumento" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="ubicacion" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PdfIncidenciaDireccion_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
     </schema>
   </types>
   <message name="InformePedidos">
@@ -1384,6 +1399,12 @@
   <message name="IncidenciaClientePedido_Result">
     <part name="parameters" element="tns:IncidenciaClientePedido_Result" />
   </message>
+  <message name="PdfIncidenciaDireccion">
+    <part name="parameters" element="tns:PdfIncidenciaDireccion" />
+  </message>
+  <message name="PdfIncidenciaDireccion_Result">
+    <part name="parameters" element="tns:PdfIncidenciaDireccion_Result" />
+  </message>
   <portType name="Avisos_Port">
     <operation name="InformePedidos">
       <input name="InformePedidos" message="tns:InformePedidos" />
@@ -1660,6 +1681,10 @@
     <operation name="IncidenciaClientePedido">
       <input name="IncidenciaClientePedido" message="tns:IncidenciaClientePedido" />
       <output name="IncidenciaClientePedido_Result" message="tns:IncidenciaClientePedido_Result" />
+    </operation>
+    <operation name="PdfIncidenciaDireccion">
+      <input name="PdfIncidenciaDireccion" message="tns:PdfIncidenciaDireccion" />
+      <output name="PdfIncidenciaDireccion_Result" message="tns:PdfIncidenciaDireccion_Result" />
     </operation>
   </portType>
   <binding name="Avisos_Binding" type="tns:Avisos_Port">
@@ -2282,6 +2307,15 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="IncidenciaClientePedido_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PdfIncidenciaDireccion">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Avisos:PdfIncidenciaDireccion" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PdfIncidenciaDireccion">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PdfIncidenciaDireccion_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>

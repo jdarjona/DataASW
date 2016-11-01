@@ -123,7 +123,7 @@ namespace RepositoryWebServiceTRH.EntregaAlmacenEpisContext {
         [DataMember]
         private bool fechaFieldSpecified;
         [DataMember]
-        private int cantidadField;
+        private System.Decimal cantidadField;
         [DataMember]
         private bool cantidadFieldSpecified;
         [DataMember]
@@ -262,7 +262,7 @@ namespace RepositoryWebServiceTRH.EntregaAlmacenEpisContext {
         /// <comentarios/>
         [System.Xml.Serialization.XmlElementAttribute(Order=6)]
         [DataMember]
-        public int Cantidad {
+        public System.Decimal Cantidad {
             get {
                 return this.cantidadField;
             }
@@ -513,60 +513,61 @@ namespace RepositoryWebServiceTRH.EntregaAlmacenEpisContext {
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:microsoft-dynamics-schemas/page/entregaalmacen")]
     ///Sevilla
-    //public enum Maquina
-    //{
+   /* public enum Maquina
+    {
 
-    //    /// <comentarios/>
-    //    _blank_,
+        /// <comentarios/>
+        _blank_,
 
-    //    /// <comentarios/>
-    //    M1,
+        /// <comentarios/>
+        M1,
 
-    //    /// <comentarios/>
-    //    M2,
+        /// <comentarios/>
+        M2,
 
-    //    /// <comentarios/>
-    //    M3,
+        /// <comentarios/>
+        M3,
 
-    //    /// <comentarios/>
-    //    M4,
+        /// <comentarios/>
+        M4,
 
-    //    /// <comentarios/>
-    //    R1,
+        /// <comentarios/>
+        R1,
 
-    //    /// <comentarios/>
-    //    R2,
+        /// <comentarios/>
+        R2,
 
-    //    /// <comentarios/>
-    //    E1,
+        /// <comentarios/>
+        E1,
 
-    //    /// <comentarios/>
-    //    E2,
+        /// <comentarios/>
+        E2,
 
-    //    /// <comentarios/>
-    //    T1,
+        /// <comentarios/>
+        T1,
 
-    //    /// <comentarios/>
-    //    T2,
+        /// <comentarios/>
+        T2,
 
-    //    /// <comentarios/>
-    //    T3,
+        /// <comentarios/>
+        T3,
 
-    //    /// <comentarios/>
-    //    T4,
+        /// <comentarios/>
+        T4,
 
-    //    /// <comentarios/>
-    //    T5,
+        /// <comentarios/>
+        T5,
 
-    //    /// <comentarios/>
-    //    T6,
+        /// <comentarios/>
+        T6,
 
-    //    /// <comentarios/>
-    //    T7,
+        /// <comentarios/>
+        T7,
 
-    //    /// <comentarios/>
-    //    T8,
-    //}
+        /// <comentarios/>
+        T8,
+    }
+    */
     /////Lieja
     public enum Maquina
     {
