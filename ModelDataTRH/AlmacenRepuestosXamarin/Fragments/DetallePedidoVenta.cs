@@ -81,15 +81,15 @@ namespace AlmacenRepuestosXamarin.Fragments
             {
                 AppCompatActivity activity = (AppCompatActivity)this.Activity;
 
-                activity.SupportActionBar.Title = pedidoVenta.Sell_to_Customer_Name;
-                var tmTotal = pedidoVenta.SalesLines.Sum(q => q.Cantidad_KG / 1000).ToString("N0");
-                var importeTotal = pedidoVenta.SalesLines.Sum(q => q.PrecioLineaTotal).ToString("N2");
+                activity.SupportActionBar.Title = pedidoVenta.sell_to_Customer_NameField;
+                var tmTotal = pedidoVenta.salesLinesField.Sum(q => q.cantidad_KGField / 1000).ToString("N0");
+                var importeTotal = pedidoVenta.salesLinesField.Sum(q => q.precioLineaTotalField).ToString("N2");
 
                 activity.SupportActionBar.Subtitle = string.Format("{0} Tm - {1} €",tmTotal,importeTotal);
 
 
                 listViewDetallePedidoVenta = (ListView)view.FindViewById(Resource.Id.listViewDetallePedidoVenta);
-                adapterDetallePedidoVenta = new AdapterDetallePedidoVenta(this.Activity, pedidoVenta.SalesLines.ToList());
+                adapterDetallePedidoVenta = new AdapterDetallePedidoVenta(this.Activity, pedidoVenta.salesLinesField.ToList());
                 listViewDetallePedidoVenta.Adapter = adapterDetallePedidoVenta;
                 progressLayout.Visibility = ViewStates.Gone;
             }

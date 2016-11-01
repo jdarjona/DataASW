@@ -9,7 +9,8 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using RepositoryWebServiceTRH.PedidoVentasContext;
+using ModelDataTRH.Proyectos.Ventas;
+
 
 namespace AlmacenRepuestosXamarin.Adapter
 {
@@ -23,7 +24,7 @@ namespace AlmacenRepuestosXamarin.Adapter
             : base()
         {
             this.context = _context;
-            this.list = _list.Where(q=>!q.Alias.Equals("PT")).ToList();
+            this.list = _list.Where(q=>!q.aliasField.Equals("PT")).ToList();
         }
 
         public override int Count
@@ -49,10 +50,10 @@ namespace AlmacenRepuestosXamarin.Adapter
                 view = context.LayoutInflater.Inflate(Resource.Layout.RowDetallePedidoVenta, parent, false);
 
             Sales_Order_Subform_ws item = this[position];
-            view.FindViewById<TextView>(Resource.Id.CodProducto).Text = item.Alias;
-            view.FindViewById<TextView>(Resource.Id.Descripcion).Text = item.Description;
-            view.FindViewById<TextView>(Resource.Id.Peso).Text = string.Format(@"{0} {1}",item.Cantidad_KG.ToString("N2"),"Kg");
-            view.FindViewById<TextView>(Resource.Id.Paquetes).Text = item.Cantidad_PAQ.ToString("N0");
+            view.FindViewById<TextView>(Resource.Id.CodProducto).Text = item.aliasField;
+            view.FindViewById<TextView>(Resource.Id.Descripcion).Text = item.descriptionField;
+            view.FindViewById<TextView>(Resource.Id.Peso).Text = string.Format(@"{0} {1}",item.cantidad_KGField.ToString("N2"),"Kg");
+            view.FindViewById<TextView>(Resource.Id.Paquetes).Text = item.cantidad_PAQField.ToString("N0");
 
 
             return view;

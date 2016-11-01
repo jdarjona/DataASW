@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AlmacenRepuestosXamarin.Adapter;
+using AlmacenRepuestosXamarin.Data;
 using AlmacenRepuestosXamarin.Model;
 using Android.App;
 using Android.Content;
@@ -23,9 +24,9 @@ namespace AlmacenRepuestosXamarin.Fragments
     public class BuscadorEmpleados : Android.Support.V4.App.Fragment
     {
         List<Empleados> empleados = new List<Empleados>();
-        Data.AccesoDatos restService ;
+        AccesoDatos restService ;
         ListView listViewEmpleados;
-        Adapter.AdapterEmpleados adaptadorEmpleados;
+        AdapterEmpleados adaptadorEmpleados;
         private Android.Support.V7.Widget.SearchView _searchView;
         LinearLayout progressLayout;
         IMenuItem item;
@@ -51,14 +52,14 @@ namespace AlmacenRepuestosXamarin.Fragments
             // Use this to return your custom view for this Fragment
             // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
 
-            var ignored = base.OnCreateView(inflater, container, savedInstanceState);
+           // var ignored = base.OnCreateView(inflater, container, savedInstanceState);
 
              view = inflater.Inflate(Resource.Layout.Main, null);
 
             restService = new Data.AccesoDatos();
 
             progressLayout = view.FindViewById<LinearLayout>(Resource.Id.progressBarMain);
-             listViewEmpleados = (ListView)view.FindViewById(Resource.Id.listEmpleados);
+            listViewEmpleados = (ListView)view.FindViewById(Resource.Id.listEmpleados);
 
             
             return view;

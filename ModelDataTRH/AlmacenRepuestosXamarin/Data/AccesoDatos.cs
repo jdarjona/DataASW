@@ -25,6 +25,10 @@ using AlmacenRepuestosXamarin.Helpers;
 using ModelDataTRH.Proyectos.Trazabilidad_Generico;
 using static AlmacenRepuestosXamarin.Clases.SlidingTabsFragment;
 using AlmacenRepuestosXamarin.Fragments;
+using ModelDataTRH.Proyectos.Ventas;
+using System.Threading;
+using Newtonsoft.Json.Linq;
+using ModelDataTRH.Ventas;
 
 namespace AlmacenRepuestosXamarin.Data
 {
@@ -34,13 +38,20 @@ namespace AlmacenRepuestosXamarin.Data
         static string SSID = string.Empty;
         static bool conexionWifi = false;
         public static string UrlToken = string.Empty;
-        
+        public static List<Cliente> listaClientes;
+        public static List<Almacen> listaAlmacenes;
+        public static List<Contacto> listaContactos;
+        public static List<DireccionEnvio> listaDireccionesEnvio;
+        public static List<Pedido> listaPedidos;
+        public static List<Oferta> listaOfertas;
+        public static List<Producto> listaProductos =  new List<Producto>();
+        // public static List<Producto> listaProductos;
 
         // private const string webBase = @"http://intranet.trh-be.com/WSTRH/";
         // private const string webBase = @"http://192.168.1.2/WSTRH/";
         public  static string empre=string.Empty;
         private  HttpClient client = new HttpClient(new NativeMessageHandler());
-       
+        public static Oferta nuevaOferta = new Oferta();
 
         public AccesoDatos()
         {
@@ -50,6 +61,199 @@ namespace AlmacenRepuestosXamarin.Data
 
         }
 
+        public async Task initGetListados(string empresa)
+        {
+            listaClientes =await  getClientes();
+            listaAlmacenes = await getAlmacenes();
+            listaContactos = await getContactos();
+            listaDireccionesEnvio = await getDireccionEnvio();
+            listaPedidos = await getListadoPedidos();
+            //listaProductos = await getListadoProductos();
+            Producto p = new Producto();
+            p.search_DescriptionField = "Q2012 Q2";
+            p.stockDisponibleField = 30;
+            p.paquetes_por_CamiónField = 15;
+            listaProductos.Add(p);
+            p = new Producto();
+            p.search_DescriptionField = "Q2010 Q2";
+            p.stockDisponibleField = 24;
+            p.paquetes_por_CamiónField = 14;
+            listaProductos.Add(p);
+            //listaOfertas = await getListadoOfertas();
+            //getProductos();
+        }
+
+
+        #region VENTAS
+        public async Task<List<Cliente>> getClientes()
+        {
+            try
+            {
+                client = initClient();
+                client.DefaultRequestHeaders.Add("Authorization", LoginActivity.token.ToString());
+                var response = await client.GetAsync(@"api/Clientes");
+
+                if (response.IsSuccessStatusCode)
+                {
+                   var content = await response.Content.ReadAsStringAsync();
+
+                    var result = JsonConvert.DeserializeObject<List<Cliente>>(content);
+                    return result;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Se ha producido una excipcion no controlada en metodo getClientes() ", ex.InnerException);
+            }
+
+            return null;
+        } 
+
+        public async Task<List<Almacen>> getAlmacenes()
+        {
+            try
+            {
+                client = initClient();
+                client.DefaultRequestHeaders.Add("Authorization", LoginActivity.token.ToString());
+                var response = await client.GetAsync(@"api/Almacenes");
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+
+                    var result = JsonConvert.DeserializeObject<List<Almacen>>(content);
+                    return result;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Se ha producido una excipcion no controlada en metodo getAlmacenes() ", ex.InnerException);
+            }
+
+            return null;
+        }
+
+
+        public async Task<List<Contacto>> getContactos()
+        {
+            try
+            {
+                client = initClient();
+                client.DefaultRequestHeaders.Add("Authorization", LoginActivity.token.ToString());
+                var response = await client.GetAsync(@"api/Contactos");
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+
+                    var result = JsonConvert.DeserializeObject<List<Contacto>>(content);
+                    return result;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Se ha producido una excipcion no controlada en metodo getContactos() ", ex.InnerException);
+            }
+
+            return null;
+        }
+
+        public async Task<List<DireccionEnvio>> getDireccionEnvio()
+        {
+            try
+            {
+                client = initClient();
+                client.DefaultRequestHeaders.Add("Authorization", LoginActivity.token.ToString());
+                var response = await client.GetAsync(@"api/DireccionesEnvio");
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+
+                    var result = JsonConvert.DeserializeObject<List<DireccionEnvio>>(content);
+                    return result;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Se ha producido una excipcion no controlada en metodo getDireccionEnvio() ", ex.InnerException);
+            }
+
+            return null;
+        }
+
+        public async Task<List<Pedido>> getListadoPedidos()
+        {
+            try
+            {
+                client = initClient();
+                client.DefaultRequestHeaders.Add("Authorization", LoginActivity.token.ToString());
+                var response = await client.GetAsync(@"api/Pedidos");
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+
+                    var result = JsonConvert.DeserializeObject<List<Pedido>>(content);
+                    return result;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Se ha producido una excipcion no controlada en metodo getListadoPedidos() ", ex.InnerException);
+            }
+
+            return null;
+        }
+
+        public async Task<List<Producto>> getListadoProductos()
+        {
+            try
+            {
+                client = initClient();
+                client.DefaultRequestHeaders.Add("Authorization", LoginActivity.token.ToString());
+                var response = await client.GetAsync(@"api/Productos");
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+
+                    var result = JsonConvert.DeserializeObject<List<Producto>>(content);
+                    return result;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Se ha producido una excipcion no controlada en metodo getListadoPedidos() ", ex.InnerException);
+            }
+
+            return null;
+        }
+        public async Task<List<Oferta>> getListadoOfertas()
+        {
+            try
+            {
+                client = initClient();
+                client.DefaultRequestHeaders.Add("Authorization", LoginActivity.token.ToString());
+                var response = await client.GetAsync(@"api/Ofertas");
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+
+                    var result = JsonConvert.DeserializeObject<List<Oferta>>(content);
+                    return result;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Se ha producido una excipcion no controlada en metodo getListadoOfertas() ", ex.InnerException);
+            }
+
+            return null;
+        }
+        #endregion
         public HttpClient initClient() {
             client = new HttpClient(new NativeMessageHandler())
             {
@@ -106,7 +310,7 @@ namespace AlmacenRepuestosXamarin.Data
                 else
                 {
                     resultado = Helpers.Preferencias.getUrlPublicaSevilla();
-                    UrlToken = @"http://intranet.trh-be.com/WSTRH/Token";
+                    UrlToken = @"http://intranet.trh-es.com/WSTRH/Token";
                 }
             }
 
@@ -380,7 +584,7 @@ namespace AlmacenRepuestosXamarin.Data
             return client;
         }
 
-        public async Task<Pedidos> getPedidoVenta(string codPedido)
+        public async Task<Pedido> getPedidoVenta(string codPedido)
         {
             string empresa = String.Empty;
             try
@@ -397,7 +601,7 @@ namespace AlmacenRepuestosXamarin.Data
                 if (response.IsSuccessStatusCode && response!=null)
                 {
                     var content = await response.Content.ReadAsStringAsync();
-                    var result = JsonConvert.DeserializeObject<Pedidos>(content);
+                    var result = JsonConvert.DeserializeObject<Pedido>(content);
                     return result;
                 }
 

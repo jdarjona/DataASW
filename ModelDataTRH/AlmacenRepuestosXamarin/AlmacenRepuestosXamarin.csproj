@@ -152,12 +152,26 @@
   <ItemGroup>
     <Compile Include="Activities\BaseActivity.cs" />
     <Compile Include="Activities\HomeActivity.cs" />
+    <Compile Include="Activities\ListadoOfertasActivity.cs" />
+    <Compile Include="Activities\ListadoPedidosActivity.cs" />
+    <Compile Include="Activities\ListadoProductosActivity.cs" />
     <Compile Include="Activities\LoginActivity.cs" />
     <Compile Include="Activities\NuevaOfertaActivity.cs" />
+    <Compile Include="Activities\NuevaOfertaAlmacenesActivity.cs" />
+    <Compile Include="Activities\NuevaOfertaClientesActivity.cs" />
+    <Compile Include="Activities\NuevaOfertaContactoActivity.cs" />
+    <Compile Include="Activities\NuevaOfertaDireccionEnvioActivity.cs" />
+    <Compile Include="Activities\NuevaOfertaOpcionesActivity.cs" />
     <Compile Include="Activities\VentasActivity.cs" />
+    <Compile Include="Adapter\AdapterAlmacenNuevaOferta.cs" />
+    <Compile Include="Adapter\AdapterContactoNuevaOferta.cs" />
     <Compile Include="Adapter\AdapterDetallePedidoVenta.cs" />
+    <Compile Include="Adapter\AdapterDireccionEnvioNuevaOferta.cs" />
     <Compile Include="Adapter\AdapterEmpleados.cs" />
+    <Compile Include="Adapter\AdapterListadoOfertas.cs" />
+    <Compile Include="Adapter\AdapterListadoPedidos.cs" />
     <Compile Include="Adapter\AdapterNuevaOferta.cs" />
+    <Compile Include="Adapter\AdapterListadoProductos.cs" />
     <Compile Include="Adapter\AdapterSinoptico.cs" />
     <Compile Include="Adapter\AdapterMonitoriaion.cs" />
     <Compile Include="Adapter\AdapterRepuestos.cs" />
@@ -212,7 +226,9 @@
     <AndroidResource Include="Resources\layout\DetallePedidoVentaLayout.axml" />
     <AndroidResource Include="Resources\layout\item_menu.axml" />
     <AndroidResource Include="Resources\layout\ListaMonitorizacionLayout.axml" />
-    <AndroidResource Include="Resources\layout\page_home_view.axml" />
+    <AndroidResource Include="Resources\layout\page_home_view.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\RowDetallePedidoVenta.axml" />
     <AndroidResource Include="Resources\layout\RowListMonitorizacion.axml" />
     <AndroidResource Include="Resources\layout\groupListMonitorizacionLayout.axml">
@@ -225,7 +241,7 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\menu\actionbar_main.axml">
-      <SubType>AndroidResource</SubType>
+      <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\sinoptico.axml">
       <SubType>AndroidResource</SubType>
@@ -251,6 +267,24 @@
     <AndroidResource Include="Resources\layout\RowListNuevaOferta.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\nuevaOfertaOpcionesLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\RowListEleccionProductos.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\OpcionesNuevaOfertaCabeceraLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\pagerItemOfertaSinHeader.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\menu\menuNuevaOfertaViewpagerLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\menu\soloMenuCambioDestino.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml">
@@ -258,7 +292,9 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\values\Strings.xml" />
+    <AndroidResource Include="Resources\values\Strings.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\Icon.png" />
@@ -335,7 +371,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\progressBar.xml" />
+    <AndroidResource Include="Resources\layout\progressBar.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\action_search.png" />

@@ -16,19 +16,25 @@ namespace AlmacenRepuestosXamarin.Helpers
     public  class Preferencias
     {
         static ISharedPreferences prefs;
+        ISharedPreferencesEditor editPreference;
         const string urlLocalLieja= "urlLocalLieja";
         const string urlLocalSevilla = "urlLocalSevilla";
         const string urlPublicaLieja = "urlPublicaLieja";
         const string ipPublicaSevilla = "urlPublicaSevilla";
         const string empresaSevilla = "Sevilla";
         const string empresaLiege = "Liege";
+        const string usuario = "usuarioApp";
+        const string password = "passwordApp";
+        const string empresaLogin = "empresaLgoinApp";
         public static string[] listSSIDLiege { get; set; }
         public static string[] listSSIDSevilla { get; set; }
 
+
+        
         public Preferencias(Activity context) {
 
             prefs = PreferenceManager.GetDefaultSharedPreferences(context);
-            ISharedPreferencesEditor editPreference = prefs.Edit();
+            editPreference = prefs.Edit();
 
             listSSIDLiege = context.Resources.GetStringArray(Resource.Array.ListSSIDLiege);
             listSSIDSevilla = context.Resources.GetStringArray(Resource.Array.ListSSIDSevilla);
@@ -47,6 +53,23 @@ namespace AlmacenRepuestosXamarin.Helpers
             }
             
         }
+
+
+        #region Metodos Get Preferencias
+
+        public static String getUsuarioApp()
+        {
+            return prefs.GetString(usuario, string.Empty);
+        }
+        public static String getPasswordApp()
+        {
+            return prefs.GetString(password, string.Empty);
+        }
+        public static String getEmpresaLoginApp()
+        {
+            return prefs.GetString(empresaLogin, string.Empty);
+        }
+
 
         public static string getUrlLocalLieja() {
 
@@ -78,6 +101,27 @@ namespace AlmacenRepuestosXamarin.Helpers
             return prefs.GetString(empresaLiege, string.Empty);
         }
 
+        #endregion
+
+        #region Metodoos Put Preferencias
+        public  void putUsuarioApp(string _usuario)
+        {
+            editPreference.PutString(usuario,_usuario);
+            editPreference.Apply();
+        }
+        public  void putPasswordApp(string _password)
+        {
+            editPreference.PutString(password, _password);
+            editPreference.Apply();
+        }
+
+        public void putEmpresaLoginApp(string _empresaLogin)
+        {
+            editPreference.PutString(empresaLogin, _empresaLogin);
+            editPreference.Apply();
+        }
+
+        #endregion
 
     }
 }

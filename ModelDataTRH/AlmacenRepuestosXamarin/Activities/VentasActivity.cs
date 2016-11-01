@@ -15,7 +15,7 @@ using ModelDataTRH.Ventas;
 namespace AlmacenRepuestosXamarin.Activities
 {
     [Activity(Label = "Ventas", LaunchMode = LaunchMode.SingleTop, Icon = "@drawable/TRH", ScreenOrientation = ScreenOrientation.Portrait)]
-    public class VentasActivity : Activity
+    public class VentasActivity : BaseActivity
     {
         private ImageButton btnNuevaOferta;
         private ImageButton btnListadoOfertas;
@@ -24,11 +24,18 @@ namespace AlmacenRepuestosXamarin.Activities
         private View view;
         public static Oferta nuevaOferta = new Oferta();
 
+        protected override int LayoutResource
+        {
+            get
+            {
+                return Resource.Layout.MenuVentasLayout;
+            }
+        }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.MenuVentasLayout);
+            //SetContentView(Resource.Layout.MenuVentasLayout);
 
             btnNuevaOferta = FindViewById<ImageButton>(Resource.Id.nuevaOferta);
             btnListadoOfertas = FindViewById<ImageButton>(Resource.Id.listadoOfertas);
@@ -53,19 +60,24 @@ namespace AlmacenRepuestosXamarin.Activities
 
         private void InicioNuevaOferta(object view, string comercial)
         {
-            var nuevaOferta = new Intent(this, typeof(NuevaOfertaActivity));
+            var nuevaOferta = new Intent(this, typeof(NuevaOfertaClientesActivity));
             StartActivity(nuevaOferta);
+
             //Toast.MakeText(this, "InicioNuevaOferta", ToastLength.Long).Show();
         }
 
         private void getListadoOfertas(View view, string comercial)
         {
-            Toast.MakeText(this, "getListadoOfertas", ToastLength.Long).Show();
+            Intent myIntent = new Intent(this, typeof(ListadoOfertasActivity));
+            myIntent.PutExtra("key", LoginActivity.comercial);
+            StartActivity(myIntent);
         }
 
         private void getListadoPedidos(View view, string comercial)
         {
-            Toast.MakeText(this, "getListadoPedidos", ToastLength.Long).Show();
+            Intent myIntent = new Intent(this, typeof(ListadoPedidosActivity));
+            myIntent.PutExtra("key", LoginActivity.comercial);
+            StartActivity(myIntent);
         }
 
         private void getListadoProductos(View view)

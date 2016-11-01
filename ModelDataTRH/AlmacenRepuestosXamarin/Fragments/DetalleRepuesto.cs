@@ -228,6 +228,7 @@ namespace AlmacenRepuestosXamarin.Fragments
 
             InputMethodManager inputMethodManager = (InputMethodManager)this.Activity.GetSystemService(Context.InputMethodService);
             inputMethodManager.HideSoftInputFromWindow(edittext.WindowToken, 0);
+
         }
 
 

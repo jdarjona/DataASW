@@ -26,12 +26,11 @@ namespace AlmacenRepuestosXamarin.Activities
 [Activity(Label = "TRH", LaunchMode = LaunchMode.SingleTop, Icon = "@drawable/TRH", ScreenOrientation = ScreenOrientation.Portrait)]
     public class HomeView : BaseActivity 
     {
-       
 
         private MyActionBarDrawerToggle drawerToggle;        
         private string drawerTitle;
         private string title;
-        private AccesoDatos datos ;
+        private AccesoDatos datos = new AccesoDatos () ;
         private DrawerLayout drawerLayout;
         private ListView drawerListView;
         Spinner spinner;
@@ -58,6 +57,7 @@ namespace AlmacenRepuestosXamarin.Activities
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            
             this.title = this.drawerTitle = this.Title;
 
             Helpers.Preferencias preferencias = new Preferencias(this);
@@ -113,7 +113,8 @@ namespace AlmacenRepuestosXamarin.Activities
             }
 
             
-             initFirebase();
+            initFirebase();
+             
         }
 
 
