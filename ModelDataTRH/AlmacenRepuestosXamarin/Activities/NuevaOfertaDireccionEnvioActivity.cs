@@ -120,7 +120,7 @@ namespace AlmacenRepuestosXamarin.Activities
             return true;
         }
         //------------------------------------------------------------------------------//
-
+       
         private class SearchViewExpandListener
           : Java.Lang.Object, MenuItemCompat.IOnActionExpandListener
         {

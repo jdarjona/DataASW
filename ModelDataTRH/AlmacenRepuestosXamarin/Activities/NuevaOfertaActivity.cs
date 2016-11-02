@@ -39,7 +39,6 @@ namespace AlmacenRepuestosXamarin.Activities
                 return Resource.Layout.OpcionesNuevaOfertaCabeceraLayout;
             }
         }
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
 
@@ -62,53 +61,37 @@ namespace AlmacenRepuestosXamarin.Activities
 
         }
 
-        public void OnPageScrollStateChanged(int state)
+        #region Metodos Menú
+        public override bool OnCreateOptionsMenu(IMenu menu)
         {
-            if (state == 0) {
-                switch (tabSeleccionado)
-                {
-                    case 0:
-                        _menu.Clear();
-                        SupportActionBar.SetTitle(Resource.String.Opciones_Oferta);
-                        MenuInflater.Inflate(Resource.Menu.soloMenuCambioDestino, _menu);
-                        item = _menu.FindItem(Resource.Id.cambiarDestino);
-                        //addItem(item);
-                        break;
-                    case 1:
-                        _menu.Clear();
-                        SupportActionBar.SetTitle(Resource.String.Listado_Productos);
-                        MenuInflater.Inflate(Resource.Menu.menuNuevaOfertaViewpagerLayout, _menu);
-                        item = _menu.FindItem(Resource.Id.action_search_viewpager);
-                        addItem(item);
-
-
-                        break;
-                    case 2:
-                        _menu.Clear();
-                        SupportActionBar.SetTitle(Resource.String.Carga);
-                        MenuInflater.Inflate(Resource.Menu.buscador, _menu);
-                        item = _menu.FindItem(Resource.Id.action_search);
-                        addItem(item);
-                        break;
-                    case 3:
-                        _menu.Clear();
-                        SupportActionBar.SetTitle(Resource.String.Precios);
-                        break;
-                    case 4:
-                        _menu.Clear();
-                        SupportActionBar.SetTitle(Resource.String.Incidencias);
-                        MenuInflater.Inflate(Resource.Menu.buscador, _menu);
-                        item = _menu.FindItem(Resource.Id.action_search);
-                        addItem(item);
-                        break;
-                    default:
-                        break;
-                }
-            }
+            _menu = menu;
+            SupportActionBar.SetTitle(Resource.String.Opciones_Oferta);
+            MenuInflater.Inflate(Resource.Menu.soloMenuCambioDestino, _menu);
+           
+            return base.OnCreateOptionsMenu(_menu);
         }
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
 
 
-        public void addItem(IMenuItem item) {
+            switch (item.ItemId)
+            {
+                case Resource.Id.cambiarDestino:
+
+                   // eliminarRepuesto();
+
+                    break;
+
+                default:
+                    //Finish();
+
+                    break;
+            }
+            return base.OnOptionsItemSelected(item);
+
+        }
+        public void addItem(IMenuItem item)
+        {
             SPagerAdapter adapter = (SPagerAdapter)(mViewPager.Adapter);
             var searchView = MenuItemCompat.GetActionView(item);
             _searchView = searchView.JavaCast<Android.Support.V7.Widget.SearchView>();
@@ -136,78 +119,74 @@ namespace AlmacenRepuestosXamarin.Activities
                 e.Handled = true;
             };
         }
+        #endregion
 
-        public override bool OnCreateOptionsMenu(IMenu menu)
+        #region Metodos Implementados Interfaz
+        public void OnPageScrollStateChanged(int state)
         {
-            _menu = menu;
-            SupportActionBar.SetTitle(Resource.String.Opciones_Oferta);
-            MenuInflater.Inflate(Resource.Menu.soloMenuCambioDestino, _menu);
-            //item = _menu.FindItem(Resource.Id.cambiarDestino);
-            //MenuInflater.Inflate(Resource.Menu.buscador, _menu);
-
-            //item = _menu.FindItem(Resource.Id.action_search);
-
-            //var searchView = MenuItemCompat.GetActionView(item);
-            //_searchView = searchView.JavaCast<Android.Support.V7.Widget.SearchView>();
-
-            //_searchView.QueryTextChange += (s, e) => {
-
-
-            //    this.RunOnUiThread(() => {
-
-            //       // mViewPager.Adapter.Filter.InvokeFilter(new Java.Lang.String(e.NewText.ToString()));
-            //        mViewPager.Adapter.NotifyDataSetChanged();
-
-            //    });
-
-
-            //};
-
-            //_searchView.QueryTextSubmit += (s, e) =>
-            //{
-            //    // Handle enter/search button on keyboard here
-            //    Toast.MakeText(this, "Searched for: " + e.Query, ToastLength.Short).Show();
-            //    e.Handled = true;
-            //};
-            ////AppCompatActivity activity = (AppCompatActivity)this.Activity;
-
-            ////MenuItemCompat.SetOnActionExpandListener(item, new SearchViewExpandListener(mViewPager.Adapter));
-
-            return base.OnCreateOptionsMenu(_menu);
-        }
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-
-
-            switch (item.ItemId)
+            if (state == 0)
             {
-                case Resource.Id.cambiarDestino:
+                switch (tabSeleccionado)
+                {
+                    case 0:
+                        _menu.Clear();
+                        SupportActionBar.SetTitle(Resource.String.Opciones_Oferta);
+                        MenuInflater.Inflate(Resource.Menu.soloMenuCambioDestino, _menu);
+                        //item = _menu.FindItem(Resource.Id.cambiarDestino);
+                        //addItem(item);
+                        break;
+                    case 1:
+                      //  SPagerAdapter adapter = (SPagerAdapter)(mViewPager.Adapter);
+                        _menu.Clear();
+                        SupportActionBar.SetTitle(Resource.String.Listado_Productos);
+                        MenuInflater.Inflate(Resource.Menu.menuNuevaOfertaViewpagerLayout, _menu);
+                        item = _menu.FindItem(Resource.Id.action_search_viewpager);
+                        addItem(item);
 
-                   // eliminarRepuesto();
+                        
+                        //    (sender, e) =>
+                        //{
+                        //    this.RunOnUiThread(() => { Toast.MakeText(this, "Hola fila", ToastLength.Long).Show(); });
 
-                    break;
 
-                default:
-                    Finish();
+                        //};
 
-                    break;
+                        break;
+                    case 2:
+                        _menu.Clear();
+                        SupportActionBar.SetTitle(Resource.String.Carga);
+                        MenuInflater.Inflate(Resource.Menu.buscador, _menu);
+                        item = _menu.FindItem(Resource.Id.action_search);
+                        addItem(item);
+                        break;
+                    case 3:
+                        _menu.Clear();
+                        SupportActionBar.SetTitle(Resource.String.Precios);
+                        break;
+                    case 4:
+                        _menu.Clear();
+                        SupportActionBar.SetTitle(Resource.String.Incidencias);
+                        MenuInflater.Inflate(Resource.Menu.buscador, _menu);
+                        item = _menu.FindItem(Resource.Id.action_search);
+                        addItem(item);
+                        break;
+                    default:
+                        break;
+                }
             }
-            return base.OnOptionsItemSelected(item);
-
         }
         public void OnPageScrolled(int position, float positionOffset, int positionOffsetPixels)
         {
 
         }
-
         public void OnPageSelected(int position)
         {
             tabSeleccionado = position;
         }
-
-
-
-        public class SPagerAdapter : PagerAdapter , ViewPager.IOnPageChangeListener
+        #endregion
+     
+        #region Adaptador de activity NuevaOferta
+        public class SPagerAdapter : PagerAdapter, ViewPager.IOnPageChangeListener 
         {
             private ViewPager _mViewPager;
             private Toolbar toolBar;
@@ -215,11 +194,11 @@ namespace AlmacenRepuestosXamarin.Activities
             private AdapterNuevaOferta adapterNuevaOferta;
             private List<string> items = new List<string>();
             private Activity context;
-            private ListView nuevaOfertaListview;
+            public ListView nuevaOfertaListview;
             private List<Cliente> listClientes = new List<Cliente>();
             private LinearLayout progressLayout;
             private IMenuItem item;
-            private int tabSeleccionado=0;
+            private int tabSeleccionado = 0;
             private RadioButton rbDobleDescargaSi;
             private RadioButton rbDobleDescargaNo;
             private RadioButton rbTipoTransporteSi;
@@ -227,11 +206,14 @@ namespace AlmacenRepuestosXamarin.Activities
             private RadioButton rbCamionGruaSi;
             private RadioButton rbCamionGruaNo;
             List<string> _data;
-            public SPagerAdapter(Activity context, ViewPager mViewPager,List<string> data) : base()
+
+
+           
+            public SPagerAdapter(Activity context, ViewPager mViewPager, List<string> data) : base()
             {
                 _data = data;
                 _mViewPager = mViewPager;
-                this.context = context;               
+                this.context = context;
                 this._mViewPager.AddOnPageChangeListener(this);
             }
 
@@ -274,9 +256,15 @@ namespace AlmacenRepuestosXamarin.Activities
 
                         nuevaOfertaListview = view.FindViewById<ListView>(Resource.Id.listViewNuevaOfertaFragment);
                         progressLayout = view.FindViewById<LinearLayout>(Resource.Id.progressBar);
-                        
+
                         adapterListadoProductos = new AdapterListadoProductos(this.context, AccesoDatos.listaProductos);
+                        
+                        //nuevaOfertaListview.ItemClick += OnClick(this.context);
+
                         nuevaOfertaListview.Adapter = adapterListadoProductos;
+                        
+                        //view.SetOnClickListener();    
+
                         break;
                     case 2:
                         view = inflater.Inflate(Resource.Layout.pagerItemOfertaSinHeader, container, false);
@@ -293,10 +281,12 @@ namespace AlmacenRepuestosXamarin.Activities
                         break;
                 }
                 ((ViewPager)container).AddView(view);
-               
 
-                    return view;
+
+                return view;
             }
+
+            
 
             public string GetHeaderTitle(int position)
             {
@@ -324,7 +314,18 @@ namespace AlmacenRepuestosXamarin.Activities
 
                 tabSeleccionado = position;
             }
+            //void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
+            //{
+
+            //    this.context.RunOnUiThread(() => { Toast.MakeText(this.context, "Hola fila", ToastLength.Long).Show(); });
+
+            //}
+
+           
         }
+       
+        #endregion
+
 
         private class SearchViewExpandListener
           : Java.Lang.Object, MenuItemCompat.IOnActionExpandListener
