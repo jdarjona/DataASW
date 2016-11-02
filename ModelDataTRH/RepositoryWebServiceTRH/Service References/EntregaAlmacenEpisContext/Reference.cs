@@ -513,7 +513,7 @@ namespace RepositoryWebServiceTRH.EntregaAlmacenEpisContext {
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:microsoft-dynamics-schemas/page/entregaalmacen")]
     ///Sevilla
-   /* public enum Maquina
+    public enum Maquina
     {
 
         /// <comentarios/>
@@ -567,61 +567,61 @@ namespace RepositoryWebServiceTRH.EntregaAlmacenEpisContext {
         /// <comentarios/>
         T8,
     }
-    */
+    
     /////Lieja
-    public enum Maquina
-    {
+    //public enum Maquina
+    //{
 
-        /// <comentarios/>
-        _blank_,
+    //    /// <comentarios/>
+    //    _blank_,
 
-        /// <comentarios/>
-        M5,
+    //    /// <comentarios/>
+    //    M5,
 
-        /// <comentarios/>
-        M6,
+    //    /// <comentarios/>
+    //    M6,
 
-        /// <comentarios/>
-        M7,
+    //    /// <comentarios/>
+    //    M7,
 
-        /// <comentarios/>
-        M8,
+    //    /// <comentarios/>
+    //    M8,
 
-        /// <comentarios/>
-        R3,
+    //    /// <comentarios/>
+    //    R3,
 
-        /// <comentarios/>
-        R4,
+    //    /// <comentarios/>
+    //    R4,
 
-        /// <comentarios/>
-        E3,
+    //    /// <comentarios/>
+    //    E3,
 
-        /// <comentarios/>
-        E4,
+    //    /// <comentarios/>
+    //    E4,
 
-        /// <comentarios/>
-        T9,
+    //    /// <comentarios/>
+    //    T9,
 
-        /// <comentarios/>
-        T10,
+    //    /// <comentarios/>
+    //    T10,
 
-        /// <comentarios/>
-        T11,
+    //    /// <comentarios/>
+    //    T11,
 
-        /// <comentarios/>
-        T12,
+    //    /// <comentarios/>
+    //    T12,
 
-        /// <comentarios/>
-        T13,
+    //    /// <comentarios/>
+    //    T13,
 
-        /// <comentarios/>
-        T14,
+    //    /// <comentarios/>
+    //    T14,
 
-        /// <comentarios/>
-        T15
+    //    /// <comentarios/>
+    //    T15
 
 
-    }
+    //}
 
     public enum Empresas
     {
