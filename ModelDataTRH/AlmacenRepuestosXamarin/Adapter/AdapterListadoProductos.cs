@@ -14,15 +14,17 @@ using Android.Widget;
 using Java.Lang;
 using Java.Util;
 using ModelDataTRH.Proyectos.Ventas;
+using static Android.Provider.Settings;
 
 namespace AlmacenRepuestosXamarin.Adapter
 {
-    public class AdapterListadoProductos : BaseAdapter<Producto>, IFilterable
+    public class AdapterListadoProductos : BaseAdapter<Producto>, IFilterable 
     {
 
         Activity context;
         public List<Producto> _originalData;
         public List<Producto> list;
+        private bool seleccionado = false;
 
         public AdapterListadoProductos(Activity _context, List<Producto> _list)
             : base()
@@ -113,22 +115,41 @@ namespace AlmacenRepuestosXamarin.Adapter
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
+            seleccionado = false;
             View view = convertView;
 
             if (view == null)
                 view = context.LayoutInflater.Inflate(Resource.Layout.RowListEleccionProductos, parent, false);
 
             Producto item = this[position];
+            
             view.FindViewById<TextView>(Resource.Id.text1).Text = item.search_DescriptionField;
             view.FindViewById<TextView>(Resource.Id.text2).Text = item.stockDisponibleField.ToString();
             view.FindViewById<TextView>(Resource.Id.text3).Text = item.paquetes_por_CamiónField.ToString();
-
-            view.FindViewById<NumberPicker>(Resource.Id.numberPicker1).MinValue = 0;
-            view.FindViewById<NumberPicker>(Resource.Id.numberPicker1).MaxValue = 200;
-            view.FindViewById<NumberPicker>(Resource.Id.numberPicker1).WrapSelectorWheel = true;
-            view.FindViewById<NumberPicker>(Resource.Id.numberPicker1).Orientation = Orientation.Horizontal;
+            view.FindViewById<EditText>(Resource.Id.editTextNumPaquete).Text = "";
+            view.FindViewById<CheckBox>(Resource.Id.checkBox1).Checked = false;
+            
+            view.FindViewById<CheckBox>(Resource.Id.checkBox1).Click += delegate {
+                accionClick(view);
+            };
 
             return view;
+        }
+
+        private void accionClick(View view)
+        {
+            bool seleccionado = view.FindViewById<CheckBox>(Resource.Id.checkBox1).Checked;
+            string numPaquetes = view.FindViewById<EditText>(Resource.Id.editTextNumPaquete).Text;
+            if (seleccionado && numPaquetes.Equals(""))
+            {
+                view.FindViewById<EditText>(Resource.Id.editTextNumPaquete).Text = "1";
+            }
+            else if(!seleccionado)
+            {
+                view.FindViewById<EditText>(Resource.Id.editTextNumPaquete).Text = "";
+            }
+            
+            
         }
     }
 }

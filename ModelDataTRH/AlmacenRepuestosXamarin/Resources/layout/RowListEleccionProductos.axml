@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:minHeight="50dp">
+    android:minHeight="50dp"
+    android:clickable="true">
     <TextView
         android:id="@+id/text1"
         android:layout_width="277.5dp"
@@ -28,15 +29,23 @@
         android:paddingTop="2dp"
         android:textSize="@dimen/margin_medium"
         android:textStyle="bold" />
-    <NumberPicker
-        android:layout_width="102.5dp"
-        android:layout_height="74.5dp"
-        android:layout_toRightOf="@id/text1"
-        android:id="@+id/numberPicker1"
-        android:solidColor="@android:color/holo_red_light"
-        android:scaleX="2"
-        android:scaleY="2"
-        android:scrollbarAlwaysDrawHorizontalTrack="true"
-        android:descendantFocusability="beforeDescendants"
-        android:gravity="center_horizontal"/>
+    <EditText
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="42.0dp"
+        android:layout_height="66.0dp"
+        android:layout_toRightOf="@id/text2"
+        android:id="@+id/editTextNumPaquete"
+        android:layout_marginRight="0.0dp"
+        android:background="@android:color/holo_purple"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:text="2"
+        android:editable="true" />
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="65.0dp"
+        android:layout_toRightOf="@+id/editTextNumPaquete"
+        android:id="@+id/checkBox1"
+        android:gravity="center" />
 </RelativeLayout>
