@@ -497,6 +497,13 @@ namespace RepositoryWebServiceTRH.FuncionesVentasContext {
         
         [System.ServiceModel.OperationContractAttribute(Action="urn:microsoft-dynamics-schemas/codeunit/Avisos:IncidenciaClientePedido", ReplyAction="*")]
         System.Threading.Tasks.Task<RepositoryWebServiceTRH.FuncionesVentasContext.IncidenciaClientePedido_Result> IncidenciaClientePedidoAsync(RepositoryWebServiceTRH.FuncionesVentasContext.IncidenciaClientePedido request);
+        
+        // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de contenedor (PdfIncidenciaDireccion_Result) del mensaje PdfIncidenciaDireccion_Result no coincide con el valor predeterminado (PdfIncidenciaDireccion)
+        [System.ServiceModel.OperationContractAttribute(Action="urn:microsoft-dynamics-schemas/codeunit/Avisos:PdfIncidenciaDireccion", ReplyAction="*")]
+        RepositoryWebServiceTRH.FuncionesVentasContext.PdfIncidenciaDireccion_Result PdfIncidenciaDireccion(RepositoryWebServiceTRH.FuncionesVentasContext.PdfIncidenciaDireccion request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="urn:microsoft-dynamics-schemas/codeunit/Avisos:PdfIncidenciaDireccion", ReplyAction="*")]
+        System.Threading.Tasks.Task<RepositoryWebServiceTRH.FuncionesVentasContext.PdfIncidenciaDireccion_Result> PdfIncidenciaDireccionAsync(RepositoryWebServiceTRH.FuncionesVentasContext.PdfIncidenciaDireccion request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -2883,6 +2890,44 @@ namespace RepositoryWebServiceTRH.FuncionesVentasContext {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="PdfIncidenciaDireccion", WrapperNamespace="urn:microsoft-dynamics-schemas/codeunit/Avisos", IsWrapped=true)]
+    public partial class PdfIncidenciaDireccion {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="urn:microsoft-dynamics-schemas/codeunit/Avisos", Order=0)]
+        public string codDocumento;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="urn:microsoft-dynamics-schemas/codeunit/Avisos", Order=1)]
+        public string ubicacion;
+        
+        public PdfIncidenciaDireccion() {
+        }
+        
+        public PdfIncidenciaDireccion(string codDocumento, string ubicacion) {
+            this.codDocumento = codDocumento;
+            this.ubicacion = ubicacion;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="PdfIncidenciaDireccion_Result", WrapperNamespace="urn:microsoft-dynamics-schemas/codeunit/Avisos", IsWrapped=true)]
+    public partial class PdfIncidenciaDireccion_Result {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="urn:microsoft-dynamics-schemas/codeunit/Avisos", Order=0)]
+        public string return_value;
+        
+        public PdfIncidenciaDireccion_Result() {
+        }
+        
+        public PdfIncidenciaDireccion_Result(string return_value) {
+            this.return_value = return_value;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface Avisos_PortChannel : RepositoryWebServiceTRH.FuncionesVentasContext.Avisos_Port, System.ServiceModel.IClientChannel {
     }
@@ -4597,6 +4642,31 @@ namespace RepositoryWebServiceTRH.FuncionesVentasContext {
             inValue.codCliente = codCliente;
             inValue.codPedido = codPedido;
             return ((RepositoryWebServiceTRH.FuncionesVentasContext.Avisos_Port)(this)).IncidenciaClientePedidoAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        RepositoryWebServiceTRH.FuncionesVentasContext.PdfIncidenciaDireccion_Result RepositoryWebServiceTRH.FuncionesVentasContext.Avisos_Port.PdfIncidenciaDireccion(RepositoryWebServiceTRH.FuncionesVentasContext.PdfIncidenciaDireccion request) {
+            return base.Channel.PdfIncidenciaDireccion(request);
+        }
+        
+        public string PdfIncidenciaDireccion(string codDocumento, string ubicacion) {
+            RepositoryWebServiceTRH.FuncionesVentasContext.PdfIncidenciaDireccion inValue = new RepositoryWebServiceTRH.FuncionesVentasContext.PdfIncidenciaDireccion();
+            inValue.codDocumento = codDocumento;
+            inValue.ubicacion = ubicacion;
+            RepositoryWebServiceTRH.FuncionesVentasContext.PdfIncidenciaDireccion_Result retVal = ((RepositoryWebServiceTRH.FuncionesVentasContext.Avisos_Port)(this)).PdfIncidenciaDireccion(inValue);
+            return retVal.return_value;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<RepositoryWebServiceTRH.FuncionesVentasContext.PdfIncidenciaDireccion_Result> RepositoryWebServiceTRH.FuncionesVentasContext.Avisos_Port.PdfIncidenciaDireccionAsync(RepositoryWebServiceTRH.FuncionesVentasContext.PdfIncidenciaDireccion request) {
+            return base.Channel.PdfIncidenciaDireccionAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<RepositoryWebServiceTRH.FuncionesVentasContext.PdfIncidenciaDireccion_Result> PdfIncidenciaDireccionAsync(string codDocumento, string ubicacion) {
+            RepositoryWebServiceTRH.FuncionesVentasContext.PdfIncidenciaDireccion inValue = new RepositoryWebServiceTRH.FuncionesVentasContext.PdfIncidenciaDireccion();
+            inValue.codDocumento = codDocumento;
+            inValue.ubicacion = ubicacion;
+            return ((RepositoryWebServiceTRH.FuncionesVentasContext.Avisos_Port)(this)).PdfIncidenciaDireccionAsync(inValue);
         }
     }
 }
