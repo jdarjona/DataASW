@@ -37,7 +37,8 @@ namespace AlmacenRepuestosXamarin.Activities
         IMenu _imenu;
 
         private static readonly string[] Sections = new[] {
-             "Monitor Carga", "Sinóptico" ,"App Almacen","Ventas"//, "Configuracion"
+             "Monitor Carga", "Sinóptico" ,"App Almacen","Ventas"//, "Configuracion" --> GENERAL
+           //"Sinóptico","App Almacen","Monitor Carga"  //--> PAYO
         };
 
         protected override int LayoutResource
@@ -173,7 +174,7 @@ namespace AlmacenRepuestosXamarin.Activities
             
             switch (position)
             {
-                
+
                 case 0:
                     fragment = new ListadoMonitorizacion();
                     SupportFragmentManager.BeginTransaction()
@@ -330,12 +331,12 @@ namespace AlmacenRepuestosXamarin.Activities
 
                         if (pedido.Estado != item.Value.estado)
                         {
-                                notificar(item.Value);
+                               // notificar(item.Value);
                         }
                     }
                     else
                     {
-                        notificar(item.Value);
+                      //  notificar(item.Value);
                     }
                 }   
             }

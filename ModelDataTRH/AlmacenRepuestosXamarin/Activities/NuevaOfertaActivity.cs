@@ -102,13 +102,13 @@ namespace AlmacenRepuestosXamarin.Activities
                     {
                         case 1:
                             adapter.adapterListadoProductos.Filter.InvokeFilter(new Java.Lang.String(e.NewText.ToString()));
-                            mViewPager.Adapter.NotifyDataSetChanged();
+                            adapter.NotifyDataSetChanged();
                             break;
                         default:
                             break;
                     }
                     //mViewPager.Adapter.Filter.InvokeFilter(new Java.Lang.String(e.NewText.ToString()));
-                    mViewPager.Adapter.NotifyDataSetChanged();
+                    adapter.NotifyDataSetChanged();
                 });
             };
 
@@ -132,24 +132,15 @@ namespace AlmacenRepuestosXamarin.Activities
                         _menu.Clear();
                         SupportActionBar.SetTitle(Resource.String.Opciones_Oferta);
                         MenuInflater.Inflate(Resource.Menu.soloMenuCambioDestino, _menu);
-                        //item = _menu.FindItem(Resource.Id.cambiarDestino);
-                        //addItem(item);
+
                         break;
                     case 1:
-                      //  SPagerAdapter adapter = (SPagerAdapter)(mViewPager.Adapter);
                         _menu.Clear();
                         SupportActionBar.SetTitle(Resource.String.Listado_Productos);
                         MenuInflater.Inflate(Resource.Menu.menuNuevaOfertaViewpagerLayout, _menu);
                         item = _menu.FindItem(Resource.Id.action_search_viewpager);
                         addItem(item);
 
-                        
-                        //    (sender, e) =>
-                        //{
-                        //    this.RunOnUiThread(() => { Toast.MakeText(this, "Hola fila", ToastLength.Long).Show(); });
-
-
-                        //};
 
                         break;
                     case 2:
@@ -239,9 +230,6 @@ namespace AlmacenRepuestosXamarin.Activities
                 string title = string.Empty;
                 SlidingTabsFragment stf;
                 View view = LayoutInflater.From(container.Context).Inflate(Resource.Layout.nuevaOfertaOpcionesLayout, container, false);
-
-
-
                 LayoutInflater inflater = LayoutInflater.From(container.Context);
 
                 switch (position)
@@ -253,30 +241,24 @@ namespace AlmacenRepuestosXamarin.Activities
 
                     case 1:
                         view = inflater.Inflate(Resource.Layout.pagerItemOfertaSinHeader, container, false);
-
                         nuevaOfertaListview = view.FindViewById<ListView>(Resource.Id.listViewNuevaOfertaFragment);
                         progressLayout = view.FindViewById<LinearLayout>(Resource.Id.progressBar);
-
                         adapterListadoProductos = new AdapterListadoProductos(this.context, AccesoDatos.listaProductos);
-                        
-                        //nuevaOfertaListview.ItemClick += OnClick(this.context);
-
                         nuevaOfertaListview.Adapter = adapterListadoProductos;
-                        
-                        //view.SetOnClickListener();    
-
                         break;
+
                     case 2:
                         view = inflater.Inflate(Resource.Layout.pagerItemOfertaSinHeader, container, false);
-                        nuevaOfertaListview = view.FindViewById<ListView>(Resource.Id.listViewNuevaOfertaFragment);
-                        progressLayout = view.FindViewById<LinearLayout>(Resource.Id.progressBar);
-                        listClientes.Clear();
-                        Cliente ca = new Cliente();
-                        ca.nameField = "Hierros Manuel S.A";
-                        listClientes.Add(ca);
-                        adapterNuevaOferta = new AdapterNuevaOferta(this.context, listClientes);
-                        nuevaOfertaListview.Adapter = adapterNuevaOferta;
+                        //nuevaOfertaListview = view.FindViewById<ListView>(Resource.Id.listViewNuevaOfertaFragment);
+                        //progressLayout = view.FindViewById<LinearLayout>(Resource.Id.progressBar);
+                        //listClientes.Clear();
+                        //Cliente ca = new Cliente();
+                        //ca.nameField = "Hierros Manuel S.A";
+                        //listClientes.Add(ca);
+                        //adapterNuevaOferta = new AdapterNuevaOferta(this.context, listClientes);
+                        //nuevaOfertaListview.Adapter = adapterNuevaOferta;
                         break;
+
                     default:
                         break;
                 }
@@ -310,46 +292,36 @@ namespace AlmacenRepuestosXamarin.Activities
 
             public void OnPageSelected(int position)
             {
-                //actionBar.SetTitle(Resource.String.Listado_Productos);// ActionBar.setTitle(titles[pos]);
-
                 tabSeleccionado = position;
             }
-            //void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
-            //{
-
-            //    this.context.RunOnUiThread(() => { Toast.MakeText(this.context, "Hola fila", ToastLength.Long).Show(); });
-
-            //}
-
-           
         }
        
         #endregion
 
 
-        private class SearchViewExpandListener
-          : Java.Lang.Object, MenuItemCompat.IOnActionExpandListener
-        {
-            private readonly IFilterable _adapter;
+        //private class SearchViewExpandListener
+        //  : Java.Lang.Object, MenuItemCompat.IOnActionExpandListener
+        //{
+        //    private readonly IFilterable _adapter;
 
 
-            public SearchViewExpandListener(IFilterable adapter)
-            {
-                _adapter = adapter;
-            }
+        //    public SearchViewExpandListener(IFilterable adapter)
+        //    {
+        //        _adapter = adapter;
+        //    }
 
-            public bool OnMenuItemActionCollapse(IMenuItem item)
-            {
+        //    public bool OnMenuItemActionCollapse(IMenuItem item)
+        //    {
 
-                _adapter.Filter.InvokeFilter(" ");
-                //_adapter.Filter.InvokeFilter();
-                return true;
-            }
+        //        _adapter.Filter.InvokeFilter(" ");
+        //        //_adapter.Filter.InvokeFilter();
+        //        return true;
+        //    }
 
-            public bool OnMenuItemActionExpand(IMenuItem item)
-            {
-                return true;
-            }
-        }
+        //    public bool OnMenuItemActionExpand(IMenuItem item)
+        //    {
+        //        return true;
+        //    }
+        //}
     }
 }

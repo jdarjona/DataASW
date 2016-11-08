@@ -2,50 +2,74 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:minHeight="50dp"
-    android:clickable="true">
+    android:minHeight="50dp">
     <TextView
         android:id="@+id/text1"
-        android:layout_width="277.5dp"
+        android:layout_width="201.5dp"
         android:layout_height="wrap_content"
-        android:paddingLeft="2dp"
-        android:layout_alignParentLeft="true"
+        android:layout_toRightOf="@+id/checkBox1"
         android:textSize="20dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginBottom="0.0dp" />
     <TextView
         android:id="@+id/text3"
-        android:layout_width="277.5dp"
+        android:layout_width="200.0dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/text2"
+        android:layout_toRightOf="@+id/checkBox1"
         android:paddingLeft="2dp"
         android:paddingTop="2dp"
         android:textSize="@dimen/margin_medium" />
     <TextView
         android:id="@+id/text2"
-        android:layout_width="277.5dp"
+        android:layout_width="199.0dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/text1"
+        android:layout_toRightOf="@+id/checkBox1"
         android:paddingLeft="2dp"
         android:paddingTop="2dp"
         android:textSize="@dimen/margin_medium"
         android:textStyle="bold" />
-    <EditText
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="42.0dp"
-        android:layout_height="66.0dp"
-        android:layout_toRightOf="@id/text2"
-        android:id="@+id/editTextNumPaquete"
-        android:layout_marginRight="0.0dp"
-        android:background="@android:color/holo_purple"
-        android:gravity="center"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:text="2"
-        android:editable="true" />
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="65.0dp"
-        android:layout_toRightOf="@+id/editTextNumPaquete"
         android:id="@+id/checkBox1"
         android:gravity="center" />
+<!--  <EditText
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_toRightOf="@id/text3"
+        android:id="@+id/editTextNumPaquete"
+        android:gravity="center"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:maxLength="3"
+        android:numeric="decimal" />-->
+    <CheckedTextView
+        android:layout_width="wrap_content"
+        android:layout_height="59.5dp"
+        android:layout_toRightOf="@id/checkBox1"
+        android:id="@+id/checkedTextView1" />
+    <Button
+        android:text="-"
+        android:layout_width="45dp"
+        android:layout_height="64.5dp"
+        android:layout_toRightOf="@id/text2"
+        android:id="@+id/btn1"
+        android:enabled="false" />
+    <TextView
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="54.0dp"
+        android:layout_height="63.5dp"
+        android:layout_toRightOf="@id/btn1"
+        android:id="@+id/textNumPaquetes"
+        android:gravity="center"
+        android:enabled="false" />
+    <Button
+        android:text="+"
+        android:layout_width="45.0dp"
+        android:layout_height="64.5dp"
+        android:layout_toRightOf="@id/textNumPaquetes"
+        android:id="@+id/btn2"
+        android:enabled="false" />
 </RelativeLayout>

@@ -61,6 +61,7 @@ namespace AlmacenRepuestosXamarin.Activities
                 btnOneClick(this.view);
             };
             progressLayout.Visibility = ViewStates.Gone;
+            //btnOneClick(this.view);
         }
 
         private int comprobarEmpresaLogin()
@@ -88,9 +89,9 @@ namespace AlmacenRepuestosXamarin.Activities
             button.Enabled = false;
             usuario.Enabled = false;
             password.Enabled = false;
-            spinner.Enabled = false;      
-            string user = usuario.Text;
-            string pass = password.Text;
+            spinner.Enabled = false;
+            string user =  usuario.Text;
+            string pass =  password.Text;
             
             if (usuario.Equals(string.Empty) || pass.Equals(string.Empty))
             {
