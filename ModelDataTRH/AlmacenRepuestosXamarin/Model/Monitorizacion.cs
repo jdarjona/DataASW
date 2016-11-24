@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AlmacenRepuestosXamarin.Data;
+using Android.Graphics;
 using ModelDataTRH;
+using static AlmacenRepuestosXamarin.Resource;
 
 namespace AlmacenRepuestosXamarin.Model
 {
@@ -48,6 +50,15 @@ namespace AlmacenRepuestosXamarin.Model
            
 
             return listMonitorizacion;
+        }
+        
+        public static async Task<bool> upLoadImage(string codPedido, string empresa, Java.IO.File Fichero, bool small)
+        {
+
+            
+            datos = new AccesoDatos();
+            return await datos.UploadBitmapAsync(empresa,Fichero, codPedido,small);
+
         }
     }
 }

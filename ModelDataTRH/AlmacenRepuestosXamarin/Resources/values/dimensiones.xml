@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <dimen name="imgCamion_height">60dp</dimen>
+  <dimen name="imgCamion_width">100dp</dimen>
+  
+</resources>

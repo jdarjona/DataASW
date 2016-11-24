@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="60dp">
+    <ImageView
+        android:id="@+id/ImagenCamion"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:paddingTop="0dp" />
+    <TextView
+        android:id="@+id/DescripcionFoto"
+        android:layout_width="267.0dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="2dp"
+        android:paddingTop="25dp"
+        android:layout_toRightOf="@+id/ImagenCamion"
+        android:textSize="14dp"
+        android:layout_marginTop="0.0dp" />
+</RelativeLayout>

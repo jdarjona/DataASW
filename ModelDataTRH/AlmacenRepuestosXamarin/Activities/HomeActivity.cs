@@ -23,7 +23,7 @@ using Android.Media;
 
 namespace AlmacenRepuestosXamarin.Activities
 {                              
-[Activity(Label = "TRH", LaunchMode = LaunchMode.SingleTop, Icon = "@drawable/TRH", ScreenOrientation = ScreenOrientation.Portrait)]
+[Activity(Label = "TRH", LaunchMode = LaunchMode.SingleTop, Icon = "@drawable/TRH")]//, ScreenOrientation = ScreenOrientation.Portrait)]
     public class HomeView : BaseActivity 
     {
 

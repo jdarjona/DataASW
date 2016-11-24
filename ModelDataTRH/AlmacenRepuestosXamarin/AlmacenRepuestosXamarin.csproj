@@ -15,8 +15,8 @@
     <AndroidApplication>true</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <TargetFrameworkVersion>v5.1</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -162,12 +162,14 @@
     <Compile Include="Activities\NuevaOfertaContactoActivity.cs" />
     <Compile Include="Activities\NuevaOfertaDireccionEnvioActivity.cs" />
     <Compile Include="Activities\NuevaOfertaOpcionesActivity.cs" />
+    <Compile Include="Activities\TakeFotoActivity.cs" />
     <Compile Include="Activities\VentasActivity.cs" />
     <Compile Include="Adapter\AdapterAlmacenNuevaOferta.cs" />
     <Compile Include="Adapter\AdapterContactoNuevaOferta.cs" />
     <Compile Include="Adapter\AdapterDetallePedidoVenta.cs" />
     <Compile Include="Adapter\AdapterDireccionEnvioNuevaOferta.cs" />
     <Compile Include="Adapter\AdapterEmpleados.cs" />
+    <Compile Include="Adapter\AdapterFotos.cs" />
     <Compile Include="Adapter\AdapterListadoOfertas.cs" />
     <Compile Include="Adapter\AdapterListadoPedidos.cs" />
     <Compile Include="Adapter\AdapterNuevaOferta.cs" />
@@ -177,6 +179,7 @@
     <Compile Include="Adapter\AdapterRepuestos.cs" />
     <Compile Include="Adapter\AdapterSpinner.cs" />
     <Compile Include="Adapter\AdapterView.cs" />
+    <Compile Include="Clases\BitmapHelpers.cs" />
     <Compile Include="Clases\SlidingTabScrollView.cs" />
     <Compile Include="Clases\SlidingTabsFragment.cs" />
     <Compile Include="Clases\SlidingTabStrip.cs" />
@@ -185,6 +188,7 @@
     <Compile Include="Fragments\BuscadorEmpleados.cs" />
     <Compile Include="Fragments\DetallePedidoVenta.cs" />
     <Compile Include="Fragments\DetalleRepuesto.cs" />
+    <Compile Include="Activities\ListadoFotosPedidosVenta.cs" />
     <Compile Include="Fragments\ListadoMonitorizacion.cs" />
     <Compile Include="Fragments\ListaRepuestosEntrega.cs" />
     <Compile Include="Helpers\MyActionBarDrawerToggle.cs" />
@@ -285,6 +289,18 @@
     <AndroidResource Include="Resources\menu\soloMenuCambioDestino.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\ListFotosPedidoVenta.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\RowListFotosPedidoVenta.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\TakeFoto.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\DialogTipoFoto.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml">
@@ -300,7 +316,9 @@
     <AndroidResource Include="Resources\drawable\Icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\AndroidManifest.xml" />
+    <None Include="Properties\AndroidManifest.xml">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_tab_white.png" />
@@ -562,6 +580,7 @@
     <AndroidResource Include="Resources\drawable\TRH.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Resources\layout\CapturasCarga\" />
     <Folder Include="Resources\layout\Ventas\" />
   </ItemGroup>
   <ItemGroup>
@@ -575,6 +594,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\productos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\menu\menu_fotos.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\dimensiones.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets')" />

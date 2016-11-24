@@ -181,6 +181,7 @@ namespace AlmacenRepuestosXamarin.Fragments
 
                 });
 
+
                 Dialog dialog = alert.Create();
                 dialog.Show();
             }

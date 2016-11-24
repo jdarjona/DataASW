@@ -29,6 +29,10 @@ using ModelDataTRH.Proyectos.Ventas;
 using System.Threading;
 using Newtonsoft.Json.Linq;
 using ModelDataTRH.Ventas;
+using Android.Graphics;
+using System.Globalization;
+using System.Text.RegularExpressions;
+using AlmacenRepuestosXamarin.Clases;
 
 namespace AlmacenRepuestosXamarin.Data
 {
@@ -63,24 +67,24 @@ namespace AlmacenRepuestosXamarin.Data
 
         public async Task initGetListados(string empresa)
         {
-            listaClientes =await  getClientes();
-            listaAlmacenes = await getAlmacenes();
-            listaContactos = await getContactos();
-            listaDireccionesEnvio = await getDireccionEnvio();
-            listaPedidos = await getListadoPedidos();
-            //listaProductos = await getListadoProductos();
-            Producto p = new Producto();
-            p.search_DescriptionField = "Q2012 Q2";
-            p.stockDisponibleField = 30;
-            p.paquetes_por_CamiónField = 15;
-            listaProductos.Add(p);
-            p = new Producto();
-            p.search_DescriptionField = "Q2010 Q2";
-            p.stockDisponibleField = 24;
-            p.paquetes_por_CamiónField = 14;
-            listaProductos.Add(p);
-            //listaOfertas = await getListadoOfertas();
-            //getProductos();
+            //listaClientes =await  getClientes();
+            //listaAlmacenes = await getAlmacenes();
+            //listaContactos = await getContactos();
+            //listaDireccionesEnvio = await getDireccionEnvio();
+            //listaPedidos = await getListadoPedidos();
+            ////listaProductos = await getListadoProductos();
+            //Producto p = new Producto();
+            //p.search_DescriptionField = "Q2012 Q2";
+            //p.stockDisponibleField = 30;
+            //p.paquetes_por_CamiónField = 15;
+            //listaProductos.Add(p);
+            //p = new Producto();
+            //p.search_DescriptionField = "Q2010 Q2";
+            //p.stockDisponibleField = 24;
+            //p.paquetes_por_CamiónField = 14;
+            //listaProductos.Add(p);
+            ////listaOfertas = await getListadoOfertas();
+            ////getProductos();
         }
 
 
@@ -257,9 +261,9 @@ namespace AlmacenRepuestosXamarin.Data
         public HttpClient initClient() {
             client = new HttpClient(new NativeMessageHandler())
             {
-                BaseAddress = new Uri(getDatosConexionEmpresa(Preferencias.getEmpresaSevilla()))
+                BaseAddress = new Uri(getDatosConexionEmpresa(Preferencias.getEmpresaLiege()))
             };
-
+            //getDatosConexionEmpresa(Preferencias.getEmpresaLiege());
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/pdf"));
@@ -317,8 +321,8 @@ namespace AlmacenRepuestosXamarin.Data
             return resultado;
         }
 
-
-        public  async Task<List<Empleados>> getEmpleados()
+        #region App Almacen
+        public async Task<List<Empleados>> getEmpleados()
         {
             try
             {
@@ -341,8 +345,6 @@ namespace AlmacenRepuestosXamarin.Data
             
             return null;
         }
-
-        
 
         public async Task<EntregaAlmacen> addRepuesto(string codEmpleado,string codRepuesto) {
 
@@ -487,8 +489,10 @@ namespace AlmacenRepuestosXamarin.Data
 
         }
 
-        
-            public async Task<List<vListadoPedidosMonitorizacion>> getListadoMonitorCarga()
+        #endregion
+
+        #region App Monitorizacion
+        public async Task<List<vListadoPedidosMonitorizacion>> getListadoMonitorCarga()
         {
             try
             {
@@ -510,9 +514,7 @@ namespace AlmacenRepuestosXamarin.Data
 
             return null;
         }
-
         
-
         public async Task<List<vListadoPedidosMonitorizacion>> getListadoMonitorCarga(String empresa)
         {
             empre = empresa;
@@ -557,7 +559,159 @@ namespace AlmacenRepuestosXamarin.Data
             return null;
         }
 
+        public async Task<Pedido> getPedidoVenta(string codPedido)
+        {
+            string empresa = String.Empty;
+            try
+            {
+                int pag = ListadoMonitorizacion.SamplePagerAdapter.pagSeleccionada;
+                if (pag == 1)
+                {
+                    empresa = "Liege";
+                }
+                client = getCliente(empresa);
+                string url = string.Format(@"api/Pedidos?codPedido={0}", codPedido);
+                var response = await client.GetAsync(url);
 
+
+                if (response.IsSuccessStatusCode && response != null)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    var result = JsonConvert.DeserializeObject<Pedido>(content);
+                    return result;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Se ha producido una excipcion no controlada", ex.InnerException);
+            }
+
+            return null;
+        }
+
+
+        //public async Task SubmitFormViaPOST(string serverUrl,
+        //    string fileControlName,
+        //    string filePath,
+        //    string fileContentType,
+        //    NameValueCollection formData,
+        //    CancellationToken cancellationToken)
+        //{
+        //    FileInfo fileInfo = new FileInfo(filePath);
+        //    Uri RequestUri = new Uri(serverUrl);
+
+        //    using (var multiPartContent = new MultipartFormDataContent("---------------------------" + DateTime.Now.Ticks.ToString("x")))
+        //    {
+        //        #region Build Request Content
+
+        //        foreach (string key in formData)
+        //        {
+        //            multiPartContent.Add(new StringContent(formData[key]), key);
+        //        }
+
+        //        FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+        //        StreamContent streamContent = new StreamContent(fileStream);
+        //        multiPartContent.Add(streamContent, fileControlName, filePath);
+        //        streamContent.Headers.ContentType = new MediaTypeHeaderValue(fileContentType);
+
+        //        #endregion
+
+        //        #region creates HttpRequestMessage object
+
+        //        HttpRequestMessage httpRequest = new HttpRequestMessage();
+        //        httpRequest.Method = HttpMethod.Post;
+        //        httpRequest.RequestUri = RequestUri;
+        //        httpRequest.Content = multiPartContent;
+
+        //        #endregion
+
+        //        #region Send the request and process response
+        //        // Send Request
+
+        //        HttpResponseMessage httpResponse = null;
+        //        try
+        //        {
+        //            cancellationToken.ThrowIfCancellationRequested();
+
+        //            HttpClient httpClient = new HttpClient();
+        //            httpClient.Timeout = TimeSpan.FromSeconds(300);
+        //            httpResponse = await httpClient.
+        //                SendAsync(httpRequest, cancellationToken).ConfigureAwait(false);
+
+        //            HttpStatusCode statusCode = httpResponse.StatusCode;
+        //            if (statusCode != HttpStatusCode.OK)
+        //            {
+        //                string errorResponse =
+        //                    await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+        //                throw new Exception(errorResponse);
+        //            }
+        //        }
+        //        finally
+        //        {
+        //            if (httpResponse != null)
+        //            {
+        //                httpResponse.Dispose();
+        //            }
+        //        }
+
+        //        #endregion
+        //    }
+        //}
+
+
+
+
+
+
+        public async Task<bool> UploadBitmapAsync(  String empresa,Java.IO.File fichero, String codPedido, bool small)
+        {
+           
+
+            using (Bitmap bitmap = small?fichero.Path.LoadAndResizeBitmap(64, 64): await fichero.Path.getBitmapFile())
+            {
+                string fileNameSmall = string.Format("{0}_128.jpg", fichero.Name.Replace(".jpg", string.Empty));
+                String fileName = small? fileNameSmall : fichero.Name;
+                byte[] bitmapData;
+                var stream = new MemoryStream();
+                bitmap.Compress(Bitmap.CompressFormat.Jpeg, 100, stream);
+                bitmapData = stream.ToArray();
+
+                var fileContent = new ByteArrayContent(bitmapData);
+
+                fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/octet-stream");
+                fileContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
+                {
+                    Name = "file",
+                    FileName = fileName
+                };
+
+
+                string boundary = "---8d0f01e6b3b5dafaaadaad";
+                MultipartFormDataContent multipartContent = new MultipartFormDataContent(boundary);
+                multipartContent.Add(fileContent);
+
+                HttpClient httpClient = initClient();
+                // httpClient.BaseAddress =new Uri( @"http://localhost:34572/");
+                String url = String.Format(@"api/ListadoMonitorizacion?codPedido={0}", codPedido.Replace("/", "_").Replace("-", "_"));
+                HttpResponseMessage response = await httpClient.PostAsync(url, multipartContent);
+                string result = await response.Content.ReadAsStringAsync();
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    return true;
+                }
+            }
+            
+
+           
+
+
+            return false;
+        }
+
+        #endregion
         public HttpClient getCliente(string empresa) {
            
             if (empresa.Equals("Liege"))
@@ -584,34 +738,6 @@ namespace AlmacenRepuestosXamarin.Data
             return client;
         }
 
-        public async Task<Pedido> getPedidoVenta(string codPedido)
-        {
-            string empresa = String.Empty;
-            try
-            {
-                int pag=ListadoMonitorizacion.SamplePagerAdapter.pagSeleccionada;
-                if (pag==1) {
-                    empresa = "Liege";
-                }
-                client = getCliente(empresa);
-                string url = string.Format(@"api/Pedidos?codPedido={0}", codPedido);
-                var response = await client.GetAsync(url);
-                
-
-                if (response.IsSuccessStatusCode && response!=null)
-                {
-                    var content = await response.Content.ReadAsStringAsync();
-                    var result = JsonConvert.DeserializeObject<Pedido>(content);
-                    return result;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Se ha producido una excipcion no controlada", ex.InnerException);
-            }
-
-            return null;
-        }
+       
     }
 }

@@ -22,6 +22,9 @@ using AlmacenRepuestosXamarin.Clases;
 using System.Threading.Tasks;
 using static Android.Widget.AdapterView;
 using Android.Content;
+using ZXing.Mobile;
+using AlmacenRepuestosXamarin.Activities;
+
 
 namespace AlmacenRepuestosXamarin.Fragments
 {
@@ -55,6 +58,7 @@ namespace AlmacenRepuestosXamarin.Fragments
             HasOptionsMenu = true;
             view = inflater.Inflate(Resource.Layout.fragment_sample, null);
 
+            MobileBarcodeScanner.Initialize(this.Activity.Application);
             return view;
         }
 
@@ -179,13 +183,67 @@ namespace AlmacenRepuestosXamarin.Fragments
                         listMonitorizacionSevilla = listMonitorizacionSevilla.OrderBy(o => o.Fecha_Carga_Requerida).ToList();
                         listMonitorizacionLiege = listMonitorizacionLiege.OrderBy(o => o.Fecha_Carga_Requerida).ToList();
                         break;
+                    case "Foto":
+
+                        launchScaner();
+                        break;
                     default:
                         break;
                 }
+
+                
                 
             }
 
-           
+            private async Task launchScaner()
+            {
+
+
+                var scanner = new MobileBarcodeScanner();
+                Button flashButton;
+                View zxingOverlay;
+
+                scanner.UseCustomOverlay = true;
+
+                //Inflate our custom overlay from a resource layout
+                zxingOverlay = LayoutInflater.FromContext(this.context).Inflate(Resource.Layout.OverlayReadBarCode, null);
+
+                //Find the button from our resource layout and wire up the click event
+                flashButton = zxingOverlay.FindViewById<Button>(Resource.Id.buttonZxingFlash);
+                flashButton.Click += (sender, e) => scanner.ToggleTorch();
+
+                //Set our custom overlay
+                scanner.CustomOverlay = zxingOverlay;
+
+                //Start scanning!
+                var result = await scanner.Scan();
+
+
+                if (result != null)
+                {
+
+                    Toast.MakeText(this.context, result.Text, ToastLength.Long);
+                    
+                    var activityFotosPedidos = new Intent(this.context, typeof(TakeFotoActivity));
+                    Bundle bundle = activityFotosPedidos.Extras;
+                    activityFotosPedidos.PutExtra("codPedido", result.Text);
+                    var empresa = pagSeleccionada == 0 ? Monitorizacion.empresaLiege : Monitorizacion.empresaLiege;
+                    activityFotosPedidos.PutExtra("empresa", empresa);
+
+                    this.context.StartActivity(activityFotosPedidos);
+                   
+
+                }
+                else
+                {
+
+                    this.context.RunOnUiThread(() => Toast.MakeText(this.context, "Cancelado por el usuario", ToastLength.Short).Show());
+                }
+
+
+
+
+            }
 
             public override int Count
             {
@@ -306,13 +364,14 @@ namespace AlmacenRepuestosXamarin.Fragments
 
             public void OnPageScrolled(int position, float positionOffset, int positionOffsetPixels)
             {
-                pagSeleccionada = position;
+               // pagSeleccionada = position;
             }
 
             public void OnPageSelected(int position)
             {
                 string numCamionesRuta = string.Empty;
                 string numTmRuta = string.Empty;
+                pagSeleccionada = position;
                 AppCompatActivity activity = (AppCompatActivity)this.context;
                 if (position == 0)
                 {
@@ -343,18 +402,7 @@ namespace AlmacenRepuestosXamarin.Fragments
             }
         }
 
-            //FIN NUEVO TAB
-
-        //public override void OnResume()
-        //{
-        //    listMonitorizacion = Monitorizacion.getListMonitorizacion();
-
-        //    this.adapterMonitorizacion.list = listMonitorizacion;
-        //    this.Activity.RunOnUiThread(() => adapterMonitorizacion.NotifyDataSetChanged());
-
-        //    base.OnResume();
-
-        //}
       
+
     }
 }

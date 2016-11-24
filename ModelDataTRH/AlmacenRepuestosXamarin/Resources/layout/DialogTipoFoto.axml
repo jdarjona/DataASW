@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <RadioButton
+        android:id="@+id/radioCabeza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Foto Cabeza"
+        android:textSize="20dp"
+        android:layout_marginBottom="10dp" />
+    <RadioButton
+        android:id="@+id/radioLadoDerecho"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radioCabeza"
+        android:text="Foto lado derecho"
+        android:textSize="20dp"
+        android:layout_marginBottom="10dp" />
+    <RadioButton
+        android:id="@+id/radioLadoIzquierdo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radioLadoDerecho"
+        android:text="Foto lado izquierdo"
+        android:textSize="20dp"
+        android:layout_marginBottom="10dp" />
+    <RadioButton
+        android:id="@+id/radioTrasera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radioLadoIzquierdo"
+        android:text="Foto trasera"
+        android:textSize="20dp" />
+</RelativeLayout>
