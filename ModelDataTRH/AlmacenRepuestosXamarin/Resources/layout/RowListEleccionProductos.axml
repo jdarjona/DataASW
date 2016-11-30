@@ -91,7 +91,8 @@
                 android:textColor="@android:color/holo_purple"
                 android:textStyle="bold"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="14dp" />
+                android:layout_marginTop="14dp"
+                android:background="@drawable/mybuttoncircular" />
             <TextView
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="50dp"
@@ -116,7 +117,8 @@
                 android:gravity="center"
                 android:textSize="20dp"
                 android:textStyle="bold"
-                android:textColor="@android:color/holo_purple" />
+                android:textColor="@android:color/holo_purple"
+                android:background="@drawable/mybuttoncircular" />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

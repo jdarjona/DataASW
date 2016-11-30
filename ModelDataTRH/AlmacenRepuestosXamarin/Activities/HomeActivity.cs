@@ -30,7 +30,7 @@ namespace AlmacenRepuestosXamarin.Activities
         private MyActionBarDrawerToggle drawerToggle;        
         private string drawerTitle;
         private string title;
-        private AccesoDatos datos = new AccesoDatos () ;
+        //private AccesoDatos datos = new AccesoDatos () ;
         private DrawerLayout drawerLayout;
         private ListView drawerListView;
         Spinner spinner;

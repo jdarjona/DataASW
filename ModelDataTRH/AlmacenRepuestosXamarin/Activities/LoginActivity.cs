@@ -42,7 +42,6 @@ namespace AlmacenRepuestosXamarin.Activities
             base.OnCreate(savedInstanceState); 
             Helpers.Preferencias preferencias = new Preferencias(this);
             SetContentView(Resource.Layout.LoginLayout);
-            ad = new AccesoDatos();
             button = FindViewById<Button>(Resource.Id.btnAceptarLogin);
             usuario = FindViewById<EditText>(Resource.Id.editTextUser);
             password = FindViewById<EditText>(Resource.Id.editTextPass);
@@ -81,11 +80,14 @@ namespace AlmacenRepuestosXamarin.Activities
         {
             Spinner spinner = (Spinner)sender;
             empresaSeleccionada = spinner.GetItemAtPosition(e.Position).ToString();
+            
+
         }
 
 
         public void btnOneClick(View v)
         {
+            ad = new AccesoDatos();
             button.Enabled = false;
             usuario.Enabled = false;
             password.Enabled = false;
