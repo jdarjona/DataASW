@@ -5,6 +5,9 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Graphics;
+using Android.Graphics.Drawables;
+using Android.Graphics.Drawables.Shapes;
 using Android.OS;
 using Android.Runtime;
 
@@ -121,14 +124,23 @@ namespace AlmacenRepuestosXamarin.Adapter
             public TextView tv2;
             public TextView tv3;
             public TextView tv4;
-            public CheckBox cb1;
+            public TextView tv5;
+            public TextView tv6;
+            public TextView tv7;
+
+            //public CheckBox cb1;
             public Button btn1;
             public Button btn2;
         }
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
-         
+            var shape = new ShapeDrawable(new RectShape());
+            shape.Paint.Color = Color.DarkGray;
+            shape.Paint.StrokeWidth = 1;
+            shape.Paint.SetStyle(Paint.Style.Stroke);
+            
+            
             ViewHolder holder = null;
             var view = convertView;
 
@@ -142,28 +154,35 @@ namespace AlmacenRepuestosXamarin.Adapter
                 holder.tv1 = view.FindViewById<TextView>(Resource.Id.text1);
                 holder.tv2 = view.FindViewById<TextView>(Resource.Id.text2);
                 holder.tv3 = view.FindViewById<TextView>(Resource.Id.text3);
-                holder.tv4 = view.FindViewById<TextView>(Resource.Id.textNumPaquetes);
-                holder.cb1 = view.FindViewById<CheckBox>(Resource.Id.checkBox1);
-                holder.cb1.Click += (sender, e) => CheckItemClick(ref view);
+                holder.tv4 = view.FindViewById<TextView>(Resource.Id.text4);
+                holder.tv5 = view.FindViewById<TextView>(Resource.Id.text5);
+                holder.tv6 = view.FindViewById<TextView>(Resource.Id.text6);
+                holder.tv7 = view.FindViewById<TextView>(Resource.Id.textNumPaquetes);
+                holder.tv7.SetBackgroundDrawable(shape);
+                //holder.cb1 = view.FindViewById<CheckBox>(Resource.Id.checkBox1);
+                //holder.cb1.Click += (sender, e) => CheckItemClick(ref view);
                 holder.btn1 = view.FindViewById<Button>(Resource.Id.btn1);
-                holder.btn1.Click += (sender, e) => minItemClick(ref view);
+                holder.btn1.Click += (sender, e) => minItemClick(ref view,position);
                 holder.btn2 = view.FindViewById<Button>(Resource.Id.btn2);
-                holder.btn2.Click += (sender, e) => sumItemClick(ref view);
+                holder.btn2.Click += (sender, e) => sumItemClick(ref view,position);
 
                 // view.Tag = holder;
             }
             else {
 
-                holder.cb1.Checked = holder.cb1.Checked;
-                holder.tv4.Text = holder.tv4.Text;
+               // holder.cb1.Checked = holder.cb1.Checked;
+                holder.tv7.Text = holder.tv7.Text;
             }
 
             Producto item = this[position];
 
             holder.tv1.Text = item.search_DescriptionField;
-            holder.tv2.Text = item.stockDisponibleField.ToString();
-            holder.tv3.Text = item.paquetes_por_CamiónField.ToString();
-            holder.tv4.OnFocusChangeListener = this;
+            holder.tv2.Text = "PAQ. Disp.: " + item.stockDisponibleField.ToString();
+            holder.tv3.Text = "PAQ. Camión: " + item.paquetes_por_CamiónField.ToString();
+            holder.tv4.Text = (item.cantidadSeleccionada * item.kgs_PaqueteField).ToString() + " KG";
+            holder.tv5.Text = (item.cantidadSeleccionada * item.paños_x_PaqueteField).ToString() + " PAÑOS";
+            holder.tv6.Text = (item.cantidadSeleccionada * item.m2_PaqueteField).ToString() + " M2";
+            holder.tv7.OnFocusChangeListener = this;
             //holder.et1.Click += (sender, e) => CheckEditClick(holder);
           
 
@@ -174,51 +193,45 @@ namespace AlmacenRepuestosXamarin.Adapter
             
         }
 
-        private void minItemClick(ref View view)
+        private void minItemClick(ref View view,int position)
         {
             ViewHolder holder = view.Tag as ViewHolder;
-            int.TryParse(holder.tv4.Text, out numero);
-            if (numero != 0) {
+            int.TryParse(holder.tv7.Text, out numero);
+            if (numero > 1) {
                 numero--;
-                holder.tv4.Text = numero.ToString();
-            }
-            
+                holder.tv7.Text = numero.ToString();
+               
+                list[position].seleccionado = true;
+                list[position].cantidadSeleccionada = numero;
+                list[position].altura_PaqueteField = 30;
+                holder.tv4.Text = (list[position].cantidadSeleccionada * list[position].kgs_PaqueteField).ToString() + " KG";
+                holder.tv5.Text = (list[position].cantidadSeleccionada * list[position].paños_x_PaqueteField).ToString() + " PAÑOS";
+                holder.tv6.Text = (list[position].cantidadSeleccionada * list[position].m2_PaqueteField).ToString() + " M2";
+
+            } else if (numero <= 1) {
+                holder.tv7.Text = string.Empty;
+                holder.tv4.Text = "0 KG";
+                holder.tv5.Text = "0 PAÑOS";
+                holder.tv6.Text = "0 M2";
+                list[position].seleccionado = false;
+                list[position].cantidadSeleccionada = 0;
+                list[position].altura_PaqueteField = 0;
+            }           
         }
 
-        private void sumItemClick(ref View view)
+        private void sumItemClick(ref View view,int position)
         {
             ViewHolder holder = view.Tag as ViewHolder;
-            int.TryParse(holder.tv4.Text,out numero);
+            int.TryParse(holder.tv7.Text,out numero);
             numero++;
-            holder.tv4.Text = numero.ToString(); 
-        }
-
-        private void CheckEditClick(View holder)
-        {
+            holder.tv7.Text = numero.ToString();
             
-        }
-
-        private void CheckItemClick(ref View view)
-        {
-           ViewHolder holder = view.Tag as ViewHolder;
-            if (holder.cb1.Checked)
-            {
-                if (holder.tv4.Text.Equals(string.Empty)) { 
-                    holder.tv4.Text = "1";
-                    holder.tv4.Enabled = true;
-                    holder.btn1.Enabled = true;
-                    holder.btn2.Enabled = true;
-                }
-            }
-            else 
-            {
-                holder.tv4.Text = "";
-                holder.tv4.Enabled = false;
-                holder.btn1.Enabled = false;
-                holder.btn2.Enabled = false;                    
-            }
-            holder.tv4.ClearFocus();
-            view.Tag = holder;
+            list[position].seleccionado = true;
+            list[position].cantidadSeleccionada = numero;
+            list[position].altura_PaqueteField = 15;
+            holder.tv4.Text = (list[position].cantidadSeleccionada * list[position].kgs_PaqueteField).ToString() + " KG";
+            holder.tv5.Text = (list[position].cantidadSeleccionada * list[position].paños_x_PaqueteField).ToString() + " PAÑOS";
+            holder.tv6.Text = (list[position].cantidadSeleccionada * list[position].m2_PaqueteField).ToString() + " M2";
         }
 
         public void OnFocusChange(View v, bool hasFocus)
@@ -226,22 +239,5 @@ namespace AlmacenRepuestosXamarin.Adapter
             Toast.MakeText(this.context, "No me toques", ToastLength.Long);
         }
 
-
-
-        //private void accionClick(View view,int position)
-        //{
-        //    bool seleccionado = view.FindViewById<CheckBox>(Resource.Id.checkBox1).Checked;
-        //    string numPaquetes = view.FindViewById<EditText>(Resource.Id.editTextNumPaquete).Text;
-
-
-        //    if (seleccionado && numPaquetes.Equals(""))
-        //    {
-        //        view.FindViewById<EditText>(Resource.Id.editTextNumPaquete).Text = "1";
-        //    }
-        //    else if(!seleccionado)
-        //    {
-        //        view.FindViewById<EditText>(Resource.Id.editTextNumPaquete).Text = "";
-        //    }        
-        //}
     }
 }

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="25px"
+    android:minHeight="25px">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout1"
+        android:gravity="left">
+    <!-- <TextView
+            android:layout_width="87.0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/textView5"
+            android:paddingRight="22dp" />
+        <TextView
+            android:text="Desc. %"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/textView4"
+            android:paddingRight="12dp" />
+        <TextView
+            android:text="€/M2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/textView3"
+            android:paddingRight="26dp" />
+        <TextView
+            android:text="€/Tm"
+            android:layout_width="75.0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/textView2"
+            android:paddingRight="34dp" />
+        <TextView
+            android:text="Imp. €"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/textView1" /> -->
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearLayout1"
+        android:id="@+id/linearLayout2"
+        android:gravity="left"
+        android:paddingTop="@dimen/margin_medium"
+        android:paddingBottom="@dimen/margin_medium"
+        android:clickable="true"
+        android:focusable="true"
+        android:longClickable="true">
+        <TextView
+            android:text="Text"
+            android:layout_width="102.0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/textProducto"
+            android:textSize="17dp"
+            android:editable="false"
+            android:textStyle="bold" />
+        <TextView
+            android:text="Text"
+            android:layout_width="56.5dp"
+            android:layout_height="match_parent"
+            android:id="@+id/textDescuento"
+            android:textSize="17dp"
+            android:editable="true"
+            android:cursorVisible="true"
+            android:numeric="decimal"
+            android:tag="textDescuento" />
+        <TextView
+            android:text="Text"
+            android:layout_width="61.5dp"
+            android:layout_height="match_parent"
+            android:id="@+id/textEurosMcuadrados"
+            android:textSize="17dp"
+            android:editable="true"
+            android:cursorVisible="true"
+            android:numeric="decimal"
+            android:tag="textEurosMcuadrados" />
+        <TextView
+            android:text="Text"
+            android:layout_width="80.0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/textEurosToneladas"
+            android:textSize="17dp"
+            android:editable="true"
+            android:cursorVisible="true"
+            android:numeric="decimal"
+            android:tag="textEurosToneladas" />
+        <TextView
+            android:text="Text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/textImporte"
+            android:textSize="17dp"
+            android:editable="true"
+            android:gravity="right"
+            android:cursorVisible="true"
+            android:numeric="decimal"
+            android:tag="textImporte" />
+    </LinearLayout>
+</RelativeLayout>

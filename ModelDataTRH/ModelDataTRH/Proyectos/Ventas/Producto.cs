@@ -42,6 +42,8 @@ namespace ModelDataTRH.Proyectos.Ventas
      public bool stockDisponibleFieldSpecified { get; set; } // true,
      public string paisField { get; set; } //  sample string 32 ,
      public string almacenField { get; set; } //  sample string 33 ,
-     
+     public double altura_PaqueteField { get; set; }
+     public bool seleccionado { get; set; }
+     public double cantidadSeleccionada { get; set; }
     }
 }

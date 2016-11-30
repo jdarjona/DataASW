@@ -22,13 +22,25 @@ using static AlmacenRepuestosXamarin.Clases.SlidingTabsFragment;
 namespace AlmacenRepuestosXamarin.Activities
 {
     [Activity(Label = "Nueva Oferta", LaunchMode = LaunchMode.SingleTop, Icon = "@drawable/TRH", ScreenOrientation = ScreenOrientation.Portrait)]
-    public class NuevaOfertaActivity : BaseActivity , ViewPager.IOnPageChangeListener
+    public class NuevaOfertaActivity : BaseActivity , ViewPager.IOnPageChangeListener , Android.Widget.NumberPicker.IOnValueChangeListener
     {
         LinearLayout progressLayout;
         private SlidingTabScrollView mSlidingTabScrollView;
         private ViewPager mViewPager;
         List<string> data;
         private int tabSeleccionado;
+        public NumberPicker np;
+        public TextView cantidadProductoSeleccionado;
+        public string[] nombreProductosSeleccionados;
+        public Button btnMaxPila1;
+        public Button btnMinPila1;
+        public Button btnMaxPila2;
+        public Button btnMinPila2;
+        public LinearLayout pila1;
+        public LinearLayout pila2;
+        //static SPagerAdapter adapter;
+        bool flag = false;
+
         IMenuItem item;
         IMenu _menu;
         private Android.Support.V7.Widget.SearchView _searchView;
@@ -70,6 +82,9 @@ namespace AlmacenRepuestosXamarin.Activities
            
             return base.OnCreateOptionsMenu(_menu);
         }
+
+        
+
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
 
@@ -77,11 +92,8 @@ namespace AlmacenRepuestosXamarin.Activities
             switch (item.ItemId)
             {
                 case Resource.Id.cambiarDestino:
-
-                   // eliminarRepuesto();
-
                     break;
-
+ 
                 default:
                     //Finish();
 
@@ -107,15 +119,12 @@ namespace AlmacenRepuestosXamarin.Activities
                         default:
                             break;
                     }
-                    //mViewPager.Adapter.Filter.InvokeFilter(new Java.Lang.String(e.NewText.ToString()));
                     adapter.NotifyDataSetChanged();
                 });
             };
 
             _searchView.QueryTextSubmit += (s, e) =>
             {
-                // Handle enter/search button on keyboard here
-                Toast.MakeText(this, "Searched for: " + e.Query, ToastLength.Short).Show();
                 e.Handled = true;
             };
         }
@@ -144,11 +153,70 @@ namespace AlmacenRepuestosXamarin.Activities
 
                         break;
                     case 2:
+                        
                         _menu.Clear();
                         SupportActionBar.SetTitle(Resource.String.Carga);
-                        MenuInflater.Inflate(Resource.Menu.buscador, _menu);
-                        item = _menu.FindItem(Resource.Id.action_search);
-                        addItem(item);
+                        SPagerAdapter adapter = (SPagerAdapter)(mViewPager.Adapter);
+                        np = new NumberPicker(this);
+                        np = this.FindViewById<NumberPicker>(Resource.Id.numberPickerProductos);
+                        cantidadProductoSeleccionado = this.FindViewById<TextView>(Resource.Id.textView2);
+
+                        btnMaxPila1 = this.FindViewById<Button>(Resource.Id.buttonMaxPila1);
+                        btnMinPila1 = this.FindViewById<Button>(Resource.Id.buttonMinPila1);
+                        btnMaxPila2 = this.FindViewById<Button>(Resource.Id.buttonMaxPila2);
+                        btnMinPila2 = this.FindViewById<Button>(Resource.Id.buttonMinPila2);
+
+                        if (!flag) { 
+                            btnMaxPila1.Click += (sender, e) => maxMinBtnClickPilas("maxPila1", adapter);
+                            btnMinPila1.Click += (sender, e) => maxMinBtnClickPilas("minPila1", adapter);
+                            btnMaxPila2.Click += (sender, e) => maxMinBtnClickPilas("maxPila2", adapter);
+                            btnMinPila2.Click += (sender, e) => maxMinBtnClickPilas("minPila2", adapter);
+                        }
+                        flag = true;
+                        pila1 = this.FindViewById<LinearLayout>(Resource.Id.linearLayoutPila1);
+                        pila2 = this.FindViewById<LinearLayout>(Resource.Id.linearLayoutPila2);
+
+                        if (adapter.listProductosSeleccionados.Count() > 0)
+                            {
+                            np.WrapSelectorWheel = true;
+                            np.SetOnValueChangedListener(this);
+                            np.DescendantFocusability = DescendantFocusability.BlockDescendants;
+
+                                nombreProductosSeleccionados = new string[adapter.listProductosSeleccionados.Count()];
+                                int position = -1;
+                                foreach (var item in adapter.listProductosSeleccionados)
+                                {
+                                    position++;
+                                    nombreProductosSeleccionados[position] += item.search_DescriptionField;
+                                    
+                                }
+                            np.MinValue = 0;
+                            if (np.MaxValue > nombreProductosSeleccionados.Count()-1) {
+                                np.MaxValue = nombreProductosSeleccionados.Count()-1;
+                            }
+                            np.SetDisplayedValues(nombreProductosSeleccionados);
+                            np.MaxValue = nombreProductosSeleccionados.Count()-1;
+
+                            string name = nombreProductosSeleccionados[np.Value].ToString();
+                            var cantidad = (from p in adapter.listProductosSeleccionados where p.search_DescriptionField == name select p.cantidadSeleccionada).First();
+                            cantidadProductoSeleccionado.Text = cantidad.ToString();
+
+                        }
+                        else
+                            {
+
+                            np.MinValue = 0;
+                            if (np.MaxValue > 0)
+                            {
+                                np.MaxValue = 0;
+                            }
+                            np.SetDisplayedValues(new string[] { "" });
+                            np.MaxValue = 0;
+                            cantidadProductoSeleccionado.Text = "0";
+                                //np.SetDisplayedValues(new string[] { "" });
+                            }
+                        
+                        
                         break;
                     case 3:
                         _menu.Clear();
@@ -157,14 +225,122 @@ namespace AlmacenRepuestosXamarin.Activities
                     case 4:
                         _menu.Clear();
                         SupportActionBar.SetTitle(Resource.String.Incidencias);
-                        MenuInflater.Inflate(Resource.Menu.buscador, _menu);
-                        item = _menu.FindItem(Resource.Id.action_search);
-                        addItem(item);
+                        MenuInflater.Inflate(Resource.Menu.soloMenuCambioDestino, _menu);
                         break;
                     default:
                         break;
                 }
             }
+        }
+
+
+        private void maxMinBtnClickPilas(string v, SPagerAdapter adapter)
+        {
+            double cantidad = 0;
+            string name = nombreProductosSeleccionados[np.Value].ToString();
+            var cantidadReal = (from p in adapter.listProductosSeleccionados where p.search_DescriptionField == name select p.cantidadSeleccionada).First();
+            switch (v)
+            {
+                case "maxPila1":
+                    
+                    double.TryParse(cantidadProductoSeleccionado.Text,out cantidad);
+                    if (cantidad > 0)
+                    {
+                        cantidad--;
+                        cantidadProductoSeleccionado.Text = cantidad.ToString();
+                        añadirTxtPila(1);
+                    }
+                    else {
+                        Toast.MakeText(this, "NO DISPONE DE MAS PAQUETES DE ESTE PRODUCTO!!!", ToastLength.Long);
+                    }
+                    break;
+
+                case "minPila1":
+                    double.TryParse(cantidadProductoSeleccionado.Text, out cantidad);
+                    string nombrePaquetePila1  = nombreProductosSeleccionados[np.Value].ToString();
+                    int numeroPaquetesPila = pila1.ChildCount;
+                    var paqueteABorrarPila1 = (TextView)pila1.GetChildAt(numeroPaquetesPila-1);
+                    if (paqueteABorrarPila1 != null) { 
+                        if (cantidad < cantidadReal && nombrePaquetePila1.Equals(paqueteABorrarPila1.Text))
+                        {
+                            cantidad++;
+                            cantidadProductoSeleccionado.Text = cantidad.ToString();
+                            pila1.RemoveView(paqueteABorrarPila1);
+                        }
+                    
+                        else {
+                            cantidad++;
+                            pila1.RemoveView(paqueteABorrarPila1);
+                        }
+                    }
+                    break;
+
+                case "maxPila2":
+                    double.TryParse(cantidadProductoSeleccionado.Text, out cantidad);
+                    if (cantidad > 0)
+                    {
+                        cantidad--;
+                        cantidadProductoSeleccionado.Text = cantidad.ToString();
+                        añadirTxtPila(2);
+                    }
+                    else
+                    {
+                        Toast.MakeText(this, "NO DISPONE DE MAS PAQUETES DE ESTE PRODUCTO!!!", ToastLength.Long);
+                    }
+                    break;
+                case "minPila2":
+                    double.TryParse(cantidadProductoSeleccionado.Text, out cantidad);
+                    string nombrePaquetePila2 = nombreProductosSeleccionados[np.Value].ToString();
+                    int numeroPaquetesPila2 = pila2.ChildCount;
+                    var paqueteABorrarPila2 = (TextView)pila2.GetChildAt(numeroPaquetesPila2 - 1);
+                    if(paqueteABorrarPila2 != null) { 
+                        if (cantidad < cantidadReal && nombrePaquetePila2.Equals(paqueteABorrarPila2.Text))
+                        {
+                            cantidad++;
+                            cantidadProductoSeleccionado.Text = cantidad.ToString();
+                            pila2.RemoveView(paqueteABorrarPila2);
+                        }
+                    
+                        else
+                        {
+                            cantidad++;
+                            pila2.RemoveView(paqueteABorrarPila2);
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void añadirTxtPila(int v)
+        {
+            TextView addPaquete;
+           
+            switch (v)
+            {
+                
+                case 1:
+                    addPaquete = new TextView(this);                    
+                    addPaquete.Text = nombreProductosSeleccionados[np.Value].ToString();
+                    addPaquete.Gravity = GravityFlags.Center;
+                    addPaquete.SetBackgroundColor(Android.Graphics.Color.Beige);
+                    pila1.AddView(addPaquete);
+                    break;
+
+                case 2:
+                    addPaquete = new TextView(this);
+                    addPaquete.Text = nombreProductosSeleccionados[np.Value].ToString();
+                    addPaquete.Gravity = GravityFlags.Center;
+                    addPaquete.SetBackgroundColor(Android.Graphics.Color.Beige);
+                    pila2.AddView(addPaquete);
+                    break;
+
+                default:
+                    break;
+            }
+
+
         }
         public void OnPageScrolled(int position, float positionOffset, int positionOffsetPixels)
         {
@@ -174,19 +350,33 @@ namespace AlmacenRepuestosXamarin.Activities
         {
             tabSeleccionado = position;
         }
+
+        public void OnValueChange(NumberPicker picker, int oldVal, int newVal)
+        {
+            int valor = 0;
+            SPagerAdapter adapter = (SPagerAdapter)(mViewPager.Adapter);
+            valor = np.Value;
+            var a = np.GetHashCode();
+            string name = nombreProductosSeleccionados[valor].ToString();
+            var cantidad = (from p in adapter.listProductosSeleccionados where p.search_DescriptionField == name select p.cantidadSeleccionada).First();
+            cantidadProductoSeleccionado.Text = cantidad.ToString();
+        }
         #endregion
-     
+
         #region Adaptador de activity NuevaOferta
         public class SPagerAdapter : PagerAdapter, ViewPager.IOnPageChangeListener 
         {
             private ViewPager _mViewPager;
             private Toolbar toolBar;
             public AdapterListadoProductos adapterListadoProductos;
+            public AdapterPreciosNuevaOferta adapterPreciosNuevaOferta;
             private AdapterNuevaOferta adapterNuevaOferta;
             private List<string> items = new List<string>();
             private Activity context;
             public ListView nuevaOfertaListview;
-            private List<Cliente> listClientes = new List<Cliente>();
+            public ListView productosOferta;
+            public List<Cliente> listClientes = new List<Cliente>();
+            public List<Producto> listProductosSeleccionados = new List<Producto>();
             private LinearLayout progressLayout;
             private IMenuItem item;
             private int tabSeleccionado = 0;
@@ -244,19 +434,23 @@ namespace AlmacenRepuestosXamarin.Activities
                         nuevaOfertaListview = view.FindViewById<ListView>(Resource.Id.listViewNuevaOfertaFragment);
                         progressLayout = view.FindViewById<LinearLayout>(Resource.Id.progressBar);
                         adapterListadoProductos = new AdapterListadoProductos(this.context, AccesoDatos.listaProductos);
+                        
                         nuevaOfertaListview.Adapter = adapterListadoProductos;
                         break;
 
                     case 2:
-                        view = inflater.Inflate(Resource.Layout.pagerItemOfertaSinHeader, container, false);
-                        //nuevaOfertaListview = view.FindViewById<ListView>(Resource.Id.listViewNuevaOfertaFragment);
-                        //progressLayout = view.FindViewById<LinearLayout>(Resource.Id.progressBar);
-                        //listClientes.Clear();
-                        //Cliente ca = new Cliente();
-                        //ca.nameField = "Hierros Manuel S.A";
-                        //listClientes.Add(ca);
-                        //adapterNuevaOferta = new AdapterNuevaOferta(this.context, listClientes);
-                        //nuevaOfertaListview.Adapter = adapterNuevaOferta;
+                        view = inflater.Inflate(Resource.Layout.cargaProductos, container, false);
+                        
+                        //calcularCamionesParaOferta(adapterListadoProductos.list);
+                        
+                        break;
+                    case 3:
+                        view = inflater.Inflate(Resource.Layout.layoutNuevaOfertaPrecios, container, false);
+                        nuevaOfertaListview = view.FindViewById<ListView>(Resource.Id.listViewNuevaOfertaPrecios);
+                        progressLayout = view.FindViewById<LinearLayout>(Resource.Id.progressBar);
+                        adapterPreciosNuevaOferta = new AdapterPreciosNuevaOferta(this.context, AccesoDatos.listaProductos);
+
+                        nuevaOfertaListview.Adapter = adapterPreciosNuevaOferta;
                         break;
 
                     default:
@@ -268,7 +462,18 @@ namespace AlmacenRepuestosXamarin.Activities
                 return view;
             }
 
-            
+            private void calcularCamionesParaOferta(List<Producto> list)
+            {
+                double peso = 0;
+                double altura = 0;
+                foreach (var item in list)
+                {
+                    if (item.seleccionado) {
+                        peso += item.cantidadSeleccionada * item.kgs_PaqueteField;
+                        altura += item.cantidadSeleccionada * item.altura_PaqueteField;
+                    }
+                }
+            }
 
             public string GetHeaderTitle(int position)
             {
@@ -282,7 +487,32 @@ namespace AlmacenRepuestosXamarin.Activities
 
             public void OnPageScrollStateChanged(int state)
             {
+                switch (tabSeleccionado)
+                {
+                    case 0:
+                        break;
+                    case 1:
+                        listProductosSeleccionados.Clear();
+                        foreach (var item in adapterListadoProductos.list)
+                        {
+                            if (item.seleccionado == true)
+                            {
+                                listProductosSeleccionados.Add(item);
+                            }
+                        }
+                        break;
+                    case 2:
+                        //NumberPicker np = this.context.FindViewById<NumberPicker>(Resource.Id.numberPickerProductos);
+                        
 
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    default:
+                        break;
+                }
             }
 
             public void OnPageScrolled(int position, float positionOffset, int positionOffsetPixels)

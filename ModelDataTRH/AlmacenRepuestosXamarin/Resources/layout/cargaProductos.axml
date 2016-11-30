@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layoutPicker"
+        android:gravity="center">
+        <NumberPicker
+            android:layout_width="match_parent"
+            android:layout_height="119.0dp"
+            android:id="@+id/numberPickerProductos"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:scaleX="1.5"
+            android:measureWithLargestChild="true"
+            android:foregroundTint="#f0f8ffff"
+            android:solidColor="@android:color/holo_blue_light" />
+    </RelativeLayout>
+    <TextView
+        android:text="Cantidad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_below="@+id/layoutPicker"
+        android:layout_marginTop="22.5dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="45.0dp"
+        android:id="@+id/textView2"
+        android:gravity="center"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:numeric="decimal"
+        android:layout_below="@+id/textView1" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="47.0dp"
+        android:id="@+id/textView5"
+        android:layout_below="@+id/textView2"
+        android:text="PESO CAMION"
+        android:gravity="center" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayoutAlturaPilas"
+        android:layout_below="@+id/textView5">
+        <TextView
+            android:text="Altura Pila 1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/textView3"
+            android:layout_weight="1"
+            android:gravity="center" />
+        <TextView
+            android:text="Altura Pila 2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/textView4"
+            android:layout_weight="1"
+            android:gravity="center" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayoutPilas"
+        android:layout_above="@+id/linearLayoutButtonMaxMin">
+        <LinearLayout
+            android:orientation="vertical"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayoutPila1"
+            android:layout_weight="1"
+            android:layout_gravity="center" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayoutPila2"
+            android:layout_weight="1"
+            android:layout_gravity="center" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayoutButtonMaxMin"
+        android:gravity="bottom"
+        android:layout_alignParentBottom="true">
+        <Button
+            android:text="-"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/buttonMinPila1"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+        <Button
+            android:text="+"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/buttonMaxPila1"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+        <Button
+            android:text="-"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/buttonMinPila2"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+        <Button
+            android:text="+"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/buttonMaxPila2"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</RelativeLayout>
