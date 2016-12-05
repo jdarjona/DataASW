@@ -19,7 +19,7 @@ namespace AlmacenRepuestosXamarin.Activities
     using Uri = Android.Net.Uri;
     using Android.Views;
     using Model;
-    [Activity(Label = "Camera App Demo")]
+    [Activity(Label = "Camera App Demo", ScreenOrientation = ScreenOrientation.Portrait)]
     public class TakeFotoActivity :  BaseActivity
     {
         private File _dir;
@@ -33,6 +33,7 @@ namespace AlmacenRepuestosXamarin.Activities
         private String empresa;
         private Dialog dialog;
         public LinearLayout progressLayout;
+        Fotos foto;
         public enum TiposFotos
         {
             Cabeza ,
@@ -101,9 +102,9 @@ namespace AlmacenRepuestosXamarin.Activities
 
                 using (Bitmap imgFoto = await _file.Path.getBitmapFile() ) {
 
-                    Fotos foto = new Fotos();
+                   
 
-                    foto.Tipo = tipoFoto;//(TiposFotos)Enum.Parse(typeof(TiposFotos), _file.Name.Replace(".jpg",string.Empty).Replace(codPedidoFormateado,string.Empty).Replace("_",string.Empty)) ;
+                    //foto.Tipo = tipoFoto;//(TiposFotos)Enum.Parse(typeof(TiposFotos), _file.Name.Replace(".jpg",string.Empty).Replace(codPedidoFormateado,string.Empty).Replace("_",string.Empty)) ;
                     foto.Image = imgFoto;
                     foto.Fichero = _file;
 
@@ -244,8 +245,16 @@ namespace AlmacenRepuestosXamarin.Activities
             Toast.MakeText(this, rb.Text, ToastLength.Short).Show();
 
             Intent intent = new Intent(MediaStore.ActionImageCapture);
-            Fotos foto = listFotos.Where(q => q.Tipo == tipo).FirstOrDefault();
-            if (foto != null) listFotos.Remove(foto);
+            Fotos _foto = listFotos.Where(q => q.Tipo == tipo).FirstOrDefault();
+            if (_foto != null)
+            {
+                
+                listFotos.Remove(foto);
+
+            }
+            
+            foto = new Fotos();
+            foto.Tipo = tipo;
 
             _file = new File(_dir, String.Format("{0}_{1}.jpg",tipo.ToString(),codPedidoFormateado));
             _file.DeleteOnExit();

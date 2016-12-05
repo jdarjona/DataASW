@@ -43,6 +43,7 @@ namespace AlmacenRepuestosXamarin.Fragments
         private ViewPager mViewPager;
         public static int tabSeleccionado = 7;
         private View view;
+        private int ordenSeleccionado = -1;
         //private ListView listViewMonitorizacion;
         //private LinearLayout progressLayout;
         //private AccesoDatos datos;
@@ -82,7 +83,88 @@ namespace AlmacenRepuestosXamarin.Fragments
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            mViewPager.Adapter = new SamplePagerAdapter(this.Activity, mViewPager, item,tabSeleccionado);
+            //mViewPager.Adapter = new SamplePagerAdapter(this.Activity, mViewPager, item,tabSeleccionado);
+
+            SamplePagerAdapter adapter = (SamplePagerAdapter)mViewPager.Adapter;
+            switch (item.ToString())
+            {
+                case "Ordenar por Empleado":
+                    if (ordenSeleccionado == item.ItemId)
+                    {
+                        adapter.listMonitorizacionSevilla = adapter.listMonitorizacionSevilla.OrderBy(o => o.inicialesComercial).ToList();
+                        adapter.listMonitorizacionLiege = adapter.listMonitorizacionLiege.OrderBy(o => o.inicialesComercial).ToList();
+                      //  adapter.listMonitorizacion = adapter.listMonitorizacion.OrderBy(o => o.inicialesComercial).ToList();
+                        ordenSeleccionado = -1;
+
+                    }
+                    else
+                    {
+                        adapter.listMonitorizacionSevilla = adapter.listMonitorizacionSevilla.OrderByDescending(o => o.inicialesComercial).ToList();
+                        adapter.listMonitorizacionLiege = adapter.listMonitorizacionLiege.OrderByDescending(o => o.inicialesComercial).ToList();
+                    //    adapter.listMonitorizacion = adapter.listMonitorizacion.OrderByDescending(o => o.inicialesComercial).ToList();
+                        ordenSeleccionado = item.ItemId;
+                    }
+
+                    break;
+                case "Ordenar por Estado":
+                    if (ordenSeleccionado == item.ItemId)
+                    {
+                        adapter.listMonitorizacionSevilla = adapter.listMonitorizacionSevilla.OrderBy(o => o.Estado).ToList();
+                        adapter.listMonitorizacionLiege = adapter.listMonitorizacionLiege.OrderBy(o => o.Estado).ToList();
+                   //     adapter.listMonitorizacion = adapter.listMonitorizacion.OrderBy(o => o.Estado).ToList();
+                        ordenSeleccionado = -1;
+                    }
+                    else
+                    {
+                        adapter.listMonitorizacionSevilla = adapter.listMonitorizacionSevilla.OrderByDescending(o => o.Estado).ToList();
+                        adapter.listMonitorizacionLiege = adapter.listMonitorizacionLiege.OrderByDescending(o => o.Estado).ToList();
+                    //    adapter.listMonitorizacion = adapter.listMonitorizacion.OrderByDescending(o => o.Estado).ToList();
+                        ordenSeleccionado = item.ItemId;
+                    }
+
+                    break;
+                case "Ordenar por Pedido":
+                    if (ordenSeleccionado == item.ItemId)
+                    {
+                        adapter.listMonitorizacionSevilla = adapter.listMonitorizacionSevilla.OrderBy(o => o.codigoPedido).ToList();
+                        adapter.listMonitorizacionLiege = adapter.listMonitorizacionLiege.OrderBy(o => o.codigoPedido).ToList();
+                      //  adapter.listMonitorizacion = adapter.listMonitorizacion.OrderBy(o => o.codigoPedido).ToList();
+                        ordenSeleccionado = -1;
+                    }
+                    else
+                    {
+                        adapter.listMonitorizacionSevilla = adapter.listMonitorizacionSevilla.OrderByDescending(o => o.codigoPedido).ToList();
+                        adapter.listMonitorizacionLiege = adapter.listMonitorizacionLiege.OrderByDescending(o => o.codigoPedido).ToList();
+                       // adapter.listMonitorizacion = adapter.listMonitorizacion.OrderByDescending(o => o.codigoPedido).ToList();
+                        ordenSeleccionado = item.ItemId;
+                    }
+
+                    break;
+                case "Ordenar por Fecha":
+                    if (ordenSeleccionado == item.ItemId)
+                    {
+                        adapter.listMonitorizacionSevilla = adapter.listMonitorizacionSevilla.OrderBy(o => o.Fecha_Carga_Requerida).ToList();
+                        adapter.listMonitorizacionLiege = adapter.listMonitorizacionLiege.OrderBy(o => o.Fecha_Carga_Requerida).ToList();
+                     //   adapter.listMonitorizacion = adapter.listMonitorizacion.OrderBy(o => o.Fecha_Carga_Requerida).ToList();
+                        ordenSeleccionado = -1;
+                    }
+                    else
+                    {
+                        adapter.listMonitorizacionSevilla = adapter.listMonitorizacionSevilla.OrderByDescending(o => o.Fecha_Carga_Requerida).ToList();
+                        adapter.listMonitorizacionLiege = adapter.listMonitorizacionLiege.OrderByDescending(o => o.Fecha_Carga_Requerida).ToList();
+                       // adapter.listMonitorizacion = adapter.listMonitorizacion.OrderByDescending(o => o.Fecha_Carga_Requerida).ToList();
+                        ordenSeleccionado = item.ItemId;
+                    }
+
+                    break;
+                case "Foto":
+
+                    launchScaner();
+                    break;
+                default:
+                    break;
+            }
+            mViewPager.Adapter.NotifyDataSetChanged();
             return base.OnOptionsItemSelected(item);
         }
 
@@ -115,26 +197,80 @@ namespace AlmacenRepuestosXamarin.Fragments
             tabSeleccionado = position;
         }
 
+        private async Task launchScaner()
+        {
+
+
+            var scanner = new MobileBarcodeScanner();
+            Button flashButton;
+            View zxingOverlay;
+
+            scanner.UseCustomOverlay = true;
+
+            //Inflate our custom overlay from a resource layout
+            zxingOverlay = LayoutInflater.FromContext(this.Activity).Inflate(Resource.Layout.OverlayReadBarCode, null);
+
+            //Find the button from our resource layout and wire up the click event
+            flashButton = zxingOverlay.FindViewById<Button>(Resource.Id.buttonZxingFlash);
+            flashButton.Click += (sender, e) => scanner.ToggleTorch();
+
+            //Set our custom overlay
+            scanner.CustomOverlay = zxingOverlay;
+
+            //Start scanning!
+            var result = await scanner.Scan();
+
+
+            if (result != null)
+            {
+
+                Toast.MakeText(this.Activity, result.Text, ToastLength.Long);
+
+                var activityFotosPedidos = new Intent(this.Activity, typeof(TakeFotoActivity));
+                Bundle bundle = activityFotosPedidos.Extras;
+                activityFotosPedidos.PutExtra("codPedido", result.Text);
+                var empresa = SamplePagerAdapter.pagSeleccionada == 0 ? Monitorizacion.empresaLiege : Monitorizacion.empresaLiege;
+                activityFotosPedidos.PutExtra("empresa", empresa);
+
+                this.StartActivity(activityFotosPedidos);
+
+
+            }
+            else
+            {
+
+                this.Activity.RunOnUiThread(() => Toast.MakeText(this.Activity, "Cancelado por el usuario", ToastLength.Short).Show());
+            }
+
+
+
+
+        }
+
+
         //NUEVO TAB
 
         public class SamplePagerAdapter : PagerAdapter, ViewPager.IOnPageChangeListener
         {
             
-            private  List<vListadoPedidosMonitorizacion> listMonitorizacionSevilla { get; set; }
-            private List<vListadoPedidosMonitorizacion> listMonitorizacionLiege { get; set; }
-            private List<vListadoPedidosMonitorizacion> listMonitorizacion { get; set; }
+            public  List<vListadoPedidosMonitorizacion> listMonitorizacionSevilla { get; set; }
+            public List<vListadoPedidosMonitorizacion> listMonitorizacionLiege { get; set; }
+           // public List<vListadoPedidosMonitorizacion> listMonitorizacion { get; set; }
 
-            private AdapterMonitoriaion adapterMonitorizacion { get; set; }
-            private ListView monitorizacionListView;
+            private AdapterMonitoriaion adapterMonitorizacionLieja { get; set; }
+            private AdapterMonitoriaion adapterMonitorizacionSevilla { get; set; }
+            private ListView monitorizacionListViewLieja;
+            private ListView monitorizacionListViewSevilla;
             private List<string> items = new List<string>();
             private ViewPager _mViewPager;
             private AppCompatActivity context;
             private  List<vListadoPedidosMonitorizacion> list;
-            private IMenuItem order;
+            
             public static int pagSeleccionada;
             //private const string sevilla = " TRH Sevilla ";
             //private cont string liege = " TRH Liege ";
             private int _tabSeleccionado= 7;
+            
             LinearLayout progressLayout;
 
 
@@ -159,91 +295,13 @@ namespace AlmacenRepuestosXamarin.Fragments
                 //_mViewPager = mViewPager;
                 //this._mViewPager.AddOnPageChangeListener(this);
                 
-                this.order = order;
-                ordenarListados(order);
+               // this.order = order;
+               // ordenarListados(order);
             }
 
-            private void ordenarListados(IMenuItem order)
-            {
-                switch (order.ToString())
-                {
-                    case "Ordenar por Empleado":
-                        listMonitorizacionSevilla = listMonitorizacionSevilla.OrderBy(o => o.inicialesComercial).ToList();
-                        listMonitorizacionLiege = listMonitorizacionLiege.OrderBy(o => o.inicialesComercial).ToList();
-                        break;
-                    case "Ordenar por Estado":
-                        listMonitorizacionSevilla = listMonitorizacionSevilla.OrderBy(o => o.Estado).ToList();
-                        listMonitorizacionLiege = listMonitorizacionLiege.OrderBy(o => o.Estado).ToList();
-                        break;
-                    case "Ordenar por Pedido":
-                        listMonitorizacionSevilla = listMonitorizacionSevilla.OrderBy(o => o.codigoPedido).ToList();
-                        listMonitorizacionLiege = listMonitorizacionLiege.OrderBy(o => o.codigoPedido).ToList();
-                        break;
-                    case "Ordenar por Fecha":
-                        listMonitorizacionSevilla = listMonitorizacionSevilla.OrderBy(o => o.Fecha_Carga_Requerida).ToList();
-                        listMonitorizacionLiege = listMonitorizacionLiege.OrderBy(o => o.Fecha_Carga_Requerida).ToList();
-                        break;
-                    case "Foto":
+          
 
-                        launchScaner();
-                        break;
-                    default:
-                        break;
-                }
-
-                
-                
-            }
-
-            private async Task launchScaner()
-            {
-
-
-                var scanner = new MobileBarcodeScanner();
-                Button flashButton;
-                View zxingOverlay;
-
-                scanner.UseCustomOverlay = true;
-
-                //Inflate our custom overlay from a resource layout
-                zxingOverlay = LayoutInflater.FromContext(this.context).Inflate(Resource.Layout.OverlayReadBarCode, null);
-
-                //Find the button from our resource layout and wire up the click event
-                flashButton = zxingOverlay.FindViewById<Button>(Resource.Id.buttonZxingFlash);
-                flashButton.Click += (sender, e) => scanner.ToggleTorch();
-
-                //Set our custom overlay
-                scanner.CustomOverlay = zxingOverlay;
-
-                //Start scanning!
-                var result = await scanner.Scan();
-
-
-                if (result != null)
-                {
-
-                    Toast.MakeText(this.context, result.Text, ToastLength.Long);
-                    
-                    var activityFotosPedidos = new Intent(this.context, typeof(TakeFotoActivity));
-                    Bundle bundle = activityFotosPedidos.Extras;
-                    activityFotosPedidos.PutExtra("codPedido", result.Text);
-                    var empresa = pagSeleccionada == 0 ? Monitorizacion.empresaLiege : Monitorizacion.empresaLiege;
-                    activityFotosPedidos.PutExtra("empresa", empresa);
-
-                    this.context.StartActivity(activityFotosPedidos);
-                   
-
-                }
-                else
-                {
-
-                    this.context.RunOnUiThread(() => Toast.MakeText(this.context, "Cancelado por el usuario", ToastLength.Short).Show());
-                }
-
-
-
-
-            }
+         
 
             public override int Count
             {
@@ -253,32 +311,28 @@ namespace AlmacenRepuestosXamarin.Fragments
             
             public AdapterMonitoriaion getListaMonitorizacion(string empresa)
             {
-                
 
+                AdapterMonitoriaion adapterMonitorizacion= null;
+               
                 if (empresa.Equals(Monitorizacion.empresaSevilla))
                 {
-                    
-                    listMonitorizacion = listMonitorizacionSevilla.OrderBy(o => o.Estado).ToList();
-  
+
+                    listMonitorizacionSevilla = listMonitorizacionSevilla.OrderBy(o => o.Fecha_Carga_Requerida).ToList();
+                     adapterMonitorizacion = new AdapterMonitoriaion(this.context, listMonitorizacionSevilla);
+                   
+
                 }
 
                 else if (empresa.Equals(Monitorizacion.empresaLiege))
                 {
-                    
-                    listMonitorizacion = listMonitorizacionLiege.OrderBy(o => o.Estado).ToList(); 
+
+                    listMonitorizacionLiege = listMonitorizacionLiege.OrderBy(o => o.Fecha_Carga_Requerida).ToList();
+                    adapterMonitorizacion = new AdapterMonitoriaion(this.context, listMonitorizacionLiege);
+              
                 }
-               
-
                 
-                adapterMonitorizacion = new AdapterMonitoriaion(this.context, listMonitorizacion);
-                this.context.RunOnUiThread(() => adapterMonitorizacion.NotifyDataSetChanged());
-                AppCompatActivity activity = (AppCompatActivity)this.context;
-                var numCamionesRuta = listMonitorizacionSevilla.Where(q => q.Estado == 6).Count().ToString("N0");
-                var numTmRuta = listMonitorizacionSevilla.Where(q => q.Estado == 6).Sum(q => q.pesoKg / 1000).ToString("N0");
-
-                activity.SupportActionBar.Title = string.Format(@"Camiones Ruta:{0}", numCamionesRuta);
-                activity.SupportActionBar.Subtitle = string.Format(@"Tm envidas: {0}", numTmRuta);
-
+                //this.context.RunOnUiThread(() => adapterMonitorizacion.NotifyDataSetChanged());
+               
 
                 return adapterMonitorizacion;
 
@@ -298,7 +352,28 @@ namespace AlmacenRepuestosXamarin.Fragments
             }
             public override void NotifyDataSetChanged()
             {
+                switch (pagSeleccionada)
+                {
 
+                    case 0:
+                        adapterMonitorizacionSevilla = new AdapterMonitoriaion(this.context, listMonitorizacionSevilla);
+                        this.context.RunOnUiThread(() => adapterMonitorizacionSevilla.NotifyDataSetChanged());
+                        monitorizacionListViewSevilla.Adapter = adapterMonitorizacionSevilla;
+                        break;
+                    case 1:
+                        adapterMonitorizacionLieja = new AdapterMonitoriaion(this.context, listMonitorizacionLiege);
+                        this.context.RunOnUiThread(() => adapterMonitorizacionLieja.NotifyDataSetChanged());
+                        monitorizacionListViewLieja.Adapter = adapterMonitorizacionLieja;
+
+                        break;
+
+                    default:
+                        break;
+                }
+                
+               
+                
+               
                 base.NotifyDataSetChanged();
             }
 
@@ -307,33 +382,63 @@ namespace AlmacenRepuestosXamarin.Fragments
                 int tabSeleccionado = position;
                 SlidingTabsFragment stf = new SlidingTabsFragment();
                 View view = LayoutInflater.From(container.Context).Inflate(Resource.Layout.ListaMonitorizacionLayout, container, false);
-                monitorizacionListView = view.FindViewById<ListView>(Resource.Id.listViewMonitorizacion);
-
-                monitorizacionListView.Adapter = getListaMonitorizacion(items[position].ToString());
-                monitorizacionListView.ItemClick += (sender, e) =>
+               
+                switch (position)
                 {
 
-                    Android.Support.V4.App.Fragment fragment = new AlmacenRepuestosXamarin.Fragments.DetallePedidoVenta();
-                   
-                    string codPedido = ((AdapterMonitoriaion)((ListView)sender).Adapter).list[e.Position].Cod__Agrupacion_Pedido;
-                    Bundle bundle = new Bundle();
-                    bundle.PutString("codPedido", codPedido);
-                    fragment.Arguments = bundle;
+                    case 0:
+                        monitorizacionListViewSevilla = view.FindViewById<ListView>(Resource.Id.listViewMonitorizacion);
 
-                    context.SupportFragmentManager.BeginTransaction()
-                        .Replace(Resource.Id.content_frame, fragment)
-                        .AddToBackStack("ListadoMonitorizacion")
-                       .Commit();
-                };
-                
+                        monitorizacionListViewSevilla.Adapter = getListaMonitorizacion(items[position].ToString());
+                        monitorizacionListViewSevilla.ItemClick += OnClickItemList;
+
+                        string numCamionesRuta = string.Empty;
+                        string numTmRuta = string.Empty;
+                        string numTmPrevistas = string.Empty;
+                        string numTmCarga = string.Empty;
+                        numCamionesRuta = listMonitorizacionSevilla.Where(q => q.Estado == 6).Count().ToString("N0");
+                        numTmRuta = listMonitorizacionSevilla.Where(q => q.Estado == 6).Sum(q => q.pesoKg / 1000).ToString("N0");
+                        numTmCarga = listMonitorizacionSevilla.Where(q => q.Estado == 4 || q.Estado == 3 || q.Estado == 5).Sum(q => q.pesoKg / 1000).ToString("N0");
+                        numTmPrevistas = listMonitorizacionSevilla.Where(q => q.Fecha_Carga_Requerida.Value.ToLocalTime() <= DateTime.Today).Sum(q => q.pesoKg / 1000).ToString("N0");
+
+                        AppCompatActivity activity = (AppCompatActivity)this.context;
+                        activity.SupportActionBar.Title = string.Format(@"{0} Tm enviadas de {1} hoy", numTmRuta, numTmPrevistas);
+                        activity.SupportActionBar.Subtitle = string.Format(@"{0} Tm en carga", numTmCarga);
+                        break;
+                    case 1:
+                        monitorizacionListViewLieja = view.FindViewById<ListView>(Resource.Id.listViewMonitorizacion);
+
+                        monitorizacionListViewLieja.Adapter = getListaMonitorizacion(items[position].ToString());
+                        monitorizacionListViewLieja.ItemClick += OnClickItemList;
+
+                        break;
+
+                    default:
+                        break;
+                }
                 container.AddView(view);
                 
                 return view;
             }
 
+            private void OnClickItemList(object sender, ItemClickEventArgs e)
+            {
+                Android.Support.V4.App.Fragment fragment = new AlmacenRepuestosXamarin.Fragments.DetallePedidoVenta();
+
+                string codPedido = ((AdapterMonitoriaion)((ListView)sender).Adapter).list[e.Position].Cod__Agrupacion_Pedido;
+                Bundle bundle = new Bundle();
+                bundle.PutString("codPedido", codPedido);
+                fragment.Arguments = bundle;
+
+                context.SupportFragmentManager.BeginTransaction()
+                        .Replace(Resource.Id.content_frame, fragment)
+                        .AddToBackStack("ListadoMonitorizacion")
+                        .Commit();
+            }
+
             
 
-            private async void  getListadoLiege()
+        private async void  getListadoLiege()
             {
                 listMonitorizacionLiege = await Monitorizacion.getListMonitorizacion(Monitorizacion.empresaLiege);
 
@@ -371,6 +476,8 @@ namespace AlmacenRepuestosXamarin.Fragments
             {
                 string numCamionesRuta = string.Empty;
                 string numTmRuta = string.Empty;
+                string numTmPrevistas= string.Empty;
+                string numTmCarga = string.Empty;
                 pagSeleccionada = position;
                 AppCompatActivity activity = (AppCompatActivity)this.context;
                 if (position == 0)
@@ -379,6 +486,8 @@ namespace AlmacenRepuestosXamarin.Fragments
 
                     numCamionesRuta = listMonitorizacionSevilla.Where(q => q.Estado == 6).Count().ToString("N0");
                     numTmRuta = listMonitorizacionSevilla.Where(q => q.Estado == 6).Sum(q => q.pesoKg / 1000).ToString("N0");
+                    numTmCarga = listMonitorizacionSevilla.Where(q => q.Estado == 4 || q.Estado == 3 || q.Estado == 5).Sum(q => q.pesoKg / 1000).ToString("N0");
+                    numTmPrevistas = listMonitorizacionSevilla.Where(q => q.Fecha_Carga_Requerida.Value.ToLocalTime()<=DateTime.Today).Sum(q => q.pesoKg / 1000).ToString("N0");
 
                 }
                 else if (position == 1)
@@ -386,14 +495,16 @@ namespace AlmacenRepuestosXamarin.Fragments
                     
                     numCamionesRuta = listMonitorizacionLiege.Where(q => q.Estado == 6).Count().ToString("N0");
                     numTmRuta = listMonitorizacionLiege.Where(q => q.Estado == 6).Sum(q => q.pesoKg / 1000).ToString("N0");
+                    numTmCarga = listMonitorizacionLiege.Where(q => q.Estado ==4 || q.Estado==3 || q.Estado==5).Sum(q => q.pesoKg / 1000).ToString("N0");
+                    numTmPrevistas = listMonitorizacionLiege.Where(q => q.Fecha_Carga_Requerida.Value.ToLocalTime() <= DateTime.Today).Sum(q => q.pesoKg / 1000).ToString("N0");
 
                 }
                 else
                 {
 
                 }
-                activity.SupportActionBar.Title = string.Format(@"Camiones Ruta:{0}", numCamionesRuta);
-                activity.SupportActionBar.Subtitle = string.Format(@"Tm envidas: {0}", numTmRuta);
+                activity.SupportActionBar.Title = string.Format(@"{0} Tm enviadas de {1} hoy", numTmRuta, numTmPrevistas);
+                activity.SupportActionBar.Subtitle = string.Format(@"{0} Tm en carga", numTmCarga);
             }
 
             public  void updateListadosMonitorizacion() {

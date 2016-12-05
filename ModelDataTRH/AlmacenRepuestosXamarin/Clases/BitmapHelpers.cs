@@ -20,7 +20,8 @@ namespace AlmacenRepuestosXamarin.Clases
             }
 
             Drawable toRecycle = imageView.Drawable;
-            if (toRecycle != null)
+            
+            if ((toRecycle != null) && ((BitmapDrawable)toRecycle).Bitmap!=null)
             {
                 ((BitmapDrawable)toRecycle).Bitmap.Recycle();
             }

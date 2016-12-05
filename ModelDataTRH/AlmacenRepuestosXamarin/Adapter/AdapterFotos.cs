@@ -70,9 +70,11 @@ namespace AlmacenRepuestosXamarin.Adapter
             
             int height =(int) res.GetDimension(Resource.Dimension.imgCamion_height);//ImagenCamion.he;
             int width = context.Resources.DisplayMetrics.WidthPixels;
+            
+            ImagenCamion.RecycleBitmap();
             using (Bitmap bitmap = item.Fichero.Path.LoadAndResizeBitmap(width, height))
             {
-                ImagenCamion.RecycleBitmap();
+                
                 ImagenCamion.SetImageBitmap(bitmap);
             }
           
