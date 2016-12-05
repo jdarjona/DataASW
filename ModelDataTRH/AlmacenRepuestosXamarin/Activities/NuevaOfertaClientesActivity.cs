@@ -64,6 +64,7 @@ namespace AlmacenRepuestosXamarin.Activities
             Intent myIntent = new Intent(this, typeof(NuevaOfertaAlmacenesActivity));
             myIntent.PutExtra("key", codCliente); 
             StartActivity(myIntent);
+            this.Finish();
 
         //StartActivity(nuevaOfertaAlmacenesActivity);
        // var intent = new Intent(codCliente);

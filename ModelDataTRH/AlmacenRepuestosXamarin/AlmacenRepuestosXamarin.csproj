@@ -150,6 +150,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapter\AdapterPreciosNuevaOferta.cs" />
     <Compile Include="Activities\BaseActivity.cs" />
     <Compile Include="Activities\HomeActivity.cs" />
     <Compile Include="Activities\ListadoOfertasActivity.cs" />
@@ -204,7 +205,7 @@
   <ItemGroup>
     <None Include="GettingStarted.Xamarin" />
     <AndroidResource Include="Resources\layout\ListEPISRepuestos.axml">
-      <SubType>AndroidResource</SubType>
+      <SubType>Designer</SubType>
     </AndroidResource>
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
@@ -301,6 +302,9 @@
     <AndroidResource Include="Resources\layout\DialogTipoFoto.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\RowPreciosOfertaLayout.axml" />
+    <AndroidResource Include="Resources\layout\cargaProductos.axml" />
+    <AndroidResource Include="Resources\layout\layoutNuevaOfertaPrecios.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml">
@@ -600,6 +604,18 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\dimensiones.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\myButtonCircular.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\checked.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\checkOval.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Unchecked.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets')" />

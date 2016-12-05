@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout1">
+        <TextView
+            android:layout_width="87.0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/textView5"
+            android:paddingRight="22dp" />
+        <TextView
+            android:text="DESC. %"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/textView4"
+            android:paddingRight="12dp"
+            android:textStyle="bold"
+            android:textSize="@dimen/margin_medium" />
+        <TextView
+            android:text="€/M2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/textView3"
+            android:paddingRight="26dp"
+            android:textStyle="bold"
+            android:textSize="@dimen/margin_medium" />
+        <TextView
+            android:text="€/TM"
+            android:layout_width="75.0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/textView2"
+            android:paddingRight="34dp"
+            android:textStyle="bold"
+            android:textSize="@dimen/margin_medium" />
+        <TextView
+            android:text="IMP. €"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/textView1"
+            android:textStyle="bold"
+            android:textSize="@dimen/margin_medium" />
+    </LinearLayout>
+    <ListView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:id="@+id/listViewNuevaOfertaPrecios"
+        android:layout_below="@+id/linearLayout1"
+        android:descendantFocusability="afterDescendants"
+        android:clickable="true"
+        android:focusable="true"
+        android:longClickable="true" />
+</RelativeLayout>

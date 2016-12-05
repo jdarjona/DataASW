@@ -67,24 +67,38 @@ namespace AlmacenRepuestosXamarin.Data
 
         public async Task initGetListados(string empresa)
         {
-            //listaClientes =await  getClientes();
-            //listaAlmacenes = await getAlmacenes();
-            //listaContactos = await getContactos();
-            //listaDireccionesEnvio = await getDireccionEnvio();
-            //listaPedidos = await getListadoPedidos();
-            ////listaProductos = await getListadoProductos();
-            //Producto p = new Producto();
-            //p.search_DescriptionField = "Q2012 Q2";
-            //p.stockDisponibleField = 30;
-            //p.paquetes_por_CamiónField = 15;
-            //listaProductos.Add(p);
-            //p = new Producto();
-            //p.search_DescriptionField = "Q2010 Q2";
-            //p.stockDisponibleField = 24;
-            //p.paquetes_por_CamiónField = 14;
-            //listaProductos.Add(p);
-            ////listaOfertas = await getListadoOfertas();
-            ////getProductos();
+            listaClientes = await getClientes();
+            listaAlmacenes = await getAlmacenes();
+            listaContactos = await getContactos();
+            listaDireccionesEnvio = await getDireccionEnvio();
+            listaPedidos = await getListadoPedidos();
+            // listaProductos = await getListadoProductos();
+            Producto p = new Producto();
+            p.search_DescriptionField = "C2012 Q2";
+            p.stockDisponibleField = 30;
+            p.paquetes_por_CamiónField = 15;
+            p.m2_PaqueteField = 264.00;
+            p.kgs_PaqueteField = 1918.08;
+            p.paños_x_PaqueteField = 20.00;
+            listaProductos.Add(p);
+            p = new Producto();
+            p.search_DescriptionField = "C2010 Q2";
+            p.stockDisponibleField = 24;
+            p.paquetes_por_CamiónField = 14;
+            p.m2_PaqueteField = 200.00;
+            p.kgs_PaqueteField = 1700.08;
+            p.paños_x_PaqueteField = 30.00;
+            listaProductos.Add(p);
+            p = new Producto();
+            p.search_DescriptionField = "C1508 Q2";
+            p.stockDisponibleField = 19;
+            p.paquetes_por_CamiónField = 14;
+            p.m2_PaqueteField = 150.00;
+            p.kgs_PaqueteField = 1518.08;
+            p.paños_x_PaqueteField = 25.00;
+            listaProductos.Add(p);
+            //listaOfertas = await getListadoOfertas();
+            //getProductos();
         }
 
 
@@ -261,7 +275,7 @@ namespace AlmacenRepuestosXamarin.Data
         public HttpClient initClient() {
             client = new HttpClient(new NativeMessageHandler())
             {
-                BaseAddress = new Uri(getDatosConexionEmpresa(Preferencias.getEmpresaLiege()))
+                BaseAddress = new Uri(getDatosConexionEmpresa(LoginActivity.empresaSeleccionada))
             };
             //getDatosConexionEmpresa(Preferencias.getEmpresaLiege());
             client.DefaultRequestHeaders.Accept.Clear();

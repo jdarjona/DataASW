@@ -55,7 +55,7 @@ namespace AlmacenRepuestosXamarin.Activities
             Intent myIntent = new Intent(this, typeof(NuevaOfertaContactoActivity));
             myIntent.PutExtra("key", nombreAlmacenField);
             StartActivity(myIntent);
-
+            this.Finish();
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
