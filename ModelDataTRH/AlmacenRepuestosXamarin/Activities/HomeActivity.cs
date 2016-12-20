@@ -9,32 +9,35 @@ using System.Linq;
 using AlmacenRepuestosXamarin.Fragments;
 using AlmacenRepuestosXamarin.Helpers;
 using System.Collections.Generic;
-
 using Android.Content;
 using AlmacenRepuestosXamarin.Model;
 using AlmacenRepuestosXamarin.Data;
 using System.Threading.Tasks;
-
-using Firebase.Xamarin.Database.Streaming;
-using Firebase.Xamarin.Database;
+using Firebase.Database;
 using System;
 using AlmacenRepuestosXamarin.Clases;
 using Android.Media;
+using Firebase;
+using Newtonsoft.Json;
 
 namespace AlmacenRepuestosXamarin.Activities
 {                              
 [Activity(Label = "TRH", LaunchMode = LaunchMode.SingleTop, Icon = "@drawable/TRH")]//, ScreenOrientation = ScreenOrientation.Portrait)]
-    public class HomeView : BaseActivity 
+    public class HomeView : BaseActivity,IValueEventListener,IChildEventListener
     {
 
         private MyActionBarDrawerToggle drawerToggle;        
         private string drawerTitle;
         private string title;
+        private bool isBeginning = true;
         //private AccesoDatos datos = new AccesoDatos () ;
         private DrawerLayout drawerLayout;
         private ListView drawerListView;
         Spinner spinner;
         IMenu _imenu;
+        public  Firebase.Database.FirebaseDatabase database;
+        public  FirebaseApp firebaseApp;
+        private List<PedidoFireBase> listPedidosFirebase = new List<PedidoFireBase>();
 
         private static readonly string[] Sections = new[] {
              "Monitor Carga", "Sinóptico" ,"App Almacen","Ventas"//, "Configuracion" --> GENERAL
@@ -113,12 +116,32 @@ namespace AlmacenRepuestosXamarin.Activities
                 ListItemClicked(0);
             }
 
-            
+            //init 
+            var options = new Firebase.FirebaseOptions.Builder()
+            .SetApplicationId("flickering-fire-4088")
+            .SetApiKey("AIzaSyCk8jsVE-UGCN1I2JiXvOp0CizGFNFgAZM")
+            .SetDatabaseUrl("https://flickering-fire-4088.firebaseio.com")
+        //.SetGcmSenderId("Firebase-Sender-Id")
+        .Build();
+
+            if (firebaseApp == null)
+            {
+                firebaseApp = FirebaseApp.InitializeApp(this, options);
+            }
+
+
+            database = FirebaseDatabase.GetInstance(firebaseApp);
+
+
             initFirebase();
              
         }
 
-
+        protected override void OnStop()
+        {
+            base.OnStop();
+            firebaseApp.Dispose();
+        }
 
         private async void initFirebase() {
 
@@ -129,21 +152,39 @@ namespace AlmacenRepuestosXamarin.Activities
                 return  "XQsDE173GieFhbMUUs2t2OD5eUwZFjjrEsAYbq6B";
             };
 
+            //var options = new Firebase.FirebaseOptions.Builder()
+            //    .SetApplicationId("flickering-fire-4088")
+            //    .SetApiKey("AIzaSyCk8jsVE-UGCN1I2JiXvOp0CizGFNFgAZM")
+            //    .SetDatabaseUrl("https://flickering-fire-4088.firebaseio.com")
+            //    //.SetGcmSenderId("Firebase-Sender-Id")
+            //.Build();
 
-           
+            //var firebaseApp = FirebaseApp.InitializeApp(this, options);
 
-            var firebase = new FirebaseClient(@"https://flickering-fire-4088.firebaseio.com/", authToken);
+            var database = this.database;
 
-            //var consulta = await firebase.Child(@"Pedidos")
-            //    .OnceAsync<Dictionary<string,PedidoFireBase>>();
+            database.GetReference(@"Pedidos/TRH Liege").AddListenerForSingleValueEvent(this);
+            //database.GetReference(@"Pedidos/TRH Liege").AddValueEventListener(this);
+            database.GetReference(@"Pedidos/TRH Liege").AddChildEventListener(this);
 
-            var items =  firebase
-             .Child(@"Pedidos")//.OnceAsync<PedidoFireBase>();
-           
-            .AsObservable<Dictionary<string, PedidoFireBase>>()
-            
-             .Subscribe(OnItemMessage);
-            
+            //var firebase = new Firebase.Auth.GetTokenResult("XQsDE173GieFhbMUUs2t2OD5eUwZFjjrEsAYbq6B");
+            //Firebase.FirebaseApp appFirebase = Firebase.FirebaseApp.
+            //FirebaseDatabase database = FirebaseDatabase.GetInstance(;
+            //DatabaseReference myRef = database.getReference("message");
+            //var client = new Firebase.Database..
+
+            //var firebase = new FirebaseClient(@"https://flickering-fire-4088.firebaseio.com/", authToken);
+
+            ////var consulta = await firebase.Child(@"Pedidos")
+            ////    .OnceAsync<Dictionary<string,PedidoFireBase>>();
+
+            //var items =  firebase
+            // .Child(@"Pedidos")//.OnceAsync<PedidoFireBase>();
+
+            //.AsObservable<Dictionary<string, PedidoFireBase>>()
+
+            // .Subscribe(OnItemMessage);
+
 
         }
 
@@ -311,35 +352,83 @@ namespace AlmacenRepuestosXamarin.Activities
         }
 
         //Comprobamos que la notificacion de cambio del estado del pedido es diferente a la inicial y así mandar la notificación
-        private async  void OnItemMessage(FirebaseEvent<Dictionary<string, PedidoFireBase>> message)
-        {
-            foreach (KeyValuePair<string, PedidoFireBase> item in message.Object)
-            {
-                string pedMessage = item.Value.codPedido.ToString();
-                string estadoMessage = item.Value.descripcion.ToString();
+        //private async  void OnItemMessage(FirebaseEvent<Dictionary<string, PedidoFireBase>> message)
+        //{
+        //    foreach (KeyValuePair<string, PedidoFireBase> item in message.Object)
+        //    {
+        //        string pedMessage = item.Value.codPedido.ToString();
+        //        string estadoMessage = item.Value.descripcion.ToString();
                 
 
-                if (Monitorizacion.listMonitorizacionLieja != null || Monitorizacion.listMonitorizacionSevilla != null)
-                {
-                    var list = Monitorizacion.listMonitorizacionSevilla;
-                    var pedido = Monitorizacion.listMonitorizacionLieja.Where(q => q.codigoPedido.Equals(item.Value.codPedido)).FirstOrDefault();
-                    if (pedido == null)
-                        pedido = Monitorizacion.listMonitorizacionSevilla.Where(q => q.codigoPedido.Contains(item.Value.codPedido)).FirstOrDefault();
+        //        if (Monitorizacion.listMonitorizacionLieja != null || Monitorizacion.listMonitorizacionSevilla != null)
+        //        {
+        //            var list = Monitorizacion.listMonitorizacionSevilla;
+        //            var pedido = Monitorizacion.listMonitorizacionLieja.Where(q => q.codigoPedido.Equals(item.Value.codPedido)).FirstOrDefault();
+        //            if (pedido == null)
+        //                pedido = Monitorizacion.listMonitorizacionSevilla.Where(q => q.codigoPedido.Contains(item.Value.codPedido)).FirstOrDefault();
 
-                    if (pedido != null)
-                    {
+        //            if (pedido != null)
+        //            {
 
-                        if (pedido.Estado != item.Value.estado)
-                        {
-                               // notificar(item.Value);
-                        }
-                    }
-                    else
-                    {
-                      //  notificar(item.Value);
-                    }
-                }   
+        //                if (pedido.Estado != item.Value.estado)
+        //                {
+        //                       // notificar(item.Value);
+        //                }
+        //            }
+        //            else
+        //            {
+        //              //  notificar(item.Value);
+        //            }
+        //        }   
+        //    }
+        //}
+
+        public void OnCancelled(DatabaseError error)
+        {
+            Toast.MakeText(this, "cancel", ToastLength.Short);
+        }
+
+        public void OnChildAdded(DataSnapshot snapshot, string previousChildName)
+        {
+            string json = JsonConvert.SerializeObject(snapshot.Value);
+            PedidoFireBase pedidoFireBase = JsonConvert.DeserializeObject<PedidoFireBase>(json);
+            if (listPedidosFirebase.Where(q => q.codPedido.Equals(pedidoFireBase.codPedido)).FirstOrDefault() == null)
+            {
+                listPedidosFirebase.Add(pedidoFireBase);
             }
+            else {
+                
+                notificar(pedidoFireBase);
+            }
+          
+           
+        }
+
+        public void OnChildChanged(DataSnapshot snapshot, string previousChildName)
+        {
+            //GenericTypeIndicator<PedidoFireBase> a = new GenericTypeIndicator<PedidoFireBase>();
+            
+            string json = JsonConvert.SerializeObject(snapshot.Value);
+            PedidoFireBase pedidoFireBase = JsonConvert.DeserializeObject<PedidoFireBase>(json);
+            notificar(pedidoFireBase);
+
+
+            
+        }
+
+        public void OnChildMoved(DataSnapshot snapshot, string previousChildName)
+        {
+          
+        }
+
+        public void OnChildRemoved(DataSnapshot snapshot)
+        {
+
+        }
+
+        public void OnDataChange(DataSnapshot snapshot)
+        {
+           
         }
     }
 }

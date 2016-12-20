@@ -14,8 +14,9 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Firebase;
-using Firebase.Xamarin.Auth;
+
 using Java.Interop;
+using Dalvik;
 using Newtonsoft.Json;
 
 namespace AlmacenRepuestosXamarin.Activities
@@ -137,7 +138,7 @@ namespace AlmacenRepuestosXamarin.Activities
                 progressLayout.Visibility = ViewStates.Gone;
                 var homeView = new Intent(this, typeof(HomeView));
                 StartActivity(homeView);
-               
+                this.Finish();
             }
             else
             {

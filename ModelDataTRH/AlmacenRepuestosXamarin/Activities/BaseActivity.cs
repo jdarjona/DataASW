@@ -6,6 +6,8 @@ using Android.Content;
 using Android.OS;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
+using Firebase;
+using Firebase.Database;
 
 namespace AlmacenRepuestosXamarin.Activities
 {
@@ -16,6 +18,7 @@ namespace AlmacenRepuestosXamarin.Activities
             get;
             set;
         }
+       
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -28,6 +31,10 @@ namespace AlmacenRepuestosXamarin.Activities
                 SupportActionBar.SetHomeButtonEnabled(true);
 
             }
+
+            //Init Firebase
+           
+
         }
 
         protected abstract int LayoutResource
@@ -39,5 +46,7 @@ namespace AlmacenRepuestosXamarin.Activities
         {
             set { Toolbar.SetNavigationIcon(value); }
         }
+
+       
     }
 }

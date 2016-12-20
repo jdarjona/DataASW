@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reactive.Threading.Tasks;
+
 using System.Threading.Tasks;
+using AlmacenRepuestosXamarin.Activities;
 using AlmacenRepuestosXamarin.Adapter;
 using AlmacenRepuestosXamarin.Data;
 using Android.App;
@@ -11,8 +12,10 @@ using Android.Support.V4.View;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
-using Firebase.Xamarin.Database;
+using Firebase;
+using Firebase.Database;
 using ModelDataTRH.Proyectos.Trazabilidad_Generico;
+using Newtonsoft.Json;
 
 namespace AlmacenRepuestosXamarin.Clases
 {
@@ -38,9 +41,11 @@ namespace AlmacenRepuestosXamarin.Clases
 
         public override void OnViewCreated(View view, Bundle savedInstanceState)
         {
+
             mSlidingTabScrollView = view.FindViewById<SlidingTabScrollView>(Resource.Id.sliding_tabs);
             mViewPager = view.FindViewById<ViewPager>(Resource.Id.viewpager);
             mViewPager.Adapter = new SamplePagerAdapter(this.Activity, mViewPager);
+            ((SamplePagerAdapter)mViewPager.Adapter).database = ((HomeView)this.Activity).database; 
             mSlidingTabScrollView.ViewPager = mViewPager;
             progressLayout.Visibility = ViewStates.Gone;
         }
@@ -53,10 +58,13 @@ namespace AlmacenRepuestosXamarin.Clases
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             mViewPager.Adapter = new SamplePagerAdapter(this.Activity, mViewPager, item);
+            ((SamplePagerAdapter)mViewPager.Adapter).database = ((HomeView)this.Activity).database;
             return base.OnOptionsItemSelected(item);
         }
 
-        public class SamplePagerAdapter : PagerAdapter, ViewPager.IOnPageChangeListener
+       
+
+        public class SamplePagerAdapter : PagerAdapter, ViewPager.IOnPageChangeListener, IChildEventListener
         {
             private string sevilla = " TRH Sevilla ";
             private string liege = " TRH Liege ";
@@ -70,9 +78,11 @@ namespace AlmacenRepuestosXamarin.Clases
             private Activity context;
             public AdapterSinoptico adapterSinoptico { get; set; }
             private ListView sinopticoListView;
+            private List<ListView> listSinopticoListView = new List<ListView>();
+            private List<LinearLayout> listProgressLayout = new List<LinearLayout>();
             private LinearLayout progressLayout;
             private IMenuItem item;
-
+            public Firebase.Database.FirebaseDatabase database; 
             public SamplePagerAdapter(Activity context, ViewPager mViewPager) : base()
             {
                 items.Add(sevilla);
@@ -80,6 +90,9 @@ namespace AlmacenRepuestosXamarin.Clases
                 _mViewPager = mViewPager;
                 this.context = context;
                 this._mViewPager.AddOnPageChangeListener(this);
+
+               
+                // database = FirebaseDatabase.GetInstance(firebaseApp);
             }
 
             public SamplePagerAdapter(Activity context, ViewPager mViewPager, IMenuItem item) : this(context, mViewPager)
@@ -95,34 +108,39 @@ namespace AlmacenRepuestosXamarin.Clases
 
             private async Task initFirebase()
             {
-                
+                listSinoptico.Clear();
                 Func<Task<string>> authToken = async delegate ()
                 {
                     return "XQsDE173GieFhbMUUs2t2OD5eUwZFjjrEsAYbq6B";
                 };
 
-                var firebase = new FirebaseClient(@"https://flickering-fire-4088.firebaseio.com/", authToken);
-                var itemsFirebase = await firebase
-                 .Child(url)
-                 .OnceAsync<MaquinaFirebase>();
                 listSinoptico.Clear();
-                foreach (var item in itemsFirebase)
-                {
-                    if (!vertodo)
-                    {
-                        if (!item.Object.CodOperario.Equals(string.Empty) && item.Object.Conexion.Equals(true))
-                        {
-                            listSinoptico.Add(item.Object);
-                        }
-                    }
-                    else
-                    {
-                        listSinoptico.Add(item.Object);
-                    }
-                }
-                //listSinoptico=listSinoptico.Where(o => o.CodOperario != "" && o.Conexion.Equals(true)).ToList();
-                 adapterSinoptico.NotifyDataSetChanged();
-                 //.Subscribe(OnItemMessage);
+                database.GetReference(url).AddChildEventListener(this);
+               
+                    
+
+                //var firebase = new FirebaseClient(@"https://flickering-fire-4088.firebaseio.com/", authToken);
+                //var itemsFirebase = await firebase
+                // .Child(url)
+                // .OnceAsync<MaquinaFirebase>();
+                //listSinoptico.Clear();
+                //foreach (var item in itemsFirebase)
+                //{
+                //    if (!vertodo)
+                //    {
+                //        if (!item.Object.CodOperario.Equals(string.Empty) && item.Object.Conexion.Equals(true))
+                //        {
+                //            listSinoptico.Add(item.Object);
+                //        }
+                //    }
+                //    else
+                //    {
+                //        listSinoptico.Add(item.Object);
+                //    }
+                //}
+
+                adapterSinoptico.NotifyDataSetChanged();
+                 
 
                 AppCompatActivity activity = (AppCompatActivity)this.context;
                 activity.SupportActionBar.Title = "SINÓPTICO FÁBRICA";
@@ -140,15 +158,31 @@ namespace AlmacenRepuestosXamarin.Clases
                 
                 SlidingTabsFragment stf = new SlidingTabsFragment();
                 View view = LayoutInflater.From(container.Context).Inflate(Resource.Layout.pager_item, container, false);
-                sinopticoListView = view.FindViewById<ListView>(Resource.Id.listViewSinopticoFragment);
-                progressLayout = view.FindViewById<LinearLayout>(Resource.Id.progressBar);
-                //listSinoptico.OrderBy(o => o.CodOperario != null && o.Conexion);
-                adapterSinoptico = new AdapterSinoptico(this.context, listSinoptico);
-                sinopticoListView.Adapter = adapterSinoptico;
-                if (position == 0) {
-                    url = urlSevilla;
-                    initFirebase();
+                switch (position)
+                {
+                    case 0:
+                        
+                        sinopticoListView = view.FindViewById<ListView>(Resource.Id.listViewSinopticoFragment);
+                        progressLayout = view.FindViewById<LinearLayout>(Resource.Id.progressBar);
+                        adapterSinoptico = new AdapterSinoptico(this.context, listSinoptico);
+                        sinopticoListView.Adapter = adapterSinoptico;
+
+                        listSinopticoListView.Add(sinopticoListView);
+                        listProgressLayout.Add(progressLayout);
+                        url = urlSevilla;
+                        initFirebase();
+
+                        break;
+
+                    case 1:
+                        listSinopticoListView.Add(view.FindViewById<ListView>(Resource.Id.listViewSinopticoFragment));
+                        listProgressLayout.Add(view.FindViewById<LinearLayout>(Resource.Id.progressBar));
+
+                        break;
+                    default:
+                        break;
                 }
+                
                 container.AddView(view);
                 progressLayout.Visibility = ViewStates.Gone;
                 return view;
@@ -177,26 +211,25 @@ namespace AlmacenRepuestosXamarin.Clases
 
             public async void OnPageSelected(int position)
             {
+                database.GetReference(url).RemoveEventListener(this);
+                sinopticoListView = listSinopticoListView[position];
+                progressLayout = listProgressLayout[position];
+                //adapterSinoptico = new AdapterSinoptico(this.context, listSinoptico);
+                sinopticoListView.Adapter = adapterSinoptico;
+                progressLayout.Visibility = ViewStates.Visible;
+
                 if (position == 0)
                 {
-                    progressLayout.Visibility = ViewStates.Visible;
-                    url = urlSevilla;
-                    await initFirebase();
-                    progressLayout.Visibility = ViewStates.Gone;
-
+                    url = urlSevilla; 
                 }
                 else if (position == 1)
                 {
-                    progressLayout.Visibility = ViewStates.Visible;
                     url = urlLieja;
-                    await initFirebase();
-
                     progressLayout.Visibility = ViewStates.Gone;
                 }
-                else
-                {
 
-                }
+                await initFirebase();
+                progressLayout.Visibility = ViewStates.Gone;
             }
 
             private void tipoListado(IMenuItem order)
@@ -214,6 +247,46 @@ namespace AlmacenRepuestosXamarin.Clases
                         vertodo = false;
                         break;
                 }
+            }
+
+            public void OnCancelled(DatabaseError error)
+            {
+                
+            }
+
+           
+
+            public void OnChildAdded(DataSnapshot snapshot, string previousChildName)
+            {
+                string json = JsonConvert.SerializeObject(snapshot.Value);
+                MaquinaFirebase maquina = JsonConvert.DeserializeObject<MaquinaFirebase>(json);
+                listSinoptico.Add(maquina);
+                adapterSinoptico.NotifyDataSetChanged();
+            }
+
+            public void OnChildChanged(DataSnapshot snapshot, string previousChildName)
+            {
+                string json = JsonConvert.SerializeObject(snapshot.Value);
+                MaquinaFirebase maquina = JsonConvert.DeserializeObject<MaquinaFirebase>(json);
+                var maquinaListado = listSinoptico.Where(q => q.IdMaquina.Equals(maquina.IdMaquina)).FirstOrDefault();
+
+                if (maquinaListado != null) {
+                    maquinaListado = maquina;
+                    this.context.RunOnUiThread(() => Toast.MakeText(this.context, maquinaListado.IdMaquina, ToastLength.Short).Show());
+                    adapterSinoptico.NotifyDataSetChanged();
+                }
+
+                
+            }
+
+            public void OnChildMoved(DataSnapshot snapshot, string previousChildName)
+            {
+               
+            }
+
+            public void OnChildRemoved(DataSnapshot snapshot)
+            {
+                throw new NotImplementedException();
             }
         }
     }

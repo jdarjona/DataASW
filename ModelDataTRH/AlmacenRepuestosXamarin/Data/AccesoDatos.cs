@@ -67,7 +67,7 @@ namespace AlmacenRepuestosXamarin.Data
 
         public async Task initGetListados(string empresa)
         {
-            listaClientes = await getClientes();
+            /*listaClientes = await getClientes();
             listaAlmacenes = await getAlmacenes();
             listaContactos = await getContactos();
             listaDireccionesEnvio = await getDireccionEnvio();
@@ -98,7 +98,7 @@ namespace AlmacenRepuestosXamarin.Data
             p.paños_x_PaqueteField = 25.00;
             listaProductos.Add(p);
             //listaOfertas = await getListadoOfertas();
-            //getProductos();
+            //getProductos();*/
         }
 
 

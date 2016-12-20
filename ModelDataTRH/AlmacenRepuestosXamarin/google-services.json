@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "545284365537",
+    "firebase_url": "https://flickering-fire-4088.firebaseio.com",
+    "project_id": "flickering-fire-4088",
+    "storage_bucket": "flickering-fire-4088.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545284365537:android:a2c0dc6ecf7d0bef",
+        "android_client_info": {
+          "package_name": "AlmacenRepuestosXamarin.AlmacenRepuestosXamarin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "545284365537-sd54jrd1adu7j0vk9miagateqp36v1vj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCk8jsVE-UGCN1I2JiXvOp0CizGFNFgAZM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

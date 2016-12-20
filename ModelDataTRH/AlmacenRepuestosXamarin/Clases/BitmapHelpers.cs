@@ -1,11 +1,13 @@
 namespace AlmacenRepuestosXamarin.Clases
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using Android.Graphics;
     using Android.Graphics.Drawables;
     using Android.Media;
     using Android.Widget;
-
+    using Java;
+    using Clases;
     public static class BitmapHelpers
     {
         /// <summary>
@@ -121,4 +123,33 @@ namespace AlmacenRepuestosXamarin.Clases
             return resizedBitmap;
         }
     }
+
+    //public static class JavaUtils
+    //{
+    //    public static Dictionary<K, V> ToDictionary<K, V>(this Java.Util.HashMap map)
+    //    {
+    //        var dict = new Dictionary<K, V>();
+    //        var iterator = map.KeySet().GetEnumerator();
+
+    //        var enumeracion = map.Values().GetEnumerator();
+
+
+    //        foreach (var item in enumeracion)
+    //        {
+
+    //        }
+    //        foreach (var item in iterator)
+    //        {
+    //            var key = (K)item;
+    //            dict.Add(key, (V)map.Get(key));
+    //        }
+
+    //        while (iterator.MoveNext())
+    //        {
+    //            var key = (K)iterator.Current;
+    //            dict.Add(key, (V)map.Get(iterator.Current.));
+    //        }
+    //        return dict;
+    //    }
+    //}
 }

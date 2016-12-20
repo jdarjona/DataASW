@@ -7,15 +7,15 @@ using Android.Widget;
 using AlmacenRepuestosXamarin.Data;
 using AlmacenRepuestosXamarin.Adapter;
 using ModelDataTRH;
-using Firebase.Xamarin;
+
 
 using Android.Support.V7.App;
 using AlmacenRepuestosXamarin.Model;
 using System;
 using RepositoryWebServiceTRH.EntregaAlmacenEpisContext;
-using Firebase.Xamarin.Database.Streaming;
+
 using AlmacenRepuestosXamarin.Activities;
-using Firebase.Xamarin.Database;
+
 using Android.Support.V4.View;
 using Java.Lang;
 using AlmacenRepuestosXamarin.Clases;
@@ -168,14 +168,14 @@ namespace AlmacenRepuestosXamarin.Fragments
             return base.OnOptionsItemSelected(item);
         }
 
-        private void OnItemMessage(FirebaseEvent<PedidoFireBase> message)
-        {
+        //private void OnItemMessage(FirebaseEvent<PedidoFireBase> message)
+        //{
 
-            if (message.EventType == FirebaseEventType.InsertOrUpdate)
-            {
-                this.Activity.RunOnUiThread(() => Toast.MakeText(this.Activity, message.Object.descripcion, ToastLength.Short).Show());
-            }
-        }
+        //    if (message.EventType == FirebaseEventType.InsertOrUpdate)
+        //    {
+        //        this.Activity.RunOnUiThread(() => Toast.MakeText(this.Activity, message.Object.descripcion, ToastLength.Short).Show());
+        //    }
+        //}
 
         public override void OnResume()
         {
