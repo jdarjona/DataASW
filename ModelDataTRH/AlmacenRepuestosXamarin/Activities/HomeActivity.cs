@@ -23,7 +23,7 @@ using Newtonsoft.Json;
 namespace AlmacenRepuestosXamarin.Activities
 {                              
 [Activity(Label = "TRH", LaunchMode = LaunchMode.SingleTop, Icon = "@drawable/TRH")]//, ScreenOrientation = ScreenOrientation.Portrait)]
-    public class HomeView : BaseActivity,IValueEventListener,IChildEventListener
+    public class HomeView : BaseActivity,IChildEventListener
     {
 
         private MyActionBarDrawerToggle drawerToggle;        
@@ -152,20 +152,12 @@ namespace AlmacenRepuestosXamarin.Activities
                 return  "XQsDE173GieFhbMUUs2t2OD5eUwZFjjrEsAYbq6B";
             };
 
-            //var options = new Firebase.FirebaseOptions.Builder()
-            //    .SetApplicationId("flickering-fire-4088")
-            //    .SetApiKey("AIzaSyCk8jsVE-UGCN1I2JiXvOp0CizGFNFgAZM")
-            //    .SetDatabaseUrl("https://flickering-fire-4088.firebaseio.com")
-            //    //.SetGcmSenderId("Firebase-Sender-Id")
-            //.Build();
-
-            //var firebaseApp = FirebaseApp.InitializeApp(this, options);
-
+            
             var database = this.database;
 
-            database.GetReference(@"Pedidos/TRH Liege").AddListenerForSingleValueEvent(this);
-            //database.GetReference(@"Pedidos/TRH Liege").AddValueEventListener(this);
             database.GetReference(@"Pedidos/TRH Liege").AddChildEventListener(this);
+            //database.GetReference(@"Pedidos/TRH Liege").AddValueEventListener(this);
+            database.GetReference(@"Pedidos/TRH").AddChildEventListener(this);
 
             //var firebase = new Firebase.Auth.GetTokenResult("XQsDE173GieFhbMUUs2t2OD5eUwZFjjrEsAYbq6B");
             //Firebase.FirebaseApp appFirebase = Firebase.FirebaseApp.

@@ -273,6 +273,7 @@ namespace AlmacenRepuestosXamarin.Clases
                 if (maquinaListado != null) {
                     maquinaListado = maquina;
                     this.context.RunOnUiThread(() => Toast.MakeText(this.context, maquinaListado.IdMaquina, ToastLength.Short).Show());
+                    
                     adapterSinoptico.NotifyDataSetChanged();
                 }
 
@@ -286,7 +287,7 @@ namespace AlmacenRepuestosXamarin.Clases
 
             public void OnChildRemoved(DataSnapshot snapshot)
             {
-                throw new NotImplementedException();
+                
             }
         }
     }
