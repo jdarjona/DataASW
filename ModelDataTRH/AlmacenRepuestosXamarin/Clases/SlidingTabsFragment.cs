@@ -19,12 +19,15 @@ using Newtonsoft.Json;
 
 namespace AlmacenRepuestosXamarin.Clases
 {
-    public class SlidingTabsFragment : Android.Support.V4.App.Fragment
+    public class SlidingTabsFragment : Android.Support.V4.App.Fragment, ViewPager.IOnPageChangeListener
     {
         private SlidingTabScrollView mSlidingTabScrollView;
         private ViewPager mViewPager;
+        private ImageView estado;
         private View view;
-        
+        private static int count = -1;
+        public static int tabSeleccionado = 7;
+        private List<MaquinaFirebase> listaAuxiliar1 = new List<MaquinaFirebase>();
         public AdapterSinoptico adapterSinoptico { get;  set; }
         public LinearLayout progressLayout;
 
@@ -33,7 +36,7 @@ namespace AlmacenRepuestosXamarin.Clases
         {
             HasOptionsMenu = true;
             view = inflater.Inflate(Resource.Layout.fragment_sample, container, false);
-            ImageView estado = new ImageView(Context);
+            estado = new ImageView(Context);
             progressLayout = view.FindViewById<LinearLayout>(Resource.Id.progressBarLista);
             progressLayout.Visibility = ViewStates.Visible;
             return view;
@@ -44,9 +47,13 @@ namespace AlmacenRepuestosXamarin.Clases
 
             mSlidingTabScrollView = view.FindViewById<SlidingTabScrollView>(Resource.Id.sliding_tabs);
             mViewPager = view.FindViewById<ViewPager>(Resource.Id.viewpager);
+            this.mViewPager.AddOnPageChangeListener(this);
             mViewPager.Adapter = new SamplePagerAdapter(this.Activity, mViewPager);
-            ((SamplePagerAdapter)mViewPager.Adapter).database = ((HomeView)this.Activity).database; 
+           
+            ((SamplePagerAdapter)mViewPager.Adapter).database = ((HomeView)this.Activity).database;
+
             mSlidingTabScrollView.ViewPager = mViewPager;
+            progressLayout = view.FindViewById<LinearLayout>(Resource.Id.progressBarLista);
             progressLayout.Visibility = ViewStates.Gone;
         }
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
@@ -57,14 +64,53 @@ namespace AlmacenRepuestosXamarin.Clases
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            mViewPager.Adapter = new SamplePagerAdapter(this.Activity, mViewPager, item);
-            ((SamplePagerAdapter)mViewPager.Adapter).database = ((HomeView)this.Activity).database;
+            //mViewPager.Adapter = new SamplePagerAdapter(this.Activity, mViewPager, item);
+            SamplePagerAdapter adapter = (SamplePagerAdapter)mViewPager.Adapter;
+            
+            if (count==-1) {
+                 listaAuxiliar1 = adapter.listSinoptico;
+            }
+            List<MaquinaFirebase> listaAuxiliar2 = listaAuxiliar1;
+            switch (item.ToString())
+            {
+                case "Ver Todo":
+                    adapter.listSinoptico = listaAuxiliar1.OrderByDescending(o => o.SeccionMaquina).ToList();
+                    count = 0;
+                    break;
+                case "En Producción":
+                    adapter.listSinoptico = (listaAuxiliar2.Where(o => o.Conexion == true && o.Operario1 != null).ToList()).OrderByDescending(o => o.SeccionMaquina).ToList();
+                    count = 0;
+                    break;
+
+                default:
+                    
+                    break;
+            }
+
+            //((SamplePagerAdapter)mViewPager.Adapter).database = ((HomeView)this.Activity).database;
+            mViewPager.Adapter.NotifyDataSetChanged();
             return base.OnOptionsItemSelected(item);
         }
 
-       
+        public void OnPageScrollStateChanged(int state)
+        {
+        }
 
-        public class SamplePagerAdapter : PagerAdapter, ViewPager.IOnPageChangeListener, IChildEventListener
+        public void OnPageScrolled(int position, float positionOffset, int positionOffsetPixels)
+        {
+            tabSeleccionado = position;
+        }
+
+        public void OnPageSelected(int position)
+        {
+            tabSeleccionado = position;
+        }
+        public override void OnResume()
+        {
+            base.OnResume();
+        }
+
+        public class SamplePagerAdapter : PagerAdapter, ViewPager.IOnPageChangeListener , IChildEventListener
         {
             private string sevilla = " TRH Sevilla ";
             private string liege = " TRH Liege ";
@@ -73,10 +119,12 @@ namespace AlmacenRepuestosXamarin.Clases
             private ViewPager _mViewPager;
             private bool  vertodo = false;
             private string url;
-            private List<MaquinaFirebase> listSinoptico = new List<MaquinaFirebase>();
+            public List<MaquinaFirebase> listSinoptico = new List<MaquinaFirebase>();
             private List<string> items = new List<string>();
             private Activity context;
             public AdapterSinoptico adapterSinoptico { get; set; }
+            public AdapterSinoptico adapterSinopticoSevilla { get; set; }
+            public AdapterSinoptico adapterSinopticoLiege { get; set; }
             private ListView sinopticoListView;
             private List<ListView> listSinopticoListView = new List<ListView>();
             private List<LinearLayout> listProgressLayout = new List<LinearLayout>();
@@ -90,9 +138,6 @@ namespace AlmacenRepuestosXamarin.Clases
                 _mViewPager = mViewPager;
                 this.context = context;
                 this._mViewPager.AddOnPageChangeListener(this);
-
-               
-                // database = FirebaseDatabase.GetInstance(firebaseApp);
             }
 
             public SamplePagerAdapter(Activity context, ViewPager mViewPager, IMenuItem item) : this(context, mViewPager)
@@ -116,29 +161,6 @@ namespace AlmacenRepuestosXamarin.Clases
 
                 listSinoptico.Clear();
                 database.GetReference(url).AddChildEventListener(this);
-               
-                    
-
-                //var firebase = new FirebaseClient(@"https://flickering-fire-4088.firebaseio.com/", authToken);
-                //var itemsFirebase = await firebase
-                // .Child(url)
-                // .OnceAsync<MaquinaFirebase>();
-                //listSinoptico.Clear();
-                //foreach (var item in itemsFirebase)
-                //{
-                //    if (!vertodo)
-                //    {
-                //        if (!item.Object.CodOperario.Equals(string.Empty) && item.Object.Conexion.Equals(true))
-                //        {
-                //            listSinoptico.Add(item.Object);
-                //        }
-                //    }
-                //    else
-                //    {
-                //        listSinoptico.Add(item.Object);
-                //    }
-                //}
-
                 adapterSinoptico.NotifyDataSetChanged();
                  
 
@@ -152,7 +174,36 @@ namespace AlmacenRepuestosXamarin.Clases
             {
                 return view == obj;
             }
+            public override void NotifyDataSetChanged()
 
+            {
+                adapterSinoptico = new AdapterSinoptico(this.context, listSinoptico);
+                this.context.RunOnUiThread(() => adapterSinoptico.NotifyDataSetChanged());
+                sinopticoListView.Adapter = adapterSinoptico;
+                //switch (tabSeleccionado)
+                //{
+
+                //    case 0:
+                //        adapterSinoptico = new AdapterSinoptico(this.context, listSinoptico);
+                //        this.context.RunOnUiThread(() => adapterSinoptico.NotifyDataSetChanged());
+                //        sinopticoListView.Adapter = adapterSinoptico;
+                //        break;
+                //    case 1:
+                //        adapterSinoptico = new AdapterSinoptico(this.context, listSinoptico);
+                //        this.context.RunOnUiThread(() => adapterSinoptico.NotifyDataSetChanged());
+                //        sinopticoListView.Adapter = adapterSinoptico;
+
+                //        break;
+
+                //    default:
+                //        break;
+                //}
+
+
+
+
+                base.NotifyDataSetChanged();
+            }
             public override Java.Lang.Object InstantiateItem(ViewGroup container, int position)
             {
                 
@@ -214,10 +265,10 @@ namespace AlmacenRepuestosXamarin.Clases
                 database.GetReference(url).RemoveEventListener(this);
                 sinopticoListView = listSinopticoListView[position];
                 progressLayout = listProgressLayout[position];
-                //adapterSinoptico = new AdapterSinoptico(this.context, listSinoptico);
+                adapterSinoptico = new AdapterSinoptico(this.context, listSinoptico);
                 sinopticoListView.Adapter = adapterSinoptico;
                 progressLayout.Visibility = ViewStates.Visible;
-
+                SlidingTabsFragment.count = -1;
                 if (position == 0)
                 {
                     url = urlSevilla; 
@@ -242,7 +293,7 @@ namespace AlmacenRepuestosXamarin.Clases
                     case "En Producción":
                         vertodo = false;
                         break;
-                    
+
                     default:
                         vertodo = false;
                         break;

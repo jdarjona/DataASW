@@ -232,7 +232,7 @@
     <AndroidResource Include="Resources\layout\ListEPISRepuestos.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <None Include="google-services.json" />
+    <GoogleServicesJson Include="google-services.json" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
@@ -632,7 +632,9 @@
     <AndroidResource Include="Resources\values\dimensiones.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\myButtonCircular.xml" />
+    <AndroidResource Include="Resources\drawable\myButtonCircular.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\checked.xml" />

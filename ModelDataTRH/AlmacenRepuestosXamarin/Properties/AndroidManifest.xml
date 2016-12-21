@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="AlmacenRepuestosXamarin.AlmacenRepuestosXamarin" android:versionCode="1" android:versionName="1.0.1" android:installLocation="auto">
-	<uses-sdk android:minSdkVersion="16" android:targetSdkVersion="25" />
+	<uses-sdk android:minSdkVersion="16" android:targetSdkVersion="24" />
 	<application android:label="TRH" android:theme="@style/MyTheme" android:icon="@drawable/TRH" android:largeHeap="true" android:hardwareAccelerated="false"></application>
 	<uses-permission android:name="android.permission.VIBRATE" />
 	<uses-permission android:name="android.permission.CAMERA" />
