@@ -399,8 +399,8 @@ namespace AlmacenRepuestosXamarin.Fragments
                         numCamionesRuta = listMonitorizacionSevilla.Where(q => q.Estado == 6).Count().ToString("N0");
                         numTmRuta = listMonitorizacionSevilla.Where(q => q.Estado == 6).Sum(q => q.pesoKg / 1000).ToString("N0");
                         numTmCarga = listMonitorizacionSevilla.Where(q => q.Estado == 4 || q.Estado == 3 || q.Estado == 5).Sum(q => q.pesoKg / 1000).ToString("N0");
-                        numTmPrevistas = listMonitorizacionSevilla.Where(q => q.Fecha_Carga_Requerida.Value.ToLocalTime() <= DateTime.Today).Sum(q => q.pesoKg / 1000).ToString("N0");
-
+                        numTmPrevistas = listMonitorizacionSevilla.Where(q => (q.Fecha_Carga_Requerida.HasValue ? q.Fecha_Carga_Requerida.Value.ToLocalTime() : DateTime.Today.AddDays(1)) <= DateTime.Today).Sum(q => q.pesoKg / 1000).ToString("N0");
+                     
                         AppCompatActivity activity = (AppCompatActivity)this.context;
                         activity.SupportActionBar.Title = string.Format(@"{0} Tm enviadas de {1} hoy", numTmRuta, numTmPrevistas);
                         activity.SupportActionBar.Subtitle = string.Format(@"{0} Tm en carga", numTmCarga);
@@ -487,7 +487,7 @@ namespace AlmacenRepuestosXamarin.Fragments
                     numCamionesRuta = listMonitorizacionSevilla.Where(q => q.Estado == 6).Count().ToString("N0");
                     numTmRuta = listMonitorizacionSevilla.Where(q => q.Estado == 6).Sum(q => q.pesoKg / 1000).ToString("N0");
                     numTmCarga = listMonitorizacionSevilla.Where(q => q.Estado == 4 || q.Estado == 3 || q.Estado == 5).Sum(q => q.pesoKg / 1000).ToString("N0");
-                    numTmPrevistas = listMonitorizacionSevilla.Where(q => q.Fecha_Carga_Requerida.Value.ToLocalTime()<=DateTime.Today).Sum(q => q.pesoKg / 1000).ToString("N0");
+                    numTmPrevistas = listMonitorizacionSevilla.Where(q => (q.Fecha_Carga_Requerida.HasValue ? q.Fecha_Carga_Requerida.Value.ToLocalTime() : DateTime.Today.AddDays(1)) <= DateTime.Today).Sum(q => q.pesoKg / 1000).ToString("N0");
 
                 }
                 else if (position == 1)
