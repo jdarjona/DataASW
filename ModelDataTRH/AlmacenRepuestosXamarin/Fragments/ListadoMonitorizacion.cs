@@ -496,7 +496,7 @@ namespace AlmacenRepuestosXamarin.Fragments
                     numCamionesRuta = listMonitorizacionLiege.Where(q => q.Estado == 6).Count().ToString("N0");
                     numTmRuta = listMonitorizacionLiege.Where(q => q.Estado == 6).Sum(q => q.pesoKg / 1000).ToString("N0");
                     numTmCarga = listMonitorizacionLiege.Where(q => q.Estado ==4 || q.Estado==3 || q.Estado==5).Sum(q => q.pesoKg / 1000).ToString("N0");
-                    numTmPrevistas = listMonitorizacionLiege.Where(q => q.Fecha_Carga_Requerida.Value.ToLocalTime() <= DateTime.Today).Sum(q => q.pesoKg / 1000).ToString("N0");
+                    numTmPrevistas = listMonitorizacionLiege.Where(q => (q.Fecha_Carga_Requerida.HasValue?q.Fecha_Carga_Requerida.Value.ToLocalTime():DateTime.Today.AddDays(1)) <= DateTime.Today).Sum(q => q.pesoKg / 1000).ToString("N0");
 
                 }
                 else
