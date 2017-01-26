@@ -124,9 +124,12 @@ namespace AlmacenRepuestosXamarin.Activities
         //.SetGcmSenderId("Firebase-Sender-Id")
         .Build();
 
+            firebaseApp = FirebaseApp.Instance;
             if (firebaseApp == null)
             {
                 firebaseApp = FirebaseApp.InitializeApp(this, options);
+                FirebaseApp.GetInstance("DEFAULT");
+                
             }
 
 
@@ -140,7 +143,8 @@ namespace AlmacenRepuestosXamarin.Activities
         protected override void OnStop()
         {
             base.OnStop();
-            firebaseApp.Dispose();
+
+           
         }
 
         private async void initFirebase() {

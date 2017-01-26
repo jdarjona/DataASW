@@ -3386,26 +3386,26 @@ namespace AlmacenRepuestosXamarin
 			// aapt resource value: 0x7f070023
 			public const int ApplicationName = 2131165219;
 			
-			// aapt resource value: 0x7f070033
-			public const int Carga = 2131165235;
+			// aapt resource value: 0x7f07003a
+			public const int Carga = 2131165242;
 			
-			// aapt resource value: 0x7f070036
-			public const int Envios = 2131165238;
+			// aapt resource value: 0x7f07003d
+			public const int Envios = 2131165245;
 			
 			// aapt resource value: 0x7f070022
 			public const int Hello = 2131165218;
 			
-			// aapt resource value: 0x7f070035
-			public const int Incidencias = 2131165237;
+			// aapt resource value: 0x7f07003c
+			public const int Incidencias = 2131165244;
 			
-			// aapt resource value: 0x7f070031
-			public const int Listado_Productos = 2131165233;
+			// aapt resource value: 0x7f070038
+			public const int Listado_Productos = 2131165240;
 			
-			// aapt resource value: 0x7f070032
-			public const int Opciones_Oferta = 2131165234;
+			// aapt resource value: 0x7f070039
+			public const int Opciones_Oferta = 2131165241;
 			
-			// aapt resource value: 0x7f070034
-			public const int Precios = 2131165236;
+			// aapt resource value: 0x7f07003b
+			public const int Precios = 2131165243;
 			
 			// aapt resource value: 0x7f070001
 			public const int abc_action_bar_home_description = 2131165185;
@@ -3503,17 +3503,38 @@ namespace AlmacenRepuestosXamarin
 			// aapt resource value: 0x7f070025
 			public const int app_name = 2131165221;
 			
-			// aapt resource value: 0x7f070029
-			public const int btoScanear = 2131165225;
+			// aapt resource value: 0x7f070030
+			public const int btoScanear = 2131165232;
 			
 			// aapt resource value: 0x7f070000
 			public const int common_google_play_services_unknown_issue = 2131165184;
 			
-			// aapt resource value: 0x7f07002f
-			public const int drawer_close = 2131165231;
+			// aapt resource value: 0x7f070029
+			public const int default_web_client_id = 2131165225;
 			
-			// aapt resource value: 0x7f07002e
-			public const int drawer_open = 2131165230;
+			// aapt resource value: 0x7f070036
+			public const int drawer_close = 2131165238;
+			
+			// aapt resource value: 0x7f070035
+			public const int drawer_open = 2131165237;
+			
+			// aapt resource value: 0x7f07002a
+			public const int firebase_database_url = 2131165226;
+			
+			// aapt resource value: 0x7f070027
+			public const int gcm_defaultSenderId = 2131165223;
+			
+			// aapt resource value: 0x7f07002b
+			public const int google_api_key = 2131165227;
+			
+			// aapt resource value: 0x7f070028
+			public const int google_app_id = 2131165224;
+			
+			// aapt resource value: 0x7f07002c
+			public const int google_crash_reporting_api_key = 2131165228;
+			
+			// aapt resource value: 0x7f07002d
+			public const int google_storage_bucket = 2131165229;
 			
 			// aapt resource value: 0x7f070026
 			public const int intro_message = 2131165222;
@@ -3521,20 +3542,20 @@ namespace AlmacenRepuestosXamarin
 			// aapt resource value: 0x7f070024
 			public const int library_name = 2131165220;
 			
-			// aapt resource value: 0x7f070030
-			public const int menu_refresh = 2131165232;
+			// aapt resource value: 0x7f070037
+			public const int menu_refresh = 2131165239;
 			
-			// aapt resource value: 0x7f07002a
-			public const int pref_summary_url_local = 2131165226;
+			// aapt resource value: 0x7f070031
+			public const int pref_summary_url_local = 2131165233;
 			
-			// aapt resource value: 0x7f07002c
-			public const int pref_summary_url_remota = 2131165228;
+			// aapt resource value: 0x7f070033
+			public const int pref_summary_url_remota = 2131165235;
 			
-			// aapt resource value: 0x7f07002b
-			public const int pref_title_url_local = 2131165227;
+			// aapt resource value: 0x7f070032
+			public const int pref_title_url_local = 2131165234;
 			
-			// aapt resource value: 0x7f07002d
-			public const int pref_title_url_remota = 2131165229;
+			// aapt resource value: 0x7f070034
+			public const int pref_title_url_remota = 2131165236;
 			
 			// aapt resource value: 0x7f070014
 			public const int search_menu_title = 2131165204;
@@ -3542,11 +3563,11 @@ namespace AlmacenRepuestosXamarin
 			// aapt resource value: 0x7f070015
 			public const int status_bar_notification_info_overflow = 2131165205;
 			
-			// aapt resource value: 0x7f070027
-			public const int tab1_Name = 2131165223;
+			// aapt resource value: 0x7f07002e
+			public const int tab1_Name = 2131165230;
 			
-			// aapt resource value: 0x7f070028
-			public const int tab2_Name = 2131165224;
+			// aapt resource value: 0x7f07002f
+			public const int tab2_Name = 2131165231;
 			
 			static String()
 			{
