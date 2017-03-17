@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ModelDataTRH.Proyectos
 {
-    class EntragaDeEpis
+    public class EntragaDeEpis
     {
         public string Assigned_User_ID { get; set; }
         public string Buy_from_Contact { get; set; }

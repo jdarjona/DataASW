@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AlmacenRepuestosXamarin.Data;
 using Android.Graphics;
+using Android.Widget;
 using ModelDataTRH;
 using static AlmacenRepuestosXamarin.Resource;
 
@@ -24,41 +25,67 @@ namespace AlmacenRepuestosXamarin.Model
 
         public static async Task updateListMonitorizacion()
         {
-            datos = new AccesoDatos();
-            listMonitorizacion = await datos.getListadoMonitorCarga();
+            if (AccesoDatos.estadoConexion())
+            {
+                datos = new AccesoDatos();
+                if (datos != null)
+                {
+                    listMonitorizacion = await datos.getListadoMonitorCarga();
+                }
+            }
+             
         }
         public static async Task updateListMonitorizacion(string empresa)
         {
-            datos = new AccesoDatos();
-            listMonitorizacion = await datos.getListadoMonitorCarga(empresa);
+            if (AccesoDatos.estadoConexion())
+            {
+                datos = new AccesoDatos();
+                if (datos != null)
+                {
+                    listMonitorizacion = await datos.getListadoMonitorCarga(empresa);
+                }
+            }
         }
 
         public static async Task<List<vListadoPedidosMonitorizacion>> getListMonitorizacion(string empresa)
         {
-            datos = new AccesoDatos();
-            listMonitorizacion = await datos.getListadoMonitorCarga(empresa);
-
-
-            if (empresa == empresaSevilla)
+            if (AccesoDatos.estadoConexion())
             {
-                listMonitorizacionSevilla.Clear();
-                listMonitorizacionSevilla.AddRange(listMonitorizacion);
-            } else if (empresa == empresaLiege) { 
-                listMonitorizacionLieja.Clear();
-                listMonitorizacionLieja.AddRange(listMonitorizacion);
-            }
-           
+                datos = new AccesoDatos();
+                if (datos != null)
+                {
+                    listMonitorizacion = await datos.getListadoMonitorCarga(empresa);
 
-            return listMonitorizacion;
+
+                    if (empresa == empresaSevilla)
+                    {
+                        listMonitorizacionSevilla.Clear();
+                        listMonitorizacionSevilla.AddRange(listMonitorizacion);
+                    }
+                    else if (empresa == empresaLiege)
+                    {
+                        listMonitorizacionLieja.Clear();
+                        listMonitorizacionLieja.AddRange(listMonitorizacion);
+                    }
+                }
+            }
+            
+
+                return listMonitorizacion;
         }
         
         public static async Task<bool> upLoadImage(string codPedido, string empresa, Java.IO.File Fichero, bool small)
         {
 
-            
-            datos = new AccesoDatos();
-            return await datos.UploadBitmapAsync(empresa,Fichero, codPedido,small);
-
+            if (AccesoDatos.estadoConexion())
+            {
+                datos = new AccesoDatos();
+                if (datos != null)
+                {
+                    return await datos.UploadBitmapAsync(empresa, Fichero, codPedido, small);
+                }
+            }
+            return false;
         }
     }
 }

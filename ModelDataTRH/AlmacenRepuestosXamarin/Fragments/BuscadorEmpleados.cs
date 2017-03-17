@@ -44,27 +44,15 @@ namespace AlmacenRepuestosXamarin.Fragments
             this.HasOptionsMenu = true;
             // Create your fragment here
         }
-
-
-
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            // Use this to return your custom view for this Fragment
-            // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
-
-           // var ignored = base.OnCreateView(inflater, container, savedInstanceState);
-
-             view = inflater.Inflate(Resource.Layout.Main, null);
-
+            view = inflater.Inflate(Resource.Layout.Main, null);
             restService = new Data.AccesoDatos();
-
             progressLayout = view.FindViewById<LinearLayout>(Resource.Id.progressBarMain);
             listViewEmpleados = (ListView)view.FindViewById(Resource.Id.listEmpleados);
-
-            
+           
             return view;
         }
-
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater) {
 
             inflater.Inflate(Resource.Menu.buscador, menu);
@@ -103,46 +91,34 @@ namespace AlmacenRepuestosXamarin.Fragments
             base.OnCreateOptionsMenu(menu, inflater);
 
         }
-
         void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-
-            //  
-
-            //var listView = (Android.Widget.AbsListView)sender;
-            var listView = (Android.Widget.ListView)e.Parent;
-            var adapter = (AdapterEmpleados)listView.Adapter;
-
-
-
-
-            //var lista = new Empleados();
-
-            ManagerRepuestos.addEmpleado(adapter.list[e.Position]);
-
-            //var l = listView.Adapter.GetItem(e.Position).JavaCast<Empleados>();
-
-
-            this.Activity.RunOnUiThread(() => Toast.MakeText(this.Activity, adapter.list[e.Position].FullName, ToastLength.Short).Show());
-
-            //var activityRepuestosEPIS = new Intent(this.Activity, typeof(ListEPISRepuestos));
-
-            //StartActivity(activityRepuestosEPIS);
-
-            ManagerRepuestos.getRepuestos().Clear();
-            Android.Support.V4.App.Fragment fragment = new AlmacenRepuestosXamarin.Fragments.ListaRepuestosEntrega();
-
-            FragmentManager.BeginTransaction()
-                .Replace(Resource.Id.content_frame, fragment)
-                 .AddToBackStack(null)
-               .Commit();
             
+                var listView = (Android.Widget.ListView)e.Parent;
+                var adapter = (AdapterEmpleados)listView.Adapter;
+            if (AccesoDatos.estadoConexion())
+            {
+                ManagerRepuestos.addEmpleado(adapter.list[e.Position]);
+
+                this.Activity.RunOnUiThread(() => Toast.MakeText(this.Activity, adapter.list[e.Position].FullName, ToastLength.Short).Show());
+
+                ManagerRepuestos.getRepuestos().Clear();
+                Android.Support.V4.App.Fragment fragment = new AlmacenRepuestosXamarin.Fragments.ListaRepuestosEntrega();
+
+                FragmentManager.BeginTransaction()
+                    .Replace(Resource.Id.content_frame, fragment)
+                     .AddToBackStack(null)
+                   .Commit();
+            }
+            else
+            {
+                Toast.MakeText(Application.Context, "SIN CONEXION", ToastLength.Long).Show();
+            }
 
         }
-
         private async Task<List<Empleados>> getEmpleados()
         {
-
+        
             var query = await restService.getEmpleados();
             return query;
 
@@ -151,15 +127,23 @@ namespace AlmacenRepuestosXamarin.Fragments
         {
             try
             {
-                progressLayout.Visibility = ViewStates.Visible;
-                empleados = await getEmpleados();
                 
-                adaptadorEmpleados = new AdapterEmpleados(this.Activity, empleados);
-                listViewEmpleados.ItemClick += OnListItemClick;
-                listViewEmpleados.Adapter = adaptadorEmpleados;
+                if (AccesoDatos.estadoConexion())
+                {
+                    progressLayout.Visibility = ViewStates.Visible;
+                    empleados = await getEmpleados();
 
-                MenuItemCompat.SetOnActionExpandListener(item, new SearchViewExpandListener(adaptadorEmpleados));
-                progressLayout.Visibility = ViewStates.Gone;
+                    adaptadorEmpleados = new AdapterEmpleados(this.Activity, empleados);
+                    listViewEmpleados.ItemClick += OnListItemClick;
+                    listViewEmpleados.Adapter = adaptadorEmpleados;
+
+                    MenuItemCompat.SetOnActionExpandListener(item, new SearchViewExpandListener(adaptadorEmpleados));
+                    progressLayout.Visibility = ViewStates.Gone;
+                }
+                else
+                {
+                    Toast.MakeText(Application.Context, "SIN CONEXION", ToastLength.Long).Show();
+                }
             }
             catch (Exception e)
             {
@@ -170,14 +154,6 @@ namespace AlmacenRepuestosXamarin.Fragments
                 progressLayout.Visibility = ViewStates.Gone;
             }
         }
-
-
-
-
-
-
-
-
         private class SearchViewExpandListener
            : Java.Lang.Object, MenuItemCompat.IOnActionExpandListener
         {

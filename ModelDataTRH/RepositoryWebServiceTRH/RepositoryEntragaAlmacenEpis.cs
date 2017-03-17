@@ -13,8 +13,76 @@ namespace RepositoryWebServiceTRH
     {
         public RepositoryEntragaAlmacenEpis(HostWebService hostWs) : base(hostWs)
         {
-
+            
         }
+
+       
+
+        public void insertRepuesto(string codEmpleado,string codRepuesto,decimal cantidad,int maquina,int destino) {
+            try
+            {
+                CultureInfo culture = new CultureInfo("es-US");
+                System.Threading.Thread.CurrentThread.CurrentCulture = culture;
+
+                Context.contextAlmacenesRepuestos.InsertRepuesto(codEmpleado, codRepuesto,cantidad,maquina,destino);
+
+            }
+            catch (ArgumentNullException)
+            {
+                throw new ArgumentNullException("Error insertRepuesto campos nulos", "Comuníquelo al departamento de informática, gracias.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(string.Format("{0} mensaje: {1}", "[Metodo insertRepuesto] [codEmpleado] ", ex.Message), ex.InnerException);
+
+            }
+        }
+
+        public void updateRepuesto(string codEmpleado, string codRepuesto, decimal cantidad, int maquina, int destino)
+        {
+            try
+            {
+                CultureInfo culture = new CultureInfo("es-US");
+                System.Threading.Thread.CurrentThread.CurrentCulture = culture;
+
+                Context.contextAlmacenesRepuestos.UpdateRepuesto(codEmpleado, codRepuesto, cantidad, maquina, destino);
+
+            }
+            catch (ArgumentNullException)
+            {
+                throw new ArgumentNullException("Error updateRepuesto campos nulos", "Comuníquelo al departamento de informática, gracias.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(string.Format("{0} mensaje: {1}", "[Metodo updateRepuesto] [codEmpleado] ", ex.Message), ex.InnerException);
+
+            }
+        }
+
+        public void deleteRepuesto(string codProducto,string codEmpleado)
+        {
+            try
+            {
+                CultureInfo culture = new CultureInfo("es-US");
+                System.Threading.Thread.CurrentThread.CurrentCulture = culture;
+
+                Context.contextAlmacenesRepuestos.DeleteRepuesto(codProducto, codEmpleado);
+
+            }
+            catch (ArgumentNullException)
+            {
+                throw new ArgumentNullException("Error deleteRepuesto campos nulos", "Comuníquelo al departamento de informática, gracias.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(string.Format("{0} mensaje: {1}", "[Metodo deleteRepuesto] [codEmpleado] ", ex.Message), ex.InnerException);
+
+            }
+        }
+
+
+
+
 
         public string register(string codEmpleado) {
 

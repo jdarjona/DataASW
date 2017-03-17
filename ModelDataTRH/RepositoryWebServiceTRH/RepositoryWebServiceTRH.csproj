@@ -180,10 +180,19 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\AlmacenRepuestosContext\AlmacenRepuestos.wsdl" />
+    <None Include="Service References\AlmacenRepuestosContext\RepositoryWebServiceTRH.AlmacenRepuestosContext.DeleteRepuesto_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\AlmacenRepuestosContext\RepositoryWebServiceTRH.AlmacenRepuestosContext.GetAlbaran_Result.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\AlmacenRepuestosContext\RepositoryWebServiceTRH.AlmacenRepuestosContext.InsertRepuesto_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\AlmacenRepuestosContext\RepositoryWebServiceTRH.AlmacenRepuestosContext.RegistrarEntrega_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AlmacenRepuestosContext\RepositoryWebServiceTRH.AlmacenRepuestosContext.UpdateRepuesto_Result.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ClientesContext\Clientes.wsdl" />

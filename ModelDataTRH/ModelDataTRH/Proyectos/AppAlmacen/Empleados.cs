@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System;
 namespace ModelDataTRH.Proyectos
 {
-    class Empleados
+    public class Empleados
     {
         public string Address { get; set; }
         public string Address_2 { get; set; }

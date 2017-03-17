@@ -10,12 +10,15 @@ using Toolbar = Android.Support.V7.Widget.Toolbar;
 using AlmacenRepuestosXamarin.Model;
 using AlmacenRepuestosXamarin.Adapter;
 using RepositoryWebServiceTRH.EntregaAlmacenEpisContext;
+using RepositoryWebServiceTRH.AlmacenRepuestosContext;
 using Android.Graphics.Drawables;
 using Android.Views.InputMethods;
 using Android.Content.PM;
 using static Android.Views.View;
 using System.Text;
 using System.Threading.Tasks;
+using RepositoryWebServiceTRH;
+using AlmacenRepuestosXamarin.Data;
 
 namespace AlmacenRepuestosXamarin
 {
@@ -27,6 +30,7 @@ namespace AlmacenRepuestosXamarin
 
 
         //private DestinosEnum destinos;
+        
         LinearLayout progressLayout;
         AdapterSpinner<Destino> adapterDestinos;
         AdapterSpinner<Maquina> adapterMaquinas;
@@ -35,6 +39,10 @@ namespace AlmacenRepuestosXamarin
         private Spinner spinnerDestino;
         private Spinner spinnerMaquina;
         private EntregaAlmacen repuesto;
+        private AccesoDatos _accesoDatos = new AccesoDatos();
+        
+
+
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -123,6 +131,8 @@ namespace AlmacenRepuestosXamarin
             {
                 progressLayout.Visibility = ViewStates.Visible;
                 repuesto =await ManagerRepuestos.updateRepuesto(repuesto);
+                //await _accesoDatos.actualizarRepuesto(repuesto.Cod_Empleado,repuesto.Cod_Producto,repuesto.Cantidad,Convert.ToInt32(repuesto.Maquina),Convert.ToInt32(repuesto.Destino));
+
                 progressLayout.Visibility = ViewStates.Gone;
 
                 Finish();
@@ -155,7 +165,7 @@ namespace AlmacenRepuestosXamarin
                 case Resource.Id.eliminar:
 
                     eliminarRepuesto();
-
+                   
                     break;
 
                 default:
@@ -169,12 +179,19 @@ namespace AlmacenRepuestosXamarin
 
         private async Task<bool> eliminarRepuesto()
         {
-             await ManagerRepuestos.eliminarRepuesto(repuesto.Key);
 
-            Toast.MakeText(this, "Se eliminó el repuesto " + repuesto.Cod_Producto + " de la lista", ToastLength.Short).Show();
-            Finish();
+            if (await ManagerRepuestos.eliminarRepuesto(repuesto.Key))
+            {
+                //await  _accesoDatos.eliminarRepuesto(repuesto.Cod_Producto, repuesto.Cod_Empleado);
+                Toast.MakeText(this, "Se eliminó el repuesto " + repuesto.Cod_Producto + " de la lista", ToastLength.Short).Show();
+                Finish();
 
-            return true;
+                return true;
+            }
+            else {
+                Toast.MakeText(this, "Error al eliminar repuesto: " + repuesto.Cod_Producto + " de la lista", ToastLength.Short).Show();
+                return false;
+            }
 
         }
 
@@ -184,9 +201,7 @@ namespace AlmacenRepuestosXamarin
 
             InputMethodManager inputMethodManager = (InputMethodManager)GetSystemService(Context.InputMethodService);
             inputMethodManager.HideSoftInputFromWindow(edittext.WindowToken, 0);
-        }
-
-       
+        }    
 
         private void Edittext_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
         {

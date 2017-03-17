@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace ModelDataTRH.Proyectos
 {
-    class AlmacenRepuestoCU
+    public class AlmacenRepuestoCU
     {
         public void registrarEntrega(string codEmpleado) {}
+
+
+
     }
 }

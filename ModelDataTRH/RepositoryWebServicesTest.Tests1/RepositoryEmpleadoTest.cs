@@ -113,34 +113,5 @@ namespace RepositoryWebServicesTest.Tests1
                 Assert.Pass();          
 
         }
-
-        //[Test]
-        //public void Register_ReturnOk()
-        //{
-
-        //    RepositoryWebServiceTRH.RepositoryEntragaAlmacenEpis repoEntregaEPI = new RepositoryEntragaAlmacenEpis(hostWs);
-         
-
-        //    repoEntregaEPI.register("E0021");
-
-
-
-        //    Assert.Pass();
-
-        //}
-
-        //[Test]
-        //public void Find_Querry_ReturnAny()
-        //{
-
-        //    RepositoryWebServiceTRH.RepositoryEmpleado repoEmpleado = new RepositoryEmpleado(hostWs);
-
-        //    System.Linq.Expressions.Expression<Func<RepositoryWebServiceTRH.EmpleadoContext.Empleados, bool>> expr =q=>q.Name.StartsWith("Manuel");
-        //    var empleado = repoEmpleado.Find(expr);
-
-
-        //    Assert.AreNotEqual(null, empleado.ToList());
-
-        //}
     }
 }

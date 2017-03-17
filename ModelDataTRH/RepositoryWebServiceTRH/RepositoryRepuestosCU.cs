@@ -8,7 +8,7 @@ using RepositoryWebServiceTRH.AlmacenRepuestosContext;
 
 namespace RepositoryWebServiceTRH
 {
-    class RepositoryRepuestosCU : RespositoryBase,IRepository<RegistrarEntrega, String>
+    public class RepositoryRepuestosCU : RespositoryBase,IRepository<RegistrarEntrega, String>
     {
         public RepositoryRepuestosCU(HostWebService hostWs) : base(hostWs)
         {

@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfazNavision", "Interfa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlmacenRepuestosXamarin", "AlmacenRepuestosXamarin\AlmacenRepuestosXamarin.csproj", "{8601A199-3212-48D9-8F32-27B4AB37066A}"
 EndProject
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "ModeladoOferta", "ModeladoOferta\ModeladoOferta.modelproj", "{9C7D97FF-0ADA-446A-9D29-B24A05871039}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModeladoOfertaLib", "ModeladoOfertaLib\ModeladoOfertaLib.csproj", "{9AEA12E0-6DCE-40DE-98BC-17C5F1499508}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +50,14 @@ Global
 		{8601A199-3212-48D9-8F32-27B4AB37066A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{8601A199-3212-48D9-8F32-27B4AB37066A}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{8601A199-3212-48D9-8F32-27B4AB37066A}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{9C7D97FF-0ADA-446A-9D29-B24A05871039}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C7D97FF-0ADA-446A-9D29-B24A05871039}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C7D97FF-0ADA-446A-9D29-B24A05871039}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C7D97FF-0ADA-446A-9D29-B24A05871039}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AEA12E0-6DCE-40DE-98BC-17C5F1499508}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AEA12E0-6DCE-40DE-98BC-17C5F1499508}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AEA12E0-6DCE-40DE-98BC-17C5F1499508}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AEA12E0-6DCE-40DE-98BC-17C5F1499508}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

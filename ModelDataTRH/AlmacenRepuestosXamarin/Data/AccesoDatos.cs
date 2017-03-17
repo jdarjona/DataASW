@@ -17,6 +17,7 @@ using ModernHttpClient;
 using Newtonsoft.Json;
 using RepositoryWebServiceTRH.EmpleadoContext;
 using RepositoryWebServiceTRH.EntregaAlmacenEpisContext;
+
 using ModelDataTRH;
 using RepositoryWebServiceTRH.PedidoVentasContext;
 using Android.Net.Wifi;
@@ -33,14 +34,17 @@ using Android.Graphics;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using AlmacenRepuestosXamarin.Clases;
+using RepositoryWebServiceTRH;
+using Android.Net;
 
 namespace AlmacenRepuestosXamarin.Data
 {
     public  class AccesoDatos
     {
-        static int ip = 0;
-        static string SSID = string.Empty;
-        static bool conexionWifi = false;
+        public static int ip = 0;
+        public static string SSID = string.Empty;
+        public static bool conexionWifi = false;
+        public static bool flagGetdatosWifi = false;
         public static string UrlToken = string.Empty;
         public static List<Cliente> listaClientes;
         public static List<Almacen> listaAlmacenes;
@@ -49,58 +53,62 @@ namespace AlmacenRepuestosXamarin.Data
         public static List<Pedido> listaPedidos;
         public static List<Oferta> listaOfertas;
         public static List<Producto> listaProductos =  new List<Producto>();
-        // public static List<Producto> listaProductos;
+        
 
         // private const string webBase = @"http://intranet.trh-be.com/WSTRH/";
         // private const string webBase = @"http://192.168.1.2/WSTRH/";
         public  static string empre=string.Empty;
         private  HttpClient client = new HttpClient(new NativeMessageHandler());
         public static Oferta nuevaOferta = new Oferta();
-
+        private RepositoryEntragaAlmacenEpis repository;// = new RepositoryEntragaAlmacenEpis();
         public AccesoDatos()
         {
             getDatosRedWifi();
-            client = initClient();
-            
-
+            client = initClient();           
         }
 
         public async Task initGetListados(string empresa)
         {
-            /*listaClientes = await getClientes();
-            listaAlmacenes = await getAlmacenes();
-            listaContactos = await getContactos();
-            listaDireccionesEnvio = await getDireccionEnvio();
-            listaPedidos = await getListadoPedidos();
-            // listaProductos = await getListadoProductos();
-            Producto p = new Producto();
-            p.search_DescriptionField = "C2012 Q2";
-            p.stockDisponibleField = 30;
-            p.paquetes_por_CamiónField = 15;
-            p.m2_PaqueteField = 264.00;
-            p.kgs_PaqueteField = 1918.08;
-            p.paños_x_PaqueteField = 20.00;
-            listaProductos.Add(p);
-            p = new Producto();
-            p.search_DescriptionField = "C2010 Q2";
-            p.stockDisponibleField = 24;
-            p.paquetes_por_CamiónField = 14;
-            p.m2_PaqueteField = 200.00;
-            p.kgs_PaqueteField = 1700.08;
-            p.paños_x_PaqueteField = 30.00;
-            listaProductos.Add(p);
-            p = new Producto();
-            p.search_DescriptionField = "C1508 Q2";
-            p.stockDisponibleField = 19;
-            p.paquetes_por_CamiónField = 14;
-            p.m2_PaqueteField = 150.00;
-            p.kgs_PaqueteField = 1518.08;
-            p.paños_x_PaqueteField = 25.00;
-            listaProductos.Add(p);
-            //listaOfertas = await getListadoOfertas();
-            //getProductos();*/
+            try
+            {
+               /* listaClientes = await getClientes();
+                listaAlmacenes = await getAlmacenes();
+                listaContactos = await getContactos();
+                listaDireccionesEnvio = await getDireccionEnvio();
+                listaPedidos = await getListadoPedidos();
+                //listaProductos = await getListadoProductos();
+                Producto p = new Producto();
+                p.search_DescriptionField = "C2012 Q2";
+                p.stockDisponibleField = 30;
+                p.paquetes_por_CamiónField = 15;
+                p.m2_PaqueteField = 264.00;
+                p.kgs_PaqueteField = 1918.08;
+                p.paños_x_PaqueteField = 20.00;
+                listaProductos.Add(p);
+                p = new Producto();
+                p.search_DescriptionField = "C2010 Q2";
+                p.stockDisponibleField = 24;
+                p.paquetes_por_CamiónField = 14;
+                p.m2_PaqueteField = 200.00;
+                p.kgs_PaqueteField = 1700.08;
+                p.paños_x_PaqueteField = 30.00;
+                listaProductos.Add(p);
+                p = new Producto();
+                p.search_DescriptionField = "C1508 Q2";
+                p.stockDisponibleField = 19;
+                p.paquetes_por_CamiónField = 14;
+                p.m2_PaqueteField = 150.00;
+                p.kgs_PaqueteField = 1518.08;
+                p.paños_x_PaqueteField = 25.00;
+                listaProductos.Add(p);
+                listaOfertas = await getListadoOfertas();
+                // getProductos();*/
+            }
+            catch (Exception ex) {
+                ex.ToString();
+            }
+            
         }
-
 
         #region VENTAS
         public async Task<List<Cliente>> getClientes()
@@ -275,7 +283,7 @@ namespace AlmacenRepuestosXamarin.Data
         public HttpClient initClient() {
             client = new HttpClient(new NativeMessageHandler())
             {
-                BaseAddress = new Uri(getDatosConexionEmpresa(LoginActivity.empresaSeleccionada))
+                BaseAddress = new System.Uri(getDatosConexionEmpresa(LoginActivity.empresaSeleccionada))
             };
             //getDatosConexionEmpresa(Preferencias.getEmpresaLiege());
             client.DefaultRequestHeaders.Accept.Clear();
@@ -285,15 +293,33 @@ namespace AlmacenRepuestosXamarin.Data
             return client;
         }
 
+        public static bool estadoConexion() {
+            ConnectivityManager connectivityManager = (ConnectivityManager)Application.Context.GetSystemService(Context.ConnectivityService);
+            NetworkInfo networkInfo = connectivityManager.ActiveNetworkInfo;
+            //bool isOnline = networkInfo.IsConnected;
+            //bool isWifi = networkInfo.Type == ConnectivityType.Wifi;
+            //bool roaming = networkInfo.IsRoaming;
+            if (networkInfo != null) {
+                return true;
+            }
+            return false;
+        }
+
+
         public void getDatosRedWifi()
-        {
+        {            
+            //ConnectivityManager connectivityManager = (ConnectivityManager)Application.Context.GetSystemService(Context.ConnectivityService);
+            //NetworkInfo networkInfo = connectivityManager.ActiveNetworkInfo;
+            //bool isOnline = networkInfo.IsConnected;
+            //bool isWifi = networkInfo.Type == ConnectivityType.Wifi;
+            //bool roaming = networkInfo.IsRoaming;
+            
             //OBTENER DATOS WIFI O LOCAL
             WifiManager wifiManager = (WifiManager)Application.Context.GetSystemService(Service.WifiService);
             ip = wifiManager.ConnectionInfo.IpAddress;
-            SSID = wifiManager.ConnectionInfo.SSID.Replace('"', ' ').Trim(); 
+            SSID = wifiManager.ConnectionInfo.SSID.Replace('"', ' ').Trim();
             conexionWifi = wifiManager.IsWifiEnabled;
-            //  Toast.MakeText(this, "Conexión Wifi: " + conexionWifi + " IP: " + ip + " SSID: " + SSID, ToastLength.Short).Show();
-            //FIN OBTENER WIFI O LACAL
+            
         }
 
         public  string getDatosConexionEmpresa(string empresa)
@@ -301,37 +327,39 @@ namespace AlmacenRepuestosXamarin.Data
             string resultado = "no se puede establecer conexión";
 
             var lista = Preferencias.listSSIDLiege;
+           
 
-
-            if (empresa.Equals("Liege"))
-            {
-                if (conexionWifi && Preferencias.listSSIDLiege.Contains(SSID))
+                if (empresa.Equals("Liege"))
                 {
-                    resultado = Helpers.Preferencias.getUrlLocalLieja();//= @"http://192.168.1.2/WSTRH/";
-                    UrlToken = @"http://192.168.1.2/WSTRH/Token";
+                    if (conexionWifi && Preferencias.listSSIDLiege.Contains(SSID))
+                    {
+                        resultado = Helpers.Preferencias.getUrlLocalLieja();//= @"http://192.168.1.2/WSTRH/";
+                        UrlToken = @"http://192.168.1.2/WSTRH/Token";
+                    }
+                    else 
+                    {
+                        resultado = Helpers.Preferencias.getUrlPublicaLieja();
+                        UrlToken = @"http://intranet.trh-be.com/WSTRH/Token";
+                    }
                 }
-                else
-                {
-                    resultado = Helpers.Preferencias.getUrlPublicaLieja();
-                    UrlToken = @"http://intranet.trh-be.com/WSTRH/Token";
-                }
-            }
 
-            if (empresa.Equals("Sevilla"))
-            {
+                if (empresa.Equals("Sevilla"))
+                {
+               
+                    if (conexionWifi && Preferencias.listSSIDSevilla.ToArray().Contains(SSID))
+                    {
+                        resultado = Helpers.Preferencias.getUrlLocalSevilla();
+                        UrlToken = @"http://192.168.1.2/WSTRH/Token";
+                    }
+                    else 
+                    {
+                        resultado = Helpers.Preferencias.getUrlPublicaSevilla();
+                        UrlToken = @"http://intranet.trh-es.com/WSTRH/Token";
+                    }
                 
-                if (conexionWifi && Preferencias.listSSIDSevilla.ToArray().Contains(SSID))
-                {
-                    resultado = Helpers.Preferencias.getUrlLocalSevilla();
-                    UrlToken = @"http://192.168.1.2/WSTRH/Token";
+                
                 }
-                else
-                {
-                    resultado = Helpers.Preferencias.getUrlPublicaSevilla();
-                    UrlToken = @"http://intranet.trh-es.com/WSTRH/Token";
-                }
-            }
-
+            
             return resultado;
         }
 
@@ -359,6 +387,53 @@ namespace AlmacenRepuestosXamarin.Data
             
             return null;
         }
+
+
+        //INICIO NUEVO SISTEMA DE INSERT, DELETE Y UPDATE DE REPUESTOS
+        public async Task<Boolean> insertarRepuesto(string codEmpleado, string codRepuesto, decimal cantidad, int maquina, int destino)
+        {
+            //HostWebService _hostWebService = new HostWebService(;
+            try
+            {
+                repository.insertRepuesto(codEmpleado, codRepuesto, cantidad, maquina, destino);
+                return true;
+            } catch (Exception e)
+            {
+                throw new Exception("Se ha producido una excipcion no controlada", e.InnerException);
+                return false;
+            }
+
+        }
+
+        public async Task<Boolean> actualizarRepuesto(string codEmpleado, string codRepuesto, decimal cantidad, int maquina, int destino)
+        {
+            try
+            {
+                repository.updateRepuesto(codEmpleado, codRepuesto, cantidad, maquina, destino);
+                return true;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Se ha producido una excipcion no controlada", e.InnerException);
+                return false;
+            }
+        }
+
+        public async Task<Boolean> eliminarRepuesto(string codProducto, string codEmpleado)
+        {
+            try
+            {
+                repository.deleteRepuesto(codProducto, codEmpleado);
+                return true;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Se ha producido una excipcion no controlada", e.InnerException);
+                return false;
+            }
+        }
+
+        //FIN NUEVO SISTEMA DE INSERT, DELETE Y UPDATE DE REPUESTOS
 
         public async Task<EntregaAlmacen> addRepuesto(string codEmpleado,string codRepuesto) {
 
@@ -389,10 +464,9 @@ namespace AlmacenRepuestosXamarin.Data
 
         public async Task<EntregaAlmacen> updateRepuesto( EntregaAlmacen repuesto) {
 
-
             try
             {
-
+                
                 client = initClient();
                 var contentPost = new StringContent("", Encoding.UTF8, "application/json");
                 string url = string.Format(@"api/EntregaAlmacen?key={0}&cantidad={1}&destino={2}&maquina={3}"
@@ -437,7 +511,7 @@ namespace AlmacenRepuestosXamarin.Data
 
         public async Task<string> registerEntrega(string codEmpleado) {
 
-
+            
             string codDocumento = string.Empty;
             try
             {
@@ -470,7 +544,7 @@ namespace AlmacenRepuestosXamarin.Data
 
             try
             {
-
+                
 
                 client = initClient();
                 string url = string.Format(@"api/EntregaAlmacen?codDocumento={0}", codDocumento);
@@ -539,7 +613,7 @@ namespace AlmacenRepuestosXamarin.Data
                     client = new HttpClient(new NativeMessageHandler())
                     {
                         // BaseAddress = new Uri(webBase)
-                        BaseAddress = new Uri(getDatosConexionEmpresa(Preferencias.getEmpresaLiege()))
+                        BaseAddress = new System.Uri(getDatosConexionEmpresa(Preferencias.getEmpresaLiege()))
                     };
 
                 }
@@ -547,7 +621,7 @@ namespace AlmacenRepuestosXamarin.Data
                     client = new HttpClient(new NativeMessageHandler())
                     {
                         // BaseAddress = new Uri(webBase)
-                        BaseAddress = new Uri(getDatosConexionEmpresa(Preferencias.getEmpresaSevilla()))
+                        BaseAddress = new System.Uri(getDatosConexionEmpresa(Preferencias.getEmpresaSevilla()))
                     };
 
                 }
@@ -604,81 +678,6 @@ namespace AlmacenRepuestosXamarin.Data
             return null;
         }
 
-
-        //public async Task SubmitFormViaPOST(string serverUrl,
-        //    string fileControlName,
-        //    string filePath,
-        //    string fileContentType,
-        //    NameValueCollection formData,
-        //    CancellationToken cancellationToken)
-        //{
-        //    FileInfo fileInfo = new FileInfo(filePath);
-        //    Uri RequestUri = new Uri(serverUrl);
-
-        //    using (var multiPartContent = new MultipartFormDataContent("---------------------------" + DateTime.Now.Ticks.ToString("x")))
-        //    {
-        //        #region Build Request Content
-
-        //        foreach (string key in formData)
-        //        {
-        //            multiPartContent.Add(new StringContent(formData[key]), key);
-        //        }
-
-        //        FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
-        //        StreamContent streamContent = new StreamContent(fileStream);
-        //        multiPartContent.Add(streamContent, fileControlName, filePath);
-        //        streamContent.Headers.ContentType = new MediaTypeHeaderValue(fileContentType);
-
-        //        #endregion
-
-        //        #region creates HttpRequestMessage object
-
-        //        HttpRequestMessage httpRequest = new HttpRequestMessage();
-        //        httpRequest.Method = HttpMethod.Post;
-        //        httpRequest.RequestUri = RequestUri;
-        //        httpRequest.Content = multiPartContent;
-
-        //        #endregion
-
-        //        #region Send the request and process response
-        //        // Send Request
-
-        //        HttpResponseMessage httpResponse = null;
-        //        try
-        //        {
-        //            cancellationToken.ThrowIfCancellationRequested();
-
-        //            HttpClient httpClient = new HttpClient();
-        //            httpClient.Timeout = TimeSpan.FromSeconds(300);
-        //            httpResponse = await httpClient.
-        //                SendAsync(httpRequest, cancellationToken).ConfigureAwait(false);
-
-        //            HttpStatusCode statusCode = httpResponse.StatusCode;
-        //            if (statusCode != HttpStatusCode.OK)
-        //            {
-        //                string errorResponse =
-        //                    await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
-
-        //                throw new Exception(errorResponse);
-        //            }
-        //        }
-        //        finally
-        //        {
-        //            if (httpResponse != null)
-        //            {
-        //                httpResponse.Dispose();
-        //            }
-        //        }
-
-        //        #endregion
-        //    }
-        //}
-
-
-
-
-
-
         public async Task<bool> UploadBitmapAsync(  String empresa,Java.IO.File fichero, String codPedido, bool small)
         {
            
@@ -733,7 +732,7 @@ namespace AlmacenRepuestosXamarin.Data
                 client = new HttpClient(new NativeMessageHandler())
                 {
                     // BaseAddress = new Uri(webBase)
-                    BaseAddress = new Uri(getDatosConexionEmpresa(Preferencias.getEmpresaLiege()))
+                    BaseAddress = new System.Uri(getDatosConexionEmpresa(Preferencias.getEmpresaLiege()))
                 };
 
             }
@@ -742,7 +741,7 @@ namespace AlmacenRepuestosXamarin.Data
                 client = new HttpClient(new NativeMessageHandler())
                 {
                     // BaseAddress = new Uri(webBase)
-                    BaseAddress = new Uri(getDatosConexionEmpresa(Preferencias.getEmpresaSevilla()))
+                    BaseAddress = new System.Uri(getDatosConexionEmpresa(Preferencias.getEmpresaSevilla()))
                 };
 
             }

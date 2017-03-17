@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ModelDataTRH.Proyectos
 {
-    class Matriculas
+    public class Matriculas
     {
         
     }

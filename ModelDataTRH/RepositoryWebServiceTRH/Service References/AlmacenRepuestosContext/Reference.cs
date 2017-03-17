@@ -28,6 +28,27 @@ namespace RepositoryWebServiceTRH.AlmacenRepuestosContext {
         
         [System.ServiceModel.OperationContractAttribute(Action="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos:GetAlbaran", ReplyAction="*")]
         System.Threading.Tasks.Task<RepositoryWebServiceTRH.AlmacenRepuestosContext.GetAlbaran_Result> GetAlbaranAsync(RepositoryWebServiceTRH.AlmacenRepuestosContext.GetAlbaran request);
+        
+        // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de contenedor (InsertRepuesto_Result) del mensaje InsertRepuesto_Result no coincide con el valor predeterminado (InsertRepuesto)
+        [System.ServiceModel.OperationContractAttribute(Action="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos:InsertRepuesto", ReplyAction="*")]
+        RepositoryWebServiceTRH.AlmacenRepuestosContext.InsertRepuesto_Result InsertRepuesto(RepositoryWebServiceTRH.AlmacenRepuestosContext.InsertRepuesto request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos:InsertRepuesto", ReplyAction="*")]
+        System.Threading.Tasks.Task<RepositoryWebServiceTRH.AlmacenRepuestosContext.InsertRepuesto_Result> InsertRepuestoAsync(RepositoryWebServiceTRH.AlmacenRepuestosContext.InsertRepuesto request);
+        
+        // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de contenedor (UpdateRepuesto_Result) del mensaje UpdateRepuesto_Result no coincide con el valor predeterminado (UpdateRepuesto)
+        [System.ServiceModel.OperationContractAttribute(Action="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos:UpdateRepuesto", ReplyAction="*")]
+        RepositoryWebServiceTRH.AlmacenRepuestosContext.UpdateRepuesto_Result UpdateRepuesto(RepositoryWebServiceTRH.AlmacenRepuestosContext.UpdateRepuesto request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos:UpdateRepuesto", ReplyAction="*")]
+        System.Threading.Tasks.Task<RepositoryWebServiceTRH.AlmacenRepuestosContext.UpdateRepuesto_Result> UpdateRepuestoAsync(RepositoryWebServiceTRH.AlmacenRepuestosContext.UpdateRepuesto request);
+        
+        // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de contenedor (DeleteRepuesto_Result) del mensaje DeleteRepuesto_Result no coincide con el valor predeterminado (DeleteRepuesto)
+        [System.ServiceModel.OperationContractAttribute(Action="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos:DeleteRepuesto", ReplyAction="*")]
+        RepositoryWebServiceTRH.AlmacenRepuestosContext.DeleteRepuesto_Result DeleteRepuesto(RepositoryWebServiceTRH.AlmacenRepuestosContext.DeleteRepuesto request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos:DeleteRepuesto", ReplyAction="*")]
+        System.Threading.Tasks.Task<RepositoryWebServiceTRH.AlmacenRepuestosContext.DeleteRepuesto_Result> DeleteRepuestoAsync(RepositoryWebServiceTRH.AlmacenRepuestosContext.DeleteRepuesto request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -95,6 +116,123 @@ namespace RepositoryWebServiceTRH.AlmacenRepuestosContext {
         
         public GetAlbaran_Result(string return_value) {
             this.return_value = return_value;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="InsertRepuesto", WrapperNamespace="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos", IsWrapped=true)]
+    public partial class InsertRepuesto {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos", Order=0)]
+        public string codEmpleado;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos", Order=1)]
+        public string codRepuesto;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos", Order=2)]
+        public decimal cantidad;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos", Order=3)]
+        public int maquina;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos", Order=4)]
+        public int destino;
+        
+        public InsertRepuesto() {
+        }
+        
+        public InsertRepuesto(string codEmpleado, string codRepuesto, decimal cantidad, int maquina, int destino) {
+            this.codEmpleado = codEmpleado;
+            this.codRepuesto = codRepuesto;
+            this.cantidad = cantidad;
+            this.maquina = maquina;
+            this.destino = destino;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="InsertRepuesto_Result", WrapperNamespace="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos", IsWrapped=true)]
+    public partial class InsertRepuesto_Result {
+        
+        public InsertRepuesto_Result() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="UpdateRepuesto", WrapperNamespace="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos", IsWrapped=true)]
+    public partial class UpdateRepuesto {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos", Order=0)]
+        public string codEmpleado;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos", Order=1)]
+        public string codRepuesto;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos", Order=2)]
+        public decimal cantidad;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos", Order=3)]
+        public int maquina;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos", Order=4)]
+        public int destino;
+        
+        public UpdateRepuesto() {
+        }
+        
+        public UpdateRepuesto(string codEmpleado, string codRepuesto, decimal cantidad, int maquina, int destino) {
+            this.codEmpleado = codEmpleado;
+            this.codRepuesto = codRepuesto;
+            this.cantidad = cantidad;
+            this.maquina = maquina;
+            this.destino = destino;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="UpdateRepuesto_Result", WrapperNamespace="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos", IsWrapped=true)]
+    public partial class UpdateRepuesto_Result {
+        
+        public UpdateRepuesto_Result() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="DeleteRepuesto", WrapperNamespace="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos", IsWrapped=true)]
+    public partial class DeleteRepuesto {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos", Order=0)]
+        public string codProducto;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos", Order=1)]
+        public string codEmpleado;
+        
+        public DeleteRepuesto() {
+        }
+        
+        public DeleteRepuesto(string codProducto, string codEmpleado) {
+            this.codProducto = codProducto;
+            this.codEmpleado = codEmpleado;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="DeleteRepuesto_Result", WrapperNamespace="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos", IsWrapped=true)]
+    public partial class DeleteRepuesto_Result {
+        
+        public DeleteRepuesto_Result() {
         }
     }
     
@@ -169,6 +307,90 @@ namespace RepositoryWebServiceTRH.AlmacenRepuestosContext {
             RepositoryWebServiceTRH.AlmacenRepuestosContext.GetAlbaran inValue = new RepositoryWebServiceTRH.AlmacenRepuestosContext.GetAlbaran();
             inValue.codDocumento = codDocumento;
             return ((RepositoryWebServiceTRH.AlmacenRepuestosContext.AlmacenRepuestos_Port)(this)).GetAlbaranAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        RepositoryWebServiceTRH.AlmacenRepuestosContext.InsertRepuesto_Result RepositoryWebServiceTRH.AlmacenRepuestosContext.AlmacenRepuestos_Port.InsertRepuesto(RepositoryWebServiceTRH.AlmacenRepuestosContext.InsertRepuesto request) {
+            return base.Channel.InsertRepuesto(request);
+        }
+        
+        public void InsertRepuesto(string codEmpleado, string codRepuesto, decimal cantidad, int maquina, int destino) {
+            RepositoryWebServiceTRH.AlmacenRepuestosContext.InsertRepuesto inValue = new RepositoryWebServiceTRH.AlmacenRepuestosContext.InsertRepuesto();
+            inValue.codEmpleado = codEmpleado;
+            inValue.codRepuesto = codRepuesto;
+            inValue.cantidad = cantidad;
+            inValue.maquina = maquina;
+            inValue.destino = destino;
+            RepositoryWebServiceTRH.AlmacenRepuestosContext.InsertRepuesto_Result retVal = ((RepositoryWebServiceTRH.AlmacenRepuestosContext.AlmacenRepuestos_Port)(this)).InsertRepuesto(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<RepositoryWebServiceTRH.AlmacenRepuestosContext.InsertRepuesto_Result> RepositoryWebServiceTRH.AlmacenRepuestosContext.AlmacenRepuestos_Port.InsertRepuestoAsync(RepositoryWebServiceTRH.AlmacenRepuestosContext.InsertRepuesto request) {
+            return base.Channel.InsertRepuestoAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<RepositoryWebServiceTRH.AlmacenRepuestosContext.InsertRepuesto_Result> InsertRepuestoAsync(string codEmpleado, string codRepuesto, decimal cantidad, int maquina, int destino) {
+            RepositoryWebServiceTRH.AlmacenRepuestosContext.InsertRepuesto inValue = new RepositoryWebServiceTRH.AlmacenRepuestosContext.InsertRepuesto();
+            inValue.codEmpleado = codEmpleado;
+            inValue.codRepuesto = codRepuesto;
+            inValue.cantidad = cantidad;
+            inValue.maquina = maquina;
+            inValue.destino = destino;
+            return ((RepositoryWebServiceTRH.AlmacenRepuestosContext.AlmacenRepuestos_Port)(this)).InsertRepuestoAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        RepositoryWebServiceTRH.AlmacenRepuestosContext.UpdateRepuesto_Result RepositoryWebServiceTRH.AlmacenRepuestosContext.AlmacenRepuestos_Port.UpdateRepuesto(RepositoryWebServiceTRH.AlmacenRepuestosContext.UpdateRepuesto request) {
+            return base.Channel.UpdateRepuesto(request);
+        }
+        
+        public void UpdateRepuesto(string codEmpleado, string codRepuesto, decimal cantidad, int maquina, int destino) {
+            RepositoryWebServiceTRH.AlmacenRepuestosContext.UpdateRepuesto inValue = new RepositoryWebServiceTRH.AlmacenRepuestosContext.UpdateRepuesto();
+            inValue.codEmpleado = codEmpleado;
+            inValue.codRepuesto = codRepuesto;
+            inValue.cantidad = cantidad;
+            inValue.maquina = maquina;
+            inValue.destino = destino;
+            RepositoryWebServiceTRH.AlmacenRepuestosContext.UpdateRepuesto_Result retVal = ((RepositoryWebServiceTRH.AlmacenRepuestosContext.AlmacenRepuestos_Port)(this)).UpdateRepuesto(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<RepositoryWebServiceTRH.AlmacenRepuestosContext.UpdateRepuesto_Result> RepositoryWebServiceTRH.AlmacenRepuestosContext.AlmacenRepuestos_Port.UpdateRepuestoAsync(RepositoryWebServiceTRH.AlmacenRepuestosContext.UpdateRepuesto request) {
+            return base.Channel.UpdateRepuestoAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<RepositoryWebServiceTRH.AlmacenRepuestosContext.UpdateRepuesto_Result> UpdateRepuestoAsync(string codEmpleado, string codRepuesto, decimal cantidad, int maquina, int destino) {
+            RepositoryWebServiceTRH.AlmacenRepuestosContext.UpdateRepuesto inValue = new RepositoryWebServiceTRH.AlmacenRepuestosContext.UpdateRepuesto();
+            inValue.codEmpleado = codEmpleado;
+            inValue.codRepuesto = codRepuesto;
+            inValue.cantidad = cantidad;
+            inValue.maquina = maquina;
+            inValue.destino = destino;
+            return ((RepositoryWebServiceTRH.AlmacenRepuestosContext.AlmacenRepuestos_Port)(this)).UpdateRepuestoAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        RepositoryWebServiceTRH.AlmacenRepuestosContext.DeleteRepuesto_Result RepositoryWebServiceTRH.AlmacenRepuestosContext.AlmacenRepuestos_Port.DeleteRepuesto(RepositoryWebServiceTRH.AlmacenRepuestosContext.DeleteRepuesto request) {
+            return base.Channel.DeleteRepuesto(request);
+        }
+        
+        public void DeleteRepuesto(string codProducto, string codEmpleado) {
+            RepositoryWebServiceTRH.AlmacenRepuestosContext.DeleteRepuesto inValue = new RepositoryWebServiceTRH.AlmacenRepuestosContext.DeleteRepuesto();
+            inValue.codProducto = codProducto;
+            inValue.codEmpleado = codEmpleado;
+            RepositoryWebServiceTRH.AlmacenRepuestosContext.DeleteRepuesto_Result retVal = ((RepositoryWebServiceTRH.AlmacenRepuestosContext.AlmacenRepuestos_Port)(this)).DeleteRepuesto(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<RepositoryWebServiceTRH.AlmacenRepuestosContext.DeleteRepuesto_Result> RepositoryWebServiceTRH.AlmacenRepuestosContext.AlmacenRepuestos_Port.DeleteRepuestoAsync(RepositoryWebServiceTRH.AlmacenRepuestosContext.DeleteRepuesto request) {
+            return base.Channel.DeleteRepuestoAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<RepositoryWebServiceTRH.AlmacenRepuestosContext.DeleteRepuesto_Result> DeleteRepuestoAsync(string codProducto, string codEmpleado) {
+            RepositoryWebServiceTRH.AlmacenRepuestosContext.DeleteRepuesto inValue = new RepositoryWebServiceTRH.AlmacenRepuestosContext.DeleteRepuesto();
+            inValue.codProducto = codProducto;
+            inValue.codEmpleado = codEmpleado;
+            return ((RepositoryWebServiceTRH.AlmacenRepuestosContext.AlmacenRepuestos_Port)(this)).DeleteRepuestoAsync(inValue);
         }
     }
 }

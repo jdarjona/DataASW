@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AlmacenRepuestosXamarin.Adapter;
+using AlmacenRepuestosXamarin.Data;
 using AlmacenRepuestosXamarin.Model;
 using Android.App;
 using Android.Content;
@@ -168,57 +169,82 @@ namespace AlmacenRepuestosXamarin.Fragments
         }
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            switch (item.ItemId)
+            if (AccesoDatos.estadoConexion())
             {
-                case Resource.Id.eliminar:
+                switch (item.ItemId)
+                {
+                    case Resource.Id.eliminar:
 
-                    eliminarRepuesto();
-                    //ManagerRepuestos.eliminarRepuesto(repuesto.Key);
+                        eliminarRepuesto();
+                        //ManagerRepuestos.eliminarRepuesto(repuesto.Key);
 
-                    //Toast.MakeText(this, "Se eliminó el repuesto " + repuesto.Cod_Producto + " de la lista", ToastLength.Short).Show();
-                    //Finish();
-                    break;
+                        //Toast.MakeText(this, "Se eliminó el repuesto " + repuesto.Cod_Producto + " de la lista", ToastLength.Short).Show();
+                        //Finish();
+                        break;
 
-                default:
-                    
+                    default:
 
-                    break;
+
+                        break;
+                }
+            }
+            else {
+                Toast.MakeText(Application.Context, "SIN CONEXION", ToastLength.Long).Show();
             }
             return base.OnOptionsItemSelected(item);
         }
         public void PopBackStack() {
-            validar();
+            if (AccesoDatos.estadoConexion())
+            {
+                validar();
+            }
+            else {
+                Toast.MakeText(this.Activity, "SIN CONEXION", ToastLength.Long).Show();
+            }
         }
         private async void OnClik_btoAceptar(object sender, EventArgs e)
         {
 
             var _btoAceptar = (Button)sender;
-            if (validar())
+            if (AccesoDatos.estadoConexion())
             {
-                progressLayout.Visibility = ViewStates.Visible;
-                repuesto = await ManagerRepuestos.updateRepuesto(repuesto);
-                progressLayout.Visibility = ViewStates.Gone;
+                if (validar())
+                {
+                    progressLayout.Visibility = ViewStates.Visible;
+                    repuesto = await ManagerRepuestos.updateRepuesto(repuesto);
+                    progressLayout.Visibility = ViewStates.Gone;
 
-               
 
-                FragmentManager.PopBackStack();
+
+                    FragmentManager.PopBackStack();
+                }
+                else
+                {
+
+                    _btoAceptar.SetError("Introduza una cantidad antes de aceptar", warning);
+                }
             }
-            else
-            {
-
-                _btoAceptar.SetError("Introduza una cantidad antes de aceptar", warning);
+            else {
+                Toast.MakeText(this.Activity, "SIN CONEXION", ToastLength.Long).Show();
             }
 
         }
         private async Task<bool> eliminarRepuesto()
         {
-            await ManagerRepuestos.eliminarRepuesto(repuesto.Key);
+            if (AccesoDatos.estadoConexion())
+            {
+                await ManagerRepuestos.eliminarRepuesto(repuesto.Key);
 
-            Toast.MakeText(this.Activity, "Se eliminó el repuesto " + repuesto.Cod_Producto + " de la lista", ToastLength.Short).Show();
-            //Finish();
-            FragmentManager.PopBackStack();
+                Toast.MakeText(this.Activity, "Se eliminó el repuesto " + repuesto.Cod_Producto + " de la lista", ToastLength.Short).Show();
+                //Finish();
+                FragmentManager.PopBackStack();
 
-            return true;
+                return true;
+            }else
+            {
+                Toast.MakeText(this.Activity, "SIN CONEXION", ToastLength.Long).Show();
+                return false;
+            }
 
         }
         private void spinner_OnFocus() { }

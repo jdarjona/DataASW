@@ -18,6 +18,7 @@ using Firebase;
 using Java.Interop;
 using Dalvik;
 using Newtonsoft.Json;
+using Android.Net;
 
 namespace AlmacenRepuestosXamarin.Activities
 {
@@ -35,7 +36,8 @@ namespace AlmacenRepuestosXamarin.Activities
         public static readonly string[] empresas = { "Sevilla", "Liege" };
         public static string comercial = "V005";
         AccesoDatos ad;
-
+       // public static NetworkInfo networkInfo;
+        ConnectivityManager connectivityManager;
 
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -84,38 +86,52 @@ namespace AlmacenRepuestosXamarin.Activities
             
 
         }
-
+        //public void estadoConexion()
+        //{
+        //    ConnectivityManager connectivityManager = (ConnectivityManager)GetSystemService(ConnectivityService);
+        //    NetworkInfo networkInfo = connectivityManager.ActiveNetworkInfo;
+        //    bool isOnline = networkInfo.IsConnected;
+        //    bool isWifi = networkInfo.Type == ConnectivityType.Wifi;
+        //    bool roaming = networkInfo.IsRoaming;   
+        //}
 
         public void btnOneClick(View v)
         {
-            ad = new AccesoDatos();
-            button.Enabled = false;
-            usuario.Enabled = false;
-            password.Enabled = false;
-            spinner.Enabled = false;
-            string user =  usuario.Text;
-            string pass =  password.Text;
-            
-            if (usuario.Equals(string.Empty) || pass.Equals(string.Empty))
+            if (AccesoDatos.estadoConexion())
             {
-                button.Enabled = true;
-                usuario.Enabled = true;
-                password.Enabled = true;
-                spinner.Enabled = true;
-                Toast.MakeText(this, "Introduzca Usuario y Contraseña!!", ToastLength.Long).Show();
+                ad = new AccesoDatos();
+
+                button.Enabled = false;
+                usuario.Enabled = false;
+                password.Enabled = false;
+                spinner.Enabled = false;
+                string user = usuario.Text;
+                string pass = password.Text;
+
+                if (usuario.Equals(string.Empty) || pass.Equals(string.Empty))
+                {
+                    button.Enabled = true;
+                    usuario.Enabled = true;
+                    password.Enabled = true;
+                    spinner.Enabled = true;
+                    Toast.MakeText(this, "Introduzca Usuario y Contraseña!!", ToastLength.Long).Show();
+                }
+                else
+                {
+                    progressLayout.Visibility = ViewStates.Visible;
+                    getDatosLogin(user, pass, empresaSeleccionada);
+                }
             }
-            else
-            {
-                progressLayout.Visibility = ViewStates.Visible;
-                getDatosLogin(user, pass, empresaSeleccionada);                
-            }    
+            else {
+                Toast.MakeText(this, "SIN CONEXION", ToastLength.Long).Show();
+            }
         }
 
         private async void getDatosLogin(string user, string pass, string empresaSeleccionada)
         {
             
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(AccesoDatos.UrlToken);
+            client.BaseAddress = new System.Uri(AccesoDatos.UrlToken);
             string contenido = string.Format("grant_type=password&username={0}&password={1}", user, pass);
             HttpResponseMessage response =
               client.PostAsync("Token", new StringContent(contenido, Encoding.UTF8,

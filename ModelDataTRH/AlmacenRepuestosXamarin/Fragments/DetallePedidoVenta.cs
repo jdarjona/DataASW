@@ -29,13 +29,11 @@ namespace AlmacenRepuestosXamarin.Fragments
         {
             base.OnCreate(savedInstanceState);
             this.HasOptionsMenu = true;
-            // Create your fragment here
+
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            // Use this to return your custom view for this Fragment
-            // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
 
             var olderView= base.OnCreateView(inflater, container, savedInstanceState);
             view = inflater.Inflate(Resource.Layout.DetallePedidoVentaLayout, null);
@@ -45,61 +43,50 @@ namespace AlmacenRepuestosXamarin.Fragments
 
             fillDetallePedidoVenta();
 
-            ////OBTENER CONEXION WIFI O LOCAL
-            //WifiManager wifiManager = (WifiManager)this.Context.GetSystemService(Service.WifiService);
-            //int ip = wifiManager.ConnectionInfo.IpAddress;
-            //string SSID = wifiManager.ConnectionInfo.SSID;
-            //string conexionWifi = string.Empty;
-
-            //if (wifiManager.IsWifiEnabled)
-            //{
-            //    conexionWifi = "Activada";
-            //}
-            //else
-            //{
-            //    conexionWifi = "Desactivada";
-            //}
-            //Toast.MakeText(this.Activity, "Conexión Wifi: "+conexionWifi+" IP: " + ip + " SSID: " + SSID, ToastLength.Short).Show();
-            ////FIN OBTENER WIFI O LACAL
             return view;
         }
 
         private async void fillDetallePedidoVenta()
         {
-
-
-            progressLayout.Visibility = ViewStates.Visible;
-            string codPedido = string.Empty;
-            Bundle bundle = this.Arguments;
-            if (bundle != null)
+            if (AccesoDatos.estadoConexion())
             {
-                codPedido = bundle.GetString("codPedido");
-            }
-            var pedidoVenta = await datos.getPedidoVenta(codPedido);
 
-            if (pedidoVenta != null)
-            {
-                AppCompatActivity activity = (AppCompatActivity)this.Activity;
+                progressLayout.Visibility = ViewStates.Visible;
+                string codPedido = string.Empty;
+                Bundle bundle = this.Arguments;
+                if (bundle != null)
+                {
+                    codPedido = bundle.GetString("codPedido");
+                }
+                var pedidoVenta = await datos.getPedidoVenta(codPedido);
 
-                activity.SupportActionBar.Title = pedidoVenta.sell_to_Customer_NameField;
-                var tmTotal = pedidoVenta.salesLinesField.Sum(q => q.cantidad_KGField / 1000).ToString("N0");
-                var importeTotal = pedidoVenta.salesLinesField.Sum(q => q.precioLineaTotalField).ToString("N2");
+                if (pedidoVenta != null)
+                {
+                    AppCompatActivity activity = (AppCompatActivity)this.Activity;
 
-                activity.SupportActionBar.Subtitle = string.Format("{0} Tm - {1} €",tmTotal,importeTotal);
+                    activity.SupportActionBar.Title = pedidoVenta.sell_to_Customer_NameField;
+                    var tmTotal = pedidoVenta.salesLinesField.Sum(q => q.cantidad_KGField / 1000).ToString("N0");
+                    var importeTotal = pedidoVenta.salesLinesField.Sum(q => q.precioLineaTotalField).ToString("N2");
+
+                    activity.SupportActionBar.Subtitle = string.Format("{0} Tm - {1} €", tmTotal, importeTotal);
 
 
-                listViewDetallePedidoVenta = (ListView)view.FindViewById(Resource.Id.listViewDetallePedidoVenta);
-                adapterDetallePedidoVenta = new AdapterDetallePedidoVenta(this.Activity, pedidoVenta.salesLinesField.ToList());
-                listViewDetallePedidoVenta.Adapter = adapterDetallePedidoVenta;
-                progressLayout.Visibility = ViewStates.Gone;
+                    listViewDetallePedidoVenta = (ListView)view.FindViewById(Resource.Id.listViewDetallePedidoVenta);
+                    adapterDetallePedidoVenta = new AdapterDetallePedidoVenta(this.Activity, pedidoVenta.salesLinesField.ToList());
+                    listViewDetallePedidoVenta.Adapter = adapterDetallePedidoVenta;
+                    progressLayout.Visibility = ViewStates.Gone;
+                }
+                else
+                {
+                    progressLayout.Visibility = ViewStates.Gone;
+                    Toast.MakeText(this.Activity, "Sin información del pedido seleccionado.", ToastLength.Short).Show();
+                    FragmentManager.PopBackStack();
+                }
+
             }
             else {
-                progressLayout.Visibility = ViewStates.Gone;
-                Toast.MakeText(this.Activity, "Sin información del pedido seleccionado.", ToastLength.Short).Show();
-                FragmentManager.PopBackStack();
+                Toast.MakeText(Application.Context, "SIN CONEXION", ToastLength.Long).Show();
             }
-
-            
 
         }
 

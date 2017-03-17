@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ModelDataTRH.Proyectos
 {
-    class Item
+    public class Item
     {
         public bool AENOR { get; set; }
         public bool AENORSpecified { get; set; }

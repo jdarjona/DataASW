@@ -30,6 +30,51 @@
           </sequence>
         </complexType>
       </element>
+      <element name="InsertRepuesto">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codEmpleado" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="codRepuesto" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="cantidad" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="maquina" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="destino" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="InsertRepuesto_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="UpdateRepuesto">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codEmpleado" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="codRepuesto" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="cantidad" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="maquina" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="destino" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateRepuesto_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="DeleteRepuesto">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="codProducto" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="codEmpleado" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="DeleteRepuesto_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
     </schema>
   </types>
   <message name="RegistrarEntrega">
@@ -44,6 +89,24 @@
   <message name="GetAlbaran_Result">
     <part name="parameters" element="tns:GetAlbaran_Result" />
   </message>
+  <message name="InsertRepuesto">
+    <part name="parameters" element="tns:InsertRepuesto" />
+  </message>
+  <message name="InsertRepuesto_Result">
+    <part name="parameters" element="tns:InsertRepuesto_Result" />
+  </message>
+  <message name="UpdateRepuesto">
+    <part name="parameters" element="tns:UpdateRepuesto" />
+  </message>
+  <message name="UpdateRepuesto_Result">
+    <part name="parameters" element="tns:UpdateRepuesto_Result" />
+  </message>
+  <message name="DeleteRepuesto">
+    <part name="parameters" element="tns:DeleteRepuesto" />
+  </message>
+  <message name="DeleteRepuesto_Result">
+    <part name="parameters" element="tns:DeleteRepuesto_Result" />
+  </message>
   <portType name="AlmacenRepuestos_Port">
     <operation name="RegistrarEntrega">
       <input name="RegistrarEntrega" message="tns:RegistrarEntrega" />
@@ -52,6 +115,18 @@
     <operation name="GetAlbaran">
       <input name="GetAlbaran" message="tns:GetAlbaran" />
       <output name="GetAlbaran_Result" message="tns:GetAlbaran_Result" />
+    </operation>
+    <operation name="InsertRepuesto">
+      <input name="InsertRepuesto" message="tns:InsertRepuesto" />
+      <output name="InsertRepuesto_Result" message="tns:InsertRepuesto_Result" />
+    </operation>
+    <operation name="UpdateRepuesto">
+      <input name="UpdateRepuesto" message="tns:UpdateRepuesto" />
+      <output name="UpdateRepuesto_Result" message="tns:UpdateRepuesto_Result" />
+    </operation>
+    <operation name="DeleteRepuesto">
+      <input name="DeleteRepuesto" message="tns:DeleteRepuesto" />
+      <output name="DeleteRepuesto_Result" message="tns:DeleteRepuesto_Result" />
     </operation>
   </portType>
   <binding name="AlmacenRepuestos_Binding" type="tns:AlmacenRepuestos_Port">
@@ -71,6 +146,33 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </input>
       <output name="GetAlbaran_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="InsertRepuesto">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos:InsertRepuesto" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="InsertRepuesto">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="InsertRepuesto_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="UpdateRepuesto">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos:UpdateRepuesto" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="UpdateRepuesto">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="UpdateRepuesto_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="DeleteRepuesto">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/AlmacenRepuestos:DeleteRepuesto" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="DeleteRepuesto">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="DeleteRepuesto_Result">
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>

@@ -40,7 +40,7 @@ namespace AlmacenRepuestosXamarin.Activities
         private List<PedidoFireBase> listPedidosFirebase = new List<PedidoFireBase>();
 
         private static readonly string[] Sections = new[] {
-             "Monitor Carga", "Sinóptico" ,"App Almacen","Ventas"//, "Configuracion" --> GENERAL
+             "Monitor Carga", "Sinóptico" ,"App Almacen" //, "Ventas"//, "Configuracion" --> GENERAL
            //"Sinóptico","App Almacen","Monitor Carga"  //--> PAYO
         };
 
@@ -116,13 +116,11 @@ namespace AlmacenRepuestosXamarin.Activities
                 ListItemClicked(0);
             }
 
-            //init 
             var options = new Firebase.FirebaseOptions.Builder()
             .SetApplicationId("flickering-fire-4088")
             .SetApiKey("AIzaSyCk8jsVE-UGCN1I2JiXvOp0CizGFNFgAZM")
             .SetDatabaseUrl("https://flickering-fire-4088.firebaseio.com")
-        //.SetGcmSenderId("Firebase-Sender-Id")
-        .Build();
+            .Build();
 
             firebaseApp = FirebaseApp.Instance;
             if (firebaseApp == null)
@@ -132,19 +130,13 @@ namespace AlmacenRepuestosXamarin.Activities
                 
             }
 
-
             database = FirebaseDatabase.GetInstance(firebaseApp);
-
-
-            initFirebase();
-             
+            initFirebase();             
         }
 
         protected override void OnStop()
         {
-            base.OnStop();
-
-           
+            base.OnStop();          
         }
 
         private async void initFirebase() {
@@ -213,34 +205,64 @@ namespace AlmacenRepuestosXamarin.Activities
             {
 
                 case 0:
-                    fragment = new ListadoMonitorizacion();
-                    SupportFragmentManager.BeginTransaction()
-                           .Replace(Resource.Id.content_frame, fragment)
-                           .Commit();
+                    if (AccesoDatos.estadoConexion())
+                    {
+                        fragment = new ListadoMonitorizacion();
+                        SupportFragmentManager.BeginTransaction()
+                               .Replace(Resource.Id.content_frame, fragment)
+                               .Commit();
+                    }
+                    else
+                    {
+                        Toast.MakeText(this, "SIN CONEXION", ToastLength.Long).Show();
+                    }
                     break;
                 case 1:
-
-                    fragment = new SlidingTabsFragment();
-                    SupportFragmentManager.BeginTransaction()
-                          .Replace(Resource.Id.content_frame, fragment)
-                          .Commit();
+                    if (AccesoDatos.estadoConexion())
+                    {
+                        fragment = new SlidingTabsFragment();
+                        SupportFragmentManager.BeginTransaction()
+                              .Replace(Resource.Id.content_frame, fragment)
+                              .Commit();
+                    }
+                    else
+                    {
+                        Toast.MakeText(this, "SIN CONEXION", ToastLength.Long).Show();
+                    }
                     break;
                 case 2:
-                    SupportActionBar.Title = this.title = Sections[position];
-                    fragment = new BuscadorEmpleados();
-                    SupportFragmentManager.BeginTransaction()
-                       .Replace(Resource.Id.content_frame, fragment)
-                       .Commit();
+                    if (AccesoDatos.estadoConexion())
+                    {
+                        SupportActionBar.Title = this.title = Sections[position];
+                        fragment = new BuscadorEmpleados();
+                        SupportFragmentManager.BeginTransaction()
+                           .Replace(Resource.Id.content_frame, fragment)
+                           .Commit();
+                    }else
+                    {
+                        Toast.MakeText(this, "SIN CONEXION", ToastLength.Long).Show();
+                    }
                     break;
                 case 3:
-                    var actityVentas = new Intent(this, typeof(VentasActivity));
-                    StartActivity(actityVentas);
-
+                    if (AccesoDatos.estadoConexion())
+                    {
+                        var actityVentas = new Intent(this, typeof(VentasActivity));
+                        StartActivity(actityVentas);
+                    }else
+                    {
+                        Toast.MakeText(this, "SIN CONEXION", ToastLength.Long).Show();
+                    }
                     break;
                 case 4:
-                    var actityConfiguracion = new Intent(this, typeof(OpcionesActivity));
-                    StartActivity(actityConfiguracion);
-
+                    if (AccesoDatos.estadoConexion())
+                    {
+                        var actityConfiguracion = new Intent(this, typeof(OpcionesActivity));
+                        StartActivity(actityConfiguracion);
+                    }
+                    else
+                    {
+                        Toast.MakeText(this, "SIN CONEXION", ToastLength.Long).Show();
+                    }
                     break;
             }
             this.drawerListView.SetItemChecked(position, true);
@@ -257,7 +279,14 @@ namespace AlmacenRepuestosXamarin.Activities
         {
             base.OnPostCreate(savedInstanceState);
             this.drawerToggle.SyncState();
-            await Monitorizacion.updateListMonitorizacion();            
+            if (AccesoDatos.estadoConexion())
+            {
+                await Monitorizacion.updateListMonitorizacion();
+            }
+            else
+            {
+                Toast.MakeText(this, "SIN CONEXION", ToastLength.Long).Show();
+            }           
         }
 
         public override void OnConfigurationChanged(Configuration newConfig)
@@ -347,38 +376,6 @@ namespace AlmacenRepuestosXamarin.Activities
             });
         }
 
-        //Comprobamos que la notificacion de cambio del estado del pedido es diferente a la inicial y así mandar la notificación
-        //private async  void OnItemMessage(FirebaseEvent<Dictionary<string, PedidoFireBase>> message)
-        //{
-        //    foreach (KeyValuePair<string, PedidoFireBase> item in message.Object)
-        //    {
-        //        string pedMessage = item.Value.codPedido.ToString();
-        //        string estadoMessage = item.Value.descripcion.ToString();
-                
-
-        //        if (Monitorizacion.listMonitorizacionLieja != null || Monitorizacion.listMonitorizacionSevilla != null)
-        //        {
-        //            var list = Monitorizacion.listMonitorizacionSevilla;
-        //            var pedido = Monitorizacion.listMonitorizacionLieja.Where(q => q.codigoPedido.Equals(item.Value.codPedido)).FirstOrDefault();
-        //            if (pedido == null)
-        //                pedido = Monitorizacion.listMonitorizacionSevilla.Where(q => q.codigoPedido.Contains(item.Value.codPedido)).FirstOrDefault();
-
-        //            if (pedido != null)
-        //            {
-
-        //                if (pedido.Estado != item.Value.estado)
-        //                {
-        //                       // notificar(item.Value);
-        //                }
-        //            }
-        //            else
-        //            {
-        //              //  notificar(item.Value);
-        //            }
-        //        }   
-        //    }
-        //}
-
         public void OnCancelled(DatabaseError error)
         {
             Toast.MakeText(this, "cancel", ToastLength.Short);
@@ -401,15 +398,10 @@ namespace AlmacenRepuestosXamarin.Activities
         }
 
         public void OnChildChanged(DataSnapshot snapshot, string previousChildName)
-        {
-            //GenericTypeIndicator<PedidoFireBase> a = new GenericTypeIndicator<PedidoFireBase>();
-            
+        {           
             string json = JsonConvert.SerializeObject(snapshot.Value);
             PedidoFireBase pedidoFireBase = JsonConvert.DeserializeObject<PedidoFireBase>(json);
             notificar(pedidoFireBase);
-
-
-            
         }
 
         public void OnChildMoved(DataSnapshot snapshot, string previousChildName)
